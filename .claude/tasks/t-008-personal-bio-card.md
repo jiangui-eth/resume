@@ -4,7 +4,7 @@ Task: T-008 Personal Bio Card — 'Precision in Every Pixel'
 - 分支: feature/t-008-personal-bio-card
 - 开发人: Claude
 - 测试状态: 通过（8/8 AboutSection 单元测试通过）
-- PR 链接: 待生成
+- PR 链接: https://github.com/jiangui-eth/resume/pull/new/feature/t-008-personal-bio-card
 - 变更文件:
     - apps/web/src/components/home/AboutSection.tsx（新建）
     - apps/web/src/app/page.tsx（替换占位内容，挂载 HeroSection + AboutSection）
