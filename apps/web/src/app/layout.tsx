@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import "../index.css";
-import Header from "@/components/header";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import Providers from "@/components/providers";
 
 const geistSans = Geist({
@@ -29,9 +30,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
-          <div className="grid grid-rows-[auto_1fr] h-svh">
-            <Header />
-            {children}
+          <div className="flex min-h-svh flex-col">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
           </div>
         </Providers>
       </body>
