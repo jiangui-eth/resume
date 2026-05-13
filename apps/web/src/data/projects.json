@@ -1,0 +1,83 @@
+[
+  {
+    "id": "proj-001",
+    "name": "Wind Power IoT Platform",
+    "tagline": "Real-time turbine monitoring across 8 wind farms",
+    "domainTags": ["IoT", "Energy", "Real-time"],
+    "background": "Envision Energy needed a unified operations dashboard to monitor 2,000+ wind turbines spread across remote locations in China. The legacy system was batch-based, delivering data with 15-minute latency and no fault alerting — field engineers were flying blind.",
+    "technicalDecisions": [
+      "Chose InfluxDB over TimescaleDB for its native time-series compression and continuous query features, achieving 10x storage reduction on raw telemetry",
+      "Adopted Kafka as the ingestion bus to decouple edge device producers from backend consumers, enabling replay and back-pressure handling",
+      "Built a Three.js WebGL component for interactive 3D turbine inspection — significantly cheaper to iterate on than procuring a dedicated SCADA 3D tool",
+      "Used MQTT over CoAP for edge devices because of better broker ecosystem support and QoS level flexibility",
+      "Implemented delta-compression on the client side so WebSocket frames stayed under 1KB even for batch telemetry bursts"
+    ],
+    "metrics": [
+      { "label": "Turbines monitored", "value": "2,000+" },
+      { "label": "Data points / min", "value": "200k+" },
+      { "label": "Fault MTTD reduction", "value": "65%" },
+      { "label": "Query response", "value": "<1s" }
+    ],
+    "images": [
+      { "src": "/images/projects/wind-power.jpg", "alt": "Wind Power IoT Platform dashboard" }
+    ],
+    "links": [],
+    "techTags": ["React", "Node.js", "InfluxDB", "Kafka", "Three.js", "MQTT", "Docker", "WebGL"],
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": "proj-002",
+    "name": "Gate SEO Platform",
+    "tagline": "Performance-first SEO analytics for a top-10 crypto exchange",
+    "domainTags": ["Web3", "SEO", "Analytics"],
+    "background": "Gate.io required an in-house SEO platform to track keyword rankings, backlink health, and Core Web Vitals across thousands of landing pages in 15 languages. Third-party SaaS tools couldn't handle the scale or provide the custom metrics the SEO team needed.",
+    "technicalDecisions": [
+      "Chose Next.js App Router with ISR to serve pre-rendered SEO pages while keeping content fresh on a per-route revalidation schedule",
+      "Implemented a virtual list (TanStack Virtual) for the 100k-row keyword ranking table, keeping DOM node count under 500 at any time",
+      "Used Redis as a read-through cache in front of PostgreSQL for dashboard queries, cutting P99 query latency from 800ms to 120ms",
+      "Adopted WebSocket-based live ranking updates so the team could watch real-time SERP position changes during campaigns",
+      "Shipped a lightweight crawler microservice in Go to avoid Python GIL bottlenecks during concurrent page audits"
+    ],
+    "metrics": [
+      { "label": "Page load (LCP)", "value": "4.2s → 1.8s" },
+      { "label": "Core Web Vitals", "value": "80+" },
+      { "label": "Concurrent users", "value": "50k+" },
+      { "label": "Query latency P99", "value": "800ms → 120ms" }
+    ],
+    "images": [
+      { "src": "/images/projects/gate-seo.jpg", "alt": "Gate SEO analytics dashboard" }
+    ],
+    "links": [],
+    "techTags": ["Next.js", "TypeScript", "TailwindCSS", "Redis", "PostgreSQL", "WebSocket", "Go"],
+    "featured": true,
+    "order": 2
+  },
+  {
+    "id": "proj-003",
+    "name": "Chaos Developer Platform",
+    "tagline": "Self-service internal platform for 50+ engineers",
+    "domainTags": ["DevOps", "Platform Engineering", "Developer Experience"],
+    "background": "The engineering team was blocked by a centralised ops team for every deployment and environment request. Chaos was built to give developers full self-service control over deployments, feature flags, secrets, and on-call tooling — without needing to file tickets.",
+    "technicalDecisions": [
+      "Built on top of ArgoCD GitOps model so every deployment is auditable and rollback is a single git revert",
+      "Chose Go for the platform API layer to minimise runtime overhead and binary size in Kubernetes sidecars",
+      "Implemented RBAC at the resource level (project / environment / action) using a custom policy engine inspired by Casbin",
+      "Unified feature flags, secrets, and config under a single 'environment context' abstraction so services only needed one SDK",
+      "Shipped an incident timeline view that auto-correlates deployment events with PagerDuty alerts — dramatically reducing RCA time"
+    ],
+    "metrics": [
+      { "label": "Deploy time", "value": "25min → 4min" },
+      { "label": "Engineers served", "value": "50+" },
+      { "label": "Deployments / day", "value": "80+" },
+      { "label": "Rollback time", "value": "<30s" }
+    ],
+    "images": [
+      { "src": "/images/projects/chaos-platform.jpg", "alt": "Chaos internal developer platform" }
+    ],
+    "links": [],
+    "techTags": ["React", "Go", "GitHub Actions", "ArgoCD", "Kubernetes", "PostgreSQL", "Helm"],
+    "featured": true,
+    "order": 3
+  }
+]

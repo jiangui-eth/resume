@@ -1,0 +1,36 @@
+{
+  "name": "Jiangui",
+  "ens": "jiangui.eth",
+  "headline": "Full-Stack Engineer & Web3 Builder",
+  "summary": "Full-stack engineer with 5+ years of experience shipping production systems across Web2 and Web3. I specialise in performance-first frontend architecture, resilient backend services, and on-chain product design. I care deeply about developer experience, clean abstractions, and shipping things that actually work.",
+  "avatarUrl": "/images/avatar/avatar.jpg",
+  "location": "Shanghai, China",
+  "stats": {
+    "projectsShipped": 14,
+    "avgLatency": "1.8s",
+    "performanceScore": 80,
+    "yearsExperience": 5
+  },
+  "socials": [
+    {
+      "platform": "github",
+      "url": "https://github.com/jiangui-eth",
+      "handle": "jiangui-eth"
+    },
+    {
+      "platform": "twitter",
+      "url": "https://twitter.com/jiangui_eth",
+      "handle": "@jiangui_eth"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://linkedin.com/in/jiangui-eth",
+      "handle": "jiangui-eth"
+    },
+    {
+      "platform": "email",
+      "url": "mailto:jiangui.eth@gmail.com",
+      "handle": "jiangui.eth@gmail.com"
+    }
+  ]
+}
