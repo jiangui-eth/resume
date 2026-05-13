@@ -23,11 +23,12 @@
     "@types/node": "^22.13.14",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
+    "prettier": "catalog:",
     "turbo": "^2.8.12",
     "typescript": "catalog:"
   },
   "lint-staged": {
-    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue,astro,svelte}": ""
+    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue,astro,svelte,css,json}": ""
   },
   "packageManager": "pnpm@10.26.2"
 }

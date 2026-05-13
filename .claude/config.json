@@ -1,0 +1,8 @@
+{
+  "task_directory": ".claude/tasks/",
+  "default_branch": "main",
+  "tech_stack": ["React", "Next.js", "TypeScript", "TailwindCSS"],
+  "deploy_platform": "Vercel",
+  "testing_framework": ["Jest", "Playwright", "Cypress"],
+  "commit_format": "feat(Task): {task_name} - {short_desc}"
+}
