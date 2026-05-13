@@ -1,0 +1,107 @@
+{
+  "radarDimensions": [
+    {
+      "label": "Frontend",
+      "score": 95,
+      "description": "React, Next.js, performance optimisation, animation, and design systems"
+    },
+    {
+      "label": "Backend",
+      "score": 82,
+      "description": "Node.js, Go, REST & tRPC APIs, microservices, and message queues"
+    },
+    {
+      "label": "Web3",
+      "score": 75,
+      "description": "Solidity, ethers.js, wagmi, on-chain data indexing, and wallet integrations"
+    },
+    {
+      "label": "DevOps",
+      "score": 78,
+      "description": "Docker, Kubernetes, GitHub Actions, ArgoCD, and observability stacks"
+    },
+    {
+      "label": "Data",
+      "score": 70,
+      "description": "Time-series databases, data pipelines, Kafka, and analytics tooling"
+    },
+    {
+      "label": "AI / LLM",
+      "score": 65,
+      "description": "LLM API integration, RAG pipelines, prompt engineering, and agent tooling"
+    }
+  ],
+  "techCategories": [
+    {
+      "category": "Frameworks",
+      "technologies": [
+        { "name": "Next.js", "level": "expert" },
+        { "name": "React", "level": "expert" },
+        { "name": "TailwindCSS", "level": "expert" },
+        { "name": "Node.js", "level": "proficient" },
+        { "name": "Go", "level": "proficient" },
+        { "name": "tRPC", "level": "proficient" }
+      ]
+    },
+    {
+      "category": "Engineering",
+      "technologies": [
+        { "name": "TypeScript", "level": "expert" },
+        { "name": "Docker", "level": "proficient" },
+        { "name": "Kubernetes", "level": "proficient" },
+        { "name": "GitHub Actions", "level": "proficient" },
+        { "name": "PostgreSQL", "level": "proficient" },
+        { "name": "Redis", "level": "proficient" }
+      ]
+    },
+    {
+      "category": "AI & Data",
+      "technologies": [
+        { "name": "OpenAI API", "level": "proficient" },
+        { "name": "LangChain", "level": "familiar" },
+        { "name": "Kafka", "level": "proficient" },
+        { "name": "InfluxDB", "level": "proficient" },
+        { "name": "Vercel AI SDK", "level": "familiar" }
+      ]
+    },
+    {
+      "category": "Graphics",
+      "technologies": [
+        { "name": "Three.js", "level": "proficient" },
+        { "name": "WebGL", "level": "familiar" },
+        { "name": "Framer Motion", "level": "proficient" },
+        { "name": "D3.js", "level": "familiar" }
+      ]
+    }
+  ],
+  "battleTestedCards": [
+    {
+      "id": "btc-001",
+      "title": "Performance Engineering",
+      "description": "Systematic approach to frontend performance: profiling, code splitting, SSR/ISR strategies, and Core Web Vitals optimisation at scale.",
+      "icon": "⚡",
+      "tags": ["LCP", "CLS", "INP", "Lighthouse", "Bundle Analysis"]
+    },
+    {
+      "id": "btc-002",
+      "title": "Real-time Systems",
+      "description": "Building production WebSocket and event-driven architectures that handle tens of thousands of concurrent connections with low latency.",
+      "icon": "📡",
+      "tags": ["WebSocket", "Kafka", "MQTT", "SSE", "Redis Pub/Sub"]
+    },
+    {
+      "id": "btc-003",
+      "title": "Design Systems",
+      "description": "Founding and scaling component libraries from zero — design tokens, accessibility compliance, documentation, and cross-team adoption.",
+      "icon": "🎨",
+      "tags": ["Storybook", "Radix UI", "Design Tokens", "a11y", "Figma"]
+    },
+    {
+      "id": "btc-004",
+      "title": "Developer Tooling",
+      "description": "CI/CD pipelines, GitOps workflows, self-service platforms, and internal tooling that dramatically improve engineering velocity.",
+      "icon": "🛠",
+      "tags": ["GitHub Actions", "ArgoCD", "Turborepo", "Nx", "Changesets"]
+    }
+  ]
+}

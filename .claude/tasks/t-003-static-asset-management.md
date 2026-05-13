@@ -4,7 +4,7 @@ Task: T-003 Static Asset Management and Image Optimization
 - 分支: feature/t-003-static-asset-management
 - 开发人: Claude
 - 测试状态: 通过（构建验证）
-- PR 链接: 待推送后生成
+- PR 链接: https://github.com/jiangui-eth/resume/pull/3
 - 变更文件:
     - apps/web/next.config.ts（新增 images.formats + remotePatterns）
     - apps/web/public/apple-touch-icon.png（35KB）

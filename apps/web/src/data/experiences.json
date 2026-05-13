@@ -1,0 +1,63 @@
+[
+  {
+    "id": "exp-001",
+    "company": "Gate.io",
+    "companyUrl": "https://gate.io",
+    "title": "Senior Frontend Engineer",
+    "type": "full-time",
+    "period": {
+      "start": "2022-06",
+      "end": "present"
+    },
+    "location": "Shanghai · Remote",
+    "responsibilities": [
+      "Led frontend architecture for Gate SEO platform, reducing average page load from 4.2s to 1.8s through SSR optimisation and aggressive code splitting",
+      "Designed and shipped a real-time analytics dashboard handling 50k+ concurrent users with WebSocket-driven updates and virtual list rendering",
+      "Established component library and design-token system adopted by 4 product teams, cutting UI development time by ~40%",
+      "Drove Core Web Vitals scores to 80+ across key landing pages, directly contributing to organic search growth",
+      "Mentored 3 junior engineers through bi-weekly code reviews and pair programming sessions"
+    ],
+    "techTags": ["Next.js", "TypeScript", "TailwindCSS", "WebSocket", "Redis", "PostgreSQL"],
+    "highlight": "LCP 4.2s → 1.8s"
+  },
+  {
+    "id": "exp-002",
+    "company": "Envision Energy",
+    "companyUrl": "https://www.envisiongroup.com",
+    "title": "Full-Stack Engineer",
+    "type": "full-time",
+    "period": {
+      "start": "2020-07",
+      "end": "2022-05"
+    },
+    "location": "Shanghai",
+    "responsibilities": [
+      "Built the Wind Power IoT monitoring platform from greenfield, integrating real-time telemetry from 2,000+ turbines across 8 wind farms",
+      "Designed a time-series data pipeline using InfluxDB and Kafka, sustaining 200k+ data points per minute with sub-second query response",
+      "Delivered an interactive 3D turbine visualisation with Three.js and WebGL, enabling field engineers to inspect component status remotely",
+      "Implemented automated alert workflows reducing mean-time-to-detect (MTTD) for turbine faults by 65%",
+      "Collaborated with embedded firmware team to define the MQTT telemetry protocol for edge devices"
+    ],
+    "techTags": ["React", "Node.js", "InfluxDB", "Kafka", "Three.js", "MQTT", "Docker"],
+    "highlight": "2,000+ turbines monitored"
+  },
+  {
+    "id": "exp-003",
+    "company": "Chaos (Internal Platform)",
+    "title": "Platform Engineer (Internal Tools)",
+    "type": "full-time",
+    "period": {
+      "start": "2019-07",
+      "end": "2020-06"
+    },
+    "location": "Shanghai",
+    "responsibilities": [
+      "Built the Chaos internal developer platform, providing self-service deployment, feature flags, and environment management for 50+ engineers",
+      "Automated CI/CD pipelines with GitHub Actions and ArgoCD, reducing average deploy time from 25 minutes to under 4 minutes",
+      "Implemented RBAC and audit-log system meeting enterprise compliance requirements",
+      "Shipped a developer portal with integrated runbook search, on-call schedules, and incident timeline views"
+    ],
+    "techTags": ["React", "Go", "GitHub Actions", "ArgoCD", "Kubernetes", "PostgreSQL"],
+    "highlight": "Deploy time 25min → 4min"
+  }
+]
