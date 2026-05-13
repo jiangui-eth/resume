@@ -1,16 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, FileDown } from "lucide-react";
 
-const NAV_LINKS = [
+const NAV_LINKS: { href: Route; label: string }[] = [
   { href: "/", label: "Home" },
   { href: "/experience", label: "Experience" },
   { href: "/projects", label: "Projects" },
   { href: "/skills", label: "Skills" },
-] as const;
+];
 
 const RESUME_PDF_PATH = "/resume.pdf";
 
