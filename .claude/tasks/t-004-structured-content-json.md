@@ -4,7 +4,7 @@ Task: T-004 Structured Content JSON Configuration Files
 - 分支: feature/t-004-structured-content-json
 - 开发人: Claude
 - 测试状态: 通过（TypeScript 类型无编译错误，JSON 结构完整）
-- PR 链接: 待生成
+- PR 链接: https://github.com/jiangui-eth/resume/pull/4
 - 变更文件: apps/web/src/types/{profile,experience,project,skill,contact}.ts, apps/web/src/data/{profile,experiences,projects,skills,contact}.json, .claude/tasks/t-004-structured-content-json.md
 - 回滚方法:
     1. git checkout main
