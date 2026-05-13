@@ -1,0 +1,3 @@
+{
+  "extends": "@jiangui-resume/config/tsconfig.base.json"
+}
