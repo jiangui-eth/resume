@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import RadarChart from "@/components/skills/RadarChart";
+import TechStackCards from "@/components/skills/TechStackCards";
+import ExpertiseCards from "@/components/skills/ExpertiseCards";
+import SkillsCTA from "@/components/skills/SkillsCTA";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -10,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function SkillsPage() {
   return (
+    <>
     <section
       className="relative overflow-hidden"
       style={{ background: "#0a0a0f" }}
@@ -46,6 +51,15 @@ export default function SkillsPage() {
           </p>
         </div>
       </div>
+
+      <div className="mx-auto max-w-6xl px-4 pb-8 sm:px-6 lg:px-8">
+        <RadarChart />
+      </div>
     </section>
+
+    <TechStackCards />
+    <ExpertiseCards />
+    <SkillsCTA />
+  </>
   );
 }
