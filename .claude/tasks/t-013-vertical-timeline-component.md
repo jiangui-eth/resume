@@ -4,7 +4,7 @@ Task: T-013 Vertical Timeline Component
 - 分支: feature/t-013-vertical-timeline-component
 - 开发人: Codex
 - 测试状态: 失败（T-013 相关 Vitest 通过；全量 `pnpm test --run` 与 `pnpm tsc --noEmit` 被现有非本任务范围错误阻塞）
-- PR 链接: [FILL after gh pr create]
+- PR 链接: https://github.com/jiangui-eth/resume/pull/13
 - 变更文件:
     - apps/web/src/components/experience/Timeline.tsx（新建）
     - apps/web/src/components/experience/TimelineCard.tsx（新建）
