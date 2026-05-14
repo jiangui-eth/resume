@@ -3,8 +3,8 @@ Task: T-025 Analytics and Event Tracking Integration
 - 需求描述: Vercel Analytics + custom event tracking for CTAs, download links, and scroll depth
 - 分支: feature/t-025-analytics-and-event-tracking-integration
 - 开发人: Claude
-- 测试状态: 待测试
-- PR 链接: 待生成
+- 测试状态: 通过（8/8，Navbar 6 failures 为既有问题）
+- PR 链接: https://github.com/jiangui-eth/resume/pull/23
 - 变更文件:
     - apps/web/src/app/layout.tsx（修改：add Analytics and ScrollDepthTracker）
     - apps/web/src/lib/analytics.ts（新建：track() wrapper）
