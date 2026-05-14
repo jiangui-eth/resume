@@ -1,6 +1,6 @@
 {
-  "task_directory": ".claude/tasks/",
-  "default_branch": "main",
+  "task_directory": ".claude/tasks_v2/",
+  "default_branch": "dev_v2",
   "tech_stack": ["React", "Next.js", "TypeScript", "TailwindCSS"],
   "deploy_platform": "Vercel",
   "testing_framework": ["Jest", "Playwright", "Cypress"],
