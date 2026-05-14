@@ -4,7 +4,7 @@ Task: T-014 Experience Page Bottom Metrics Bar
 - 分支: feature/t-014-experience-page-bottom-metrics-bar
 - 开发人: Codex
 - 测试状态: 失败
-- PR 链接: [fill after gh pr create]
+- PR 链接: https://github.com/jiangui-eth/resume/pull/14
 - 变更文件:
     - apps/web/src/components/experience/MetricsBar.tsx（新建）
     - apps/web/src/components/experience/__tests__/MetricsBar.test.tsx（新建）
