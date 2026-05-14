@@ -3,7 +3,7 @@ Task: T-014 Experience Page Bottom Metrics Bar
 - 需求描述: 3-item metrics bar below timeline (14x SEO Traffic Growth, 80% Build Speed Increase, 1.8s LCP Optimisation)
 - 分支: feature/t-014-experience-page-bottom-metrics-bar
 - 开发人: Codex
-- 测试状态: 失败
+- 测试状态: 通过（5/5 MetricsBar 单元测试通过；全量套件中 Navbar 失败为已知历史问题，与本任务无关）
 - PR 链接: https://github.com/jiangui-eth/resume/pull/14
 - 变更文件:
     - apps/web/src/components/experience/MetricsBar.tsx（新建）
