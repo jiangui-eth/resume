@@ -3,8 +3,8 @@ Task: T-030 / T-031 — Accessibility Testing + Link Validity Check
 - 需求描述: axe-core a11y checks on key pages via Playwright; link validity script for external URLs in CI
 - 分支: feature/t-030-031-a11y-link-check
 - 开发人: Claude
-- 测试状态: 待测试
-- PR 链接: 待生成
+- 测试状态: 通过 (31 files, 185 tests)
+- PR 链接: [#26](https://github.com/jiangui-eth/resume/pull/26)
 - 变更文件:
     - apps/web/tests/visual/a11y.spec.ts（新建：@axe-core/playwright WCAG 2.1 AA page scans for 4 pages）
     - apps/web/src/__tests__/a11y-data.test.ts（新建：Vitest data-level a11y checks — alt text, labels）
