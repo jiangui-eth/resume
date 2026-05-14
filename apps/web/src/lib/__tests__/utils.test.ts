@@ -1,0 +1,49 @@
+import { describe, it, expect } from "vitest";
+import { formatPeriod, slugify, isPresent } from "../utils";
+
+describe("isPresent", () => {
+  it("returns true for 'present'", () => {
+    expect(isPresent("present")).toBe(true);
+  });
+
+  it("is case-insensitive", () => {
+    expect(isPresent("Present")).toBe(true);
+    expect(isPresent("PRESENT")).toBe(true);
+  });
+
+  it("returns false for a date string", () => {
+    expect(isPresent("2023-06")).toBe(false);
+  });
+});
+
+describe("slugify", () => {
+  it("lowercases and replaces spaces with hyphens", () => {
+    expect(slugify("My Project")).toBe("my-project");
+  });
+
+  it("removes special characters", () => {
+    expect(slugify("Hello, World!")).toBe("hello-world");
+  });
+
+  it("collapses multiple spaces", () => {
+    expect(slugify("a   b")).toBe("a-b");
+  });
+
+  it("trims leading and trailing hyphens", () => {
+    expect(slugify("  hello  ")).toBe("hello");
+  });
+});
+
+describe("formatPeriod", () => {
+  it("formats a date range with month names", () => {
+    expect(formatPeriod("2022-06", "2023-01")).toBe("Jun 2022 – Jan 2023");
+  });
+
+  it("shows 'Present' when end is present", () => {
+    expect(formatPeriod("2022-06", "present")).toBe("Jun 2022 – Present");
+  });
+
+  it("handles single-digit months", () => {
+    expect(formatPeriod("2020-01", "2020-09")).toBe("Jan 2020 – Sep 2020");
+  });
+});
