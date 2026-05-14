@@ -3,8 +3,8 @@ Task: T-024 Global SEO Meta Configuration
 - 需求描述: Add OG tags, Twitter card, keywords, sitemap.ts, and robots.txt across all pages
 - 分支: feature/t-024-global-seo-meta-configuration
 - 开发人: Claude
-- 测试状态: 待测试
-- PR 链接: 待生成
+- 测试状态: 通过（6/6，Navbar 6 failures 为既有问题）
+- PR 链接: https://github.com/jiangui-eth/resume/pull/22
 - 变更文件:
     - apps/web/src/app/layout.tsx（修改：metadataBase, OG, Twitter card site-wide）
     - apps/web/src/app/page.tsx（修改：add generateMetadata with OG fields）
