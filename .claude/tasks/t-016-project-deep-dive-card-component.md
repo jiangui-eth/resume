@@ -4,7 +4,7 @@ Task: T-016 Project Deep Dive Card Component
 - 分支: feature/t-016-project-deep-dive-card-component
 - 开发人: Codex
 - 测试状态: 失败
-- PR 链接: [fill after gh pr create]
+- PR 链接: https://github.com/jiangui-eth/resume/pull/17
 - 变更文件:
     - apps/web/src/components/projects/ProjectBlock.tsx（新建）
     - apps/web/src/components/projects/MetricBadge.tsx（新建）
