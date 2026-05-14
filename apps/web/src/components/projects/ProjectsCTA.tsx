@@ -1,3 +1,7 @@
+"use client";
+
+import { track } from "@/lib/analytics";
+
 export default function ProjectsCTA() {
   return (
     <section
@@ -18,6 +22,7 @@ export default function ProjectsCTA() {
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="mailto:jiangui.eth@gmail.com"
+              onClick={() => track("click_get_in_touch", { source: "projects_cta" })}
               className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-500"
             >
               Schedule Technical Interview
@@ -26,6 +31,7 @@ export default function ProjectsCTA() {
               href="https://github.com/jiangui-eth"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track("click_social_link", { platform: "github" })}
               className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/80 transition-colors hover:border-white/40 hover:text-white"
             >
               View GitHub

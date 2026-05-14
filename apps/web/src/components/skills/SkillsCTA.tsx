@@ -1,3 +1,7 @@
+"use client";
+
+import { track } from "@/lib/analytics";
+
 export default function SkillsCTA() {
   return (
     <section
@@ -17,6 +21,7 @@ export default function SkillsCTA() {
           </div>
           <a
             href="mailto:jiangui.eth@gmail.com"
+            onClick={() => track("click_get_in_touch", { source: "skills_cta" })}
             className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-500"
           >
             Get in Touch
