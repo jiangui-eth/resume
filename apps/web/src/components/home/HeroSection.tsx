@@ -98,7 +98,7 @@ export default function HeroSection() {
           className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both delay-500 mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
         >
           <Link
-            href="/projects"
+            href={"/projects" as import("next").Route}
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:bg-blue-500 hover:shadow-blue-500/35 active:scale-95"
           >
             View Projects

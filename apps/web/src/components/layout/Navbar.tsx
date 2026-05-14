@@ -6,12 +6,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, FileDown } from "lucide-react";
 
-const NAV_LINKS: { href: Route; label: string }[] = [
+const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/experience", label: "Experience" },
   { href: "/projects", label: "Projects" },
   { href: "/skills", label: "Skills" },
-];
+] as { href: Route; label: string }[];
 
 const RESUME_PDF_PATH = "/resume.pdf";
 
