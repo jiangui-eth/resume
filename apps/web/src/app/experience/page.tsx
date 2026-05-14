@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import MetricsBar from "@/components/experience/MetricsBar";
 import Timeline from "@/components/experience/Timeline";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -45,6 +46,11 @@ export default function ExperiencePage() {
       </section>
       <section className="mx-auto max-w-5xl px-4 pb-24 sm:px-6 lg:px-8">
         <Timeline />
+      </section>
+      <section>
+        <div className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+          <MetricsBar />
+        </div>
       </section>
     </>
   );
