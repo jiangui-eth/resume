@@ -7,6 +7,10 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+// ── Module mocks ───────────────────────────────────────────────────────────────
+
+vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
+
 // ── Next.js mocks ──────────────────────────────────────────────────────────────
 
 let mockPathname = "/";

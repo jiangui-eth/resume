@@ -54,6 +54,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
+          aria-label="jiangui.eth"
           className="flex items-center gap-2 text-foreground hover:text-foreground/80 transition-colors"
         >
           <span className="text-lg font-bold tracking-tight font-mono">
@@ -70,6 +71,7 @@ export default function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
+                  aria-current={isActive ? "page" : undefined}
                   className={[
                     "relative px-3 py-2 text-sm font-medium transition-colors rounded-md",
                     "hover:text-foreground hover:bg-accent",
@@ -104,6 +106,9 @@ export default function Navbar() {
 
       {/* Mobile drawer — slide down */}
       <div
+        role="dialog"
+        aria-label="navigation menu"
+        aria-modal="false"
         className={[
           "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
           mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0",
@@ -118,6 +123,7 @@ export default function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
+                  aria-current={isActive ? "page" : undefined}
                   className={[
                     "flex items-center px-3 py-3 text-base font-medium rounded-md transition-colors",
                     "hover:text-foreground hover:bg-accent",
