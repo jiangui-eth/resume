@@ -4,25 +4,34 @@
     "name": "Wind Power IoT Platform",
     "tagline": "Real-time turbine monitoring across 8 wind farms",
     "domainTags": ["IoT", "Energy", "Real-time"],
-    "background": "Envision Energy needed a unified operations dashboard to monitor 2,000+ wind turbines spread across remote locations in China. The legacy system was batch-based, delivering data with 15-minute latency and no fault alerting — field engineers were flying blind.",
+    "background": "Built from zero to one for a wind-power customer support team managing roughly 2TB of turbine manuals, troubleshooting guides, and maintenance records. The product turned fragmented device documentation into a retrieval workflow that operators could trust during live support sessions.",
     "technicalDecisions": [
-      "Chose InfluxDB over TimescaleDB for its native time-series compression and continuous query features, achieving 10x storage reduction on raw telemetry",
-      "Adopted Kafka as the ingestion bus to decouple edge device producers from backend consumers, enabling replay and back-pressure handling",
-      "Built a Three.js WebGL component for interactive 3D turbine inspection — significantly cheaper to iterate on than procuring a dedicated SCADA 3D tool",
-      "Used MQTT over CoAP for edge devices because of better broker ecosystem support and QoS level flexibility",
-      "Implemented delta-compression on the client side so WebSocket frames stayed under 1KB even for batch telemetry bursts"
+      {
+        "title": "Chunking and retrieval tuned for equipment manuals",
+        "explanation": "Split long PDF manuals into section-aware chunks keyed by device model, subsystem, and failure code so retrieval stayed precise even when the source corpus mixed scanned files, SOPs, and revision-heavy documentation."
+      },
+      {
+        "title": "Trust-first answer rendering",
+        "explanation": "Structured every response around citations, source snippets, and document provenance to keep customer support agents inside an auditable workflow instead of relying on opaque model output."
+      },
+      {
+        "title": "Streaming chat with controlled latency",
+        "explanation": "Used SSE-based streaming responses and staged retrieval so operators could start reading an answer quickly while the system completed reranking and evidence assembly in the background."
+      }
     ],
     "metrics": [
-      { "label": "Turbines monitored", "value": "2,000+" },
-      { "label": "Data points / min", "value": "200k+" },
-      { "label": "Fault MTTD reduction", "value": "65%" },
-      { "label": "Query response", "value": "<1s" }
+      { "label": "Document lookup time", "value": "5 min → 1 min" },
+      { "label": "Ticket handling time", "value": "-80%" },
+      { "label": "Trust score", "value": "9.0 / 10" },
+      { "label": "Knowledge corpus", "value": "~2TB" }
     ],
     "images": [
-      { "src": "/images/projects/wind-power.jpg", "alt": "Wind Power IoT Platform dashboard" }
+      { "src": "/images/projects/wind-power.jpg", "alt": "Wind Power RAG Platform concept visual" }
     ],
-    "links": [],
-    "techTags": ["React", "Node.js", "InfluxDB", "Kafka", "Three.js", "MQTT", "Docker", "WebGL"],
+    "links": [
+      { "type": "case-study", "url": "/projects" }
+    ],
+    "techTags": ["React", "Node.js", "RAG", "Pinecone", "OpenAI", "SSE"],
     "featured": true,
     "order": 1
   },
@@ -31,53 +40,106 @@
     "name": "Gate SEO Platform",
     "tagline": "Performance-first SEO analytics for a top-10 crypto exchange",
     "domainTags": ["Web3", "SEO", "Analytics"],
-    "background": "Gate.io required an in-house SEO platform to track keyword rankings, backlink health, and Core Web Vitals across thousands of landing pages in 15 languages. Third-party SaaS tools couldn't handle the scale or provide the custom metrics the SEO team needed.",
+    "background": "Led a dedicated SEO rebuild for Gate's large data-content surfaces, including liquidation feeds, capital-flow dashboards, and other traffic-heavy pages. The project replaced a CSR-only delivery model with a crawlable, performance-focused architecture built for search growth at scale.",
     "technicalDecisions": [
-      "Chose Next.js App Router with ISR to serve pre-rendered SEO pages while keeping content fresh on a per-route revalidation schedule",
-      "Implemented a virtual list (TanStack Virtual) for the 100k-row keyword ranking table, keeping DOM node count under 500 at any time",
-      "Used Redis as a read-through cache in front of PostgreSQL for dashboard queries, cutting P99 query latency from 800ms to 120ms",
-      "Adopted WebSocket-based live ranking updates so the team could watch real-time SERP position changes during campaigns",
-      "Shipped a lightweight crawler microservice in Go to avoid Python GIL bottlenecks during concurrent page audits"
+      {
+        "title": "CSR to SSR migration with short-cycle caching",
+        "explanation": "Chose Next.js server rendering with controlled revalidation instead of static generation because the underlying market data changed minute by minute and still needed indexable HTML for search engines."
+      },
+      {
+        "title": "Structured data as a ranking multiplier",
+        "explanation": "Systematically injected JSON-LD for dataset and financial content pages to improve Google understanding of page intent and unlock richer result surfaces beyond standard blue links."
+      },
+      {
+        "title": "Performance budgets tied to SEO rollout",
+        "explanation": "Treated LCP, CLS, and layout stability as release gates so search visibility gains would not come at the cost of user-perceived speed on mobile-heavy traffic."
+      }
     ],
     "metrics": [
-      { "label": "Page load (LCP)", "value": "4.2s → 1.8s" },
-      { "label": "Core Web Vitals", "value": "80+" },
-      { "label": "Concurrent users", "value": "50k+" },
-      { "label": "Query latency P99", "value": "800ms → 120ms" }
+      { "label": "Organic traffic", "value": "1K/mo → 14K/mo" },
+      { "label": "Page-series uplift", "value": "+80%+" },
+      { "label": "LCP", "value": "4.2s → 1.8s" },
+      { "label": "Search index lift", "value": "+30%+" }
     ],
     "images": [
-      { "src": "/images/projects/gate-seo.jpg", "alt": "Gate SEO analytics dashboard" }
+      { "src": "/images/projects/gate-seo.jpg", "alt": "Gate SEO transformation dashboard" }
     ],
-    "links": [],
-    "techTags": ["Next.js", "TypeScript", "TailwindCSS", "Redis", "PostgreSQL", "WebSocket", "Go"],
+    "links": [
+      { "type": "demo", "url": "https://example.com/gate-seo-demo" },
+      { "type": "case-study", "url": "/projects" }
+    ],
+    "techTags": ["Next.js", "TypeScript", "SEO", "JSON-LD", "SSR", "Core Web Vitals"],
     "featured": true,
     "order": 2
   },
   {
     "id": "proj-003",
+    "name": "Michaels Design System",
+    "tagline": "Shared frontend foundation across four retail product lines",
+    "domainTags": ["Design System", "E-commerce", "Platform"],
+    "background": "Served as frontend tech lead for Michaels across MakerPlace, Rewards, Classes, and store experiences, aligning multiple product lines on a shared component system and delivery model. The work focused on making multi-team execution faster without fragmenting UX or performance standards.",
+    "technicalDecisions": [
+      {
+        "title": "Token architecture layered from global to component scope",
+        "explanation": "Built the system on top of Chakra UI with global, semantic, and component-level token layers so teams could reuse primitives while still supporting product-level theme adaptation."
+      },
+      {
+        "title": "Multi-format package output for broad adoption",
+        "explanation": "Used Rollup multi-entry builds to ship ESM and CJS packages with tree-shaking support, keeping the design system consumable across older storefront apps and newer feature teams."
+      },
+      {
+        "title": "Migration strategy paired with performance work",
+        "explanation": "Combined the design system rollout with SSR-friendly Vite migration and dependency slimming so shared components improved consistency without becoming a performance tax."
+      }
+    ],
+    "metrics": [
+      { "label": "Product lines", "value": "4" },
+      { "label": "Team size led", "value": "7 engineers" },
+      { "label": "Build speed", "value": "+80%" },
+      { "label": "SEO page lift", "value": "+30%+" }
+    ],
+    "images": [],
+    "links": [
+      { "type": "github", "url": "https://github.com/jiangui-eth" }
+    ],
+    "techTags": ["React", "Next.js", "TypeScript", "Chakra UI", "Design Tokens", "Rollup", "Vite"],
+    "featured": false,
+    "order": 3
+  },
+  {
+    "id": "proj-004",
     "name": "Chaos Developer Platform",
     "tagline": "Self-service internal platform for 50+ engineers",
     "domainTags": ["DevOps", "Platform Engineering", "Developer Experience"],
-    "background": "The engineering team was blocked by a centralised ops team for every deployment and environment request. Chaos was built to give developers full self-service control over deployments, feature flags, secrets, and on-call tooling — without needing to file tickets.",
+    "background": "Built for a bank's core systems to support fault-injection experiments, real-time observability, and resilience governance in a financial-grade environment. The product needed to make complex experiment design safe enough for daily engineering use.",
     "technicalDecisions": [
-      "Built on top of ArgoCD GitOps model so every deployment is auditable and rollback is a single git revert",
-      "Chose Go for the platform API layer to minimise runtime overhead and binary size in Kubernetes sidecars",
-      "Implemented RBAC at the resource level (project / environment / action) using a custom policy engine inspired by Casbin",
-      "Unified feature flags, secrets, and config under a single 'environment context' abstraction so services only needed one SDK",
-      "Shipped an incident timeline view that auto-correlates deployment events with PagerDuty alerts — dramatically reducing RCA time"
+      {
+        "title": "Graph-based experiment editor instead of form-only configuration",
+        "explanation": "Used AntV/X6 to model failure nodes, dependency paths, and execution order visually, cutting experiment setup time while making propagation risks much easier to inspect before launch."
+      },
+      {
+        "title": "High-frequency rendering pipeline for observability views",
+        "explanation": "Combined data windowing, requestAnimationFrame scheduling, and Canvas-based charts to keep dashboards responsive under roughly 2,000 updates per second."
+      },
+      {
+        "title": "Report distribution built into the workflow",
+        "explanation": "Integrated PDF export, share links, and multi-chart reporting directly into experiment results so reliability reviews could move faster than manual screenshot-based handoffs."
+      }
     ],
     "metrics": [
-      { "label": "Deploy time", "value": "25min → 4min" },
-      { "label": "Engineers served", "value": "50+" },
-      { "label": "Deployments / day", "value": "80+" },
-      { "label": "Rollback time", "value": "<30s" }
+      { "label": "Setup time", "value": "-60%" },
+      { "label": "Realtime throughput", "value": "~2,000/s" },
+      { "label": "Render stability", "value": "55-60fps" },
+      { "label": "Chart types", "value": "8+" }
     ],
     "images": [
-      { "src": "/images/projects/chaos-platform.jpg", "alt": "Chaos internal developer platform" }
+      { "src": "/images/projects/chaos-platform.jpg", "alt": "Chaos engineering platform dashboard" }
     ],
-    "links": [],
-    "techTags": ["React", "Go", "GitHub Actions", "ArgoCD", "Kubernetes", "PostgreSQL", "Helm"],
+    "links": [
+      { "type": "case-study", "url": "/projects" }
+    ],
+    "techTags": ["React", "Go", "Jotai", "Tailwind CSS", "AntV/X6", "AntV/G2", "Webpack"],
     "featured": true,
-    "order": 3
+    "order": 4
   }
 ]
