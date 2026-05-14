@@ -8,6 +8,20 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Experience | jiangui.eth",
     description:
       "Five years of full-stack and Web3 engineering — key roles, impact metrics, and the technical decisions behind them.",
+    keywords: ["engineering experience", "full-stack", "web3", "timeline", "career"],
+    openGraph: {
+      title: "Experience | jiangui.eth",
+      description:
+        "Five years of full-stack and Web3 engineering — key roles, impact metrics, and the technical decisions behind them.",
+      url: "/experience",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "jiangui.eth Experience" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Experience | jiangui.eth",
+      description:
+        "Five years of full-stack and Web3 engineering — key roles, impact metrics, and the technical decisions behind them.",
+    },
   };
 }
 

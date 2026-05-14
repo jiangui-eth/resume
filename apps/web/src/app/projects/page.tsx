@@ -15,6 +15,20 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Projects | jiangui.eth",
     description:
       "Architecture & Implementation. A curated view of product engineering work, system design decisions, and execution detail across shipped projects.",
+    keywords: ["projects", "portfolio", "web3", "system design", "engineering"],
+    openGraph: {
+      title: "Projects | jiangui.eth",
+      description:
+        "Architecture & Implementation. A curated view of product engineering work, system design decisions, and execution detail across shipped projects.",
+      url: "/projects",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "jiangui.eth Projects" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Projects | jiangui.eth",
+      description:
+        "Architecture & Implementation. A curated view of product engineering work, system design decisions, and execution detail across shipped projects.",
+    },
   };
 }
 

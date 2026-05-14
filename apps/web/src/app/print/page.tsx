@@ -5,6 +5,7 @@ import PrintButton from "@/components/print/PrintButton";
 export const metadata: Metadata = {
   title: "Print Resume | jiangui.eth",
   description: "Printable A4 resume for Jiangui — Senior Full-Stack Engineer.",
+  robots: { index: false, follow: false },
 };
 
 export default function PrintPage() {

@@ -9,6 +9,20 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Skills | jiangui.eth",
     description:
       "Technical Proficiency. A breakdown of the languages, frameworks, tools, and practices powering my engineering work across Web2 and Web3.",
+    keywords: ["skills", "tech stack", "typescript", "solidity", "react", "next.js", "go"],
+    openGraph: {
+      title: "Skills | jiangui.eth",
+      description:
+        "Technical Proficiency. A breakdown of the languages, frameworks, tools, and practices powering my engineering work across Web2 and Web3.",
+      url: "/skills",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "jiangui.eth Skills" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Skills | jiangui.eth",
+      description:
+        "Technical Proficiency. A breakdown of the languages, frameworks, tools, and practices powering my engineering work across Web2 and Web3.",
+    },
   };
 }
 
