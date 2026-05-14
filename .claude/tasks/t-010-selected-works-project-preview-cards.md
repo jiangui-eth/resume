@@ -4,7 +4,7 @@ Task: T-010 Selected Works — Project Preview Cards
 - 分支: feature/t-010-selected-works-project-preview-cards
 - 开发人: Claude (Codex fallback — model version mismatch prevented Codex invocation)
 - 测试状态: 通过（9/9 ProjectsSection 单元测试通过）
-- PR 链接: 待生成
+- PR 链接: https://github.com/jiangui-eth/resume/pull/10
 - 变更文件:
     - apps/web/src/components/home/ProjectsSection.tsx（新建）
     - apps/web/src/components/home/__tests__/ProjectsSection.test.tsx（新建）
