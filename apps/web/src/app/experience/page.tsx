@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import Timeline from "@/components/experience/Timeline";
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Experience | jiangui.eth",
@@ -41,10 +43,9 @@ export default function ExperiencePage() {
           </div>
         </div>
       </section>
-      <div
-        id="timeline-placeholder"
-        className="mx-auto max-w-5xl px-4 pb-24 sm:px-6 lg:px-8"
-      />
+      <section className="mx-auto max-w-5xl px-4 pb-24 sm:px-6 lg:px-8">
+        <Timeline />
+      </section>
     </>
   );
 }
