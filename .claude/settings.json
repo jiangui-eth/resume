@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume add apps/web/src/app/experience/page.tsx apps/web/src/app/experience/__tests__/page.test.tsx .claude/tasks/t-012-experience-page-route-and-layout.md)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume commit -m ' *)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume push -u origin feature/t-012-experience-page-route-and-layout)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume log -1 --format=\"%s %H\")",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume add .claude/tasks/t-012-experience-page-route-and-layout.md)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume commit -m \"docs\\(T-012\\): update task doc — PR #12\")",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume push origin feature/t-012-experience-page-route-and-layout)",
+      "Bash(/Users/jane-m4/.nvm/versions/node/v25.2.1/bin/codex --version)",
+      "Bash(/Users/jane-m4/.nvm/versions/node/v25.2.1/bin/codex --help)",
+      "Bash(/Users/jane-m4/.nvm/versions/node/v25.2.1/bin/codex mcp-server *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({**d.get\\('dependencies',{}\\), **d.get\\('devDependencies',{}\\)}, indent=2\\)\\)\")",
+      "mcp__codex__codex",
+      "Bash(pnpm test *)",
+      "Bash(pnpm tsc *)",
+      "Bash(pnpm vitest *)",
+      "Bash(mkdir -p /Users/jane-m4/Desktop/jiangui-resume/.claude/skills/task)",
+      "Edit(/.claude/skills/task/**)",
+      "Skill(task)",
+      "Skill(task:*)",
+      "Bash(cat /Users/jane-m4/Desktop/jiangui-resume-t015-worktree/.claude/tasks/t-015-projects-page-route-and-layout.md 2>/dev/null || echo \"NOT FOUND\")",
+      "Read(//Users/jane-m4/Desktop/jiangui-resume-t015-worktree/.claude/tasks/**)",
+      "Bash(cat /Users/jane-m4/Desktop/jiangui-resume-t015-worktree/apps/web/src/app/projects/page.tsx 2>/dev/null || echo \"NOT FOUND\")",
+      "Read(//Users/jane-m4/Desktop/jiangui-resume-t015-worktree/apps/web/src/app/projects/**)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume status)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume diff --stat)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume diff)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume stash)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume checkout main)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume pull origin main)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume checkout -b chore/claude-code-tooling-setup)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume stash pop)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume add .mcp.json .claude/codex-constraints.md .claude/settings.json .claude/skills/task/ \".claude/tasks/t-014-experience-page-bottom-metrics-bar.md\")"
+    ],
+    "additionalDirectories": [
+      "/tmp",
+      "/private/tmp",
+      "/Users/jane-m4/Desktop/jiangui-resume/.claude/skills"
+    ]
+  }
+}
