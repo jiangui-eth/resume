@@ -16,6 +16,11 @@ export interface ProjectImage {
   alt: string;
 }
 
+export interface TechnicalDecision {
+  title: string;
+  explanation: string;
+}
+
 export interface Project {
   id: string;
   name: string;
@@ -25,8 +30,8 @@ export interface Project {
   domainTags: string[];
   /** 2-3 sentence background / problem statement */
   background: string;
-  /** Bullet list of technical decisions and architecture choices */
-  technicalDecisions: string[];
+  /** Technical decisions, each with a title and explanation */
+  technicalDecisions: TechnicalDecision[];
   /** Quantifiable outcomes */
   metrics: ProjectMetric[];
   /** Cover image and optional gallery */
