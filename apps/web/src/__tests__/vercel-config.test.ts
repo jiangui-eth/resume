@@ -24,3 +24,34 @@ describe("vercel.json — project configuration", () => {
     expect(typeof config.env.NEXT_PUBLIC_ENV).toBe("string");
   });
 });
+
+describe("vercel.json — security headers", () => {
+  const allHeaders = config.headers.flatMap((rule) => rule.headers);
+  const get = (key: string) => allHeaders.find((h) => h.key === key)?.value;
+
+  it("applies headers to all routes", () => {
+    expect(config.headers[0]?.source).toBe("/(.*)");
+  });
+
+  it("sets HSTS with long max-age and includeSubDomains", () => {
+    const hsts = get("Strict-Transport-Security");
+    expect(hsts).toContain("max-age=");
+    expect(hsts).toContain("includeSubDomains");
+  });
+
+  it("sets X-Content-Type-Options to nosniff", () => {
+    expect(get("X-Content-Type-Options")).toBe("nosniff");
+  });
+
+  it("sets X-Frame-Options to DENY", () => {
+    expect(get("X-Frame-Options")).toBe("DENY");
+  });
+
+  it("sets Referrer-Policy", () => {
+    expect(get("Referrer-Policy")).toBeTruthy();
+  });
+
+  it("sets Permissions-Policy", () => {
+    expect(get("Permissions-Policy")).toBeTruthy();
+  });
+});
