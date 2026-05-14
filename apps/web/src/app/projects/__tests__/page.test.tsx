@@ -1,0 +1,66 @@
+import { readFileSync } from "node:fs";
+
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import ProjectsPage, { generateMetadata } from "../page";
+
+describe("ProjectsPage", () => {
+  it("renders a large heading containing Architecture & Implementation.", () => {
+    render(<ProjectsPage />);
+
+    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+        name: /Architecture & Implementation\./i,
+      }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders a subtitle element beneath the heading", () => {
+    render(<ProjectsPage />);
+
+    const heading = screen.getByRole("heading", {
+      level: 1,
+      name: /Architecture & Implementation\./i,
+    });
+    const subtitle = screen.getByText(
+      /A focused collection of production work/i,
+    );
+
+    expect(subtitle.tagName).toBe("P");
+    expect(
+      heading.compareDocumentPosition(subtitle) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
+  it("generateMetadata returns a non-empty title", async () => {
+    const metadata = await generateMetadata();
+
+    expect(typeof metadata.title).toBe("string");
+    expect(metadata.title).toBeTruthy();
+  });
+
+  it("generateMetadata returns a non-empty description", async () => {
+    const metadata = await generateMetadata();
+
+    expect(typeof metadata.description).toBe("string");
+    expect(metadata.description).toBeTruthy();
+  });
+
+  it("does not import framer-motion or use use client", () => {
+    const source = readFileSync("src/app/projects/page.tsx", "utf8");
+
+    expect(source).not.toContain("framer-motion");
+    expect(source).not.toContain('"use client"');
+    expect(source).not.toContain("'use client'");
+  });
+
+  it("renders without crashing when mounted", () => {
+    const { container } = render(<ProjectsPage />);
+
+    expect(container.firstChild).not.toBeNull();
+  });
+});
