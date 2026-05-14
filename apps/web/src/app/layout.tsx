@@ -3,9 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import "../index.css";
 
+import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import Providers from "@/components/providers";
+import ScrollDepthTracker from "@/components/home/ScrollDepthTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +64,8 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
+          <ScrollDepthTracker />
+          <Analytics />
         </Providers>
       </body>
     </html>

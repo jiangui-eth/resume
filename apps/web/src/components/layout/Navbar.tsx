@@ -5,6 +5,7 @@ import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, FileDown } from "lucide-react";
+import { track } from "@/lib/analytics";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -171,6 +172,7 @@ function DownloadPdfButton({ fullWidth = false }: { fullWidth?: boolean }) {
     <a
       href={RESUME_PDF_PATH}
       download
+      onClick={() => track("click_download_pdf", {})}
       className={[
         "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold",
         "bg-blue-600 text-white hover:bg-blue-500 active:bg-blue-700",
