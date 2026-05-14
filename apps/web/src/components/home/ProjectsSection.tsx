@@ -129,7 +129,7 @@ export default function ProjectsSection() {
         }}
       />
 
-      <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="flex flex-col gap-3">

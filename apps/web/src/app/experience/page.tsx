@@ -32,7 +32,7 @@ export default function ExperiencePage() {
         className="flex min-h-[40vh] items-center"
         style={{ background: "#0a0a0f" }}
       >
-        <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both flex flex-col gap-4">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-300">
               Career Chronicle
@@ -58,11 +58,11 @@ export default function ExperiencePage() {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-5xl px-4 pb-24 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
         <Timeline />
       </section>
       <section>
-        <div className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
           <MetricsBar />
         </div>
       </section>

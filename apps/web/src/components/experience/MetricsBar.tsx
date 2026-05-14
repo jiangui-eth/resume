@@ -21,7 +21,7 @@ const METRICS = [
 
 export default function MetricsBar() {
   return (
-    <div className="mx-auto w-full max-w-5xl">
+    <div className="mx-auto w-full max-w-6xl">
       <div className="flex flex-col overflow-hidden rounded-2xl border border-white/8 bg-white/[0.03] md:flex-row">
         {METRICS.map((metric, index) => {
           const isLast = index === METRICS.length - 1;
