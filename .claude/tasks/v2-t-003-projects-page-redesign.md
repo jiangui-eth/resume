@@ -3,8 +3,8 @@ Task: V2-T-003 Projects Page Redesign
 - 需求描述: Redesign /projects page to V2 — "Architecture & Implementation." heading, 12-col project blocks with screenshot+metrics left and details+decisions right, V2 CTA with electric-blue glow button.
 - 分支: feature/v2-t-003-projects-page-redesign
 - 开发人: Claude
-- 测试状态: 未测试
-- PR 链接: 待生成
+- 测试状态: 233/233 passing
+- PR 链接: [#33](https://github.com/jiangui-eth/resume/pull/33)
 - 变更文件:
     apps/web/src/app/projects/page.tsx （修改: V2 header, bg-[#121414], badge V2 colors）
     apps/web/src/components/projects/ProjectBlock.tsx （修改: 12-col grid, screenshot+metrics in left 7 cols, details+decisions in right 5 cols）

@@ -49,7 +49,10 @@
       "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume checkout -b feature/v2-t-002-experience-page-redesign)",
       "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume add apps/web/src/app/experience/page.tsx apps/web/src/components/experience/Timeline.tsx apps/web/src/components/experience/TimelineCard.tsx apps/web/src/components/experience/TechTag.tsx apps/web/src/components/experience/MetricsBar.tsx apps/web/src/index.css apps/web/src/components/experience/__tests__/TimelineCard.test.tsx apps/web/src/components/experience/__tests__/MetricsBar.test.tsx apps/web/src/components/experience/__tests__/Timeline.test.tsx .claude/tasks/v2-t-002-experience-page-redesign.md)",
       "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume add apps/web/src/data/experiences.json apps/web/src/components/experience/__tests__/Timeline.test.tsx)",
-      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume push)"
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume push)",
+      "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume push -u origin feature/v2-t-003-projects-page-redesign)",
+      "Bash(node_modules/.bin/next lint *)",
+      "Bash(pnpm run *)"
     ],
     "additionalDirectories": [
       "/tmp",
