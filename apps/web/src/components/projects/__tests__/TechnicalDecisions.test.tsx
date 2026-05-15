@@ -20,7 +20,7 @@ describe("TechnicalDecisions", () => {
     expect(screen.getByText("Technical Decisions")).toBeInTheDocument();
   });
 
-  it("renders each decision title", () => {
+  it("renders each decision title as highlighted text", () => {
     render(<TechnicalDecisions decisions={DECISIONS} />);
 
     expect(screen.getByText("SSR-first architecture")).toBeInTheDocument();
@@ -32,5 +32,16 @@ describe("TechnicalDecisions", () => {
 
     expect(screen.getByText(/render full HTML on the server/i)).toBeInTheDocument();
     expect(screen.getByText(/semantic tokens keep product variants aligned/i)).toBeInTheDocument();
+  });
+
+  it("renders nothing when decisions array is empty", () => {
+    const { container } = render(<TechnicalDecisions decisions={[]} />);
+    expect(container.firstChild).toBeNull();
+  });
+
+  it("wraps content in a glass-card container", () => {
+    render(<TechnicalDecisions decisions={DECISIONS} />);
+    const heading = screen.getByRole("heading", { name: "Technical Decisions" });
+    expect(heading.tagName).toBe("H3");
   });
 });

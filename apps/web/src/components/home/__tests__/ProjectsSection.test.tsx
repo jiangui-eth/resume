@@ -40,14 +40,14 @@ describe("ProjectsSection", () => {
 
   it("renders top 2 featured project names (sorted by order)", () => {
     render(<ProjectsSection />);
-    expect(screen.getByText("Wind Power IoT Platform")).toBeInTheDocument();
-    expect(screen.getByText("Gate SEO Platform")).toBeInTheDocument();
+    expect(screen.getByText("Wind Power RAG Platform")).toBeInTheDocument();
+    expect(screen.getByText("Gate.com SEO Special Project")).toBeInTheDocument();
   });
 
   it("renders project taglines", () => {
     render(<ProjectsSection />);
     expect(screen.getByText(/Real-time turbine monitoring/i)).toBeInTheDocument();
-    expect(screen.getByText(/Performance-first SEO analytics/i)).toBeInTheDocument();
+    expect(screen.getByText(/Performance-first SEO architecture/i)).toBeInTheDocument();
   });
 
   it("renders tech tag pills for both projects", () => {

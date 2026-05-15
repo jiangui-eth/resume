@@ -34,32 +34,25 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ProjectsPage() {
   return (
-    <div className="bg-[#121414] min-h-screen">
-      <section className="pt-30 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-300">
-          <div className="flex flex-col gap-4">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#aec6ff]/30 bg-[#aec6ff]/10 px-4 py-1.5 text-sm font-medium text-[#aec6ff]">
-              Selected Works
+    <div className="bg-[#121414] min-h-screen text-[#e3e2e2]">
+      <main className="pt-20 pb-20 px-6 max-w-300 mx-auto">
+        <header className="mb-20 max-w-3xl">
+          <h1 className="text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em] text-white mb-4">
+            Architecture{" "}
+            <span className="bg-linear-to-br from-[#aec6ff] to-[#508eff] bg-clip-text text-transparent">
+              &amp; Implementation.
             </span>
-            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Architecture &{" "}
-              <span className="text-[#aec6ff]">Implementation.</span>
-            </h1>
-            <p className="max-w-3xl text-lg leading-8 text-[#8e9192]">
-              A focused collection of production work spanning product strategy,
-              frontend systems, and full-stack delivery across Web2 and Web3.
-            </p>
-          </div>
-        </div>
-      </section>
+          </h1>
+          <p className="text-lg text-[#8e9192] leading-relaxed">
+            A showcase of technical leadership and frontend engineering excellence. Exploring complex
+            migrations, high-performance systems, and AI-integrated architectures.
+          </p>
+        </header>
 
-      <section className="px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-300 divide-y divide-[#333333]/30">
-          {PROJECTS.map((project) => (
-            <ProjectBlock key={project.id} project={project} />
-          ))}
-        </div>
-      </section>
+        {PROJECTS.map((project) => (
+          <ProjectBlock key={project.id} project={project} />
+        ))}
+      </main>
 
       <ProjectsCTA />
     </div>

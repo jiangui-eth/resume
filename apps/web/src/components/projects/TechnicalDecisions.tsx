@@ -11,23 +11,18 @@ export default function TechnicalDecisions({ decisions }: TechnicalDecisionsProp
   if (decisions.length === 0) return null;
 
   return (
-    <div>
-      <p className="mb-3 text-xs font-medium uppercase tracking-wider text-[#8e9192]">
+    <div className="glass-card p-6 rounded-xl">
+      <h3 className="text-2xl font-semibold tracking-[-0.01em] text-white mb-2">
         Technical Decisions
-      </p>
-      <div>
-        {decisions.map((decision, index) => (
-          <div
-            key={decision.title}
-            className={`py-4 ${index > 0 ? "border-t border-[#333333]/30" : ""}`}
-          >
-            <h3 className="text-sm font-semibold text-white">{decision.title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-[#8e9192]">
-              {decision.explanation}
-            </p>
-          </div>
+      </h3>
+      <ul className="space-y-1 list-disc pl-4 text-[#8e9192]">
+        {decisions.map((decision) => (
+          <li key={decision.title}>
+            <span className="text-[#aec6ff]">{decision.title}</span>{" "}
+            {decision.explanation}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
