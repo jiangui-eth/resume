@@ -14,12 +14,14 @@ vi.mock("framer-motion", () => ({
 }));
 
 describe("Timeline", () => {
-  it("renders all 3 experience entries", () => {
+  it("renders all 5 experience entries", () => {
     render(<Timeline />);
     // V2 renders each company in both the desktop side panel and mobile card header
-    expect(screen.getAllByText("Gate.io").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Envision Energy").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Chaos (Internal Platform)").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/Jingcheng Yideng/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("Gate.com").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/Hanzhu Technology/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/CIFS/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/Guizhou Guoxintong/i).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders the present entry highlight", () => {
@@ -27,32 +29,32 @@ describe("Timeline", () => {
     expect(screen.getAllByText("Present").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("formats the period start date", () => {
+  it("formats the period start date for Gate.com", () => {
     render(<Timeline />);
-    expect(screen.getAllByText(/Jun 2022/).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/Mar 2024/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders responsibility bullets", () => {
     render(<Timeline />);
-    expect(screen.getByText(/Led frontend architecture/i)).toBeInTheDocument();
+    expect(screen.getByText(/Led full-stack AI development/i)).toBeInTheDocument();
   });
 
   it("renders tech tags", () => {
     render(<Timeline />);
-    expect(screen.getByText("Next.js")).toBeInTheDocument();
-    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getAllByText("Next.js").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("TypeScript").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders the highlight metric", () => {
+  it("renders the Gate.com SEO highlight metric", () => {
     render(<Timeline />);
-    expect(screen.getByText("LCP 4.2s → 1.8s")).toBeInTheDocument();
+    expect(screen.getByText(/SEO 1K → 14K/i)).toBeInTheDocument();
   });
 
-  it("renders the company link correctly", () => {
+  it("renders the Gate.com company link correctly", () => {
     render(<Timeline />);
-    expect(screen.getByRole("link", { name: "Gate.io" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Gate.com" })).toHaveAttribute(
       "href",
-      "https://gate.io",
+      "https://gate.com",
     );
   });
 });
