@@ -34,51 +34,27 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ProjectsPage() {
   return (
-    <>
-      <section
-        className="relative overflow-hidden"
-        style={{ background: "#0a0a0f" }}
-      >
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(147,197,253,0.15), rgba(196,181,253,0.15), transparent)",
-          }}
-        />
-
-        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both flex flex-col gap-4">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-300">
-              Selected Works
+    <div className="bg-[#121414] min-h-screen text-[#e3e2e2]">
+      <main className="pt-20 pb-20 px-6 max-w-300 mx-auto">
+        <header className="mb-20 max-w-3xl">
+          <h1 className="text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em] text-white mb-4">
+            Architecture{" "}
+            <span className="bg-linear-to-br from-[#aec6ff] to-[#508eff] bg-clip-text text-transparent">
+              &amp; Implementation.
             </span>
-            <h1 className="text-5xl font-bold tracking-tight text-white/90 sm:text-6xl lg:text-7xl">
-              Architecture &{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg, #93c5fd 0%, #c4b5fd 60%, #f9a8d4 100%)",
-                }}
-              >
-                Implementation.
-              </span>
-            </h1>
-            <p className="max-w-3xl text-lg leading-8 text-white/50">
-              A focused collection of production work spanning product strategy,
-              frontend systems, and full-stack delivery across Web2 and Web3.
-            </p>
-          </div>
+          </h1>
+          <p className="text-lg text-[#8e9192] leading-relaxed">
+            A showcase of technical leadership and frontend engineering excellence. Exploring complex
+            migrations, high-performance systems, and AI-integrated architectures.
+          </p>
+        </header>
 
-          <div className="mt-14 grid gap-8">
-            {PROJECTS.map((project) => (
-              <ProjectBlock key={project.id} project={project} />
-            ))}
-          </div>
-        </div>
-      </section>
+        {PROJECTS.map((project) => (
+          <ProjectBlock key={project.id} project={project} />
+        ))}
+      </main>
+
       <ProjectsCTA />
-    </>
+    </div>
   );
 }

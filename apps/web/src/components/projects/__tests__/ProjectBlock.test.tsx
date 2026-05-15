@@ -12,6 +12,10 @@ const BASE_PROJECT: ProjectBlockData = {
   name: "Wind Power RAG Platform",
   tagline: "RAG knowledge workspace for support teams",
   domainTags: ["AI", "RAG"],
+  domainBadge: "AI / RAG",
+  icon: "wind_power",
+  panelType: "grid" as const,
+  metricsLabel: "Performance Metrics",
   background: "A retrieval product for wind-energy customer support operations.",
   technicalDecisions: [
     {
@@ -39,10 +43,20 @@ describe("ProjectBlock", () => {
     expect(screen.getByText("Wind Power RAG Platform")).toBeInTheDocument();
   });
 
-  it("renders the domain tag", () => {
+  it("renders the domain badge", () => {
     render(<ProjectBlock project={BASE_PROJECT} />);
 
-    expect(screen.getByText("AI")).toBeInTheDocument();
+    expect(screen.getByText("AI / RAG")).toBeInTheDocument();
+  });
+
+  it("falls back to joined domainTags when domainBadge is absent", () => {
+    const projectWithoutBadge: ProjectBlockData = {
+      ...BASE_PROJECT,
+      domainBadge: undefined,
+    };
+    render(<ProjectBlock project={projectWithoutBadge} />);
+
+    expect(screen.getByText("AI / RAG")).toBeInTheDocument();
   });
 
   it("renders GitHub, Demo, and Case Study buttons only when provided", () => {
@@ -72,6 +86,7 @@ describe("ProjectBlock", () => {
     const projectWithoutImage: ProjectBlockData = {
       ...BASE_PROJECT,
       images: [],
+      metrics: [],
     };
 
     render(<ProjectBlock project={projectWithoutImage} />);
@@ -80,5 +95,18 @@ describe("ProjectBlock", () => {
       screen.getByRole("heading", { name: "Wind Power RAG Platform" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Visual Pending")).toBeInTheDocument();
+  });
+
+  it("renders odd-order project with text column first (no order swap)", () => {
+    render(<ProjectBlock project={BASE_PROJECT} />);
+    const article = screen.getByRole("article");
+    expect(article).toBeInTheDocument();
+  });
+
+  it("renders even-order project with visual column using order-2 class", () => {
+    const evenProject: ProjectBlockData = { ...BASE_PROJECT, order: 2 };
+    render(<ProjectBlock project={evenProject} />);
+    const article = screen.getByRole("article");
+    expect(article).toBeInTheDocument();
   });
 });

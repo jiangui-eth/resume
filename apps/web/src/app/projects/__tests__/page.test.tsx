@@ -26,7 +26,7 @@ describe("ProjectsPage", () => {
       name: /Architecture & Implementation\./i,
     });
     const subtitle = screen.getByText(
-      /A focused collection of production work/i,
+      /A showcase of technical leadership/i,
     );
 
     expect(subtitle.tagName).toBe("P");

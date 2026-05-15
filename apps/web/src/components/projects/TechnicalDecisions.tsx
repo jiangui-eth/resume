@@ -8,17 +8,21 @@ interface TechnicalDecisionsProps {
 }
 
 export default function TechnicalDecisions({ decisions }: TechnicalDecisionsProps) {
+  if (decisions.length === 0) return null;
+
   return (
-    <div className="grid gap-3">
-      {decisions.map((decision) => (
-        <article
-          key={decision.title}
-          className="rounded-2xl border border-white/8 bg-white/[0.03] p-4"
-        >
-          <h3 className="text-sm font-semibold text-white">{decision.title}</h3>
-          <p className="mt-2 text-sm leading-6 text-white/55">{decision.explanation}</p>
-        </article>
-      ))}
+    <div className="glass-card p-6 rounded-xl">
+      <h3 className="text-2xl font-semibold tracking-[-0.01em] text-white mb-2">
+        Technical Decisions
+      </h3>
+      <ul className="space-y-1 list-disc pl-4 text-[#8e9192]">
+        {decisions.map((decision) => (
+          <li key={decision.title}>
+            <span className="text-[#aec6ff]">{decision.title}</span>{" "}
+            {decision.explanation}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
