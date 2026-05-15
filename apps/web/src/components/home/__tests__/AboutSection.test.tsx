@@ -43,7 +43,7 @@ describe("AboutSection", () => {
   it("renders the avatar image with grayscale class", () => {
     render(<AboutSection />);
     const img = screen.getByRole("img");
-    expect(img).toHaveAttribute("src", "/images/avatar/avatar.jpg");
+    expect(img).toHaveAttribute("src", expect.stringContaining("lh3.googleusercontent.com"));
     expect(img).toHaveAttribute("alt", expect.stringContaining("Jiangui"));
     expect(img.className).toContain("grayscale");
   });

@@ -38,7 +38,7 @@ Task: <任务名称>
 - PR 链接: 待生成
 - 变更文件: 待生成
 - 回滚方法:
-    1. git checkout main
+    1. git checkout dev_v2
     2. git revert <commit-id>
 - 备注: <特殊说明>
 ```
@@ -60,9 +60,16 @@ Task: <任务名称>
 
 ### 5. 创建 PR
 
-- source：Task 分支 → target：`main`
+- source：Task 分支 → target：**`dev_v2`**
 - PR title：`Task: <任务名称> - 自动 PR`
-- PR body：自动填充 Task 文档内容
+- PR body：**严格按照 `.github/pull_request_template.md` 格式填写**，各节说明如下：
+  - **Description**：一句话说明本 PR 的改动内容和原因
+  - **Task**：填写 Task ID（如 V2-T-001）和 Task 文档路径 `.claude/tasks/<slug>.md`
+  - **Change type**：勾选 Feature / Bug fix / Refactor / Docs / Test
+  - **Self-check**：逐项核查并勾选（lint、tsc、build、test、responsive、images、no hardcoded data、no console.log）
+  - **Preview URL**：CI 部署后填写 Vercel 预览链接
+  - **Screenshots / recordings**：UI 变更需提供前后对比截图
+  - **Code Review checklist**：留给 reviewer，不需要 Claude 勾选
 - PR 创建后更新 Task 文档 `PR 链接` 字段
 
 ### 6. 部署
@@ -74,7 +81,7 @@ Task: <任务名称>
 ### 7. 回滚（如需）
 
 ```bash
-git checkout main
+git checkout dev_v2
 git revert <Task Commit ID>
 ```
 
