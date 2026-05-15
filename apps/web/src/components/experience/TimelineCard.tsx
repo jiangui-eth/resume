@@ -15,7 +15,6 @@ interface TimelineCardProps {
 
 function formatPeriod(value: string) {
   const [year, month] = value.split("-").map(Number);
-
   return new Date(year, month - 1).toLocaleString("en-US", {
     month: "short",
     year: "numeric",
@@ -35,8 +34,7 @@ export default function TimelineCard({
   const isPresent = experience.period.end === "present";
   const startLabel = formatPeriod(experience.period.start);
   const endLabel = isPresent ? "Present" : formatPeriod(experience.period.end);
-  const desktopAlignment = side === "left" ? "md:text-right" : "md:text-left";
-  const desktopColumn = side === "left" ? "md:col-start-1 md:pr-10" : "md:col-start-2 md:pl-10";
+  const isCardRight = side === "left";
 
   return (
     <motion.div
@@ -44,97 +42,94 @@ export default function TimelineCard({
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-      className="relative grid grid-cols-1 pl-12 md:grid-cols-2 md:pl-0"
+      className={`flex flex-col ${isCardRight ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-6 md:gap-0`}
     >
-      <div className={`${desktopColumn}`}>
-        <article
-          className={`rounded-2xl border p-6 transition-all duration-300 hover:bg-white/[0.05] ${desktopAlignment} ${
-            isPresent
-              ? "border-blue-500/30 bg-white/[0.03] hover:border-blue-400/40"
-              : "border-white/8 bg-white/[0.03] hover:border-white/15"
+      {/* Date/company panel — desktop only */}
+      <div
+        className={`hidden md:flex w-1/2 px-8 ${isCardRight ? "justify-end" : "justify-start"}`}
+      >
+        <div className={isCardRight ? "text-right" : "text-left"}>
+          <p className="text-sm font-medium text-[#aec6ff]">
+            {startLabel} {"–"}{" "}
+            <span className={isPresent ? "text-[#aec6ff] font-semibold" : "text-white/60"}>
+              {endLabel}
+            </span>
+          </p>
+          {experience.companyUrl ? (
+            <a
+              href={experience.companyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base font-semibold text-white hover:text-[#aec6ff] transition-colors"
+            >
+              {experience.company}
+            </a>
+          ) : (
+            <p className="text-base font-semibold text-white">{experience.company}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Center dot */}
+      <div className="relative z-10 shrink-0">
+        <span
+          aria-hidden="true"
+          className={`block w-4 h-4 rounded-full border-4 border-[#121414] ring-4 ring-[#aec6ff]/20 ${
+            isPresent ? "animate-pulse bg-[#aec6ff]" : "bg-[#aec6ff]"
           }`}
-        >
-          <div
-            className={`flex flex-col gap-4 ${side === "left" ? "md:items-end" : "md:items-start"}`}
-          >
-            <div
-              className={`flex flex-wrap items-center gap-2 ${side === "left" ? "md:justify-end" : "md:justify-start"}`}
-            >
-              <span
-                className={`rounded-full border px-3 py-1 text-xs font-medium ${
-                  isPresent
-                    ? "border-blue-500/30 bg-blue-500/10 text-white/70"
-                    : "border-white/10 bg-white/[0.03] text-white/50"
-                }`}
-              >
-                {startLabel} {"\u2013"}{" "}
-                <span className={isPresent ? "text-blue-300" : undefined}>{endLabel}</span>
+        />
+      </div>
+
+      {/* Card */}
+      <div className="w-full md:w-1/2 px-0 md:px-8">
+        <article className="glass-card p-6 rounded-xl">
+          {/* Mobile date/company header */}
+          <div className="md:hidden mb-4">
+            <p className="text-sm font-medium text-[#aec6ff]">
+              {startLabel} {"–"}{" "}
+              <span className={isPresent ? "font-semibold" : "text-white/60"}>
+                {endLabel}
               </span>
-              {experience.highlight ? (
+            </p>
+            <p className="text-base font-semibold text-white mt-0.5">{experience.company}</p>
+          </div>
+
+          {/* Role label */}
+          <p className="text-xs font-medium uppercase tracking-wider text-[#8e9192] mb-4">
+            {experience.title}
+          </p>
+
+          {/* Highlight badge */}
+          {experience.highlight ? (
+            <span className="inline-block mb-4 rounded border border-[#508eff]/30 px-2 py-0.5 text-xs font-mono text-[#508eff]">
+              {experience.highlight}
+            </span>
+          ) : null}
+
+          {/* Bullet list */}
+          <ul className="space-y-2 mb-4">
+            {experience.responsibilities.map((responsibility) => (
+              <li key={responsibility} className="flex items-start gap-2 text-sm text-white/60">
                 <span
-                  className="rounded border border-blue-400/30 px-2 py-0.5 text-xs font-mono text-blue-300"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(147,197,253,0.08), rgba(196,181,253,0.04))",
-                  }}
+                  aria-hidden="true"
+                  className="material-symbols-outlined text-[#aec6ff] shrink-0"
+                  style={{ fontSize: "16px", lineHeight: "1.5" }}
                 >
-                  {experience.highlight}
+                  arrow_right
                 </span>
-              ) : null}
-            </div>
+                <span>{responsibility}</span>
+              </li>
+            ))}
+          </ul>
 
-            <div className="space-y-1">
-              {experience.companyUrl ? (
-                <a
-                  href={experience.companyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg font-semibold text-white/90 transition-colors hover:text-white"
-                >
-                  {experience.company}
-                </a>
-              ) : (
-                <p className="text-lg font-semibold text-white/90">{experience.company}</p>
-              )}
-              <p className="text-sm text-white/60">{experience.title}</p>
-              <p className="text-xs uppercase tracking-widest text-white/40">
-                {experience.location}
-              </p>
-            </div>
-
-            <ul className="space-y-2">
-              {experience.responsibilities.map((responsibility) => (
-                <li
-                  key={responsibility}
-                  className={`flex gap-2 text-sm leading-relaxed text-white/50 ${
-                    side === "left" ? "md:flex-row-reverse" : ""
-                  }`}
-                >
-                  <span aria-hidden="true" className="text-white/40">
-                    {"\u00b7"}
-                  </span>
-                  <span>{responsibility}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div
-              className={`flex flex-wrap gap-2 ${side === "left" ? "md:justify-end" : "md:justify-start"}`}
-            >
-              {experience.techTags.map((tag) => (
-                <TechTag key={tag} label={tag} />
-              ))}
-            </div>
+          {/* Tech tags */}
+          <div className="flex flex-wrap gap-2">
+            {experience.techTags.map((tag) => (
+              <TechTag key={tag} label={tag} />
+            ))}
           </div>
         </article>
       </div>
-
-      <span
-        aria-hidden="true"
-        className={`absolute left-5 top-8 h-2.5 w-2.5 -translate-x-1/2 rounded-full md:left-1/2 ${
-          isPresent ? "animate-pulse border border-blue-300/40 bg-blue-400 ring-4 ring-blue-500/10" : "bg-white/80"
-        }`}
-      />
     </motion.div>
   );
 }
