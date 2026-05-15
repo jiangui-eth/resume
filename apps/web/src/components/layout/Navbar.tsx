@@ -4,7 +4,6 @@ import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, FileDown } from "lucide-react";
 import { track } from "@/lib/analytics";
 
 const NAV_LINKS = [
@@ -21,19 +20,16 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Scroll listener — toggle frosted glass
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -44,26 +40,26 @@ export default function Navbar() {
   return (
     <header
       className={[
-        "sticky top-0 z-50 w-full transition-all duration-300",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/60 shadow-sm"
-          : "bg-transparent",
+          ? "bg-[#121414]/80 backdrop-blur-md border-b border-[#444748]/20"
+          : "bg-[#121414]/80 backdrop-blur-xl border-b border-[#444748]/20",
       ].join(" ")}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="flex h-16 items-center justify-between px-6">
         {/* Logo */}
         <Link
           href="/"
-          aria-label="jiangui.eth"
-          className="flex items-center gap-2 text-foreground hover:text-foreground/80 transition-colors"
+          aria-label="DevArchitect"
+          className="flex items-center gap-2"
         >
-          <span className="text-lg font-bold tracking-tight font-mono">
-            jiangui<span className="text-primary/70">.eth</span>
+          <span className="text-2xl font-bold leading-[1.3] tracking-[-0.01em] text-[#e3e2e2]">
+            DevArchitect
           </span>
         </Link>
 
-        {/* Desktop nav links — centered */}
-        <ul className="hidden md:flex items-center gap-1">
+        {/* Desktop nav links */}
+        <ul className="hidden md:flex items-center gap-10">
           {NAV_LINKS.map(({ href, label }) => {
             const isActive =
               href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -73,11 +69,10 @@ export default function Navbar() {
                   href={href}
                   aria-current={isActive ? "page" : undefined}
                   className={[
-                    "relative px-3 py-2 text-sm font-medium transition-colors rounded-md",
-                    "hover:text-foreground hover:bg-accent",
+                    "relative text-base font-normal leading-[1.6] transition-colors",
                     isActive
-                      ? "text-foreground after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-foreground after:content-['']"
-                      : "text-muted-foreground",
+                      ? "text-[#e3e2e2] font-bold border-b-2 border-[#aec6ff] pb-1"
+                      : "text-[#8e9192] hover:text-[#e3e2e2]",
                   ].join(" ")}
                 >
                   {label}
@@ -87,24 +82,26 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Desktop right: Download PDF CTA */}
-        <div className="hidden md:flex items-center">
+        {/* Desktop CTA */}
+        <div className="hidden md:flex items-center mr-6">
           <DownloadPdfButton />
         </div>
 
-        {/* Mobile: hamburger */}
+        {/* Mobile hamburger */}
         <button
           type="button"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
-          className="md:hidden flex items-center justify-center rounded-md p-2 text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+          className="md:hidden flex items-center justify-center rounded-md p-2 text-[#8e9192] hover:text-[#e3e2e2] transition-colors"
         >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          <span className="material-symbols-outlined text-2xl" aria-hidden="true">
+            {mobileOpen ? "close" : "menu"}
+          </span>
         </button>
       </nav>
 
-      {/* Mobile drawer — slide down */}
+      {/* Mobile drawer */}
       <div
         role="dialog"
         aria-label="navigation menu"
@@ -112,10 +109,10 @@ export default function Navbar() {
         className={[
           "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
           mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0",
-          "bg-background/95 backdrop-blur-md border-b border-border/60",
+          "bg-[#121414]/95 backdrop-blur-md border-b border-[#444748]/20",
         ].join(" ")}
       >
-        <ul className="flex flex-col px-4 pb-6 pt-2 gap-1">
+        <ul className="flex flex-col px-6 pb-6 pt-2 gap-1">
           {NAV_LINKS.map(({ href, label }) => {
             const isActive =
               href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -126,10 +123,9 @@ export default function Navbar() {
                   aria-current={isActive ? "page" : undefined}
                   className={[
                     "flex items-center px-3 py-3 text-base font-medium rounded-md transition-colors",
-                    "hover:text-foreground hover:bg-accent",
                     isActive
-                      ? "text-foreground bg-accent"
-                      : "text-muted-foreground",
+                      ? "text-[#e3e2e2]"
+                      : "text-[#8e9192] hover:text-[#e3e2e2]",
                   ].join(" ")}
                 >
                   {label}
@@ -146,13 +142,10 @@ export default function Navbar() {
   );
 }
 
-/* ── Download PDF button ───────────────────────── */
-
 function DownloadPdfButton({ fullWidth = false }: { fullWidth?: boolean }) {
   const [pdfExists, setPdfExists] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Lightweight HEAD check — if the file isn't there we show a tooltip
     fetch(RESUME_PDF_PATH, { method: "HEAD" })
       .then((r) => setPdfExists(r.ok))
       .catch(() => setPdfExists(false));
@@ -163,12 +156,11 @@ function DownloadPdfButton({ fullWidth = false }: { fullWidth?: boolean }) {
       <span
         title="PDF not available yet — check back soon"
         className={[
-          "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium",
-          "bg-blue-600/40 text-blue-300/60 cursor-not-allowed select-none",
+          "inline-flex items-center gap-2 rounded px-4 py-2 font-['JetBrains_Mono'] text-sm font-medium",
+          "bg-[#508eff]/40 text-[#aec6ff]/60 cursor-not-allowed select-none",
           fullWidth ? "w-full justify-center" : "",
         ].join(" ")}
       >
-        <FileDown size={15} />
         Download PDF
       </span>
     );
@@ -180,13 +172,11 @@ function DownloadPdfButton({ fullWidth = false }: { fullWidth?: boolean }) {
       download
       onClick={() => track("click_download_pdf", {})}
       className={[
-        "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold",
-        "bg-blue-600 text-white hover:bg-blue-500 active:bg-blue-700",
-        "transition-colors duration-150 shadow-sm",
+        "inline-flex items-center gap-2 rounded px-4 py-2 font-['JetBrains_Mono'] text-sm font-medium",
+        "bg-[#508eff] text-[#00275e] hover:brightness-110 transition-all",
         fullWidth ? "w-full justify-center" : "",
       ].join(" ")}
     >
-      <FileDown size={15} />
       Download PDF
     </a>
   );
