@@ -3,8 +3,8 @@ Task: V2-T-002 Experience Page Redesign
 - 需求描述: Redesign /experience page to V2 — "Career Chronicle" heading, centered alternating timeline with gradient spine, glassmorphism job cards, and 3 bottom metric cards with left blue accent border.
 - 分支: feature/v2-t-002-experience-page-redesign
 - 开发人: Claude
-- 测试状态: 未测试
-- PR 链接: 待生成
+- 测试状态: 通过 (227/227)
+- PR 链接: [#32](https://github.com/jiangui-eth/resume/pull/32/changes)
 - 变更文件:
     apps/web/src/app/experience/page.tsx （修改: V2 header layout, bg-[#121414] surface）
     apps/web/src/components/experience/Timeline.tsx （修改: centered gradient spine, alternating left/right layout）

@@ -22,7 +22,7 @@
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
   .timeline-line {
-    width: 1px;
+    width: 2px;
     background: linear-gradient(180deg, #333333 0%, #aec6ff 50%, #333333 100%);
   }
 }
