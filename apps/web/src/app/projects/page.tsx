@@ -34,51 +34,34 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ProjectsPage() {
   return (
-    <>
-      <section
-        className="relative overflow-hidden"
-        style={{ background: "#0a0a0f" }}
-      >
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(147,197,253,0.15), rgba(196,181,253,0.15), transparent)",
-          }}
-        />
-
-        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both flex flex-col gap-4">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-300">
+    <div className="bg-[#121414] min-h-screen">
+      <section className="pt-30 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-300">
+          <div className="flex flex-col gap-4">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#aec6ff]/30 bg-[#aec6ff]/10 px-4 py-1.5 text-sm font-medium text-[#aec6ff]">
               Selected Works
             </span>
-            <h1 className="text-5xl font-bold tracking-tight text-white/90 sm:text-6xl lg:text-7xl">
+            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
               Architecture &{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg, #93c5fd 0%, #c4b5fd 60%, #f9a8d4 100%)",
-                }}
-              >
-                Implementation.
-              </span>
+              <span className="text-[#aec6ff]">Implementation.</span>
             </h1>
-            <p className="max-w-3xl text-lg leading-8 text-white/50">
+            <p className="max-w-3xl text-lg leading-8 text-[#8e9192]">
               A focused collection of production work spanning product strategy,
               frontend systems, and full-stack delivery across Web2 and Web3.
             </p>
           </div>
-
-          <div className="mt-14 grid gap-8">
-            {PROJECTS.map((project) => (
-              <ProjectBlock key={project.id} project={project} />
-            ))}
-          </div>
         </div>
       </section>
+
+      <section className="px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-300 divide-y divide-[#333333]/30">
+          {PROJECTS.map((project) => (
+            <ProjectBlock key={project.id} project={project} />
+          ))}
+        </div>
+      </section>
+
       <ProjectsCTA />
-    </>
+    </div>
   );
 }

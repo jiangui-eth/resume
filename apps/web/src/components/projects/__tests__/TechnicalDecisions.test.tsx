@@ -15,6 +15,11 @@ const DECISIONS = [
 ];
 
 describe("TechnicalDecisions", () => {
+  it("renders the 'Technical Decisions' section label", () => {
+    render(<TechnicalDecisions decisions={DECISIONS} />);
+    expect(screen.getByText("Technical Decisions")).toBeInTheDocument();
+  });
+
   it("renders each decision title", () => {
     render(<TechnicalDecisions decisions={DECISIONS} />);
 
