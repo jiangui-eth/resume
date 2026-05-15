@@ -1,104 +1,94 @@
-import { type LucideIcon, Layers2, Zap, Brain, Wrench } from "lucide-react";
-
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 interface Capability {
-  icon: LucideIcon;
+  icon: string; // Material Symbols icon name
   title: string;
   bullets: string[];
-  accentColor: string; // tailwind arbitrary color for icon + glow
-  glowColor: string;   // inline rgba for hover box-shadow
 }
 
 // ── Data ───────────────────────────────────────────────────────────────────────
 
 const CAPABILITIES: Capability[] = [
   {
-    icon: Layers2,
+    icon: "terminal",
     title: "Next.js / React",
     bullets: [
-      "App Router, RSC & streaming SSR",
-      "Turborepo monorepo at scale",
-      "Design systems & component libraries",
-      "Tailwind CSS with custom design tokens",
+      "SSR & ISR Architectures",
+      "App Router Expertise",
+      "React Server Components",
     ],
-    accentColor: "text-blue-400",
-    glowColor: "rgba(59,130,246,0.18)",
   },
   {
-    icon: Zap,
+    icon: "bolt",
     title: "Performance",
     bullets: [
-      "Core Web Vitals optimisation (LCP, CLS, INP)",
-      "Code splitting & bundle analysis",
-      "SSR / ISR caching strategies",
-      "Lighthouse CI in every PR pipeline",
+      "Core Web Vitals (LCP/INP)",
+      "WASM Integration",
+      "Runtime Optimization",
     ],
-    accentColor: "text-yellow-400",
-    glowColor: "rgba(234,179,8,0.18)",
   },
   {
-    icon: Brain,
+    icon: "psychology",
     title: "AI & RAG",
     bullets: [
-      "LLM API integration (OpenAI, Anthropic)",
-      "Retrieval-augmented generation pipelines",
-      "Vercel AI SDK streaming responses",
-      "Prompt engineering & agent tooling",
+      "LLM Orchestration (LangChain)",
+      "Vector Database Optimization",
+      "Prompt Engineering",
     ],
-    accentColor: "text-purple-400",
-    glowColor: "rgba(168,85,247,0.18)",
   },
   {
-    icon: Wrench,
+    icon: "layers",
     title: "Engineering",
     bullets: [
-      "TypeScript across the full stack",
-      "Docker · Kubernetes · GitHub Actions",
-      "tRPC + Zod end-to-end type safety",
-      "GitOps workflows & CI/CD automation",
+      "Monorepos (Turborepo)",
+      "Design System Architecture",
+      "CI/CD Pipeline Design",
     ],
-    accentColor: "text-emerald-400",
-    glowColor: "rgba(52,211,153,0.18)",
   },
 ];
 
 // ── CapabilityCard ─────────────────────────────────────────────────────────────
 
-function CapabilityCard({ icon: Icon, title, bullets, accentColor, glowColor }: Capability) {
+function CapabilityCard({ icon, title, bullets }: Capability) {
   return (
-    <article
-      className="group relative flex flex-col gap-5 rounded-2xl border border-white/8 bg-white/[0.03] p-6 transition-all duration-300 hover:border-white/15 hover:bg-white/[0.05]"
-      style={
-        {
-          "--glow": glowColor,
-        } as React.CSSProperties
-      }
-    >
-      {/* Hover glow pseudo-layer */}
+    <article className="group glass-card p-10 flex flex-col gap-6 relative overflow-hidden">
+      {/* Glow orb */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{ boxShadow: `0 0 32px 4px var(--glow), inset 0 0 20px 2px var(--glow)` }}
+        className="absolute -top-12 -right-12 w-24 h-24 bg-[#aec6ff]/10 blur-2xl rounded-full group-hover:bg-[#aec6ff]/20 transition-colors pointer-events-none"
       />
 
       {/* Icon */}
-      <div className={`w-fit rounded-xl border border-white/10 bg-white/[0.05] p-3 ${accentColor}`}>
-        <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
+      <div className="w-14 h-14 rounded-xl bg-[#aec6ff]/10 flex items-center justify-center border border-[#aec6ff]/20 group-hover:border-[#aec6ff]/50 transition-all">
+        <span
+          className="material-symbols-outlined text-[#508eff] text-[28px]"
+          style={{ fontVariationSettings: "'FILL' 1" }}
+          aria-hidden="true"
+        >
+          {icon}
+        </span>
       </div>
 
-      {/* Title */}
-      <h3 className="text-base font-semibold text-white">{title}</h3>
-
-      {/* Bullets */}
-      <ul className="flex flex-col gap-2" role="list">
-        {bullets.map((bullet) => (
-          <li key={bullet} className="flex items-start gap-2 text-sm leading-relaxed text-white/50">
-            <span className={`mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full ${accentColor} opacity-70`} aria-hidden="true" />
-            {bullet}
-          </li>
-        ))}
-      </ul>
+      {/* Content */}
+      <div>
+        <h4 className="text-2xl font-semibold leading-[1.3] tracking-[-0.01em] text-[#e3e2e2] mb-2">
+          {title}
+        </h4>
+        <ul className="flex flex-col gap-2" role="list">
+          {bullets.map((bullet) => (
+            <li
+              key={bullet}
+              className="flex items-center gap-2 font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#8e9192]"
+            >
+              <span
+                className="w-1.5 h-1.5 rounded-full bg-[#508eff] shrink-0"
+                aria-hidden="true"
+              />
+              {bullet}
+            </li>
+          ))}
+        </ul>
+      </div>
     </article>
   );
 }
@@ -109,44 +99,39 @@ export default function CapabilitySection() {
   return (
     <section
       id="capabilities"
-      className="relative overflow-hidden"
-      style={{ background: "#0a0a0f" }}
+      className="bg-[#121414] py-20 relative overflow-hidden"
       aria-label="Technical Arsenal"
     >
-      {/* Top separator */}
+      {/* Grid background */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(147,197,253,0.15), rgba(196,181,253,0.15), transparent)",
-        }}
+        className="absolute inset-0 grid-bg opacity-30 pointer-events-none"
+      />
+      {/* Top fade */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-[#121414] to-transparent pointer-events-none"
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
+      <div className="max-w-300 mx-auto px-6 relative z-10">
         {/* Section header */}
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both mb-12 flex flex-col gap-3">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-300">
-            Technical Arsenal
-          </span>
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Built to ship,{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #93c5fd 0%, #c4b5fd 60%, #f9a8d4 100%)",
-              }}
-            >
-              wired for scale.
+        <div className="mb-10">
+          <div className="inline-flex items-center gap-2 px-2 py-1 rounded-full border border-[#aec6ff]/20 bg-[#aec6ff]/5 mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#aec6ff] animate-pulse" aria-hidden="true" />
+            <span className="font-mono text-sm font-medium leading-[1.4] tracking-[0.15em] text-[#aec6ff] uppercase">
+              Expertise
             </span>
-          </h2>
+          </div>
+          <h3 className="text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-[#e3e2e2] mb-1">
+            Technical Arsenal
+          </h3>
+          <p className="text-lg leading-[1.6] text-[#8e9192] max-w-2xl">
+            Engineered for performance and scalability using modern architectural patterns.
+          </p>
         </div>
 
         {/* Cards grid */}
-        <div
-          className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both delay-150 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-          role="list"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {CAPABILITIES.map((cap) => (
             <CapabilityCard key={cap.title} {...cap} />
           ))}

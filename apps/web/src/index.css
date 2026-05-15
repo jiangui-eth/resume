@@ -1,2 +1,24 @@
 @import "@jiangui-resume/ui/globals.css";
 @import "./styles/print.css";
+
+/* ── V2 Design System utilities ─────────────────────────── */
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid #333333;
+      transition: border-color 0.3s ease;
+    &:hover {
+      border-color: #508eff;
+    }
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, #1b1c1c 1px, transparent 1px),
+      linear-gradient(to bottom, #1b1c1c 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}

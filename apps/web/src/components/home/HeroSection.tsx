@@ -1,150 +1,63 @@
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
-
 import profileData from "@/data/profile.json";
-
-// ── Types ──────────────────────────────────────────────────────────────────────
-
-interface StatItem {
-  value: string;
-  label: string;
-}
-
-// ── Constants ──────────────────────────────────────────────────────────────────
-
-const STATS: StatItem[] = [
-  { value: `${profileData.stats.yearsExperience}+`, label: "Years Experience" },
-  { value: `${profileData.stats.projectsShipped}`, label: "Projects Shipped" },
-  { value: profileData.stats.avgLatency, label: "Avg Load Time" },
-  { value: `${profileData.stats.performanceScore}+`, label: "Lighthouse Score" },
-];
-
-// ── HeroSection ────────────────────────────────────────────────────────────────
 
 export default function HeroSection() {
   return (
     <section
-      className="relative flex min-h-[calc(100svh-4rem)] items-center justify-center overflow-hidden"
-      style={{ background: "#0a0a0f" }}
+      id="home"
+      className="relative min-h-[921px] flex flex-col items-center justify-center overflow-hidden px-6 py-20 grid-bg"
       aria-label="Hero"
     >
-      {/* ── Spotlight radial-gradient ─────────────────────────────────────── */}
+      {/* Gradient overlay */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 90% 65% at 50% 38%, rgba(59,130,246,0.20) 0%, rgba(147,51,234,0.14) 38%, rgba(236,72,153,0.06) 60%, transparent 75%)",
-        }}
+        className="absolute inset-0 bg-gradient-to-b from-transparent via-[#121414]/50 to-[#121414] z-0 pointer-events-none"
       />
 
-      {/* ── Subtle dot-grid texture ───────────────────────────────────────── */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-
-      {/* ── Main content ──────────────────────────────────────────────────── */}
-      <div className="relative z-10 mx-auto max-w-4xl px-4 py-24 text-center">
-
-        {/* Top badge */}
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both">
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-300">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400" />
+      {/* Content */}
+      <div className="relative z-10 text-center max-w-4xl mx-auto">
+        {/* Badge */}
+        <div className="mb-4 inline-block px-2 py-1 border border-[#aec6ff]/30 rounded-full bg-[#aec6ff]/5">
+          <span className="font-mono text-sm font-medium leading-[1.4] tracking-[0.15em] text-[#aec6ff] uppercase">
             {profileData.headline}
           </span>
         </div>
 
-        {/* Main title */}
-        <h1
-          className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both delay-150 mt-8 text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl"
-        >
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, #93c5fd 0%, #c4b5fd 45%, #f9a8d4 100%)",
-            }}
-          >
-            jiangui.eth
-          </span>
-          <br />
-          <span className="text-white/90">Architecting</span>{" "}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%)",
-            }}
-          >
-            Performance
-          </span>
+        {/* H1 */}
+        <h1 className="text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] mb-4 text-[#e3e2e2]">
+          {profileData.name}{" "}
+          <span className="text-[#508eff]">|</span>
+          <br className="hidden md:block" />
+          {" "}Architecting Performance
         </h1>
 
-        {/* Subtitle */}
-        <p
-          className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both delay-300 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/55 sm:text-lg"
-        >
+        {/* Subtext */}
+        <p className="text-lg leading-[1.6] text-[#8e9192] max-w-2xl mx-auto mb-10">
           {profileData.summary}
         </p>
 
         {/* CTA buttons */}
-        <div
-          className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both delay-500 mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
-        >
+        <div className="flex flex-wrap justify-center gap-4">
           <Link
             href={"/projects" as import("next").Route}
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:bg-blue-500 hover:shadow-blue-500/35 active:scale-95"
+            className="px-10 py-4 bg-[#508eff] text-[#00275e] text-2xl font-semibold leading-[1.3] tracking-[-0.01em] rounded-lg hover:shadow-[0_0_30px_rgba(80,142,255,0.4)] transition-all"
           >
             View Projects
-            <ArrowRight size={15} />
           </Link>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/85 backdrop-blur-sm transition-all duration-200 hover:border-white/25 hover:bg-white/10 active:scale-95"
+            className="px-10 py-4 border border-[#444748] text-[#e3e2e2] text-2xl font-semibold leading-[1.3] tracking-[-0.01em] rounded-lg hover:border-[#aec6ff] transition-all"
           >
-            <Mail size={15} />
             Get in Touch
           </a>
         </div>
-
-        {/* Stats row */}
-        <div
-          className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both delay-700 mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-6"
-        >
-          {STATS.map(({ value, label }) => (
-            <div key={label} className="flex flex-col items-center gap-1">
-              <span
-                className="text-2xl font-bold tabular-nums bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #93c5fd, #c4b5fd)",
-                }}
-              >
-                {value}
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.15em] text-white/40">
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
 
-      {/* ── Scroll indicator ──────────────────────────────────────────────── */}
+      {/* Glow orb */}
       <div
-        className="animate-in fade-in duration-1000 fill-mode-both delay-1000 pointer-events-none absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
         aria-hidden="true"
-      >
-        <span className="text-[10px] uppercase tracking-[0.2em] text-white/25">
-          Scroll
-        </span>
-        <div className="h-8 w-px bg-gradient-to-b from-white/25 to-transparent" />
-      </div>
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#aec6ff]/10 blur-[120px] rounded-full -z-10 animate-pulse pointer-events-none"
+      />
     </section>
   );
 }

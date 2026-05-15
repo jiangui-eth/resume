@@ -1,8 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-// ── Mocks ──────────────────────────────────────────────────────────────────────
-
 vi.mock("next/image", () => ({
   default: ({ src, alt }: { src: string; alt: string; [key: string]: unknown }) => (
     // eslint-disable-next-line @next/next/no-img-element
@@ -28,59 +26,46 @@ vi.mock("next/link", () => ({
 
 import ProjectsSection from "../ProjectsSection";
 
-// ── Tests ──────────────────────────────────────────────────────────────────────
-
 describe("ProjectsSection", () => {
-  it('renders the "Selected Works" badge label', () => {
+  it('renders the "Selected Works" heading', () => {
     render(<ProjectsSection />);
     expect(screen.getByText("Selected Works")).toBeInTheDocument();
   });
 
-  it('renders the "See all projects" link pointing to /projects', () => {
+  it('renders the "View all projects" link pointing to /projects', () => {
     render(<ProjectsSection />);
-    const link = screen.getByRole("link", { name: /see all projects/i });
+    const link = screen.getByRole("link", { name: /view all projects/i });
     expect(link).toHaveAttribute("href", "/projects");
   });
 
-  it("renders all three project card names", () => {
+  it("renders top 2 featured project names (sorted by order)", () => {
     render(<ProjectsSection />);
     expect(screen.getByText("Wind Power IoT Platform")).toBeInTheDocument();
     expect(screen.getByText("Gate SEO Platform")).toBeInTheDocument();
-    expect(screen.getByText("Chaos Developer Platform")).toBeInTheDocument();
   });
 
-  it("renders all three project taglines", () => {
+  it("renders project taglines", () => {
     render(<ProjectsSection />);
     expect(screen.getByText(/Real-time turbine monitoring/i)).toBeInTheDocument();
     expect(screen.getByText(/Performance-first SEO analytics/i)).toBeInTheDocument();
-    expect(screen.getByText(/Self-service internal platform/i)).toBeInTheDocument();
   });
 
-  it("renders domain tag pills", () => {
+  it("renders tech tag pills for both projects", () => {
     render(<ProjectsSection />);
-    expect(screen.getByText("IoT")).toBeInTheDocument();
-    expect(screen.getByText("Web3")).toBeInTheDocument();
-    expect(screen.getByText("DevOps")).toBeInTheDocument();
-  });
-
-  it("renders tech tag pills", () => {
-    render(<ProjectsSection />);
-    // Some tags repeat across cards; use getAllByText to handle multiples
-    expect(screen.getAllByText("React").length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText("Next.js").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Go").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("React").length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders three "Case Study" links all pointing to /projects', () => {
+  it('renders two "Case Study" links both pointing to /projects', () => {
     render(<ProjectsSection />);
     const links = screen.getAllByRole("link", { name: /case study/i });
-    expect(links).toHaveLength(3);
+    expect(links).toHaveLength(2);
     links.forEach((link) => expect(link).toHaveAttribute("href", "/projects"));
   });
 
-  it("renders three article elements (one per card)", () => {
+  it("renders two article elements (one per project row)", () => {
     render(<ProjectsSection />);
-    expect(screen.getAllByRole("article")).toHaveLength(3);
+    expect(screen.getAllByRole("article")).toHaveLength(2);
   });
 
   it('has accessible section landmark with label "Selected Works"', () => {

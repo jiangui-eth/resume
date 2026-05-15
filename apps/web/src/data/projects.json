@@ -26,7 +26,7 @@
       { "label": "Knowledge corpus", "value": "~2TB" }
     ],
     "images": [
-      { "src": "/images/projects/wind-power.jpg", "alt": "Wind Power RAG Platform concept visual" }
+      { "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuA0-H0cpcYz38TE9zQT_MxuTVL4TNE5zl4JVu4BRM-zcgRpTcxyVqAnV7Mfd2Otr7waTrPoblh6bY151qb2QdwSR5GZ96o6PPLuClpDy04Gg1ilC35Fa0CIqGpkanCpVxqgulLbdsDTfzeddyLgn5e5NcfdPdp0A7EsDzwfgpBky2pOiwi5_sPRxh9K4DP8TyVt6umJbLJNJc7xqY0ZE6JYY24HtwidAl-Z5EiqShxpRWnDyUylowLjMqfwInQdjqU7ngesQ9Zx3A", "alt": "Wind Power RAG Platform concept visual" }
     ],
     "links": [
       { "type": "case-study", "url": "/projects" }
@@ -62,7 +62,7 @@
       { "label": "Search index lift", "value": "+30%+" }
     ],
     "images": [
-      { "src": "/images/projects/gate-seo.jpg", "alt": "Gate SEO transformation dashboard" }
+      { "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuALgU1mH9dyaHedGBQzlebLTdp1P5UsJkgxMFzz4qYq7txHy-uiJLaD1U69rRaVWOJI25wBaHDCGGrVIP2RKWwbWEHdu69ROh7bDOUf82iVP_jumWGj7S1PDkrAvIiZSKstbeHBfcSlBDfharNX-Az7jCD1qRiZeIu67XuNisv2roN31BM9XDlDwNCD42E3ldEUFW1LKUOkj-nOxM5uud7MQtmZn6tvqxJk790ZT0Yq1wrkXb9WP6K0GOtNiFn_evR0ovsMwfNy5A", "alt": "Gate SEO transformation dashboard" }
     ],
     "links": [
       { "type": "demo", "url": "https://example.com/gate-seo-demo" },
