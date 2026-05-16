@@ -65,6 +65,21 @@ export default function SkillsPage() {
             </div>
           </div>
         </div>
+
+        {/* Decorative hexagon — right side, desktop only */}
+        <div className="absolute right-0 top-0 w-1/3 h-full opacity-20 pointer-events-none hidden lg:block" aria-hidden="true">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-full h-full text-[#aec6ff] stroke-current fill-none"
+          >
+            <path d="M 50,5 L 95,30 L 95,70 L 50,95 L 5,70 L 5,30 Z" strokeWidth="0.5" />
+            <circle cx="50" cy="50" fill="currentColor" r="2" />
+            <path
+              d="M 50,5 L 50,50 M 95,30 L 50,50 M 95,70 L 50,50 M 50,95 L 50,50 M 5,70 L 50,50 M 5,30 L 50,50"
+              strokeWidth="0.2"
+            />
+          </svg>
+        </div>
       </section>
 
       <RadarChart />

@@ -7,7 +7,6 @@ const N = dims.length;
 const CX = 190;
 const CY = 190;
 const R = 120;
-const LABEL_R = 155;
 
 const angles = dims.map((_, i) => -Math.PI / 2 + (i * 2 * Math.PI) / N);
 
@@ -26,15 +25,16 @@ function dataPoints(): string {
   return dims.map((d, i) => pt(d.score / 100, i).join(",")).join(" ");
 }
 
-function labelPos(i: number): { x: number; y: number; anchor: "middle" | "end" | "start" } {
-  const x = CX + LABEL_R * Math.cos(angles[i]);
-  const y = CY + LABEL_R * Math.sin(angles[i]);
-  const anchor: "middle" | "end" | "start" =
-    Math.abs(x - CX) < 8 ? "middle" : x < CX ? "end" : "start";
-  return { x, y, anchor };
-}
-
 const GRID_LEVELS = [25, 50, 75, 100];
+
+// Absolute-positioned label slots — one per pentagon vertex, matching Figma layout
+const LABEL_CLASSES: string[] = [
+  "absolute top-4 left-1/2 -translate-x-1/2 text-center",   // dims[0] top
+  "absolute top-1/3 right-0 text-right",                     // dims[1] top-right
+  "absolute bottom-8 right-12",                               // dims[2] bottom-right
+  "absolute bottom-8 left-12",                                // dims[3] bottom-left
+  "absolute top-1/3 left-0",                                  // dims[4] top-left
+];
 
 const DOMAIN_BULLETS = [
   "Frontend Core: Master (Next.js/React)",
@@ -113,24 +113,15 @@ export default function RadarChart() {
                   return <circle key={i} cx={x} cy={y} r="3" fill="#aec6ff" />;
                 })}
 
-                {dims.map((d, i) => {
-                  const { x, y, anchor } = labelPos(i);
-                  return (
-                    <text
-                      key={i}
-                      x={x}
-                      y={y + 4}
-                      textAnchor={anchor}
-                      fontSize="11"
-                      fill="#e3e2e2"
-                      fontFamily="ui-monospace, monospace"
-                    >
-                      {d.label}
-                    </text>
-                  );
-                })}
               </svg>
             </div>
+
+            {/* HTML labels — positioned outside SVG to avoid viewBox clipping */}
+            {dims.map((d, i) => (
+              <div key={d.label} className={`${LABEL_CLASSES[i]} font-mono text-xs text-[#e3e2e2] leading-tight`}>
+                {d.label}
+              </div>
+            ))}
           </div>
         </div>
       </div>
