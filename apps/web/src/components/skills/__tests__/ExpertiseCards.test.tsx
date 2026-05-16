@@ -10,30 +10,31 @@ describe("ExpertiseCards", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders 4 expertise card headings", () => {
+  it("renders 3 expertise card titles", () => {
     render(<ExpertiseCards />);
-    const cardHeadings = screen.getAllByRole("heading", { level: 3 });
-    expect(cardHeadings.length).toBe(4);
+    expect(screen.getByRole("heading", { name: /SSR\/ISR Strategies/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Micro-frontends/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Design System Arch/i })).toBeInTheDocument();
   });
 
-  it("renders card descriptions", () => {
+  it("renders description text for the first card (mentions TTI)", () => {
     render(<ExpertiseCards />);
-    // each card has a <p> description
+    expect(screen.getByText(/TTI by 40%/i)).toBeInTheDocument();
+  });
+
+  it("renders all 3 Material Symbols icon containers", () => {
+    render(<ExpertiseCards />);
+    const icons = document.querySelectorAll(".material-symbols-outlined");
+    expect(icons.length).toBe(3);
+  });
+
+  it("renders description paragraphs for each card", () => {
+    render(<ExpertiseCards />);
     const section = screen
       .getByRole("heading", { name: /battle-tested expertise/i })
       .closest("div");
     expect(section).not.toBeNull();
     const paragraphs = section!.querySelectorAll("p");
-    expect(paragraphs.length).toBeGreaterThan(0);
-  });
-
-  it("renders tag pills on expertise cards", () => {
-    render(<ExpertiseCards />);
-    const section = screen
-      .getByRole("heading", { name: /battle-tested expertise/i })
-      .closest("div");
-    expect(section).not.toBeNull();
-    const tags = section!.querySelectorAll("span");
-    expect(tags.length).toBeGreaterThan(0);
+    expect(paragraphs.length).toBe(3);
   });
 });

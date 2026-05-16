@@ -1,77 +1,95 @@
 {
   "radarDimensions": [
     {
-      "label": "Frontend",
+      "label": "Frontend Core",
       "score": 95,
       "description": "React, Next.js, performance optimisation, animation, and design systems"
     },
     {
-      "label": "Backend",
-      "score": 82,
-      "description": "Node.js, Go, REST & tRPC APIs, microservices, and message queues"
-    },
-    {
-      "label": "Web3",
-      "score": 75,
-      "description": "Solidity, ethers.js, wagmi, on-chain data indexing, and wallet integrations"
-    },
-    {
-      "label": "DevOps",
-      "score": 78,
-      "description": "Docker, Kubernetes, GitHub Actions, ArgoCD, and observability stacks"
-    },
-    {
-      "label": "Data",
-      "score": 70,
-      "description": "Time-series databases, data pipelines, Kafka, and analytics tooling"
-    },
-    {
-      "label": "AI / LLM",
-      "score": 65,
+      "label": "AI / RAG",
+      "score": 80,
       "description": "LLM API integration, RAG pipelines, prompt engineering, and agent tooling"
+    },
+    {
+      "label": "Graphics/WebGPU",
+      "score": 70,
+      "description": "Three.js, WebGL, Canvas, GLSL shaders, and emerging WebGPU patterns"
+    },
+    {
+      "label": "Architecture",
+      "score": 88,
+      "description": "System design, micro-frontends, monorepo tooling, and CI/CD"
+    },
+    {
+      "label": "Performance",
+      "score": 92,
+      "description": "Core Web Vitals, SSR/ISR strategies, bundle optimisation, and profiling"
     }
   ],
   "techCategories": [
     {
       "category": "Frameworks",
+      "icon": "layers",
       "technologies": [
-        { "name": "Next.js", "level": "expert" },
-        { "name": "React", "level": "expert" },
-        { "name": "TailwindCSS", "level": "expert" },
-        { "name": "Node.js", "level": "proficient" },
-        { "name": "Go", "level": "proficient" },
-        { "name": "tRPC", "level": "proficient" }
+        { "name": "React", "featured": false },
+        { "name": "Next.js 14", "featured": true },
+        { "name": "Vue 2/3", "featured": false },
+        { "name": "TypeScript", "featured": false },
+        { "name": "WebAssembly", "featured": false }
       ]
     },
     {
       "category": "Engineering",
+      "icon": "settings_suggest",
       "technologies": [
-        { "name": "TypeScript", "level": "expert" },
-        { "name": "Docker", "level": "proficient" },
-        { "name": "Kubernetes", "level": "proficient" },
-        { "name": "GitHub Actions", "level": "proficient" },
-        { "name": "PostgreSQL", "level": "proficient" },
-        { "name": "Redis", "level": "proficient" }
+        { "name": "Vite", "featured": false },
+        { "name": "pnpm Monorepos", "featured": true },
+        { "name": "Docker", "featured": false },
+        { "name": "CI/CD (Actions)", "featured": false },
+        { "name": "AWS/Vercel", "featured": false }
       ]
     },
     {
       "category": "AI & Data",
+      "icon": "psychology",
       "technologies": [
-        { "name": "OpenAI API", "level": "proficient" },
-        { "name": "LangChain", "level": "familiar" },
-        { "name": "Kafka", "level": "proficient" },
-        { "name": "InfluxDB", "level": "proficient" },
-        { "name": "Vercel AI SDK", "level": "familiar" }
+        { "name": "RAG Pipelines", "featured": true },
+        { "name": "Pinecone", "featured": false },
+        { "name": "pgvector", "featured": false },
+        { "name": "LangChain", "featured": false },
+        { "name": "SSE (Streaming)", "featured": false }
       ]
     },
     {
       "category": "Graphics",
+      "icon": "draw",
       "technologies": [
-        { "name": "Three.js", "level": "proficient" },
-        { "name": "WebGL", "level": "familiar" },
-        { "name": "Framer Motion", "level": "proficient" },
-        { "name": "D3.js", "level": "familiar" }
+        { "name": "Three.js", "featured": false },
+        { "name": "WebGPU", "featured": true },
+        { "name": "GLSL", "featured": false },
+        { "name": "Canvas/SVG", "featured": false },
+        { "name": "Web Audio API", "featured": false }
       ]
+    }
+  ],
+  "expertiseCards": [
+    {
+      "id": "exp-001",
+      "title": "SSR/ISR Strategies",
+      "icon": "cloud_sync",
+      "description": "Designing hybrid rendering systems for e-commerce platforms that reduced TTI by 40% while maintaining real-time inventory precision through On-Demand ISR."
+    },
+    {
+      "id": "exp-002",
+      "title": "Micro-frontends",
+      "icon": "grid_view",
+      "description": "Implemented Module Federation in complex enterprise dashboard environments, allowing 6+ independent teams to deploy concurrently without version conflicts."
+    },
+    {
+      "id": "exp-003",
+      "title": "Design System Arch",
+      "icon": "palette",
+      "description": "Constructed multi-theme design systems using Tailwind CSS and Headless UI, focusing on strict accessibility (WCAG 2.1 AA) and token-driven engineering."
     }
   ],
   "battleTestedCards": [

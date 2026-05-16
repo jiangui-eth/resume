@@ -7,7 +7,6 @@ const N = dims.length;
 const CX = 190;
 const CY = 190;
 const R = 120;
-const LABEL_R = 155;
 
 const angles = dims.map((_, i) => -Math.PI / 2 + (i * 2 * Math.PI) / N);
 
@@ -26,110 +25,116 @@ function dataPoints(): string {
   return dims.map((d, i) => pt(d.score / 100, i).join(",")).join(" ");
 }
 
-function labelPos(i: number): { x: number; y: number; anchor: "middle" | "end" | "start" } {
-  const x = CX + LABEL_R * Math.cos(angles[i]);
-  const y = CY + LABEL_R * Math.sin(angles[i]);
-  const anchor: "middle" | "end" | "start" =
-    Math.abs(x - CX) < 8 ? "middle" : x < CX ? "end" : "start";
-  return { x, y, anchor };
-}
-
 const GRID_LEVELS = [25, 50, 75, 100];
+
+// Absolute-positioned label slots — one per pentagon vertex, matching Figma layout
+const LABEL_CLASSES: string[] = [
+  "absolute top-4 left-1/2 -translate-x-1/2 text-center",   // dims[0] top
+  "absolute top-1/3 right-0 text-right",                     // dims[1] top-right
+  "absolute bottom-8 right-12",                               // dims[2] bottom-right
+  "absolute bottom-8 left-12",                                // dims[3] bottom-left
+  "absolute top-1/3 left-0",                                  // dims[4] top-left
+];
+
+const DOMAIN_BULLETS = [
+  "Frontend Core: Master (Next.js/React)",
+  "AI/RAG: Advanced Implementation",
+  "Performance: Core Web Vitals Specialist",
+];
 
 export default function RadarChart() {
   return (
-    <div className="relative w-full">
-      {/* Chart — hidden when prefers-reduced-motion */}
-      <div className="motion-reduce:hidden" aria-hidden="true">
-        <svg
-          viewBox="0 0 380 380"
-          className="w-full max-w-sm mx-auto"
-          aria-label="Radar chart showing skill dimensions"
-        >
-          {/* Grid rings */}
-          {GRID_LEVELS.map((level) => (
-            <polygon
-              key={level}
-              points={polygonPoints(level / 100)}
-              fill="none"
-              stroke="rgba(147,197,253,0.12)"
-              strokeWidth="1"
-            />
-          ))}
+    <section className="max-w-300 mx-auto px-6 pb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        {/* Left column */}
+        <div className="lg:col-span-5">
+          <h2 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-white mb-4">
+            Core Domains
+          </h2>
+          <p className="text-base text-[#8e9192] mb-6 leading-relaxed">
+            A visual distribution of my expertise across the modern frontend landscape. While my
+            foundation is in core frontend engineering, I have pivoted significantly towards
+            AI-native application layers and high-performance graphics.
+          </p>
+          <ul className="space-y-4" aria-label="Core domain highlights">
+            {DOMAIN_BULLETS.map((bullet) => (
+              <li key={bullet} className="flex items-center gap-2">
+                <div className="w-2 h-2 shrink-0 rounded-full bg-[#aec6ff]" />
+                <span className="text-base text-[#e3e2e2]">{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Axis lines from center to each vertex */}
-          {angles.map((a, i) => {
-            const [x, y] = pt(1, i);
-            return (
-              <line
-                key={i}
-                x1={CX}
-                y1={CY}
-                x2={x}
-                y2={y}
-                stroke="rgba(147,197,253,0.10)"
-                strokeWidth="1"
-              />
-            );
-          })}
-
-          {/* Data polygon */}
-          <polygon
-            points={dataPoints()}
-            fill="rgba(59,130,246,0.20)"
-            stroke="#3b82f6"
-            strokeWidth="2"
-            strokeLinejoin="round"
-          />
-
-          {/* Data dots */}
-          {dims.map((d, i) => {
-            const [x, y] = pt(d.score / 100, i);
-            return (
-              <circle key={i} cx={x} cy={y} r="4" fill="#60a5fa" />
-            );
-          })}
-
-          {/* Labels */}
-          {dims.map((d, i) => {
-            const { x, y, anchor } = labelPos(i);
-            return (
-              <text
-                key={i}
-                x={x}
-                y={y + 4}
-                textAnchor={anchor}
-                fontSize="11"
-                fill="rgba(255,255,255,0.60)"
-                fontFamily="ui-monospace, monospace"
+        {/* Right column — radar chart */}
+        <div className="lg:col-span-7 flex justify-center">
+          <div className="glass-card p-6 rounded-xl w-full max-w-125 aspect-square flex items-center justify-center relative">
+            <div className="absolute inset-0 p-6" aria-hidden="true">
+              <svg
+                viewBox="0 0 380 380"
+                className="w-full h-full"
+                aria-label="Radar chart showing skill dimensions"
               >
+                {GRID_LEVELS.map((level) => (
+                  <polygon
+                    key={level}
+                    points={polygonPoints(level / 100)}
+                    fill="none"
+                    stroke="#333333"
+                    strokeWidth="0.8"
+                  />
+                ))}
+
+                {angles.map((_, i) => {
+                  const [x, y] = pt(1, i);
+                  return (
+                    <line
+                      key={i}
+                      x1={CX}
+                      y1={CY}
+                      x2={x}
+                      y2={y}
+                      stroke="#333333"
+                      strokeWidth="0.8"
+                    />
+                  );
+                })}
+
+                <polygon
+                  points={dataPoints()}
+                  fill="rgba(174,198,255,0.1)"
+                  stroke="#aec6ff"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+
+                {dims.map((d, i) => {
+                  const [x, y] = pt(d.score / 100, i);
+                  return <circle key={i} cx={x} cy={y} r="3" fill="#aec6ff" />;
+                })}
+
+              </svg>
+            </div>
+
+            {/* HTML labels — positioned outside SVG to avoid viewBox clipping */}
+            {dims.map((d, i) => (
+              <div key={d.label} className={`${LABEL_CLASSES[i]} font-mono text-xs text-[#e3e2e2] leading-tight`}>
                 {d.label}
-              </text>
-            );
-          })}
-        </svg>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Text list — shown when prefers-reduced-motion or JS disabled */}
-      <ul className="hidden motion-reduce:block space-y-2" aria-label="Skill scores">
+      {/* Accessible text list */}
+      <ul className="sr-only" aria-label="Skill scores">
         {dims.map((d) => (
           <li key={d.label} className="flex items-center justify-between text-sm">
-            <span className="text-white/70">{d.label}</span>
-            <span className="text-blue-400 font-mono tabular-nums">{d.score}%</span>
+            <span>{d.label}</span>
+            <span>{d.score}%</span>
           </li>
         ))}
       </ul>
-
-      <noscript>
-        <ul className="space-y-2 mt-4">
-          {dims.map((d) => (
-            <li key={d.label} className="flex items-center justify-between text-sm">
-              <span className="text-white/70">{d.label}</span>
-              <span className="text-blue-400 font-mono">{d.score}%</span>
-            </li>
-          ))}
-        </ul>
-      </noscript>
-    </div>
+    </section>
   );
 }
