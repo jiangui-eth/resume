@@ -13,7 +13,7 @@ describe("SkillsPage", () => {
   it("renders an intro subtitle text element", () => {
     render(<SkillsPage />);
     expect(
-      screen.getByText(/languages, frameworks, and tools/i)
+      screen.getByText(/high-performance web applications/i)
     ).toBeInTheDocument();
   });
 
@@ -33,8 +33,8 @@ describe("SkillsPage", () => {
     expect(() => render(<SkillsPage />)).not.toThrow();
   });
 
-  it("renders the Tech Stack badge", () => {
+  it("renders the Core Competencies badge", () => {
     render(<SkillsPage />);
-    expect(screen.getByText("Tech Stack")).toBeInTheDocument();
+    expect(screen.getByText("Core Competencies")).toBeInTheDocument();
   });
 });

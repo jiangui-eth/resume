@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import RadarChart from "@/components/skills/RadarChart";
-import TechStackCards from "@/components/skills/TechStackCards";
+
 import ExpertiseCards from "@/components/skills/ExpertiseCards";
+import RadarChart from "@/components/skills/RadarChart";
 import SkillsCTA from "@/components/skills/SkillsCTA";
+import TechStackCards from "@/components/skills/TechStackCards";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -28,52 +29,48 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function SkillsPage() {
   return (
-    <>
-    <section
-      className="relative overflow-hidden"
-      style={{ background: "#0a0a0f" }}
-    >
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(147,197,253,0.15), rgba(196,181,253,0.15), transparent)",
-        }}
-      />
-
-      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both flex flex-col gap-4">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-300">
-            Tech Stack
+    <div className="bg-[#121414] min-h-screen grid-bg">
+      <section className="max-w-300 mx-auto px-6 pt-10 pb-20 relative overflow-hidden">
+        <div className="relative z-10 max-w-3xl pt-20">
+          <span className="font-mono text-sm text-[#aec6ff] tracking-widest uppercase mb-2 block">
+            Core Competencies
           </span>
-          <h1 className="text-5xl font-bold tracking-tight text-white/90 sm:text-6xl lg:text-7xl">
-            Technical{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, #93c5fd 0%, #c4b5fd 60%, #f9a8d4 100%)",
-              }}
-            >
-              Proficiency.
-            </span>
+          <h1 className="text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em] text-white mb-4">
+            Technical Proficiency
           </h1>
-          <p className="max-w-2xl text-lg text-white/50">
-            Languages, frameworks, and tools applied across production systems —
-            from high-throughput backends to pixel-precise frontends.
+          <p className="text-lg text-[#8e9192] mb-6 leading-relaxed max-w-2xl">
+            Senior Frontend Engineer with 5+ years of specialized experience in building
+            high-performance web applications. My focus lies at the intersection of modern framework
+            architecture, real-time AI integration (RAG), and low-level graphics engineering. I
+            architect systems that aren&apos;t just functional, but performant by default.
           </p>
+          <div className="flex flex-wrap gap-4">
+            <div className="px-4 py-2 border border-[#444748]/50 rounded-lg flex items-center gap-2 bg-[#1b1c1c]">
+              <span
+                className="material-symbols-outlined text-[#aec6ff]"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
+                terminal
+              </span>
+              <span className="font-mono text-sm">Systems Architecture</span>
+            </div>
+            <div className="px-4 py-2 border border-[#444748]/50 rounded-lg flex items-center gap-2 bg-[#1b1c1c]">
+              <span
+                className="material-symbols-outlined text-[#aec6ff]"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
+                speed
+              </span>
+              <span className="font-mono text-sm">Performance First</span>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="mx-auto max-w-6xl px-4 pb-8 sm:px-6 lg:px-8">
-        <RadarChart />
-      </div>
-    </section>
-
-    <TechStackCards />
-    <ExpertiseCards />
-    <SkillsCTA />
-  </>
+      <RadarChart />
+      <TechStackCards />
+      <ExpertiseCards />
+      <SkillsCTA />
+    </div>
   );
 }

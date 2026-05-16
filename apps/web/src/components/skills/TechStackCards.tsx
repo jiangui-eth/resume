@@ -1,27 +1,34 @@
 import skillsData from "@/data/skills.json";
 
-type Tech = { name: string; level: string };
-type Category = { category: string; technologies: Tech[] };
+type Tech = { name: string; featured: boolean };
+type Category = { category: string; icon: string; technologies: Tech[] };
 
-const categories: Category[] = skillsData.techCategories;
+const categories = skillsData.techCategories as Category[];
 
 export default function TechStackCards() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-      <h2 className="mb-10 text-2xl font-bold tracking-tight text-white/90">
+    <section className="max-w-300 mx-auto px-6 pb-20">
+      <h2 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-white mb-10 text-center">
         Technology Stack
       </h2>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {categories.map((cat) => (
-          <div key={cat.category}>
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-blue-400">
-              {cat.category}
-            </h3>
+          <div key={cat.category} className="glass-card p-6 rounded-xl flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[#aec6ff]">{cat.icon}</span>
+              <h3 className="text-2xl font-semibold tracking-[-0.01em] text-white">
+                {cat.category}
+              </h3>
+            </div>
             <div className="flex flex-wrap gap-2">
               {cat.technologies.map((tech) => (
                 <span
                   key={tech.name}
-                  className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/70 transition-colors hover:border-blue-500/40 hover:text-white/90"
+                  className={
+                    tech.featured
+                      ? "font-mono text-xs px-2 py-0.5 bg-[#1f2020] rounded border border-[#aec6ff]/50 text-[#aec6ff]"
+                      : "font-mono text-xs px-2 py-0.5 bg-[#1f2020] rounded border border-[#444748]/30 text-[#8e9192]"
+                  }
                 >
                   {tech.name}
                 </span>
@@ -30,6 +37,6 @@ export default function TechStackCards() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
