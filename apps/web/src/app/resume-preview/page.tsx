@@ -18,7 +18,7 @@ export default function ResumePreviewPage() {
     <div
       style={{
         background: "#e8e6dd",
-        padding: "24px 0",
+        padding: "80px 0",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -54,11 +54,11 @@ export default function ResumePreviewPage() {
             <div className="header-meta">
               <div>
                 <span className="k">telegram</span>
-                <span className="v">@janebingley</span>
+                <span className="v"><a href="https://t.me/janebingley" target="_blank" rel="noopener noreferrer">@janebingley</a></span>
               </div>
               <div>
                 <span className="k">mail</span>
-                <span className="v">jiangui.eth@gmail.com</span>
+                <span className="v"><a href="mailto:jiangui.eth@gmail.com" target="_blank" rel="noopener noreferrer">jiangui.eth@gmail.com</a></span>
               </div>
             </div>
           </header>
