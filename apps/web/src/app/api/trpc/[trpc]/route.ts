@@ -1,5 +1,5 @@
 import { createContext } from "@jiangui-resume/api/context";
-import { appRouter } from "@jiangui-resume/api/routers/index";
+import { appRouter } from "@jiangui-resume/api/router";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { NextRequest } from "next/server";
 

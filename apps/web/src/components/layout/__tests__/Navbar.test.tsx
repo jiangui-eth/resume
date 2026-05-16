@@ -58,7 +58,7 @@ afterEach(() => {
 describe("Navbar — logo", () => {
   it("renders the DevArchitect logo link pointing to /", () => {
     renderNavbar();
-    const logo = screen.getByRole("link", { name: /devarchitect/i });
+    const logo = screen.getByRole("link", { name: /go to homepage/i });
     expect(logo).toBeInTheDocument();
     expect(logo).toHaveAttribute("href", "/");
   });

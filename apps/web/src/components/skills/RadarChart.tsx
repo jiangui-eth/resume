@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 import skillsData from "@/data/skills.json";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -5,17 +7,17 @@ import SectionHeader from "@/components/ui/SectionHeader";
 type Dimension = { label: string; score: number; description: string };
 
 const dims: Dimension[] = skillsData.radarDimensions;
-const N = dims.length;
-const CX = 190;
-const CY = 190;
-const R = 120;
+const pointCount = dims.length;
+const centerX = 190;
+const centerY = 190;
+const radius = 120;
 
-const angles = dims.map((_, i) => -Math.PI / 2 + (i * 2 * Math.PI) / N);
+const angles = dims.map((_, i) => -Math.PI / 2 + (i * 2 * Math.PI) / pointCount);
 
 function pt(fraction: number, i: number): [number, number] {
   return [
-    CX + fraction * R * Math.cos(angles[i]),
-    CY + fraction * R * Math.sin(angles[i]),
+    centerX + fraction * radius * Math.cos(angles[i]),
+    centerY + fraction * radius * Math.sin(angles[i]),
   ];
 }
 
@@ -44,7 +46,7 @@ const DOMAIN_BULLETS = [
   "Performance: Core Web Vitals Specialist",
 ];
 
-export default function RadarChart() {
+export default function RadarChart(): JSX.Element {
   return (
     <SectionWrapper className="pb-20">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
@@ -88,8 +90,8 @@ export default function RadarChart() {
                   return (
                     <line
                       key={i}
-                      x1={CX}
-                      y1={CY}
+                      x1={centerX}
+                      y1={centerY}
                       x2={x}
                       y2={y}
                       stroke="#333333"

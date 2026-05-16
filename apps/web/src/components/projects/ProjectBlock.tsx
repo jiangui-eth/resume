@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 import Image from "next/image";
 
 import MetricBadge from "./MetricBadge";
@@ -46,7 +48,7 @@ const LINK_LABELS: Record<ProjectLink["type"], string> = {
   "case-study": "Case Study",
 };
 
-function GridPanel({ project }: { project: ProjectBlockData }) {
+export function GridPanel({ project }: { project: ProjectBlockData }): JSX.Element {
   const image = project.images[0];
   const label = project.metricsLabel ?? "Performance Metrics";
 
@@ -92,7 +94,7 @@ function GridPanel({ project }: { project: ProjectBlockData }) {
   );
 }
 
-function ProgressPanel({ project }: { project: ProjectBlockData }) {
+export function ProgressPanel({ project }: { project: ProjectBlockData }): JSX.Element {
   const [progress, ...codeMetrics] = project.metrics;
   const label = project.metricsLabel ?? "Growth & Performance";
 
@@ -129,7 +131,7 @@ function ProgressPanel({ project }: { project: ProjectBlockData }) {
   );
 }
 
-function OutcomePanel({ project }: { project: ProjectBlockData }) {
+export function OutcomePanel({ project }: { project: ProjectBlockData }): JSX.Element {
   const label = project.metricsLabel ?? "Outcome Metrics";
 
   return (
@@ -162,7 +164,7 @@ function OutcomePanel({ project }: { project: ProjectBlockData }) {
   );
 }
 
-function VizPanel({ project }: { project: ProjectBlockData }) {
+export function VizPanel({ project }: { project: ProjectBlockData }): JSX.Element {
   const label = project.metricsLabel ?? "Visualization Engine";
 
   return (
@@ -200,7 +202,7 @@ function VizPanel({ project }: { project: ProjectBlockData }) {
   );
 }
 
-function VisualPanel({ project }: { project: ProjectBlockData }) {
+function VisualPanel({ project }: { project: ProjectBlockData }): JSX.Element {
   switch (project.panelType) {
     case "progress":
       return <ProgressPanel project={project} />;
@@ -213,11 +215,11 @@ function VisualPanel({ project }: { project: ProjectBlockData }) {
   }
 }
 
-export default function ProjectBlock({ project }: { project: ProjectBlockData }) {
+export default function ProjectBlock({ project }: { project: ProjectBlockData }): JSX.Element {
   const isEven = project.order % 2 === 0;
   const badge = project.domainBadge ?? project.domainTags.join(" / ");
 
-  const textColumn = (
+  const TextColumn = (
     <div className={isEven ? "md:col-span-7 order-1 md:order-2" : "md:col-span-7"}>
       <div className="flex items-center gap-2 mb-2">
         {project.icon && (
@@ -262,7 +264,7 @@ export default function ProjectBlock({ project }: { project: ProjectBlockData })
     </div>
   );
 
-  const visualColumn = (
+  const VisualColumn = (
     <div className={isEven ? "md:col-span-5 order-2 md:order-1" : "md:col-span-5"}>
       <VisualPanel project={project} />
     </div>
@@ -272,13 +274,13 @@ export default function ProjectBlock({ project }: { project: ProjectBlockData })
     <article className="mb-20 grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
       {isEven ? (
         <>
-          {visualColumn}
-          {textColumn}
+          {VisualColumn}
+          {TextColumn}
         </>
       ) : (
         <>
-          {textColumn}
-          {visualColumn}
+          {TextColumn}
+          {VisualColumn}
         </>
       )}
     </article>

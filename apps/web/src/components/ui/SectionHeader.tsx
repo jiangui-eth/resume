@@ -1,3 +1,5 @@
+import { cn } from "@jiangui-resume/ui/lib/utils";
+
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
@@ -19,12 +21,10 @@ export default function SectionHeader({
   return (
     <div className={centered ? "text-center" : undefined}>
       <Heading
-        className={[
+        className={cn(
           "text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-[#e3e2e2] mb-4",
           className,
-        ]
-          .filter(Boolean)
-          .join(" ")}
+        )}
       >
         {title}
       </Heading>

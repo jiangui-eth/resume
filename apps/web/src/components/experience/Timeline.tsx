@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 import experiencesData from "@/data/experiences.json";
 import type { Experience } from "@/types/experience";
 
@@ -5,7 +7,7 @@ import TimelineCard from "./TimelineCard";
 
 const EXPERIENCES = experiencesData as Experience[];
 
-export default function Timeline() {
+export default function Timeline(): JSX.Element {
   return (
     <div id="timeline-placeholder" className="relative py-6 md:py-12">
       <div

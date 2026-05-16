@@ -1,7 +1,9 @@
+import type { JSX } from "react";
+
 import Link from "next/link";
 import profileData from "@/data/profile.json";
 
-export default function HeroSection() {
+export default function HeroSection(): JSX.Element {
   return (
     <section
       id="home"

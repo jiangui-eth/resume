@@ -3,14 +3,15 @@ const MONTH_NAMES = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ];
 
+export function formatDate(ym: string): string {
+  const [year, month] = ym.split("-");
+  const m = parseInt(month, 10);
+  return `${MONTH_NAMES[m - 1]} ${year}`;
+}
+
 export function formatPeriod(start: string, end: string): string {
-  const fmt = (ym: string) => {
-    const [year, month] = ym.split("-");
-    const m = parseInt(month, 10);
-    return `${MONTH_NAMES[m - 1]} ${year}`;
-  };
-  const endLabel = isPresent(end) ? "Present" : fmt(end);
-  return `${fmt(start)} – ${endLabel}`;
+  const endLabel = isPresent(end) ? "Present" : formatDate(end);
+  return `${formatDate(start)} – ${endLabel}`;
 }
 
 export function slugify(text: string): string {

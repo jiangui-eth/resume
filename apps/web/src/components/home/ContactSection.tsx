@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { cn } from "@jiangui-resume/ui/lib/utils";
 import type { ContactInfo } from "@/types/contact";
 import contactData from "@/data/contact.json";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -55,10 +56,10 @@ function ContactCard({ icon, label, value, href, reveal }: ContactCardConfig) {
           </a>
         ) : (
           <p
-            className={[
+            className={cn(
               "text-2xl font-semibold leading-[1.3] tracking-[-0.01em] truncate",
               reveal && !revealed ? "tracking-widest text-[#e3e2e2]/20" : "text-[#e3e2e2]",
-            ].join(" ")}
+            )}
           >
             {display}
           </p>

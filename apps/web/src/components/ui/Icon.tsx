@@ -1,3 +1,5 @@
+import { cn } from "@jiangui-resume/ui/lib/utils";
+
 interface IconProps {
   name: string;
   className?: string;
@@ -8,7 +10,7 @@ interface IconProps {
 export default function Icon({ name, className, fill }: IconProps) {
   return (
     <span
-      className={["material-symbols-outlined", className].filter(Boolean).join(" ")}
+      className={cn("material-symbols-outlined", className)}
       style={fill ? { fontVariationSettings: "'FILL' 1" } : undefined}
       aria-hidden="true"
     >

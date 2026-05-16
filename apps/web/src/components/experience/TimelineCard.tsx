@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type JSX } from "react";
 import { motion, useInView } from "framer-motion";
 
 import type { Experience } from "@/types/experience";
+import { formatDate } from "@/lib/utils";
 
 import TechTag from "@/components/ui/TechTag";
 
@@ -13,27 +14,78 @@ interface TimelineCardProps {
   side: "left" | "right";
 }
 
-function formatPeriod(value: string) {
-  const [year, month] = value.split("-").map(Number);
-  return new Date(year, month - 1).toLocaleString("en-US", {
-    month: "short",
-    year: "numeric",
-  });
+interface TimelineCardArticleProps {
+  experience: Experience;
+  isPresent: boolean;
+  startLabel: string;
+  endLabel: string;
+}
+
+function TimelineCardArticle({ experience, isPresent, startLabel, endLabel }: TimelineCardArticleProps): JSX.Element {
+  return (
+    <article className="glass-card p-6 rounded-xl">
+      {/* Mobile date/company header */}
+      <div className="md:hidden mb-4">
+        <p className="text-sm font-medium text-[#aec6ff]">
+          {startLabel} {"–"}{" "}
+          <span className={isPresent ? "font-semibold" : "text-white/60"}>
+            {endLabel}
+          </span>
+        </p>
+        <p className="text-base font-semibold text-white mt-0.5">{experience.company}</p>
+      </div>
+
+      {/* Role label */}
+      <p className="text-xs font-medium uppercase tracking-wider text-[#8e9192] mb-4">
+        {experience.title}
+      </p>
+
+      {/* Highlight badge */}
+      {experience.highlight ? (
+        <span className="inline-block mb-4 rounded border border-[#508eff]/30 px-2 py-0.5 text-xs font-mono text-[#508eff]">
+          {experience.highlight}
+        </span>
+      ) : null}
+
+      {/* Bullet list */}
+      <ul className="space-y-2 mb-4">
+        {experience.responsibilities.map((responsibility) => (
+          <li key={responsibility} className="flex items-start gap-2 text-sm text-white/60">
+            <span
+              aria-hidden="true"
+              className="material-symbols-outlined text-[#aec6ff] shrink-0"
+              style={{ fontSize: "16px", lineHeight: "1.5" }}
+            >
+              arrow_right
+            </span>
+            <span>{responsibility}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Tech tags */}
+      <div className="flex flex-wrap gap-2">
+        {experience.techTags.map((tag) => (
+          <TechTag key={tag} label={tag} />
+        ))}
+      </div>
+    </article>
+  );
 }
 
 export default function TimelineCard({
   experience,
   index,
   side,
-}: TimelineCardProps) {
+}: TimelineCardProps): JSX.Element {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView =
     typeof IntersectionObserver === "undefined"
       ? true
       : useInView(ref, { once: true, amount: 0.2 });
   const isPresent = experience.period.end === "present";
-  const startLabel = formatPeriod(experience.period.start);
-  const endLabel = isPresent ? "Present" : formatPeriod(experience.period.end);
+  const startLabel = formatDate(experience.period.start);
+  const endLabel = isPresent ? "Present" : formatDate(experience.period.end);
   const isCardRight = side === "left";
 
   return (
@@ -82,53 +134,12 @@ export default function TimelineCard({
 
       {/* Card */}
       <div className="w-full md:w-1/2 px-0 md:px-8">
-        <article className="glass-card p-6 rounded-xl">
-          {/* Mobile date/company header */}
-          <div className="md:hidden mb-4">
-            <p className="text-sm font-medium text-[#aec6ff]">
-              {startLabel} {"–"}{" "}
-              <span className={isPresent ? "font-semibold" : "text-white/60"}>
-                {endLabel}
-              </span>
-            </p>
-            <p className="text-base font-semibold text-white mt-0.5">{experience.company}</p>
-          </div>
-
-          {/* Role label */}
-          <p className="text-xs font-medium uppercase tracking-wider text-[#8e9192] mb-4">
-            {experience.title}
-          </p>
-
-          {/* Highlight badge */}
-          {experience.highlight ? (
-            <span className="inline-block mb-4 rounded border border-[#508eff]/30 px-2 py-0.5 text-xs font-mono text-[#508eff]">
-              {experience.highlight}
-            </span>
-          ) : null}
-
-          {/* Bullet list */}
-          <ul className="space-y-2 mb-4">
-            {experience.responsibilities.map((responsibility) => (
-              <li key={responsibility} className="flex items-start gap-2 text-sm text-white/60">
-                <span
-                  aria-hidden="true"
-                  className="material-symbols-outlined text-[#aec6ff] shrink-0"
-                  style={{ fontSize: "16px", lineHeight: "1.5" }}
-                >
-                  arrow_right
-                </span>
-                <span>{responsibility}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Tech tags */}
-          <div className="flex flex-wrap gap-2">
-            {experience.techTags.map((tag) => (
-              <TechTag key={tag} label={tag} />
-            ))}
-          </div>
-        </article>
+        <TimelineCardArticle
+          experience={experience}
+          isPresent={isPresent}
+          startLabel={startLabel}
+          endLabel={endLabel}
+        />
       </div>
     </motion.div>
   );

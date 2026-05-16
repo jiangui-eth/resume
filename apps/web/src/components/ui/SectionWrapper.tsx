@@ -1,3 +1,5 @@
+import { cn } from "@jiangui-resume/ui/lib/utils";
+
 type AllowedTag = "section" | "div" | "main" | "article";
 
 interface SectionWrapperProps {
@@ -19,7 +21,7 @@ export default function SectionWrapper({
     <Tag
       id={id}
       aria-label={ariaLabel}
-      className={["max-w-300 mx-auto px-6", className].filter(Boolean).join(" ")}
+      className={cn("max-w-300 mx-auto px-6", className)}
     >
       {children}
     </Tag>

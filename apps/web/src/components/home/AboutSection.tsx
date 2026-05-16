@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 import Image from "next/image";
 import type { Profile } from "@/types/profile";
 import profileData from "@/data/profile.json";
@@ -6,7 +8,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 
 const profile = profileData as Profile;
 
-export default function AboutSection() {
+export default function AboutSection(): JSX.Element {
   return (
     <SectionWrapper id="about" aria-label="About" className="py-20">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">

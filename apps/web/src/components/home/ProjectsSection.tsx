@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
+import { cn } from "@jiangui-resume/ui/lib/utils";
 import type { Project } from "@/types/project";
 import projectsData from "@/data/projects.json";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -18,7 +19,13 @@ const PROJECTS: Project[] = (projectsData as Project[])
 
 // ── ProjectImage ───────────────────────────────────────────────────────────────
 
-function ProjectImage({ src, alt, priority }: { src: string; alt: string; priority?: boolean }) {
+interface ProjectImageProps {
+  src: string;
+  alt: string;
+  priority?: boolean;
+}
+
+function ProjectImage({ src, alt, priority }: ProjectImageProps): React.JSX.Element {
   const [error, setError] = React.useState(false);
 
   if (error || !src) {
@@ -43,16 +50,21 @@ function ProjectImage({ src, alt, priority }: { src: string; alt: string; priori
 
 // ── ProjectRow ─────────────────────────────────────────────────────────────────
 
-function ProjectRow({ project, imageRight, priority }: { project: Project; imageRight?: boolean; priority?: boolean }) {
+interface ProjectRowProps {
+  project: Project;
+  imageRight?: boolean;
+  priority?: boolean;
+}
+
+function ProjectRow({ project, imageRight, priority }: ProjectRowProps): React.JSX.Element {
   return (
     <article className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
       {/* Image — 7 cols, order swaps when imageRight */}
       <div
-        className={[
-          "md:col-span-7 rounded-lg overflow-hidden border border-[#444748]/30 bg-[#1f2020] shadow-2xl",
-          imageRight ? "md:order-2" : "",
-          "relative aspect-video",
-        ].join(" ")}
+        className={cn(
+          "md:col-span-7 rounded-lg overflow-hidden border border-[#444748]/30 bg-[#1f2020] shadow-2xl relative aspect-video",
+          imageRight && "md:order-2",
+        )}
       >
         <ProjectImage
           src={project.images[0]?.src ?? ""}
@@ -62,7 +74,7 @@ function ProjectRow({ project, imageRight, priority }: { project: Project; image
       </div>
 
       {/* Text — 5 cols */}
-      <div className={["md:col-span-5", imageRight ? "md:order-1" : ""].join(" ")}>
+      <div className={cn("md:col-span-5", imageRight && "md:order-1")}>
         <span className="font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#aec6ff] mb-2 block">
           {project.domainTags[0]}
         </span>
@@ -103,7 +115,7 @@ function ProjectRow({ project, imageRight, priority }: { project: Project; image
 
 // ── ProjectsSection ────────────────────────────────────────────────────────────
 
-export default function ProjectsSection() {
+export default function ProjectsSection(): React.JSX.Element {
   return (
     <SectionWrapper id="projects" aria-label="Selected Works" className="py-20">
       {/* Section header */}

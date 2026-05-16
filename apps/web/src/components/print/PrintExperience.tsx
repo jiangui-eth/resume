@@ -1,41 +1,4 @@
-const EXPERIENCE = [
-  {
-    title: "Senior Full-Stack Engineer",
-    company: "DeFi Protocol — Remote",
-    period: "2023 – Present",
-    bullets: [
-      "Built high-throughput order-book engine processing 50k events/s with sub-10 ms p99 latency.",
-      "Designed EVM smart-contract settlement layer; audited and deployed to mainnet.",
-    ],
-  },
-  {
-    title: "Software Engineer",
-    company: "Web3 Startup — Hong Kong",
-    period: "2021 – 2023",
-    bullets: [
-      "Architected multi-tenant Next.js platform serving 200k monthly active users.",
-      "Reduced cloud spend 35% by migrating batch jobs to edge-computed workers.",
-    ],
-  },
-  {
-    title: "Frontend Engineer",
-    company: "SaaS Company — Shenzhen",
-    period: "2020 – 2021",
-    bullets: [
-      "Rebuilt customer dashboard with React + TypeScript, cutting load time by 60%.",
-      "Shipped component library adopted across 4 product teams.",
-    ],
-  },
-  {
-    title: "Junior Developer",
-    company: "Agency — Guangzhou",
-    period: "2019 – 2020",
-    bullets: [
-      "Delivered 12 client websites using Next.js and headless CMS integrations.",
-      "Introduced automated CI/CD pipelines, eliminating manual deployment steps.",
-    ],
-  },
-];
+import { PRINT_EXPERIENCE } from "@/data/print-experience";
 
 export default function PrintExperience() {
   return (
@@ -44,7 +7,7 @@ export default function PrintExperience() {
         Professional Experience
       </h2>
       <div className="space-y-5">
-        {EXPERIENCE.map((exp) => (
+        {PRINT_EXPERIENCE.map((exp) => (
           <div key={exp.company} className="print-entry">
             <div className="flex items-baseline justify-between">
               <h3 className="text-sm font-semibold text-gray-900">{exp.title}</h3>
