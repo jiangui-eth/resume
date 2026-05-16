@@ -1,10 +1,12 @@
 "use client";
 
 import { track } from "@/lib/analytics";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 export default function SkillsCTA() {
   return (
-    <section className="max-w-300 mx-auto px-6 pb-20">
+    <SectionWrapper className="pb-20">
       <div className="glass-card rounded-xl overflow-hidden relative min-h-75 flex items-center p-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -13,14 +15,10 @@ export default function SkillsCTA() {
           className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
         />
         <div className="relative z-10 max-w-2xl">
-          <h2 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-white mb-4">
-            Ready for the next architectural challenge.
-          </h2>
-          <p className="text-base text-[#8e9192] mb-6 leading-relaxed">
-            I specialize in turning complex technical requirements into seamless, high-performance
-            user experiences. Whether it&apos;s a 3D data visualization or a massive monorepo
-            migration, I bring a senior perspective to every line of code.
-          </p>
+          <SectionHeader
+            title="Ready for the next architectural challenge."
+            subtitle="I specialize in turning complex technical requirements into seamless, high-performance user experiences. Whether it's a 3D data visualization or a massive monorepo migration, I bring a senior perspective to every line of code."
+          />
           <a
             href="mailto:jiangui.eth@gmail.com"
             onClick={() => track("click_get_in_touch", { source: "skills_cta" })}
@@ -30,6 +28,6 @@ export default function SkillsCTA() {
           </a>
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

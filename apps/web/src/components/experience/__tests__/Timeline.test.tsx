@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import TechTag from "../TechTag";
+import TechTag from "@/components/ui/TechTag";
 import Timeline from "../Timeline";
 
 vi.mock("framer-motion", () => ({

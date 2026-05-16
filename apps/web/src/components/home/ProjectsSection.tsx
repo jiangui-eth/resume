@@ -6,6 +6,8 @@ import Link from "next/link";
 import type { Route } from "next";
 import type { Project } from "@/types/project";
 import projectsData from "@/data/projects.json";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const PROJECTS_HREF = "/projects" as Route;
 
@@ -103,21 +105,10 @@ function ProjectRow({ project, imageRight, priority }: { project: Project; image
 
 export default function ProjectsSection() {
   return (
-    <section
-      id="projects"
-      className="max-w-300 mx-auto px-6 py-20"
-      aria-label="Selected Works"
-    >
+    <SectionWrapper id="projects" aria-label="Selected Works" className="py-20">
       {/* Section header */}
       <div className="mb-10 flex justify-between items-end">
-        <div>
-          <h3 className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2]">
-            Selected Works
-          </h3>
-          <p className="text-base leading-[1.6] text-[#8e9192]">
-            Architecture and execution at scale.
-          </p>
-        </div>
+        <SectionHeader level={3} title="Selected Works" subtitle="Architecture and execution at scale." />
         <Link
           href={PROJECTS_HREF}
           className="font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#aec6ff] hover:underline flex items-center gap-1 shrink-0"
@@ -140,6 +131,6 @@ export default function ProjectsSection() {
           />
         ))}
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

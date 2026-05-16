@@ -5,6 +5,7 @@ import ProjectBlock, {
 } from "@/components/projects/ProjectBlock";
 import projectsData from "@/data/projects.json";
 import ProjectsCTA from "@/components/projects/ProjectsCTA";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 
 const PROJECTS = (projectsData as ProjectBlockData[]).sort(
   (a, b) => a.order - b.order
@@ -35,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ProjectsPage() {
   return (
     <div className="bg-[#121414] min-h-screen text-[#e3e2e2]">
-      <main className="pt-20 pb-20 px-6 max-w-300 mx-auto">
+      <SectionWrapper as="main" className="pt-20 pb-20">
         <header className="mb-20 max-w-3xl">
           <h1 className="text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em] text-white mb-4">
             Architecture{" "}
@@ -52,7 +53,7 @@ export default function ProjectsPage() {
         {PROJECTS.map((project) => (
           <ProjectBlock key={project.id} project={project} />
         ))}
-      </main>
+      </SectionWrapper>
 
       <ProjectsCTA />
     </div>

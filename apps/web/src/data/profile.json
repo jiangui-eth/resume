@@ -11,6 +11,33 @@
     "performanceScore": 80,
     "yearsExperience": 5
   },
+  "highlights": [
+    { "value": "14x", "label": "SEO Growth" },
+    { "value": "1.8s", "label": "LCP Optimized" },
+    { "value": "80%", "label": "Build Speedup" }
+  ],
+  "capabilities": [
+    {
+      "icon": "terminal",
+      "title": "Next.js / React",
+      "bullets": ["SSR & ISR Architectures", "App Router Expertise", "React Server Components"]
+    },
+    {
+      "icon": "bolt",
+      "title": "Performance",
+      "bullets": ["Core Web Vitals (LCP/INP)", "WASM Integration", "Runtime Optimization"]
+    },
+    {
+      "icon": "psychology",
+      "title": "AI & RAG",
+      "bullets": ["LLM Orchestration (LangChain)", "Vector Database Optimization", "Prompt Engineering"]
+    },
+    {
+      "icon": "layers",
+      "title": "Engineering",
+      "bullets": ["Monorepos (Turborepo)", "Design System Architecture", "CI/CD Pipeline Design"]
+    }
+  ],
   "socials": [
     {
       "platform": "github",

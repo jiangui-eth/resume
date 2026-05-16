@@ -4,6 +4,7 @@ import ExpertiseCards from "@/components/skills/ExpertiseCards";
 import RadarChart from "@/components/skills/RadarChart";
 import SkillsCTA from "@/components/skills/SkillsCTA";
 import TechStackCards from "@/components/skills/TechStackCards";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -30,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function SkillsPage() {
   return (
     <div className="bg-[#121414] min-h-screen grid-bg">
-      <section className="max-w-300 mx-auto px-6 pt-10 pb-20 relative overflow-hidden">
+      <SectionWrapper className="pt-10 pb-20 relative overflow-hidden">
         <div className="relative z-10 max-w-3xl pt-20">
           <span className="font-mono text-sm text-[#aec6ff] tracking-widest uppercase mb-2 block">
             Core Competencies
@@ -80,7 +81,7 @@ export default function SkillsPage() {
             />
           </svg>
         </div>
-      </section>
+      </SectionWrapper>
 
       <RadarChart />
       <TechStackCards />

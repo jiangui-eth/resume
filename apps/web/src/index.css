@@ -1,6 +1,21 @@
 @import "@jiangui-resume/ui/globals.css";
 @import "./styles/print.css";
 
+/* ── V2 Color tokens ────────────────────────────────────── */
+:root {
+  --color-bg: #121414;
+  --color-surface: #1b1c1c;
+  --color-surface-2: #1f2020;
+  --color-border: #333333;
+  --color-border-2: #444748;
+  --color-text-primary: #e3e2e2;
+  --color-text-secondary: #8e9192;
+  --color-text-body: #c4c7c7;
+  --color-accent: #aec6ff;
+  --color-accent-bright: #508eff;
+  --color-accent-dark: #00275e;
+}
+
 /* ── V2 Design System utilities ─────────────────────────── */
 @layer utilities {
   .glass-card {

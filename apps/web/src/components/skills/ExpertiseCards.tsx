@@ -1,4 +1,6 @@
 import skillsData from "@/data/skills.json";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 type ExpertiseCard = { id: string; title: string; icon: string; description: string };
 
@@ -6,11 +8,9 @@ const cards = skillsData.expertiseCards as ExpertiseCard[];
 
 export default function ExpertiseCards() {
   return (
-    <section className="max-w-300 mx-auto px-6 pb-20">
+    <SectionWrapper className="pb-20">
       <div className="bg-[#1b1c1c] border border-[#444748]/30 rounded-2xl p-10">
-        <h2 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-white mb-10">
-          Battle-Tested Expertise
-        </h2>
+        <SectionHeader title="Battle-Tested Expertise" className="mb-10" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {cards.map((card) => (
             <div key={card.id} className="space-y-4">
@@ -30,6 +30,6 @@ export default function ExpertiseCards() {
           ))}
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

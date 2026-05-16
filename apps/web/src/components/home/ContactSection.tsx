@@ -3,6 +3,7 @@
 import React from "react";
 import type { ContactInfo } from "@/types/contact";
 import contactData from "@/data/contact.json";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 
 const contact = contactData as ContactInfo;
 
@@ -90,7 +91,7 @@ export default function ContactSection() {
       className="bg-[#1b1c1c] py-20"
       aria-label="Contact"
     >
-      <div className="max-w-300 mx-auto px-6 text-center">
+      <SectionWrapper as="div" className="text-center">
         {/* Heading */}
         <h3 className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2] mb-4">
           Let&apos;s build the next generation of web.
@@ -105,7 +106,7 @@ export default function ContactSection() {
             <ContactCard key={card.label} {...card} />
           ))}
         </div>
-      </div>
+      </SectionWrapper>
     </section>
   );
 }

@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 
 import type { Experience } from "@/types/experience";
 
-import TechTag from "./TechTag";
+import TechTag from "@/components/ui/TechTag";
 
 interface TimelineCardProps {
   experience: Experience;

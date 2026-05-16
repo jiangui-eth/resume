@@ -1,51 +1,7 @@
-// ── Types ──────────────────────────────────────────────────────────────────────
+import type { Profile, Capability } from "@/types/profile";
+import profileData from "@/data/profile.json";
 
-interface Capability {
-  icon: string; // Material Symbols icon name
-  title: string;
-  bullets: string[];
-}
-
-// ── Data ───────────────────────────────────────────────────────────────────────
-
-const CAPABILITIES: Capability[] = [
-  {
-    icon: "terminal",
-    title: "Next.js / React",
-    bullets: [
-      "SSR & ISR Architectures",
-      "App Router Expertise",
-      "React Server Components",
-    ],
-  },
-  {
-    icon: "bolt",
-    title: "Performance",
-    bullets: [
-      "Core Web Vitals (LCP/INP)",
-      "WASM Integration",
-      "Runtime Optimization",
-    ],
-  },
-  {
-    icon: "psychology",
-    title: "AI & RAG",
-    bullets: [
-      "LLM Orchestration (LangChain)",
-      "Vector Database Optimization",
-      "Prompt Engineering",
-    ],
-  },
-  {
-    icon: "layers",
-    title: "Engineering",
-    bullets: [
-      "Monorepos (Turborepo)",
-      "Design System Architecture",
-      "CI/CD Pipeline Design",
-    ],
-  },
-];
+const capabilities = (profileData as Profile).capabilities;
 
 // ── CapabilityCard ─────────────────────────────────────────────────────────────
 
@@ -93,6 +49,8 @@ function CapabilityCard({ icon, title, bullets }: Capability) {
   );
 }
 
+import SectionWrapper from "@/components/ui/SectionWrapper";
+
 // ── CapabilitySection ──────────────────────────────────────────────────────────
 
 export default function CapabilitySection() {
@@ -113,7 +71,7 @@ export default function CapabilitySection() {
         className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-[#121414] to-transparent pointer-events-none"
       />
 
-      <div className="max-w-300 mx-auto px-6 relative z-10">
+      <SectionWrapper as="div" className="relative z-10">
         {/* Section header */}
         <div className="mb-10">
           <div className="inline-flex items-center gap-2 px-2 py-1 rounded-full border border-[#aec6ff]/20 bg-[#aec6ff]/5 mb-4">
@@ -132,11 +90,11 @@ export default function CapabilitySection() {
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {CAPABILITIES.map((cap) => (
+          {capabilities.map((cap) => (
             <CapabilityCard key={cap.title} {...cap} />
           ))}
         </div>
-      </div>
+      </SectionWrapper>
     </section>
   );
 }

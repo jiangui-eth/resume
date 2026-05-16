@@ -1,4 +1,6 @@
 import skillsData from "@/data/skills.json";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 type Tech = { name: string; featured: boolean };
 type Category = { category: string; icon: string; technologies: Tech[] };
@@ -7,10 +9,8 @@ const categories = skillsData.techCategories as Category[];
 
 export default function TechStackCards() {
   return (
-    <section className="max-w-300 mx-auto px-6 pb-20">
-      <h2 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-white mb-10 text-center">
-        Technology Stack
-      </h2>
+    <SectionWrapper className="pb-20">
+      <SectionHeader title="Technology Stack" centered className="mb-10" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {categories.map((cat) => (
           <div key={cat.category} className="glass-card p-6 rounded-xl flex flex-col gap-4">
@@ -37,6 +37,6 @@ export default function TechStackCards() {
           </div>
         ))}
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

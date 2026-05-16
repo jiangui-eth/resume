@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import type { Route } from "next";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { track } from "@/lib/analytics";
+import { useNavbar } from "@/hooks/useNavbar";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -15,26 +14,7 @@ const NAV_LINKS = [
 
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+  const { scrolled, mobileOpen, setMobileOpen, pathname } = useNavbar();
 
   return (
     <header
@@ -81,10 +61,12 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:flex items-center mr-6">
-          <DownloadPdfButton />
-        </div>
+        {/* Desktop CTA — hidden on resume-preview (page has its own print toolbar) */}
+          <div className="hidden md:flex items-center mr-6">
+            {pathname !== "/resume-preview" && (
+                <DownloadPdfButton />
+            )}
+          </div>
 
         {/* Mobile hamburger */}
         <button
@@ -132,9 +114,11 @@ export default function Navbar() {
               </li>
             );
           })}
-          <li className="pt-2">
-            <DownloadPdfButton fullWidth />
-          </li>
+          {pathname !== "/resume-preview" && (
+            <li className="pt-2">
+                <DownloadPdfButton fullWidth />
+            </li>
+          )}
         </ul>
       </div>
     </header>
@@ -149,7 +133,7 @@ function DownloadPdfButton({ fullWidth = false }: { fullWidth?: boolean }) {
       rel="noopener noreferrer"
       onClick={() => track("click_download_pdf", {})}
       className={[
-        "inline-flex items-center gap-2 rounded px-4 py-2 font-['JetBrains_Mono'] text-sm font-medium",
+        "inline-flex items-center gap-2 rounded px-4 py-2 text-sm font-bold",
         "bg-[#508eff] text-[#00275e] hover:brightness-110 transition-all",
         fullWidth ? "w-full justify-center" : "",
       ].join(" ")}

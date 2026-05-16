@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PrintButton from "./PrintButton";
+import PrintToolbar from "./PrintToolbar";
 
 export const metadata: Metadata = {
   title: "Resume Preview | jiangui.eth",
@@ -500,7 +500,7 @@ export default function ResumePreviewPage() {
         </div>
       </article>
 
-      <PrintButton />
+      <PrintToolbar />
     </div>
     </>
   );

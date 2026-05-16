@@ -1,4 +1,6 @@
 import skillsData from "@/data/skills.json";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 type Dimension = { label: string; score: number; description: string };
 
@@ -44,18 +46,14 @@ const DOMAIN_BULLETS = [
 
 export default function RadarChart() {
   return (
-    <section className="max-w-300 mx-auto px-6 pb-20">
+    <SectionWrapper className="pb-20">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         {/* Left column */}
         <div className="lg:col-span-5">
-          <h2 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-white mb-4">
-            Core Domains
-          </h2>
-          <p className="text-base text-[#8e9192] mb-6 leading-relaxed">
-            A visual distribution of my expertise across the modern frontend landscape. While my
-            foundation is in core frontend engineering, I have pivoted significantly towards
-            AI-native application layers and high-performance graphics.
-          </p>
+          <SectionHeader
+            title="Core Domains"
+            subtitle="A visual distribution of my expertise across the modern frontend landscape. While my foundation is in core frontend engineering, I have pivoted significantly towards AI-native application layers and high-performance graphics."
+          />
           <ul className="space-y-4" aria-label="Core domain highlights">
             {DOMAIN_BULLETS.map((bullet) => (
               <li key={bullet} className="flex items-center gap-2">
@@ -135,6 +133,6 @@ export default function RadarChart() {
           </li>
         ))}
       </ul>
-    </section>
+    </SectionWrapper>
   );
 }
