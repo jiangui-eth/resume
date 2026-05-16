@@ -151,23 +151,22 @@ describe("Navbar — mobile hamburger drawer", () => {
 });
 
 describe("Navbar — Download PDF button", () => {
-  it("shows disabled PDF button when PDF HEAD request fails", async () => {
-    mockFetch.mockResolvedValue({ ok: false });
+  it("renders a Download PDF link pointing to /resume-preview", () => {
     renderNavbar();
-    await waitFor(() => {
-      const disabled = document.querySelector('[title*="PDF not available"]');
-      expect(disabled).toBeInTheDocument();
-    });
+    const links = screen.getAllByRole("link", { name: /download pdf/i });
+    const previewLink = links.find(
+      (el) => el.getAttribute("href") === "/resume-preview"
+    );
+    expect(previewLink).toBeDefined();
+    expect(previewLink).toHaveAttribute("target", "_blank");
+    expect(previewLink).toHaveAttribute("rel", "noopener noreferrer");
   });
 
-  it("shows enabled download link when PDF HEAD request succeeds", async () => {
-    mockFetch.mockResolvedValue({ ok: true });
+  it("does not use a download attribute on the PDF link", () => {
     renderNavbar();
-    await waitFor(() => {
-      const links = screen.getAllByRole("link", { name: /download pdf/i });
-      const downloadLink = links.find((el) => el.hasAttribute("download"));
-      expect(downloadLink).toBeDefined();
-      expect(downloadLink).toHaveAttribute("href", "/resume.pdf");
+    const links = screen.getAllByRole("link", { name: /download pdf/i });
+    links.forEach((link) => {
+      expect(link).not.toHaveAttribute("download");
     });
   });
 });

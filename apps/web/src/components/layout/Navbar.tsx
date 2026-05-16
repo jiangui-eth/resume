@@ -13,7 +13,6 @@ const NAV_LINKS = [
   { href: "/skills", label: "Skills" },
 ] as { href: Route; label: string }[];
 
-const RESUME_PDF_PATH = "/resume.pdf";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -143,33 +142,11 @@ export default function Navbar() {
 }
 
 function DownloadPdfButton({ fullWidth = false }: { fullWidth?: boolean }) {
-  const [pdfExists, setPdfExists] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    fetch(RESUME_PDF_PATH, { method: "HEAD" })
-      .then((r) => setPdfExists(r.ok))
-      .catch(() => setPdfExists(false));
-  }, []);
-
-  if (pdfExists === false) {
-    return (
-      <span
-        title="PDF not available yet — check back soon"
-        className={[
-          "inline-flex items-center gap-2 rounded px-4 py-2 font-['JetBrains_Mono'] text-sm font-medium",
-          "bg-[#508eff]/40 text-[#aec6ff]/60 cursor-not-allowed select-none",
-          fullWidth ? "w-full justify-center" : "",
-        ].join(" ")}
-      >
-        Download PDF
-      </span>
-    );
-  }
-
   return (
     <a
-      href={RESUME_PDF_PATH}
-      download
+      href="/resume-preview"
+      target="_blank"
+      rel="noopener noreferrer"
       onClick={() => track("click_download_pdf", {})}
       className={[
         "inline-flex items-center gap-2 rounded px-4 py-2 font-['JetBrains_Mono'] text-sm font-medium",

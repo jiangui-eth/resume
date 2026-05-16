@@ -52,7 +52,13 @@
       "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume push)",
       "Bash(git -C /Users/jane-m4/Desktop/jiangui-resume push -u origin feature/v2-t-003-projects-page-redesign)",
       "Bash(node_modules/.bin/next lint *)",
-      "Bash(pnpm run *)"
+      "Bash(pnpm run *)",
+      "Bash(brew list *)",
+      "Read(//usr/local/bin/**)",
+      "Bash(find /opt /usr/local /Users/jane-m4 -name \"gh\" -type f 2>/dev/null | head -5)",
+      "Read(//opt/**)",
+      "Bash(ls ~/.local/bin/ 2>/dev/null || echo \"not found\")",
+      "Read(//Users/jane-m4/.local/bin/**)"
     ],
     "additionalDirectories": [
       "/tmp",
