@@ -64,7 +64,8 @@
       "Bash(pnpm -r lint)",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d.get\\('scripts',{}\\).keys\\(\\)\\)\\)\")",
       "Bash(pnpm build *)",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Bash(pnpm --filter web test --run)"
     ],
     "additionalDirectories": [
       "/tmp",

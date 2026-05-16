@@ -8,6 +8,10 @@ import { formatDate } from "@/lib/utils";
 
 import TechTag from "@/components/ui/TechTag";
 
+/**
+ * `side="left"` places the date panel on the left, card on the right; "right" reverses it.
+ * On mobile only the article card is shown. Animation triggers once on viewport entry via Framer Motion useInView.
+ */
 interface TimelineCardProps {
   experience: Experience;
   index: number;

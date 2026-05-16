@@ -95,3 +95,22 @@ git revert <Task Commit ID>
 - 所有 commit、PR、Task 文档必须同步更新，保持一致
 - 每个 Task 完成都必须生成单元测试
 - 每个 Task 完成都必须生成文档，便于 CR 和自动化部署审计
+
+---
+
+## Testing Conventions
+
+- **Unit tests:** Co-located in `__tests__/` next to the source file.
+  - Components: `src/components/<area>/__tests__/<ComponentName>.test.tsx`
+  - Hooks: `src/hooks/__tests__/<hookName>.test.ts`
+  - Utilities: `src/lib/__tests__/<file>.test.ts`
+  - Pages: `src/app/<route>/__tests__/page.test.tsx`
+- **E2E / visual tests:** `tests/visual/` (Playwright)
+- **Required mocks for every test file:**
+  - Always mock `next/image`, `next/link`, `next/navigation` as needed
+  - Always mock `framer-motion` for animated components (see `Timeline.test.tsx` for the pattern)
+  - Always mock `@/lib/analytics` to prevent real event firing
+- **No snapshot tests.** Use specific role/text assertions (`getByRole`, `getByText`).
+- **Real JSON data.** Import directly from `@/data/*.json` — do not duplicate fixture data in test files.
+- **Client components** (`"use client"`) that use browser APIs (IntersectionObserver, `window.scrollY`) require additional global mocks in the test file.
+- **Test runner:** Vitest 3.x (API-compatible with Jest — `vi.mock` replaces `jest.mock`).

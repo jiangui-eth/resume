@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { formatPeriod, slugify, isPresent } from "../utils";
+import { formatDate, formatPeriod, slugify, isPresent } from "../utils";
 
 describe("isPresent", () => {
   it("returns true for 'present'", () => {
@@ -31,6 +31,17 @@ describe("slugify", () => {
 
   it("trims leading and trailing hyphens", () => {
     expect(slugify("  hello  ")).toBe("hello");
+  });
+});
+
+describe("formatDate", () => {
+  it("formats a YYYY-MM string as 'Mon YYYY'", () => {
+    expect(formatDate("2022-01")).toBe("Jan 2022");
+    expect(formatDate("2023-12")).toBe("Dec 2023");
+  });
+
+  it("handles single-digit months", () => {
+    expect(formatDate("2020-03")).toBe("Mar 2020");
   });
 });
 

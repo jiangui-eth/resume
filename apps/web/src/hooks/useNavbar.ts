@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
+/**
+ * Manages Navbar state: scroll detection (threshold >8px), mobile drawer open/close,
+ * and automatic close on route change. Locks body scroll when the drawer is open.
+ */
 export function useNavbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);

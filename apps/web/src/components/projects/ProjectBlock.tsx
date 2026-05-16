@@ -22,6 +22,11 @@ export interface ProjectImage {
 
 export type PanelType = "grid" | "progress" | "outcome" | "viz";
 
+/**
+ * Full-width project showcase block. Layout alternates left/right based on `project.order`
+ * (even index = visual panel left). The visual column renders one of four panel types
+ * driven by `project.panelType`: "grid" | "progress" | "outcome" | "viz".
+ */
 export interface ProjectBlockData {
   id: string;
   name: string;
