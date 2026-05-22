@@ -95,10 +95,10 @@ export default function ContactSection() {
       <SectionWrapper as="div" className="text-center">
         {/* Heading */}
         <h3 className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2] mb-4">
-          Let&apos;s build the next generation of web.
+          期待合作，共建下一代 Web 产品。
         </h3>
         <p className="text-lg leading-[1.6] text-[#8e9192] max-w-xl mx-auto mb-10">
-          Available for senior roles or architectural consulting. Open to remote or on-site opportunities.
+          正寻求高级前端 / AI 全栈岗位，支持远程与现场合作，欢迎联系。
         </p>
 
         {/* 3-card grid */}

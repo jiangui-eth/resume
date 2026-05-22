@@ -7,7 +7,7 @@ import ContactSection from "../ContactSection";
 describe("ContactSection", () => {
   it("renders the section heading", () => {
     render(<ContactSection />);
-    expect(screen.getByText(/next generation of web/i)).toBeInTheDocument();
+    expect(screen.getByText(/共建下一代 Web 产品/)).toBeInTheDocument();
   });
 
   it("renders the email address visibly", () => {

@@ -67,40 +67,40 @@ describe("Navbar — logo", () => {
 describe("Navbar — desktop navigation links", () => {
   it("renders all four nav links", () => {
     renderNavbar();
-    expect(screen.getAllByRole("link", { name: "Home" }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: "Experience" }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: "Projects" }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: "Skills" }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: "首页" }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: "经历" }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: "项目" }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: "技能" }).length).toBeGreaterThan(0);
   });
 
-  it("marks Home as active (aria-current=page) on /", () => {
+  it("marks 首页 as active (aria-current=page) on /", () => {
     setPathname("/");
     renderNavbar();
-    const homeLinks = screen.getAllByRole("link", { name: "Home" });
+    const homeLinks = screen.getAllByRole("link", { name: "首页" });
     const activeHome = homeLinks.find((el) => el.getAttribute("aria-current") === "page");
     expect(activeHome).toBeDefined();
   });
 
-  it("marks Experience as active on /experience", () => {
+  it("marks 经历 as active on /experience", () => {
     setPathname("/experience");
     renderNavbar();
-    const links = screen.getAllByRole("link", { name: "Experience" });
+    const links = screen.getAllByRole("link", { name: "经历" });
     const active = links.find((el) => el.getAttribute("aria-current") === "page");
     expect(active).toBeDefined();
   });
 
-  it("marks Projects as active on /projects/my-app (prefix match)", () => {
+  it("marks 项目 as active on /projects/my-app (prefix match)", () => {
     setPathname("/projects/my-app");
     renderNavbar();
-    const links = screen.getAllByRole("link", { name: "Projects" });
+    const links = screen.getAllByRole("link", { name: "项目" });
     const active = links.find((el) => el.getAttribute("aria-current") === "page");
     expect(active).toBeDefined();
   });
 
-  it("does NOT mark Home as active on /experience", () => {
+  it("does NOT mark 首页 as active on /experience", () => {
     setPathname("/experience");
     renderNavbar();
-    const homeLinks = screen.getAllByRole("link", { name: "Home" });
+    const homeLinks = screen.getAllByRole("link", { name: "首页" });
     homeLinks.forEach((el) => {
       expect(el.getAttribute("aria-current")).not.toBe("page");
     });
@@ -151,9 +151,9 @@ describe("Navbar — mobile hamburger drawer", () => {
 });
 
 describe("Navbar — Download PDF button", () => {
-  it("renders a Download PDF link pointing to /resume-preview", () => {
+  it("renders a 下载 PDF link pointing to /resume-preview", () => {
     renderNavbar();
-    const links = screen.getAllByRole("link", { name: /download pdf/i });
+    const links = screen.getAllByRole("link", { name: /下载 PDF/ });
     const previewLink = links.find(
       (el) => el.getAttribute("href") === "/resume-preview"
     );
@@ -164,7 +164,7 @@ describe("Navbar — Download PDF button", () => {
 
   it("does not use a download attribute on the PDF link", () => {
     renderNavbar();
-    const links = screen.getAllByRole("link", { name: /download pdf/i });
+    const links = screen.getAllByRole("link", { name: /下载 PDF/ });
     links.forEach((link) => {
       expect(link).not.toHaveAttribute("download");
     });

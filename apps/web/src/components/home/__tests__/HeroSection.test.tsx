@@ -33,15 +33,15 @@ describe("HeroSection", () => {
     expect(screen.getByText(profileData.summary)).toBeInTheDocument();
   });
 
-  it("renders a View Projects link pointing to /projects", () => {
+  it("renders a 查看项目 link pointing to /projects", () => {
     render(<HeroSection />);
-    const link = screen.getByRole("link", { name: /view projects/i });
+    const link = screen.getByRole("link", { name: /查看项目/ });
     expect(link).toHaveAttribute("href", "/projects");
   });
 
-  it("renders a Get in Touch anchor linking to #contact", () => {
+  it("renders a 获取联系方式 anchor linking to #contact", () => {
     render(<HeroSection />);
-    const link = screen.getByRole("link", { name: /get in touch/i });
+    const link = screen.getByRole("link", { name: /获取联系方式/ });
     expect(link).toHaveAttribute("href", "#contact");
   });
 

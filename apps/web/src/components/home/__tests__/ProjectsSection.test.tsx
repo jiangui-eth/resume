@@ -27,14 +27,14 @@ vi.mock("next/link", () => ({
 import ProjectsSection from "../ProjectsSection";
 
 describe("ProjectsSection", () => {
-  it('renders the "Selected Works" heading', () => {
+  it('renders the "精选项目" heading', () => {
     render(<ProjectsSection />);
-    expect(screen.getByText("Selected Works")).toBeInTheDocument();
+    expect(screen.getByText("精选项目")).toBeInTheDocument();
   });
 
-  it('renders the "View all projects" link pointing to /projects', () => {
+  it('renders the "查看全部项目" link pointing to /projects', () => {
     render(<ProjectsSection />);
-    const link = screen.getByRole("link", { name: /view all projects/i });
+    const link = screen.getByRole("link", { name: /查看全部项目/ });
     expect(link).toHaveAttribute("href", "/projects");
   });
 
@@ -56,9 +56,9 @@ describe("ProjectsSection", () => {
     expect(screen.getAllByText("React").length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders two "Case Study" links both pointing to /projects', () => {
+  it('renders two "案例详情" links both pointing to /projects', () => {
     render(<ProjectsSection />);
-    const links = screen.getAllByRole("link", { name: /case study/i });
+    const links = screen.getAllByRole("link", { name: /案例详情/ });
     expect(links).toHaveLength(2);
     links.forEach((link) => expect(link).toHaveAttribute("href", "/projects"));
   });
@@ -68,8 +68,8 @@ describe("ProjectsSection", () => {
     expect(screen.getAllByRole("article")).toHaveLength(2);
   });
 
-  it('has accessible section landmark with label "Selected Works"', () => {
+  it('has accessible section landmark with label "精选项目"', () => {
     render(<ProjectsSection />);
-    expect(screen.getByRole("region", { name: /selected works/i })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: /精选项目/ })).toBeInTheDocument();
   });
 });

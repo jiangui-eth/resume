@@ -4,14 +4,14 @@ import { render, screen } from "@testing-library/react";
 import CapabilitySection from "../CapabilitySection";
 
 describe("CapabilitySection", () => {
-  it("renders the EXPERTISE badge", () => {
+  it("renders the 专业技能 badge", () => {
     render(<CapabilitySection />);
-    expect(screen.getByText("Expertise")).toBeInTheDocument();
+    expect(screen.getByText("专业技能")).toBeInTheDocument();
   });
 
   it("renders the section heading", () => {
     render(<CapabilitySection />);
-    expect(screen.getByText("Technical Arsenal")).toBeInTheDocument();
+    expect(screen.getByText("核心技术栈")).toBeInTheDocument();
   });
 
   it("renders all four capability card titles", () => {
@@ -43,6 +43,6 @@ describe("CapabilitySection", () => {
 
   it("has accessible section landmark", () => {
     render(<CapabilitySection />);
-    expect(screen.getByRole("region", { name: /technical arsenal/i })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: /核心技术栈/ })).toBeInTheDocument();
   });
 });

@@ -14,7 +14,7 @@ export default function AboutSection(): JSX.Element {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Bio card — 8 cols */}
         <div className="md:col-span-8 glass-card p-10 flex flex-col justify-center">
-          <SectionHeader title="Precision in Every Pixel" />
+          <SectionHeader title="深耕工程，精益求精" />
           <p className="text-base leading-[1.6] text-[#c4c7c7] mb-4">
             {profile.summary}
           </p>

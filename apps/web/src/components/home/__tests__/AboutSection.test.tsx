@@ -18,12 +18,12 @@ import AboutSection from "../AboutSection";
 describe("AboutSection", () => {
   it("renders the H2 headline", () => {
     render(<AboutSection />);
-    expect(screen.getByText("Precision in Every Pixel")).toBeInTheDocument();
+    expect(screen.getByText("深耕工程，精益求精")).toBeInTheDocument();
   });
 
   it("renders the bio summary from profile data", () => {
     render(<AboutSection />);
-    expect(screen.getByText(/5\+ years of experience/i)).toBeInTheDocument();
+    expect(screen.getByText(/8 年前端开发经验/)).toBeInTheDocument();
   });
 
   it("renders all three quantified stats", () => {
@@ -43,8 +43,8 @@ describe("AboutSection", () => {
   it("renders the avatar image with grayscale class", () => {
     render(<AboutSection />);
     const img = screen.getByRole("img");
-    expect(img).toHaveAttribute("src", expect.stringContaining("lh3.googleusercontent.com"));
-    expect(img).toHaveAttribute("alt", expect.stringContaining("Jiangui"));
+    expect(img).toHaveAttribute("src", expect.stringContaining("/images/avatar/jiangui.eth.jpg"));
+    expect(img).toHaveAttribute("alt", expect.stringContaining("JianGui"));
     expect(img.className).toContain("grayscale");
   });
 

@@ -30,7 +30,7 @@ export default function HeroSection(): JSX.Element {
           {profileData.name}{" "}
           <span className="text-[#508eff]">|</span>
           <br className="hidden md:block" />
-          {" "}Architecting Performance
+          {" "}性能架构设计
         </h1>
 
         {/* Subtext */}
@@ -44,13 +44,13 @@ export default function HeroSection(): JSX.Element {
             href={"/projects" as import("next").Route}
             className="px-10 py-4 bg-[#508eff] text-[#00275e] text-2xl font-semibold leading-[1.3] tracking-[-0.01em] rounded-lg hover:shadow-[0_0_30px_rgba(80,142,255,0.4)] transition-all"
           >
-            View Projects
+            查看项目
           </Link>
           <a
             href="#contact"
             className="px-10 py-4 border border-[#444748] text-[#e3e2e2] text-2xl font-semibold leading-[1.3] tracking-[-0.01em] rounded-lg hover:border-[#aec6ff] transition-all"
           >
-            Get in Touch
+            获取联系方式
           </a>
         </div>
       </div>

@@ -58,7 +58,7 @@ export default function CapabilitySection() {
     <section
       id="capabilities"
       className="bg-[#121414] py-20 relative overflow-hidden"
-      aria-label="Technical Arsenal"
+      aria-label="核心技术栈"
     >
       {/* Grid background */}
       <div
@@ -77,14 +77,14 @@ export default function CapabilitySection() {
           <div className="inline-flex items-center gap-2 px-2 py-1 rounded-full border border-[#aec6ff]/20 bg-[#aec6ff]/5 mb-4">
             <span className="w-2 h-2 rounded-full bg-[#aec6ff] animate-pulse" aria-hidden="true" />
             <span className="font-mono text-sm font-medium leading-[1.4] tracking-[0.15em] text-[#aec6ff] uppercase">
-              Expertise
+              专业技能
             </span>
           </div>
           <h3 className="text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-[#e3e2e2] mb-1">
-            Technical Arsenal
+            核心技术栈
           </h3>
           <p className="text-lg leading-[1.6] text-[#8e9192] max-w-2xl">
-            Engineered for performance and scalability using modern architectural patterns.
+            覆盖前端工程化、性能优化、AI 应用开发，支撑中大型 Web 应用全生命周期交付。
           </p>
         </div>
 
