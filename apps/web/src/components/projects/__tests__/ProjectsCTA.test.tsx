@@ -1,40 +1,42 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithIntl } from "@/test/intl-test-utils";
+
+vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
+
 import ProjectsCTA from "../ProjectsCTA";
 
 describe("ProjectsCTA", () => {
-  it("renders the Chinese CTA heading", () => {
-    render(<ProjectsCTA />);
+  it("renders the i18n CTA heading (zh-CN: 深入了解技术细节)", () => {
+    renderWithIntl(<ProjectsCTA />);
     expect(screen.getByRole("heading", { name: /深入了解技术细节/i })).toBeInTheDocument();
   });
 
-  it("renders the Chinese technical interview link", () => {
-    render(<ProjectsCTA />);
+  it("renders the i18n technical interview link (zh-CN: 预约技术交流)", () => {
+    renderWithIntl(<ProjectsCTA />);
     expect(screen.getByRole("link", { name: /预约技术交流/i })).toBeInTheDocument();
   });
 
   it("keeps the technical interview link target unchanged", () => {
-    render(<ProjectsCTA />);
+    renderWithIntl(<ProjectsCTA />);
     const link = screen.getByRole("link", { name: /预约技术交流/i });
     const href = link.getAttribute("href") ?? "";
-    expect(href.startsWith("mailto:") || href.startsWith("/contact")).toBe(
-      true
-    );
+    expect(href.startsWith("mailto:") || href.startsWith("/contact")).toBe(true);
   });
 
-  it("renders the Chinese GitHub link", () => {
-    render(<ProjectsCTA />);
+  it("renders the i18n GitHub link (zh-CN: 查看 GitHub)", () => {
+    renderWithIntl(<ProjectsCTA />);
     expect(screen.getByRole("link", { name: /查看 GitHub/i })).toBeInTheDocument();
   });
 
   it("keeps the GitHub link href unchanged", () => {
-    render(<ProjectsCTA />);
+    renderWithIntl(<ProjectsCTA />);
     const link = screen.getByRole("link", { name: /查看 GitHub/i });
     expect(link.getAttribute("href")).toMatch(/^https:\/\/github\.com\//);
   });
 
   it("keeps the GitHub link security attributes unchanged", () => {
-    render(<ProjectsCTA />);
+    renderWithIntl(<ProjectsCTA />);
     const link = screen.getByRole("link", { name: /查看 GitHub/i });
     expect(link.getAttribute("target")).toBe("_blank");
     expect(link.getAttribute("rel")).toContain("noopener");

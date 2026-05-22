@@ -1,20 +1,23 @@
-import type { JSX } from "react";
+"use client";
 
+import type { JSX } from "react";
+import { useTranslations } from "next-intl";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 
 export default function SkillsHero(): JSX.Element {
+  const t = useTranslations("skillsHero");
+
   return (
     <SectionWrapper className="pt-10 pb-20 relative overflow-hidden">
       <div className="relative z-10 max-w-3xl pt-20">
         <span className="font-mono text-sm text-[#aec6ff] tracking-widest uppercase mb-2 block">
-          核心能力
+          {t("badge")}
         </span>
         <h1 className="text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em] text-white mb-4">
-          技术专长
+          {t("title")}
         </h1>
         <p className="text-lg text-[#8e9192] mb-6 leading-relaxed max-w-2xl">
-          8 年前端开发经验，专注 React / Next.js 技术栈与工程化体系建设，在性能优化、AI
-          应用开发与设计系统落地方面具备丰富实战经验。
+          {t("description")}
         </p>
         <div className="flex flex-wrap gap-4">
           <div className="px-4 py-2 border border-[#444748]/50 rounded-lg flex items-center gap-2 bg-[#1b1c1c]">
@@ -24,7 +27,7 @@ export default function SkillsHero(): JSX.Element {
             >
               terminal
             </span>
-            <span className="font-mono text-sm">系统架构</span>
+            <span className="font-mono text-sm">{t("systemArchitecture")}</span>
           </div>
           <div className="px-4 py-2 border border-[#444748]/50 rounded-lg flex items-center gap-2 bg-[#1b1c1c]">
             <span
@@ -33,7 +36,7 @@ export default function SkillsHero(): JSX.Element {
             >
               speed
             </span>
-            <span className="font-mono text-sm">性能优先</span>
+            <span className="font-mono text-sm">{t("performanceFirst")}</span>
           </div>
         </div>
       </div>

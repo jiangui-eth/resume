@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 export interface TechnicalDecision {
   title: string;
   explanation: string;
@@ -8,12 +12,14 @@ interface TechnicalDecisionsProps {
 }
 
 export default function TechnicalDecisions({ decisions }: TechnicalDecisionsProps) {
+  const t = useTranslations("technicalDecisions");
+
   if (decisions.length === 0) return null;
 
   return (
     <div className="glass-card p-6 rounded-xl">
       <h3 className="text-2xl font-semibold tracking-[-0.01em] text-white mb-2">
-        Technical Decisions
+        {t("title")}
       </h3>
       <ul className="space-y-1 list-disc pl-4 text-[#8e9192]">
         {decisions.map((decision) => (

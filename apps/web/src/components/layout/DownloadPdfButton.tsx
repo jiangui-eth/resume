@@ -2,6 +2,7 @@
 
 import type { JSX } from "react";
 
+import { useTranslations } from "next-intl";
 import { cn } from "@jiangui-resume/ui/lib/utils";
 import { track } from "@/lib/analytics";
 
@@ -10,6 +11,8 @@ interface DownloadPdfButtonProps {
 }
 
 export default function DownloadPdfButton({ fullWidth = false }: DownloadPdfButtonProps): JSX.Element {
+  const t = useTranslations("nav");
+
   return (
     <a
       href="/resume-preview"
@@ -22,7 +25,7 @@ export default function DownloadPdfButton({ fullWidth = false }: DownloadPdfButt
         fullWidth && "w-full justify-center",
       )}
     >
-      下载 PDF
+      {t("downloadPdf")}
     </a>
   );
 }

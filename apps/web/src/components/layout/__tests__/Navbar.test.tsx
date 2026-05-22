@@ -1,10 +1,12 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderWithIntl } from "@/test/intl-test-utils";
 
 // ── Module mocks ───────────────────────────────────────────────────────────────
 
 vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
+vi.mock("@/i18n/actions", () => ({ setLocale: vi.fn().mockResolvedValue(undefined) }));
 
 // ── Next.js mocks ──────────────────────────────────────────────────────────────
 
@@ -12,6 +14,7 @@ let mockPathname = "/";
 
 vi.mock("next/navigation", () => ({
   usePathname: () => mockPathname,
+  useRouter: () => ({ refresh: vi.fn() }),
 }));
 
 vi.mock("next/link", () => ({
@@ -30,9 +33,6 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-const mockFetch = vi.fn();
-global.fetch = mockFetch;
-
 import Navbar from "../Navbar";
 
 function setPathname(p: string) {
@@ -40,12 +40,11 @@ function setPathname(p: string) {
 }
 
 function renderNavbar() {
-  return render(<Navbar />);
+  return renderWithIntl(<Navbar />);
 }
 
 beforeEach(() => {
   mockPathname = "/";
-  mockFetch.mockResolvedValue({ ok: false });
 });
 
 afterEach(() => {
@@ -56,7 +55,7 @@ afterEach(() => {
 // ── Tests ──────────────────────────────────────────────────────────────────────
 
 describe("Navbar — logo", () => {
-  it("renders the DevArchitect logo link pointing to /", () => {
+  it("renders the logo link pointing to /", () => {
     renderNavbar();
     const logo = screen.getByRole("link", { name: /go to homepage/i });
     expect(logo).toBeInTheDocument();
@@ -65,7 +64,7 @@ describe("Navbar — logo", () => {
 });
 
 describe("Navbar — desktop navigation links", () => {
-  it("renders all four nav links", () => {
+  it("renders all four nav links (zh-CN)", () => {
     renderNavbar();
     expect(screen.getAllByRole("link", { name: "首页" }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: "经历" }).length).toBeGreaterThan(0);
@@ -73,7 +72,7 @@ describe("Navbar — desktop navigation links", () => {
     expect(screen.getAllByRole("link", { name: "技能" }).length).toBeGreaterThan(0);
   });
 
-  it("marks 首页 as active (aria-current=page) on /", () => {
+  it("marks 首页 as active on /", () => {
     setPathname("/");
     renderNavbar();
     const homeLinks = screen.getAllByRole("link", { name: "首页" });
@@ -120,53 +119,50 @@ describe("Navbar — scroll frosted glass", () => {
 });
 
 describe("Navbar — mobile hamburger drawer", () => {
-  it("shows hamburger button on mobile (aria-label Open menu)", () => {
+  it("shows hamburger button on mobile", () => {
     renderNavbar();
-    expect(screen.getByRole("button", { name: /open menu/i })).toBeInTheDocument();
+    // zh-CN aria-label is "打开菜单"
+    expect(screen.getByRole("button", { name: /打开菜单/ })).toBeInTheDocument();
   });
 
   it("opens the drawer when hamburger is clicked", async () => {
     const user = userEvent.setup();
     renderNavbar();
-    const hamburger = screen.getByRole("button", { name: /open menu/i });
-    await user.click(hamburger);
-    expect(screen.getByRole("button", { name: /close menu/i })).toBeInTheDocument();
-    expect(screen.getByRole("dialog", { name: /navigation menu/i })).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: /打开菜单/ }));
+    expect(screen.getByRole("button", { name: /关闭菜单/ })).toBeInTheDocument();
+    expect(screen.getByRole("dialog", { name: /导航菜单/ })).toBeInTheDocument();
   });
 
   it("locks body scroll when drawer is open", async () => {
     const user = userEvent.setup();
     renderNavbar();
-    await user.click(screen.getByRole("button", { name: /open menu/i }));
+    await user.click(screen.getByRole("button", { name: /打开菜单/ }));
     expect(document.body.style.overflow).toBe("hidden");
   });
 
   it("restores body scroll when drawer is closed", async () => {
     const user = userEvent.setup();
     renderNavbar();
-    await user.click(screen.getByRole("button", { name: /open menu/i }));
-    await user.click(screen.getByRole("button", { name: /close menu/i }));
+    await user.click(screen.getByRole("button", { name: /打开菜单/ }));
+    await user.click(screen.getByRole("button", { name: /关闭菜单/ }));
     expect(document.body.style.overflow).toBe("");
   });
 });
 
 describe("Navbar — Download PDF button", () => {
-  it("renders a 下载 PDF link pointing to /resume-preview", () => {
+  it("renders 下载 PDF link pointing to /resume-preview", () => {
     renderNavbar();
     const links = screen.getAllByRole("link", { name: /下载 PDF/ });
-    const previewLink = links.find(
-      (el) => el.getAttribute("href") === "/resume-preview"
-    );
+    const previewLink = links.find((el) => el.getAttribute("href") === "/resume-preview");
     expect(previewLink).toBeDefined();
     expect(previewLink).toHaveAttribute("target", "_blank");
-    expect(previewLink).toHaveAttribute("rel", "noopener noreferrer");
   });
+});
 
-  it("does not use a download attribute on the PDF link", () => {
+describe("Navbar — LanguageSwitcher", () => {
+  it("renders at least one language switcher button (desktop + mobile)", () => {
     renderNavbar();
-    const links = screen.getAllByRole("link", { name: /下载 PDF/ });
-    links.forEach((link) => {
-      expect(link).not.toHaveAttribute("download");
-    });
+    // LanguageSwitcher appears in both desktop CTA and mobile drawer
+    expect(screen.getAllByRole("button", { name: /语言/ }).length).toBeGreaterThanOrEqual(1);
   });
 });

@@ -1,6 +1,9 @@
+"use client";
+
 import type { JSX } from "react";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import type { Profile } from "@/types/profile";
 import profileData from "@/data/profile.json";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -9,14 +12,16 @@ import SectionHeader from "@/components/ui/SectionHeader";
 const profile = profileData as Profile;
 
 export default function AboutSection(): JSX.Element {
+  const t = useTranslations();
+
   return (
     <SectionWrapper id="about" aria-label="About" className="py-20">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Bio card — 8 cols */}
         <div className="md:col-span-8 glass-card p-10 flex flex-col justify-center">
-          <SectionHeader title="深耕工程，精益求精" />
+          <SectionHeader title={t("about.title")} />
           <p className="text-base leading-[1.6] text-[#c4c7c7] mb-4">
-            {profile.summary}
+            {t("profile.summary")}
           </p>
           {/* Metrics row */}
           <div className="flex gap-10 mt-4">

@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
+import { useTranslations } from "next-intl";
 import { cn } from "@jiangui-resume/ui/lib/utils";
 import type { Project } from "@/types/project";
 import projectsData from "@/data/projects.json";
@@ -57,9 +58,11 @@ interface ProjectRowProps {
 }
 
 function ProjectRow({ project, imageRight, priority }: ProjectRowProps): React.JSX.Element {
+  const t = useTranslations("projects");
+
   return (
     <article className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-      {/* Image — 7 cols, order swaps when imageRight */}
+      {/* Image — 7 cols */}
       <div
         className={cn(
           "md:col-span-7 rounded-lg overflow-hidden border border-[#444748]/30 bg-[#1f2020] shadow-2xl relative aspect-video",
@@ -100,7 +103,7 @@ function ProjectRow({ project, imageRight, priority }: ProjectRowProps): React.J
           href={PROJECTS_HREF}
           className="flex items-center gap-2 text-2xl font-semibold leading-[1.3] tracking-[-0.01em] text-[#e3e2e2] group hover:text-[#aec6ff] transition-colors"
         >
-          案例详情{" "}
+          {t("caseDetails")}{" "}
           <span
             className="material-symbols-outlined group-hover:translate-x-1 transition-transform"
             aria-hidden="true"
@@ -116,16 +119,18 @@ function ProjectRow({ project, imageRight, priority }: ProjectRowProps): React.J
 // ── ProjectsSection ────────────────────────────────────────────────────────────
 
 export default function ProjectsSection(): React.JSX.Element {
+  const t = useTranslations("projects");
+
   return (
-    <SectionWrapper id="projects" aria-label="精选项目" className="py-20">
+    <SectionWrapper id="projects" aria-label={t("title")} className="py-20">
       {/* Section header */}
       <div className="mb-10 flex justify-between items-end">
-        <SectionHeader level={3} title="精选项目" subtitle="架构设计与规模化工程实践。" />
+        <SectionHeader level={3} title={t("title")} subtitle={t("subtitle")} />
         <Link
           href={PROJECTS_HREF}
           className="font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#aec6ff] hover:underline flex items-center gap-1 shrink-0"
         >
-          查看全部项目{" "}
+          {t("viewAll")}{" "}
           <span className="material-symbols-outlined text-base" aria-hidden="true">
             arrow_forward
           </span>

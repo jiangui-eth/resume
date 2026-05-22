@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "downloadPdf": "Download PDF",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menuLabel": "navigation menu"
+  },
+  "hero": {
+    "tagline": "Performance Architecture",
+    "viewProjects": "View Projects",
+    "getInTouch": "Get in Touch"
+  },
+  "about": {
+    "title": "Crafting with Precision"
+  },
+  "capabilities": {
+    "badge": "Core Expertise",
+    "title": "Core Tech Stack",
+    "description": "Covering frontend engineering, performance optimization, and AI application development — supporting the full lifecycle delivery of medium-to-large Web applications."
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Architecture design and large-scale engineering practice.",
+    "viewAll": "View All Projects",
+    "caseDetails": "Case Details"
+  },
+  "contact": {
+    "title": "Looking forward to building next-gen web products together.",
+    "subtitle": "Seeking senior frontend / AI full-stack roles — open to remote and on-site collaboration.",
+    "hide": "Hide",
+    "reveal": "Reveal",
+    "notConfigured": "Not configured"
+  },
+  "experience": {
+    "badge": "Career Path",
+    "title": "Work",
+    "titleHighlight": "Experience",
+    "description": "8 years of frontend development — from enterprise systems to global top-tier crypto exchanges and AI full-stack engineering.",
+    "present": "Present"
+  },
+  "projectsPage": {
+    "title": "Architecture",
+    "titleHighlight": "& Implementation.",
+    "description": "A curated showcase of technical leadership and frontend engineering practice, covering complex migrations, high-performance systems, and AI integration architecture."
+  },
+  "skillsHero": {
+    "badge": "Core Competencies",
+    "title": "Technical Expertise",
+    "description": "8 years of frontend development experience, focused on React / Next.js tech stack and engineering systems, with extensive hands-on experience in performance optimization, AI application development, and design system delivery.",
+    "systemArchitecture": "System Architecture",
+    "performanceFirst": "Performance First"
+  },
+  "skillsCTA": {
+    "title": "Ready for the Next Architecture Challenge.",
+    "description": "Skilled at translating complex technical requirements into high-performance user experiences — whether 3D data visualization or large-scale Monorepo migrations, every line of code is backed by experience.",
+    "contactMe": "Contact Me"
+  },
+  "expertise": {
+    "title": "Battle-Tested Expertise"
+  },
+  "techStack": {
+    "title": "Tech Stack"
+  },
+  "projectsCTA": {
+    "title": "Want to Deep-Dive the Technical Details?",
+    "description": "Full technical documentation and system design diagrams for these projects are available on request — happy to discuss the engineering depth.",
+    "scheduleChat": "Schedule Technical Discussion",
+    "viewGithub": "View GitHub"
+  },
+  "technicalDecisions": {
+    "title": "Technical Decisions"
+  },
+  "footer": {
+    "copyright": "Senior Frontend Engineer. Built with precision."
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文"
+  },
+  "profile": {
+    "headline": "AI Full-Stack Engineer & Web3 Developer",
+    "summary": "8 years of frontend development experience, focused on React / Next.js tech stack and frontend engineering systems, with architecture design and performance optimization experience in medium-to-large Web applications (14× SEO organic traffic growth, LCP optimized to 1.8s, build speed improved 80%). Led Design System and Monorepo adoption supporting multi-product-line collaborative development. Has AI application development experience (RAG / multi-model integration), able to drive technology to real business outcomes."
+  },
+  "impactMetrics": {
+    "seoGrowth": {
+      "title": "SEO Traffic Growth",
+      "description": "CSR → Next.js SSR refactor + JSON-LD structured data injection achieved 14× organic search traffic growth."
+    },
+    "buildSpeed": {
+      "title": "Build Speed Improvement",
+      "description": "Webpack → Vite migration: dev cold start from ~25s to <5s, HMR from ~3s to <0.5s."
+    },
+    "lcpOptimization": {
+      "title": "LCP Performance",
+      "description": "Through code splitting, image lazy loading, and SSR optimization, first-screen LCP reduced from ~4s to 1.8s."
+    }
+  },
+  "expertiseDescriptions": {
+    "ssrIsr": "Led CSR → Next.js SSR migration with short-cycle ISR revalidation, balancing complete search-engine crawlability with real-time data. LCP/CLS both reached Core Web Vitals Good threshold.",
+    "microFrontends": "Familiar with Module Federation, Single-Spa, and Web Components micro-frontend approaches. Experienced in multi-team frontend collaborative architecture design, supporting independent deployment across multiple product lines.",
+    "designSystem": "Built Design System from scratch, delivering 16+ highly reusable business components across 4 product lines, reducing duplicate UI development by ~60%; adopted multi-layer Design Token architecture to support multi-theme switching."
+  }
+}

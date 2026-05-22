@@ -1,5 +1,9 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import type { Profile, Capability } from "@/types/profile";
 import profileData from "@/data/profile.json";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 
 const capabilities = (profileData as Profile).capabilities;
 
@@ -49,16 +53,16 @@ function CapabilityCard({ icon, title, bullets }: Capability) {
   );
 }
 
-import SectionWrapper from "@/components/ui/SectionWrapper";
-
 // ── CapabilitySection ──────────────────────────────────────────────────────────
 
 export default function CapabilitySection() {
+  const t = useTranslations("capabilities");
+
   return (
     <section
       id="capabilities"
       className="bg-[#121414] py-20 relative overflow-hidden"
-      aria-label="核心技术栈"
+      aria-label={t("title")}
     >
       {/* Grid background */}
       <div
@@ -77,14 +81,14 @@ export default function CapabilitySection() {
           <div className="inline-flex items-center gap-2 px-2 py-1 rounded-full border border-[#aec6ff]/20 bg-[#aec6ff]/5 mb-4">
             <span className="w-2 h-2 rounded-full bg-[#aec6ff] animate-pulse" aria-hidden="true" />
             <span className="font-mono text-sm font-medium leading-[1.4] tracking-[0.15em] text-[#aec6ff] uppercase">
-              专业技能
+              {t("badge")}
             </span>
           </div>
           <h3 className="text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-[#e3e2e2] mb-1">
-            核心技术栈
+            {t("title")}
           </h3>
           <p className="text-lg leading-[1.6] text-[#8e9192] max-w-2xl">
-            覆盖前端工程化、性能优化、AI 应用开发，支撑中大型 Web 应用全生命周期交付。
+            {t("description")}
           </p>
         </div>
 

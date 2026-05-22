@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "home": "首页",
+    "experience": "经历",
+    "projects": "项目",
+    "skills": "技能",
+    "downloadPdf": "下载 PDF",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "menuLabel": "导航菜单"
+  },
+  "hero": {
+    "tagline": "性能架构设计",
+    "viewProjects": "查看项目",
+    "getInTouch": "获取联系方式"
+  },
+  "about": {
+    "title": "深耕工程，精益求精"
+  },
+  "capabilities": {
+    "badge": "专业技能",
+    "title": "核心技术栈",
+    "description": "覆盖前端工程化、性能优化、AI 应用开发，支撑中大型 Web 应用全生命周期交付。"
+  },
+  "projects": {
+    "title": "精选项目",
+    "subtitle": "架构设计与规模化工程实践。",
+    "viewAll": "查看全部项目",
+    "caseDetails": "案例详情"
+  },
+  "contact": {
+    "title": "期待合作，共建下一代 Web 产品。",
+    "subtitle": "正寻求高级前端 / AI 全栈岗位，支持远程与现场合作，欢迎联系。",
+    "hide": "隐藏",
+    "reveal": "显示",
+    "notConfigured": "未配置"
+  },
+  "experience": {
+    "badge": "职业历程",
+    "title": "工作",
+    "titleHighlight": "经历",
+    "description": "8 年前端开发经验，从传统企业系统到全球顶级加密货币交易所，再到 AI 应用全栈研发。",
+    "present": "至今"
+  },
+  "projectsPage": {
+    "title": "架构",
+    "titleHighlight": "与实现。",
+    "description": "技术领导力与前端工程实践的精选展示，涵盖复杂迁移、高性能系统与 AI 集成架构。"
+  },
+  "skillsHero": {
+    "badge": "核心能力",
+    "title": "技术专长",
+    "description": "8 年前端开发经验，专注 React / Next.js 技术栈与工程化体系建设，在性能优化、AI 应用开发与设计系统落地方面具备丰富实战经验。",
+    "systemArchitecture": "系统架构",
+    "performanceFirst": "性能优先"
+  },
+  "skillsCTA": {
+    "title": "期待下一个架构挑战。",
+    "description": "擅长将复杂技术需求转化为高性能用户体验，无论是 3D 数据可视化还是大规模 Monorepo 迁移，每一行代码都倾注经验。",
+    "contactMe": "联系我"
+  },
+  "expertise": {
+    "title": "实战经验沉淀"
+  },
+  "techStack": {
+    "title": "技术栈"
+  },
+  "projectsCTA": {
+    "title": "深入了解技术细节？",
+    "description": "这些项目的完整技术文档与系统设计图可按需提供，欢迎深度技术交流。",
+    "scheduleChat": "预约技术交流",
+    "viewGithub": "查看 GitHub"
+  },
+  "technicalDecisions": {
+    "title": "技术决策"
+  },
+  "footer": {
+    "copyright": "高级前端工程师。精工细作。"
+  },
+  "language": {
+    "label": "语言",
+    "en": "English",
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文"
+  },
+  "profile": {
+    "headline": "AI 全栈工程师与 Web3 开发者",
+    "summary": "8 年前端开发经验，专注 React / Next.js 技术栈与前端工程化体系建设，具备中大型 Web 应用架构设计与性能优化经验（SEO 自然流量增长 14×、LCP 优化至 1.8s、构建提速 80%）。主导 Design System 与 Monorepo 落地，支撑多产品线协同开发。具备 AI 应用开发经验（RAG / 多模型接入），能够推动技术在实际业务中的落地。"
+  },
+  "impactMetrics": {
+    "seoGrowth": {
+      "title": "SEO 流量增长",
+      "description": "CSR → Next.js SSR 重构 + JSON-LD 结构化数据注入，自然搜索访问量实现 14 倍增长。"
+    },
+    "buildSpeed": {
+      "title": "构建速度提升",
+      "description": "Webpack → Vite 迁移，开发冷启动从 ~25s 降至 <5s，HMR 从 ~3s 降至 <0.5s。"
+    },
+    "lcpOptimization": {
+      "title": "LCP 性能优化",
+      "description": "通过代码分割、图片懒加载与 SSR 优化，首屏 LCP 从约 4 秒降至 1.8 秒。"
+    }
+  },
+  "expertiseDescriptions": {
+    "ssrIsr": "主导 CSR → Next.js SSR 迁移，配合短周期 ISR revalidation，实现搜索引擎完整抓取与实时数据并重，LCP/CLS 均达 Core Web Vitals 良好阈值。",
+    "microFrontends": "熟悉 Module Federation、Single-Spa、Web Components 等微前端方案，具备多团队前端协同架构设计经验，支撑多产品线独立部署。",
+    "designSystem": "从 0 到 1 建设 Design System，沉淀 16+ 高复用业务组件，覆盖 4 条产品线，重复 UI 开发减少约 60%；采用 Design Token 分层架构支持多主题切换。"
+  }
+}

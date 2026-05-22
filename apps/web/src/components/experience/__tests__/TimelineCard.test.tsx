@@ -1,6 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { renderWithIntl } from "@/test/intl-test-utils";
 
 import type { Experience } from "@/types/experience";
 
@@ -40,29 +41,29 @@ const pastExperience: Experience = {
 
 describe("TimelineCard", () => {
   it("renders the role title", () => {
-    render(<TimelineCard experience={mockExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={mockExperience} index={0} side="left" />);
     expect(screen.getByText("Senior Engineer")).toBeInTheDocument();
   });
 
   it("renders bullet points from the responsibilities array", () => {
-    render(<TimelineCard experience={mockExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={mockExperience} index={0} side="left" />);
     expect(screen.getByText("Built the platform")).toBeInTheDocument();
     expect(screen.getByText("Shipped new features")).toBeInTheDocument();
   });
 
   it("renders tech tags with bg-white/5 class", () => {
-    render(<TimelineCard experience={mockExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={mockExperience} index={0} side="left" />);
     const tag = screen.getByText("React");
     expect(tag.className).toContain("bg-white/5");
   });
 
   it("renders the highlight badge", () => {
-    render(<TimelineCard experience={mockExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={mockExperience} index={0} side="left" />);
     expect(screen.getByText("2x faster")).toBeInTheDocument();
   });
 
   it("with side=left, outer wrapper has md:flex-row class (card on right)", () => {
-    const { container } = render(
+    const { container } = renderWithIntl(
       <TimelineCard experience={mockExperience} index={0} side="left" />
     );
     const wrapper = container.firstChild as HTMLElement;
@@ -71,7 +72,7 @@ describe("TimelineCard", () => {
   });
 
   it("with side=right, outer wrapper has md:flex-row-reverse class (card on left)", () => {
-    const { container } = render(
+    const { container } = renderWithIntl(
       <TimelineCard experience={mockExperience} index={1} side="right" />
     );
     const wrapper = container.firstChild as HTMLElement;
@@ -79,7 +80,7 @@ describe("TimelineCard", () => {
   });
 
   it("renders Material Symbols icon spans for each bullet", () => {
-    render(<TimelineCard experience={mockExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={mockExperience} index={0} side="left" />);
     const icons = document.querySelectorAll(".material-symbols-outlined");
     expect(icons.length).toBeGreaterThanOrEqual(
       mockExperience.responsibilities.length
@@ -87,23 +88,23 @@ describe("TimelineCard", () => {
   });
 
   it("renders 至今 label for active positions", () => {
-    render(<TimelineCard experience={mockExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={mockExperience} index={0} side="left" />);
     expect(screen.getAllByText("至今").length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders formatted end date for past positions", () => {
-    render(<TimelineCard experience={pastExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={pastExperience} index={0} side="left" />);
     expect(screen.getAllByText(/Jan 2022/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders company as a link when companyUrl is provided", () => {
-    render(<TimelineCard experience={mockExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={mockExperience} index={0} side="left" />);
     const link = screen.getByRole("link", { name: "TestCo" });
     expect(link).toHaveAttribute("href", "https://testco.com");
   });
 
   it("renders company as plain text when no companyUrl", () => {
-    render(<TimelineCard experience={pastExperience} index={0} side="left" />);
+    renderWithIntl(<TimelineCard experience={pastExperience} index={0} side="left" />);
     expect(screen.queryByRole("link", { name: "PastCo" })).toBeNull();
     expect(screen.getAllByText("PastCo").length).toBeGreaterThanOrEqual(1);
   });

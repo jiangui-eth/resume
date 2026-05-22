@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import contactData from "@/data/contact.json";
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -10,6 +13,8 @@ const SOCIAL_LINKS = [
 ].filter((l) => l.href && l.href !== "mailto:");
 
 export default function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <footer className="w-full py-10 px-6 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#121414] border-t border-[#444748]/20">
       {/* Left — brand + copyright */}
@@ -18,7 +23,7 @@ export default function Footer() {
           DevArchitect
         </span>
         <p className="font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#8e9192]">
-          © {CURRENT_YEAR} Senior Frontend Engineer. Built with precision.
+          © {CURRENT_YEAR} {t("copyright")}
         </p>
       </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import { cn } from "@jiangui-resume/ui/lib/utils";
 import type { ContactInfo } from "@/types/contact";
 import contactData from "@/data/contact.json";
@@ -11,7 +12,7 @@ const contact = contactData as ContactInfo;
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 interface ContactCardConfig {
-  icon: string; // Material Symbols icon name
+  icon: string;
   label: string;
   value: string;
   href?: string;
@@ -27,13 +28,14 @@ const CARDS: ContactCardConfig[] = [
 ];
 
 const MASKED = "••••••••";
-const FALLBACK = "Not configured";
 
 // ── ContactCard ────────────────────────────────────────────────────────────────
 
 function ContactCard({ icon, label, value, href, reveal }: ContactCardConfig) {
+  const t = useTranslations("contact");
   const [revealed, setRevealed] = React.useState(false);
-  const display = reveal ? (revealed ? (value || FALLBACK) : MASKED) : (value || FALLBACK);
+  const fallback = t("notConfigured");
+  const display = reveal ? (revealed ? (value || fallback) : MASKED) : (value || fallback);
 
   return (
     <article className="glass-card p-6 flex items-center gap-4">
@@ -76,7 +78,7 @@ function ContactCard({ icon, label, value, href, reveal }: ContactCardConfig) {
           <span className="material-symbols-outlined text-base" aria-hidden="true">
             {revealed ? "visibility_off" : "visibility"}
           </span>
-          {revealed ? "Hide" : "Reveal"}
+          {revealed ? t("hide") : t("reveal")}
         </button>
       )}
     </article>
@@ -86,6 +88,8 @@ function ContactCard({ icon, label, value, href, reveal }: ContactCardConfig) {
 // ── ContactSection ─────────────────────────────────────────────────────────────
 
 export default function ContactSection() {
+  const t = useTranslations("contact");
+
   return (
     <section
       id="contact"
@@ -95,10 +99,10 @@ export default function ContactSection() {
       <SectionWrapper as="div" className="text-center">
         {/* Heading */}
         <h3 className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2] mb-4">
-          期待合作，共建下一代 Web 产品。
+          {t("title")}
         </h3>
         <p className="text-lg leading-[1.6] text-[#8e9192] max-w-xl mx-auto mb-10">
-          正寻求高级前端 / AI 全栈岗位，支持远程与现场合作，欢迎联系。
+          {t("subtitle")}
         </p>
 
         {/* 3-card grid */}

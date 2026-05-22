@@ -1,9 +1,11 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { renderWithIntl } from "@/test/intl-test-utils";
 
 import TechTag from "@/components/ui/TechTag";
 import Timeline from "../Timeline";
+import { render } from "@testing-library/react";
 
 vi.mock("framer-motion", () => ({
   motion: {
@@ -15,8 +17,7 @@ vi.mock("framer-motion", () => ({
 
 describe("Timeline", () => {
   it("renders all 5 experience entries", () => {
-    render(<Timeline />);
-    // V2 renders each company in both the desktop side panel and mobile card header
+    renderWithIntl(<Timeline />);
     expect(screen.getAllByText(/Jingcheng Yideng/i).length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText("Gate.com").length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText(/Hanzhu Technology/i).length).toBeGreaterThanOrEqual(1);
@@ -24,34 +25,34 @@ describe("Timeline", () => {
     expect(screen.getAllByText(/Guizhou Guoxintong/i).length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders the present entry highlight", () => {
-    render(<Timeline />);
-    expect(screen.getAllByText("Present").length).toBeGreaterThanOrEqual(1);
+  it("renders the present entry with i18n 'present' label (zh-CN: 至今)", () => {
+    renderWithIntl(<Timeline />);
+    expect(screen.getAllByText("至今").length).toBeGreaterThanOrEqual(1);
   });
 
   it("formats the period start date for Gate.com", () => {
-    render(<Timeline />);
+    renderWithIntl(<Timeline />);
     expect(screen.getAllByText(/Mar 2024/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders responsibility bullets", () => {
-    render(<Timeline />);
+    renderWithIntl(<Timeline />);
     expect(screen.getByText(/Led full-stack AI development/i)).toBeInTheDocument();
   });
 
   it("renders tech tags", () => {
-    render(<Timeline />);
+    renderWithIntl(<Timeline />);
     expect(screen.getAllByText("Next.js").length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText("TypeScript").length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders the Gate.com SEO highlight metric", () => {
-    render(<Timeline />);
+    renderWithIntl(<Timeline />);
     expect(screen.getByText(/SEO 1K → 14K/i)).toBeInTheDocument();
   });
 
   it("renders the Gate.com company link correctly", () => {
-    render(<Timeline />);
+    renderWithIntl(<Timeline />);
     expect(screen.getByRole("link", { name: "Gate.com" })).toHaveAttribute(
       "href",
       "https://gate.com",

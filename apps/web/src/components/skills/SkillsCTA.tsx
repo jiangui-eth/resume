@@ -1,10 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { track } from "@/lib/analytics";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 export default function SkillsCTA() {
+  const t = useTranslations("skillsCTA");
+
   return (
     <SectionWrapper className="pb-20">
       <div className="glass-card rounded-xl overflow-hidden relative min-h-75 flex items-center p-10">
@@ -15,16 +18,13 @@ export default function SkillsCTA() {
           className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
         />
         <div className="relative z-10 max-w-2xl">
-          <SectionHeader
-            title="期待下一个架构挑战。"
-            subtitle="擅长将复杂技术需求转化为高性能用户体验，无论是 3D 数据可视化还是大规模 Monorepo 迁移，每一行代码都倾注经验。"
-          />
+          <SectionHeader title={t("title")} subtitle={t("description")} />
           <a
             href="mailto:jiangui.eth@gmail.com"
             onClick={() => track("click_get_in_touch", { source: "skills_cta" })}
             className="inline-flex items-center gap-2 bg-[#508eff] text-[#00275e] px-6 py-3 rounded-lg font-mono text-sm font-bold transition-all hover:shadow-[0_0_30px_rgba(80,142,255,0.4)]"
           >
-            联系我
+            {t("contactMe")}
           </a>
         </div>
       </div>
