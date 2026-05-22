@@ -3,11 +3,9 @@ import { describe, it, expect } from "vitest";
 import ExpertiseCards from "../ExpertiseCards";
 
 describe("ExpertiseCards", () => {
-  it("renders the Battle-Tested Expertise heading", () => {
+  it("renders the Chinese expertise section heading", () => {
     render(<ExpertiseCards />);
-    expect(
-      screen.getByRole("heading", { name: /battle-tested expertise/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /实战经验沉淀/i })).toBeInTheDocument();
   });
 
   it("renders 3 expertise card titles", () => {
@@ -17,9 +15,9 @@ describe("ExpertiseCards", () => {
     expect(screen.getByRole("heading", { name: /Design System Arch/i })).toBeInTheDocument();
   });
 
-  it("renders description text for the first card (mentions TTI)", () => {
+  it("renders the updated first expertise description", () => {
     render(<ExpertiseCards />);
-    expect(screen.getByText(/TTI by 40%/i)).toBeInTheDocument();
+    expect(screen.getByText(/Core Web Vitals/)).toBeInTheDocument();
   });
 
   it("renders all 3 Material Symbols icon containers", () => {
@@ -31,7 +29,7 @@ describe("ExpertiseCards", () => {
   it("renders description paragraphs for each card", () => {
     render(<ExpertiseCards />);
     const section = screen
-      .getByRole("heading", { name: /battle-tested expertise/i })
+      .getByRole("heading", { name: /实战经验沉淀/i })
       .closest("div");
     expect(section).not.toBeNull();
     const paragraphs = section!.querySelectorAll("p");

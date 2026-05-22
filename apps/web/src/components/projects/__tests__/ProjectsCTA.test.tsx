@@ -3,47 +3,39 @@ import { describe, it, expect } from "vitest";
 import ProjectsCTA from "../ProjectsCTA";
 
 describe("ProjectsCTA", () => {
-  it("renders the heading", () => {
+  it("renders the Chinese CTA heading", () => {
     render(<ProjectsCTA />);
-    expect(
-      screen.getByRole("heading", { name: /interested in the technical depth/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /深入了解技术细节/i })).toBeInTheDocument();
   });
 
-  it("renders the Schedule Technical Interview link", () => {
+  it("renders the Chinese technical interview link", () => {
     render(<ProjectsCTA />);
-    expect(
-      screen.getByRole("link", { name: /schedule technical interview/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /预约技术交流/i })).toBeInTheDocument();
   });
 
-  it("Schedule Technical Interview href points to mailto or /contact", () => {
+  it("keeps the technical interview link target unchanged", () => {
     render(<ProjectsCTA />);
-    const link = screen.getByRole("link", {
-      name: /schedule technical interview/i,
-    });
+    const link = screen.getByRole("link", { name: /预约技术交流/i });
     const href = link.getAttribute("href") ?? "";
     expect(href.startsWith("mailto:") || href.startsWith("/contact")).toBe(
       true
     );
   });
 
-  it("renders the View GitHub link", () => {
+  it("renders the Chinese GitHub link", () => {
     render(<ProjectsCTA />);
-    expect(
-      screen.getByRole("link", { name: /view github/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /查看 GitHub/i })).toBeInTheDocument();
   });
 
-  it("View GitHub href points to github.com", () => {
+  it("keeps the GitHub link href unchanged", () => {
     render(<ProjectsCTA />);
-    const link = screen.getByRole("link", { name: /view github/i });
+    const link = screen.getByRole("link", { name: /查看 GitHub/i });
     expect(link.getAttribute("href")).toMatch(/^https:\/\/github\.com\//);
   });
 
-  it("View GitHub link opens in new tab with noopener", () => {
+  it("keeps the GitHub link security attributes unchanged", () => {
     render(<ProjectsCTA />);
-    const link = screen.getByRole("link", { name: /view github/i });
+    const link = screen.getByRole("link", { name: /查看 GitHub/i });
     expect(link.getAttribute("target")).toBe("_blank");
     expect(link.getAttribute("rel")).toContain("noopener");
   });

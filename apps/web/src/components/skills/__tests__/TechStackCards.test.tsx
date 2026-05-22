@@ -3,11 +3,9 @@ import { describe, it, expect } from "vitest";
 import TechStackCards from "../TechStackCards";
 
 describe("TechStackCards", () => {
-  it("renders the Technology Stack heading", () => {
+  it("renders the Chinese tech stack heading", () => {
     render(<TechStackCards />);
-    expect(
-      screen.getByRole("heading", { name: /technology stack/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /技术栈/i })).toBeInTheDocument();
   });
 
   it("renders at least one category heading", () => {
@@ -20,7 +18,7 @@ describe("TechStackCards", () => {
   it("renders technology pill tags", () => {
     render(<TechStackCards />);
     // pills are spans — check there are multiple visible tech names
-    const container = screen.getByRole("heading", { name: /technology stack/i }).parentElement;
+    const container = screen.getByRole("heading", { name: /技术栈/i }).parentElement;
     expect(container).not.toBeNull();
     const spans = container!.querySelectorAll("span");
     expect(spans.length).toBeGreaterThan(0);

@@ -77,19 +77,19 @@
       "id": "exp-001",
       "title": "SSR/ISR Strategies",
       "icon": "cloud_sync",
-      "description": "Designing hybrid rendering systems for e-commerce platforms that reduced TTI by 40% while maintaining real-time inventory precision through On-Demand ISR."
+      "description": "主导 CSR → Next.js SSR 迁移，配合短周期 ISR revalidation，实现搜索引擎完整抓取与实时数据并重，LCP/CLS 均达 Core Web Vitals 良好阈值。"
     },
     {
       "id": "exp-002",
       "title": "Micro-frontends",
       "icon": "grid_view",
-      "description": "Implemented Module Federation in complex enterprise dashboard environments, allowing 6+ independent teams to deploy concurrently without version conflicts."
+      "description": "熟悉 Module Federation、Single-Spa、Web Components 等微前端方案，具备多团队前端协同架构设计经验，支撑多产品线独立部署。"
     },
     {
       "id": "exp-003",
       "title": "Design System Arch",
       "icon": "palette",
-      "description": "Constructed multi-theme design systems using Tailwind CSS and Headless UI, focusing on strict accessibility (WCAG 2.1 AA) and token-driven engineering."
+      "description": "从 0 到 1 建设 Design System，沉淀 16+ 高复用业务组件，覆盖 4 条产品线，重复 UI 开发减少约 60%；采用 Design Token 分层架构支持多主题切换。"
     }
   ],
   "battleTestedCards": [

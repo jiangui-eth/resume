@@ -3,22 +3,20 @@ import { render, screen } from "@testing-library/react";
 import ExperiencePage, { generateMetadata } from "../page";
 
 describe("ExperiencePage", () => {
-  it("renders the Career Chronicle heading", () => {
+  it("renders the Chinese experience heading", () => {
     render(<ExperiencePage />);
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
-    expect(screen.getByText("Chronicle")).toBeInTheDocument();
+    expect(screen.getByText("经历")).toBeInTheDocument();
   });
 
-  it("renders the Career Chronicle badge label", () => {
+  it("renders the Chinese experience badge label", () => {
     render(<ExperiencePage />);
-    expect(screen.getByText("Career Chronicle")).toBeInTheDocument();
+    expect(screen.getByText("职业历程")).toBeInTheDocument();
   });
 
-  it("renders the subtitle paragraph", () => {
+  it("renders the updated Chinese summary paragraph", () => {
     render(<ExperiencePage />);
-    expect(
-      screen.getByText(/Five years shipping production systems/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/8 年前端开发经验/)).toBeInTheDocument();
   });
 
   it("renders the timeline placeholder div", () => {
@@ -31,8 +29,8 @@ describe("ExperiencePage", () => {
     expect(meta.title).toBe("Experience | jiangui.eth");
   });
 
-  it("generateMetadata returns correct description", async () => {
+  it("generateMetadata returns the updated Chinese description", async () => {
     const meta = await generateMetadata();
-    expect((meta.description as string)).toContain("full-stack");
+    expect((meta.description as string)).toContain("前端开发经历");
   });
 });

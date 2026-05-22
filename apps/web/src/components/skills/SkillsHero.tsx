@@ -7,16 +7,14 @@ export default function SkillsHero(): JSX.Element {
     <SectionWrapper className="pt-10 pb-20 relative overflow-hidden">
       <div className="relative z-10 max-w-3xl pt-20">
         <span className="font-mono text-sm text-[#aec6ff] tracking-widest uppercase mb-2 block">
-          Core Competencies
+          核心能力
         </span>
         <h1 className="text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em] text-white mb-4">
-          Technical Proficiency
+          技术专长
         </h1>
         <p className="text-lg text-[#8e9192] mb-6 leading-relaxed max-w-2xl">
-          Senior Frontend Engineer with 5+ years of specialized experience in building
-          high-performance web applications. My focus lies at the intersection of modern framework
-          architecture, real-time AI integration (RAG), and low-level graphics engineering. I
-          architect systems that aren&apos;t just functional, but performant by default.
+          8 年前端开发经验，专注 React / Next.js 技术栈与工程化体系建设，在性能优化、AI
+          应用开发与设计系统落地方面具备丰富实战经验。
         </p>
         <div className="flex flex-wrap gap-4">
           <div className="px-4 py-2 border border-[#444748]/50 rounded-lg flex items-center gap-2 bg-[#1b1c1c]">
@@ -26,7 +24,7 @@ export default function SkillsHero(): JSX.Element {
             >
               terminal
             </span>
-            <span className="font-mono text-sm">Systems Architecture</span>
+            <span className="font-mono text-sm">系统架构</span>
           </div>
           <div className="px-4 py-2 border border-[#444748]/50 rounded-lg flex items-center gap-2 bg-[#1b1c1c]">
             <span
@@ -35,7 +33,7 @@ export default function SkillsHero(): JSX.Element {
             >
               speed
             </span>
-            <span className="font-mono text-sm">Performance First</span>
+            <span className="font-mono text-sm">性能优先</span>
           </div>
         </div>
       </div>
