@@ -16,15 +16,15 @@ export default function SkillsCTA() {
         />
         <div className="relative z-10 max-w-2xl">
           <SectionHeader
-            title="Ready for the next architectural challenge."
-            subtitle="I specialize in turning complex technical requirements into seamless, high-performance user experiences. Whether it's a 3D data visualization or a massive monorepo migration, I bring a senior perspective to every line of code."
+            title="期待下一个架构挑战。"
+            subtitle="擅长将复杂技术需求转化为高性能用户体验，无论是 3D 数据可视化还是大规模 Monorepo 迁移，每一行代码都倾注经验。"
           />
           <a
             href="mailto:jiangui.eth@gmail.com"
             onClick={() => track("click_get_in_touch", { source: "skills_cta" })}
             className="inline-flex items-center gap-2 bg-[#508eff] text-[#00275e] px-6 py-3 rounded-lg font-mono text-sm font-bold transition-all hover:shadow-[0_0_30px_rgba(80,142,255,0.4)]"
           >
-            Get In Touch
+            联系我
           </a>
         </div>
       </div>

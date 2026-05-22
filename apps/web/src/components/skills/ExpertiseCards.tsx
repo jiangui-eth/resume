@@ -10,7 +10,7 @@ export default function ExpertiseCards() {
   return (
     <SectionWrapper className="pb-20">
       <div className="bg-[#1b1c1c] border border-[#444748]/30 rounded-2xl p-10">
-        <SectionHeader title="Battle-Tested Expertise" className="mb-10" />
+        <SectionHeader title="实战经验沉淀" className="mb-10" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {cards.map((card) => (
             <div key={card.id} className="space-y-4">

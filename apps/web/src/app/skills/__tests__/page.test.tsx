@@ -3,18 +3,14 @@ import { describe, it, expect } from "vitest";
 import SkillsPage, { generateMetadata } from "../page";
 
 describe("SkillsPage", () => {
-  it("renders a heading containing 'Technical Proficiency'", () => {
+  it("renders the Chinese skills heading", () => {
     render(<SkillsPage />);
-    expect(
-      screen.getByRole("heading", { name: /technical proficiency/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /技术专长/i })).toBeInTheDocument();
   });
 
-  it("renders an intro subtitle text element", () => {
+  it("renders the updated Chinese intro paragraph", () => {
     render(<SkillsPage />);
-    expect(
-      screen.getByText(/high-performance web applications/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/React \/ Next\.js/)).toBeInTheDocument();
   });
 
   it("generateMetadata returns a non-empty title", async () => {
@@ -33,8 +29,8 @@ describe("SkillsPage", () => {
     expect(() => render(<SkillsPage />)).not.toThrow();
   });
 
-  it("renders the Core Competencies badge", () => {
+  it("renders the Chinese core competencies badge", () => {
     render(<SkillsPage />);
-    expect(screen.getByText("Core Competencies")).toBeInTheDocument();
+    expect(screen.getByText("核心能力")).toBeInTheDocument();
   });
 });

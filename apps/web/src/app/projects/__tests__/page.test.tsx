@@ -6,28 +6,26 @@ import { describe, expect, it } from "vitest";
 import ProjectsPage, { generateMetadata } from "../page";
 
 describe("ProjectsPage", () => {
-  it("renders a large heading containing Architecture & Implementation.", () => {
+  it("renders the Chinese projects heading", () => {
     render(<ProjectsPage />);
 
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /Architecture & Implementation\./i,
+        name: /架构/i,
       }),
     ).toBeInTheDocument();
   });
 
-  it("renders a subtitle element beneath the heading", () => {
+  it("renders the Chinese subtitle beneath the heading", () => {
     render(<ProjectsPage />);
 
     const heading = screen.getByRole("heading", {
       level: 1,
-      name: /Architecture & Implementation\./i,
+      name: /架构/i,
     });
-    const subtitle = screen.getByText(
-      /A showcase of technical leadership/i,
-    );
+    const subtitle = screen.getByText(/技术领导力与前端工程实践/);
 
     expect(subtitle.tagName).toBe("P");
     expect(
