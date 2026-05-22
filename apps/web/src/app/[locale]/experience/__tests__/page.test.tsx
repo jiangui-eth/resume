@@ -7,7 +7,7 @@ import React from "react";
 // ── Mock next-intl/server so async page can call getTranslations ───────────────
 
 vi.mock("next-intl/server", async () => {
-  const zhCN = (await import("../../../../messages/zh-CN.json")).default;
+  const zhCN = (await import("../../../../../messages/zh-CN.json")).default;
   function makeT(namespace?: string) {
     return (key: string) => {
       const section = namespace
@@ -36,7 +36,7 @@ vi.mock("framer-motion", () => ({
 }));
 
 import ExperiencePage, { generateMetadata } from "../page";
-import zhCN from "../../../../messages/zh-CN.json";
+import zhCN from "../../../../../messages/zh-CN.json";
 
 async function renderPage() {
   const jsx = await ExperiencePage();

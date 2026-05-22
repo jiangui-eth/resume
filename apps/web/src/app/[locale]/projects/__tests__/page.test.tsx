@@ -7,7 +7,7 @@ import { render } from "@testing-library/react";
 // ── Mock next-intl/server ──────────────────────────────────────────────────────
 
 vi.mock("next-intl/server", async () => {
-  const zhCN = (await import("../../../../messages/zh-CN.json")).default;
+  const zhCN = (await import("../../../../../messages/zh-CN.json")).default;
   function makeT(namespace?: string) {
     return (key: string) => {
       const section = namespace
@@ -30,7 +30,7 @@ vi.mock("next-intl/server", async () => {
 vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
 
 import ProjectsPage, { generateMetadata } from "../page";
-import zhCN from "../../../../messages/zh-CN.json";
+import zhCN from "../../../../../messages/zh-CN.json";
 
 async function renderPage() {
   const jsx = await ProjectsPage();
@@ -68,7 +68,7 @@ describe("ProjectsPage", () => {
   });
 
   it("does not use framer-motion or use client directive", () => {
-    const source = readFileSync("src/app/projects/page.tsx", "utf8");
+    const source = readFileSync("src/app/[locale]/projects/page.tsx", "utf8");
     expect(source).not.toContain("framer-motion");
     expect(source).not.toContain('"use client"');
     expect(source).not.toContain("'use client'");

@@ -1,17 +1,18 @@
 import { getRequestConfig } from "next-intl/server";
-import { cookies } from "next/headers";
+import { routing, type Locale } from "./routing";
 
-export const SUPPORTED_LOCALES = ["zh-CN", "zh-TW", "en"] as const;
-export type Locale = (typeof SUPPORTED_LOCALES)[number];
-export const DEFAULT_LOCALE: Locale = "zh-CN";
-
-export default getRequestConfig(async () => {
-  const cookieStore = await cookies();
-  const raw = cookieStore.get("locale")?.value ?? DEFAULT_LOCALE;
-  const locale = SUPPORTED_LOCALES.includes(raw as Locale) ? (raw as Locale) : DEFAULT_LOCALE;
-
+export default getRequestConfig(async ({ requestLocale }) => {
+  let locale = await requestLocale;
+  if (!locale || !(routing.locales as readonly string[]).includes(locale)) {
+    locale = routing.defaultLocale;
+  }
   return {
     locale,
     messages: (await import(`../../messages/${locale}.json`)).default,
   };
 });
+
+// Re-export for backward compatibility with any existing imports
+export const SUPPORTED_LOCALES = routing.locales;
+export const DEFAULT_LOCALE: Locale = routing.defaultLocale;
+export type { Locale };

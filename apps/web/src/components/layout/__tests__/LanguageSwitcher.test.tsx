@@ -3,12 +3,12 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithIntl } from "@/test/intl-test-utils";
 
-vi.mock("@/i18n/actions", () => ({
-  setLocale: vi.fn().mockResolvedValue(undefined),
-}));
+// ── i18n navigation mock ───────────────────────────────────────────────────────
 
-vi.mock("next/navigation", () => ({
-  useRouter: () => ({ refresh: vi.fn() }),
+const mockReplace = vi.hoisted(() => vi.fn());
+
+vi.mock("@/i18n/navigation", () => ({
+  useRouter: () => ({ replace: mockReplace }),
   usePathname: () => "/",
 }));
 
@@ -45,14 +45,13 @@ describe("LanguageSwitcher", () => {
     expect(screen.getByRole("option", { name: "繁體中文" })).toBeInTheDocument();
   });
 
-  it("calls setLocale when a different locale is selected", async () => {
-    const { setLocale } = await import("@/i18n/actions");
+  it("calls router.replace with the selected locale", async () => {
     const user = userEvent.setup();
     renderWithIntl(<LanguageSwitcher />);
     await user.click(screen.getByRole("button", { name: /语言/ }));
     await user.click(screen.getByRole("option", { name: "English" }));
     await waitFor(() => {
-      expect(setLocale).toHaveBeenCalledWith("en");
+      expect(mockReplace).toHaveBeenCalledWith("/", { locale: "en" });
     });
   });
 
@@ -66,12 +65,11 @@ describe("LanguageSwitcher", () => {
     });
   });
 
-  it("does not call setLocale when the current locale is selected", async () => {
-    const { setLocale } = await import("@/i18n/actions");
+  it("does not call router.replace when the current locale is selected", async () => {
     const user = userEvent.setup();
     renderWithIntl(<LanguageSwitcher />);
     await user.click(screen.getByRole("button", { name: /语言/ }));
     await user.click(screen.getByRole("option", { name: "简体中文" }));
-    expect(setLocale).not.toHaveBeenCalled();
+    expect(mockReplace).not.toHaveBeenCalled();
   });
 });

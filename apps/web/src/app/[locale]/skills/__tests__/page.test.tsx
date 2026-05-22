@@ -3,6 +3,10 @@ import { describe, it, expect, vi } from "vitest";
 import { renderWithIntl } from "@/test/intl-test-utils";
 import SkillsPage, { generateMetadata } from "../page";
 
+vi.mock("next/image", () => ({
+  default: ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={alt} />,
+}));
+
 describe("SkillsPage", () => {
   it("renders the Chinese skills heading", () => {
     renderWithIntl(<SkillsPage />);
