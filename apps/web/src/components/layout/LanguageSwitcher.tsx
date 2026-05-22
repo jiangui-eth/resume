@@ -2,10 +2,9 @@
 
 import { useTransition, useRef, useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "@/i18n/navigation";
 import { cn } from "@jiangui-resume/ui/lib/utils";
-import { setLocale } from "@/i18n/actions";
-import type { Locale } from "@/i18n/request";
+import type { Locale } from "@/i18n/routing";
 
 const LOCALES: { value: Locale; labelKey: "en" | "zhCN" | "zhTW" }[] = [
   { value: "en", labelKey: "en" },
@@ -17,6 +16,7 @@ export default function LanguageSwitcher() {
   const t = useTranslations("language");
   const locale = useLocale() as Locale;
   const router = useRouter();
+  const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -34,9 +34,8 @@ export default function LanguageSwitcher() {
   function handleSelect(next: Locale) {
     setOpen(false);
     if (next === locale) return;
-    startTransition(async () => {
-      await setLocale(next);
-      router.refresh();
+    startTransition(() => {
+      router.replace(pathname, { locale: next });
     });
   }
 

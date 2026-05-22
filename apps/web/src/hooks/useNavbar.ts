@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 
 /**
  * Manages Navbar state: scroll detection (threshold >8px), mobile drawer open/close,

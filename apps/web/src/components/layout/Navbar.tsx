@@ -2,8 +2,7 @@
 
 import type { JSX } from "react";
 
-import Link from "next/link";
-import type { Route } from "next";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@jiangui-resume/ui/lib/utils";
 import { useNavbar } from "@/hooks/useNavbar";
@@ -19,7 +18,7 @@ export default function Navbar(): JSX.Element {
     { href: "/experience", label: t("experience") },
     { href: "/projects", label: t("projects") },
     { href: "/skills", label: t("skills") },
-  ] as { href: Route; label: string }[];
+  ] as { href: string; label: string }[];
 
   return (
     <header

@@ -6,19 +6,15 @@ import { renderWithIntl } from "@/test/intl-test-utils";
 // ── Module mocks ───────────────────────────────────────────────────────────────
 
 vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
-vi.mock("@/i18n/actions", () => ({ setLocale: vi.fn().mockResolvedValue(undefined) }));
 
-// ── Next.js mocks ──────────────────────────────────────────────────────────────
+// ── i18n navigation mock ───────────────────────────────────────────────────────
 
 let mockPathname = "/";
 
-vi.mock("next/navigation", () => ({
+vi.mock("@/i18n/navigation", () => ({
   usePathname: () => mockPathname,
-  useRouter: () => ({ refresh: vi.fn() }),
-}));
-
-vi.mock("next/link", () => ({
-  default: ({
+  useRouter: () => ({ replace: vi.fn(), refresh: vi.fn() }),
+  Link: ({
     href,
     children,
     ...props
@@ -121,7 +117,6 @@ describe("Navbar — scroll frosted glass", () => {
 describe("Navbar — mobile hamburger drawer", () => {
   it("shows hamburger button on mobile", () => {
     renderNavbar();
-    // zh-CN aria-label is "打开菜单"
     expect(screen.getByRole("button", { name: /打开菜单/ })).toBeInTheDocument();
   });
 
@@ -162,7 +157,6 @@ describe("Navbar — Download PDF button", () => {
 describe("Navbar — LanguageSwitcher", () => {
   it("renders at least one language switcher button (desktop + mobile)", () => {
     renderNavbar();
-    // LanguageSwitcher appears in both desktop CTA and mobile drawer
     expect(screen.getAllByRole("button", { name: /语言/ }).length).toBeGreaterThanOrEqual(1);
   });
 });
