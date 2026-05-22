@@ -1,7 +1,6 @@
 import type { JSX } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import Providers from "@/components/providers";
@@ -26,7 +25,6 @@ export default async function LocaleLayout({
           <Footer />
         </div>
         <ScrollDepthTracker />
-        <Analytics />
       </Providers>
     </NextIntlClientProvider>
   );
