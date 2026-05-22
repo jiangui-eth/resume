@@ -89,7 +89,7 @@ export default function TimelineCard({
       : useInView(ref, { once: true, amount: 0.2 });
   const isPresent = experience.period.end === "present";
   const startLabel = formatDate(experience.period.start);
-  const endLabel = isPresent ? "Present" : formatDate(experience.period.end);
+  const endLabel = isPresent ? "至今" : formatDate(experience.period.end);
   const isCardRight = side === "left";
 
   return (

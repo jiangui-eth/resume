@@ -41,9 +41,9 @@ const LABEL_CLASSES: string[] = [
 ];
 
 const DOMAIN_BULLETS = [
-  "Frontend Core: Master (Next.js/React)",
-  "AI/RAG: Advanced Implementation",
-  "Performance: Core Web Vitals Specialist",
+  "前端核心：Next.js / React 精通",
+  "AI / RAG：深度实现能力",
+  "性能优化：Core Web Vitals 专项",
 ];
 
 export default function RadarChart(): JSX.Element {
@@ -53,8 +53,8 @@ export default function RadarChart(): JSX.Element {
         {/* Left column */}
         <div className="lg:col-span-5">
           <SectionHeader
-            title="Core Domains"
-            subtitle="A visual distribution of my expertise across the modern frontend landscape. While my foundation is in core frontend engineering, I have pivoted significantly towards AI-native application layers and high-performance graphics."
+            title="核心领域"
+            subtitle="我在现代前端领域的专业技能分布，核心基础是前端工程化，同时在 AI 应用开发与高性能图形渲染方向持续深耕。"
           />
           <ul className="space-y-4" aria-label="Core domain highlights">
             {DOMAIN_BULLETS.map((bullet) => (

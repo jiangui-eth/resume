@@ -42,11 +42,11 @@
       "category": "Engineering",
       "icon": "settings_suggest",
       "technologies": [
+        { "name": "Webpack", "featured": true },
         { "name": "Vite", "featured": false },
-        { "name": "pnpm Monorepos", "featured": true },
-        { "name": "Docker", "featured": false },
-        { "name": "CI/CD (Actions)", "featured": false },
-        { "name": "AWS/Vercel", "featured": false }
+        { "name": "SWC", "featured": false },
+        { "name": "Rollup", "featured": false },
+        { "name": "pnpm Monorepos", "featured": false }
       ]
     },
     {
@@ -66,9 +66,9 @@
       "technologies": [
         { "name": "Three.js", "featured": false },
         { "name": "WebGPU", "featured": true },
-        { "name": "GLSL", "featured": false },
-        { "name": "Canvas/SVG", "featured": false },
-        { "name": "Web Audio API", "featured": false }
+        { "name": "Babylon.js", "featured": false },
+        { "name": "AntV", "featured": false },
+        { "name": "Canvas/SVG", "featured": false }
       ]
     }
   ],
@@ -95,31 +95,31 @@
   "battleTestedCards": [
     {
       "id": "btc-001",
-      "title": "Performance Engineering",
-      "description": "Systematic approach to frontend performance: profiling, code splitting, SSR/ISR strategies, and Core Web Vitals optimisation at scale.",
+      "title": "性能优化专项",
+      "description": "Core Web Vitals (LCP/CLS/INP) 量化优化，通过 Code Splitting、图片懒加载、SSR/ISR 策略与 CSS GPU 加速，将核心页面 LCP 从约 4 秒优化至 1.8 秒。",
       "icon": "⚡",
-      "tags": ["LCP", "CLS", "INP", "Lighthouse", "Bundle Analysis"]
+      "tags": ["LCP", "CLS", "INP", "Core Web Vitals", "SSR/ISR"]
     },
     {
       "id": "btc-002",
-      "title": "Real-time Systems",
-      "description": "Building production WebSocket and event-driven architectures that handle tens of thousands of concurrent connections with low latency.",
-      "icon": "📡",
-      "tags": ["WebSocket", "Kafka", "MQTT", "SSE", "Redis Pub/Sub"]
+      "title": "前端工程化体系",
+      "description": "Webpack / Vite / SWC / Rollup 构建体系建设；pnpm Monorepo 工作空间管理、私仓维护、CLI 工具开发；引入 AI 辅助（接口类型自动生成、Vue→React 语法转换）提升团队研发效率。",
+      "icon": "🛠",
+      "tags": ["Webpack", "Vite", "SWC", "Monorepo", "pnpm"]
     },
     {
       "id": "btc-003",
-      "title": "Design Systems",
-      "description": "Founding and scaling component libraries from zero — design tokens, accessibility compliance, documentation, and cross-team adoption.",
+      "title": "Design System 架构",
+      "description": "从 0 到 1 建设 Design System：沉淀 16+ 高复用业务组件，覆盖 4 条产品线，重复 UI 开发减少约 60%；采用 Design Token 分层架构（全局 → 语义 → 组件级），Rollup 多入口构建支持 Tree-shaking。",
       "icon": "🎨",
-      "tags": ["Storybook", "Radix UI", "Design Tokens", "a11y", "Figma"]
+      "tags": ["Design Tokens", "Chakra UI", "Tailwind CSS", "Rollup", "Storybook"]
     },
     {
       "id": "btc-004",
-      "title": "Developer Tooling",
-      "description": "CI/CD pipelines, GitOps workflows, self-service platforms, and internal tooling that dramatically improve engineering velocity.",
-      "icon": "🛠",
-      "tags": ["GitHub Actions", "ArgoCD", "Turborepo", "Nx", "Changesets"]
+      "title": "AI 应用开发",
+      "description": "多模型接入（OpenAI / 多模态）、RAG 向量检索（pgvector + BM25 + Cohere Reranker，Top-5 命中率 50% → 90%）、SSE 流式响应；熟练使用 Claude / OpenAI 工具链与 LangSmith 质量评估。",
+      "icon": "🤖",
+      "tags": ["RAG", "pgvector", "Pinecone", "SSE", "LangSmith"]
     }
   ]
 }
