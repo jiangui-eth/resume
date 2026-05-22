@@ -100,7 +100,7 @@ function ProjectRow({ project, imageRight, priority }: ProjectRowProps): React.J
           href={PROJECTS_HREF}
           className="flex items-center gap-2 text-2xl font-semibold leading-[1.3] tracking-[-0.01em] text-[#e3e2e2] group hover:text-[#aec6ff] transition-colors"
         >
-          Case Study{" "}
+          案例详情{" "}
           <span
             className="material-symbols-outlined group-hover:translate-x-1 transition-transform"
             aria-hidden="true"
@@ -117,15 +117,15 @@ function ProjectRow({ project, imageRight, priority }: ProjectRowProps): React.J
 
 export default function ProjectsSection(): React.JSX.Element {
   return (
-    <SectionWrapper id="projects" aria-label="Selected Works" className="py-20">
+    <SectionWrapper id="projects" aria-label="精选项目" className="py-20">
       {/* Section header */}
       <div className="mb-10 flex justify-between items-end">
-        <SectionHeader level={3} title="Selected Works" subtitle="Architecture and execution at scale." />
+        <SectionHeader level={3} title="精选项目" subtitle="架构设计与规模化工程实践。" />
         <Link
           href={PROJECTS_HREF}
           className="font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#aec6ff] hover:underline flex items-center gap-1 shrink-0"
         >
-          View all projects{" "}
+          查看全部项目{" "}
           <span className="material-symbols-outlined text-base" aria-hidden="true">
             arrow_forward
           </span>

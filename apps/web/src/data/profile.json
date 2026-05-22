@@ -1,9 +1,9 @@
 {
-  "name": "Jiangui",
+  "name": "JianGui",
   "ens": "jiangui.eth",
-  "headline": "Full-Stack Engineer & Web3 Builder",
-  "summary": "Full-stack engineer with 5+ years of experience shipping production systems across Web2 and Web3. I specialise in performance-first frontend architecture, resilient backend services, and on-chain product design. I care deeply about developer experience, clean abstractions, and shipping things that actually work.",
-  "avatarUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuDMEVYpFuY1Q1ONUOYDXEFKQrlhtPaMHjjcJcataN7VnRcQCHubQg4IkcSa4eUyMw934amwVL_vJ8GLcD0e_cAjeQkPAz-2MHSOWTB9GrW2NVrUxOkOp6FPgyVo9-ktL1RXzCnkRrBVsMJcpG-1hP_BdIHr_5_fkDvm4GQhYb_X0-k1WnTU7rZO3RHlMMB5vbu_Z-5tsWg5k48K55NMzN2qfp07hxoBavnTBZwIjrKkFcdlBCHZvLXkUvn25NRXpHPsybPYdwVrJg",
+  "headline": "AI 全栈工程师与 Web3 开发者",
+  "summary": "8 年前端开发经验，专注 React / Next.js 技术栈与前端工程化体系建设，具备中大型 Web 应用架构设计与性能优化经验（SEO 自然流量增长 14×、LCP 优化至 1.8s、构建提速 80%）。主导 Design System 与 Monorepo 落地，支撑多产品线协同开发。具备 AI 应用开发经验（RAG / 多模型接入），能够推动技术在实际业务中的落地。",
+  "avatarUrl": "/images/avatar/jiangui.eth.jpg",
   "location": "Shanghai, China",
   "stats": {
     "projectsShipped": 14,

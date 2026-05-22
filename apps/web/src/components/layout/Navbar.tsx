@@ -9,10 +9,10 @@ import { useNavbar } from "@/hooks/useNavbar";
 import DownloadPdfButton from "./DownloadPdfButton";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/experience", label: "Experience" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
+  { href: "/", label: "首页" },
+  { href: "/experience", label: "经历" },
+  { href: "/projects", label: "项目" },
+  { href: "/skills", label: "技能" },
 ] as { href: Route; label: string }[];
 
 
@@ -36,7 +36,7 @@ export default function Navbar(): JSX.Element {
           className="flex items-center gap-2"
         >
           <span className="text-2xl font-bold leading-[1.3] tracking-[-0.01em] text-[#e3e2e2]">
-            DevArchitect
+            JianGui
           </span>
         </Link>
 

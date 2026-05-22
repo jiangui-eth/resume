@@ -22,7 +22,7 @@ export default function DownloadPdfButton({ fullWidth = false }: DownloadPdfButt
         fullWidth && "w-full justify-center",
       )}
     >
-      Download PDF
+      下载 PDF
     </a>
   );
 }
