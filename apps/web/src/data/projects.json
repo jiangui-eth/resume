@@ -2,13 +2,13 @@
   {
     "id": "proj-001",
     "name": "Wind Power RAG Platform",
-    "tagline": "Real-time turbine monitoring across 8 wind farms",
+    "tagline": "Enterprise RAG knowledge platform for wind-power customer service, managing ~2TB of device documentation",
     "domainTags": ["AI", "RAG"],
     "domainBadge": "AI / RAG",
     "icon": "wind_power",
     "panelType": "grid",
     "metricsLabel": "Performance Metrics",
-    "background": "Designed and built an enterprise-grade knowledge retrieval platform for wind turbine maintenance. Handling over 2TB of technical documentation with sub-second retrieval times.",
+    "background": "Independently designed and delivered an enterprise knowledge retrieval platform for wind-power customer service teams. Unified management of ~2TB of device manuals, supporting multi-turn Q&A, answer citation tracing, and source paragraph location.",
     "technicalDecisions": [
       {
         "title": "pgvector + BM25 hybrid search",

@@ -50,8 +50,8 @@ describe("formatPeriod", () => {
     expect(formatPeriod("2022-06", "2023-01")).toBe("Jun 2022 – Jan 2023");
   });
 
-  it("shows 'Present' when end is present", () => {
-    expect(formatPeriod("2022-06", "present")).toBe("Jun 2022 – Present");
+  it("shows '至今' when end is present", () => {
+    expect(formatPeriod("2022-06", "present")).toBe("Jun 2022 – 至今");
   });
 
   it("handles single-digit months", () => {

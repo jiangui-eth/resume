@@ -10,9 +10,9 @@ export function formatDate(ym: string): string {
   return `${MONTH_NAMES[m - 1]} ${year}`;
 }
 
-/** Returns "Mon YYYY – Mon YYYY" or "Mon YYYY – Present" when end is "present". */
+/** Returns "Mon YYYY – Mon YYYY" or "Mon YYYY – 至今" when end is "present". */
 export function formatPeriod(start: string, end: string): string {
-  const endLabel = isPresent(end) ? "Present" : formatDate(end);
+  const endLabel = isPresent(end) ? "至今" : formatDate(end);
   return `${formatDate(start)} – ${endLabel}`;
 }
 

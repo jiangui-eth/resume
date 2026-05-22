@@ -86,9 +86,9 @@ describe("TimelineCard", () => {
     );
   });
 
-  it("renders Present label for active positions", () => {
+  it("renders 至今 label for active positions", () => {
     render(<TimelineCard experience={mockExperience} index={0} side="left" />);
-    expect(screen.getAllByText("Present").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("至今").length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders formatted end date for past positions", () => {
