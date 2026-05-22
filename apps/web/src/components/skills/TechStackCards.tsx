@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import skillsData from "@/data/skills.json";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -8,9 +11,11 @@ type Category = { category: string; icon: string; technologies: Tech[] };
 const categories = skillsData.techCategories as Category[];
 
 export default function TechStackCards() {
+  const t = useTranslations("techStack");
+
   return (
     <SectionWrapper className="pb-20">
-      <SectionHeader title="技术栈" centered className="mb-10" />
+      <SectionHeader title={t("title")} centered className="mb-10" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {categories.map((cat) => (
           <div key={cat.category} className="glass-card p-6 rounded-xl flex flex-col gap-4">

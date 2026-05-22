@@ -4,20 +4,22 @@ import type { JSX } from "react";
 
 import Link from "next/link";
 import type { Route } from "next";
+import { useTranslations } from "next-intl";
 import { cn } from "@jiangui-resume/ui/lib/utils";
 import { useNavbar } from "@/hooks/useNavbar";
 import DownloadPdfButton from "./DownloadPdfButton";
-
-const NAV_LINKS = [
-  { href: "/", label: "首页" },
-  { href: "/experience", label: "经历" },
-  { href: "/projects", label: "项目" },
-  { href: "/skills", label: "技能" },
-] as { href: Route; label: string }[];
-
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar(): JSX.Element {
   const { scrolled, mobileOpen, setMobileOpen, pathname } = useNavbar();
+  const t = useTranslations("nav");
+
+  const NAV_LINKS = [
+    { href: "/", label: t("home") },
+    { href: "/experience", label: t("experience") },
+    { href: "/projects", label: t("projects") },
+    { href: "/skills", label: t("skills") },
+  ] as { href: Route; label: string }[];
 
   return (
     <header
@@ -64,17 +66,18 @@ export default function Navbar(): JSX.Element {
           })}
         </ul>
 
-        {/* Desktop CTA — hidden on resume-preview (page has its own print toolbar) */}
-          <div className="hidden md:flex items-center mr-6">
-            {pathname !== "/resume-preview" && (
-                <DownloadPdfButton />
-            )}
-          </div>
+        {/* Desktop CTA — hidden on resume-preview */}
+        <div className="hidden md:flex items-center gap-2 mr-6">
+          {pathname !== "/resume-preview" && (
+            <DownloadPdfButton />
+          )}
+          <LanguageSwitcher />
+        </div>
 
         {/* Mobile hamburger */}
         <button
           type="button"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-label={mobileOpen ? t("closeMenu") : t("openMenu")}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
           className="md:hidden flex items-center justify-center rounded-md p-2 text-[#8e9192] hover:text-[#e3e2e2] transition-colors"
@@ -88,7 +91,7 @@ export default function Navbar(): JSX.Element {
       {/* Mobile drawer */}
       <div
         role="dialog"
-        aria-label="navigation menu"
+        aria-label={t("menuLabel")}
         aria-modal="false"
         className={cn(
           "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
@@ -117,12 +120,14 @@ export default function Navbar(): JSX.Element {
           })}
           {pathname !== "/resume-preview" && (
             <li className="pt-2">
-                <DownloadPdfButton fullWidth />
+              <DownloadPdfButton fullWidth />
             </li>
           )}
+          <li className="pt-1 flex justify-end">
+            <LanguageSwitcher />
+          </li>
         </ul>
       </div>
     </header>
   );
 }
-

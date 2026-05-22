@@ -2,16 +2,13 @@
 
 import { useRef, type JSX } from "react";
 import { motion, useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import type { Experience } from "@/types/experience";
 import { formatDate } from "@/lib/utils";
 
 import TechTag from "@/components/ui/TechTag";
 
-/**
- * `side="left"` places the date panel on the left, card on the right; "right" reverses it.
- * On mobile only the article card is shown. Animation triggers once on viewport entry via Framer Motion useInView.
- */
 interface TimelineCardProps {
   experience: Experience;
   index: number;
@@ -82,6 +79,7 @@ export default function TimelineCard({
   index,
   side,
 }: TimelineCardProps): JSX.Element {
+  const t = useTranslations("experience");
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView =
     typeof IntersectionObserver === "undefined"
@@ -89,7 +87,7 @@ export default function TimelineCard({
       : useInView(ref, { once: true, amount: 0.2 });
   const isPresent = experience.period.end === "present";
   const startLabel = formatDate(experience.period.start);
-  const endLabel = isPresent ? "至今" : formatDate(experience.period.end);
+  const endLabel = isPresent ? t("present") : formatDate(experience.period.end);
   const isCardRight = side === "left";
 
   return (

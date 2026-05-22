@@ -1,21 +1,21 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-
+import { screen } from "@testing-library/react";
+import { renderWithIntl } from "@/test/intl-test-utils";
 import CapabilitySection from "../CapabilitySection";
 
 describe("CapabilitySection", () => {
-  it("renders the 专业技能 badge", () => {
-    render(<CapabilitySection />);
+  it("renders the 专业技能 badge (zh-CN)", () => {
+    renderWithIntl(<CapabilitySection />);
     expect(screen.getByText("专业技能")).toBeInTheDocument();
   });
 
-  it("renders the section heading", () => {
-    render(<CapabilitySection />);
+  it("renders the 核心技术栈 section heading (zh-CN)", () => {
+    renderWithIntl(<CapabilitySection />);
     expect(screen.getByText("核心技术栈")).toBeInTheDocument();
   });
 
   it("renders all four capability card titles", () => {
-    render(<CapabilitySection />);
+    renderWithIntl(<CapabilitySection />);
     expect(screen.getByText("Next.js / React")).toBeInTheDocument();
     expect(screen.getByText("Performance")).toBeInTheDocument();
     expect(screen.getByText("AI & RAG")).toBeInTheDocument();
@@ -23,13 +23,13 @@ describe("CapabilitySection", () => {
   });
 
   it("renders Material Symbols icon spans for each card", () => {
-    render(<CapabilitySection />);
+    renderWithIntl(<CapabilitySection />);
     const icons = document.querySelectorAll(".material-symbols-outlined");
     expect(icons.length).toBeGreaterThanOrEqual(4);
   });
 
   it("renders bullet points for each card", () => {
-    render(<CapabilitySection />);
+    renderWithIntl(<CapabilitySection />);
     expect(screen.getByText(/SSR & ISR Architectures/i)).toBeInTheDocument();
     expect(screen.getByText(/Core Web Vitals/i)).toBeInTheDocument();
     expect(screen.getByText(/LLM Orchestration/i)).toBeInTheDocument();
@@ -37,12 +37,12 @@ describe("CapabilitySection", () => {
   });
 
   it("renders four article elements (one per card)", () => {
-    render(<CapabilitySection />);
+    renderWithIntl(<CapabilitySection />);
     expect(screen.getAllByRole("article")).toHaveLength(4);
   });
 
-  it("has accessible section landmark", () => {
-    render(<CapabilitySection />);
+  it("has accessible section landmark with i18n label (zh-CN)", () => {
+    renderWithIntl(<CapabilitySection />);
     expect(screen.getByRole("region", { name: /核心技术栈/ })).toBeInTheDocument();
   });
 });

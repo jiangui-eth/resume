@@ -1,15 +1,16 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithIntl } from "@/test/intl-test-utils";
 import SkillsPage, { generateMetadata } from "../page";
 
 describe("SkillsPage", () => {
   it("renders the Chinese skills heading", () => {
-    render(<SkillsPage />);
+    renderWithIntl(<SkillsPage />);
     expect(screen.getByRole("heading", { name: /技术专长/i })).toBeInTheDocument();
   });
 
   it("renders the updated Chinese intro paragraph", () => {
-    render(<SkillsPage />);
+    renderWithIntl(<SkillsPage />);
     expect(screen.getByText(/React \/ Next\.js/)).toBeInTheDocument();
   });
 
@@ -26,11 +27,11 @@ describe("SkillsPage", () => {
   });
 
   it("renders without crashing", () => {
-    expect(() => render(<SkillsPage />)).not.toThrow();
+    expect(() => renderWithIntl(<SkillsPage />)).not.toThrow();
   });
 
   it("renders the Chinese core competencies badge", () => {
-    render(<SkillsPage />);
+    renderWithIntl(<SkillsPage />);
     expect(screen.getByText("核心能力")).toBeInTheDocument();
   });
 });

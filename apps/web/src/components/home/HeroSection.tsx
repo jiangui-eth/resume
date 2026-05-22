@@ -1,9 +1,14 @@
+"use client";
+
 import type { JSX } from "react";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import profileData from "@/data/profile.json";
 
 export default function HeroSection(): JSX.Element {
+  const t = useTranslations();
+
   return (
     <section
       id="home"
@@ -21,7 +26,7 @@ export default function HeroSection(): JSX.Element {
         {/* Badge */}
         <div className="mb-4 inline-block px-2 py-1 border border-[#aec6ff]/30 rounded-full bg-[#aec6ff]/5">
           <span className="font-mono text-sm font-medium leading-[1.4] tracking-[0.15em] text-[#aec6ff] uppercase">
-            {profileData.headline}
+            {t("profile.headline")}
           </span>
         </div>
 
@@ -30,12 +35,12 @@ export default function HeroSection(): JSX.Element {
           {profileData.name}{" "}
           <span className="text-[#508eff]">|</span>
           <br className="hidden md:block" />
-          {" "}性能架构设计
+          {" "}{t("hero.tagline")}
         </h1>
 
         {/* Subtext */}
         <p className="text-lg leading-[1.6] text-[#8e9192] max-w-2xl mx-auto mb-10">
-          {profileData.summary}
+          {t("profile.summary")}
         </p>
 
         {/* CTA buttons */}
@@ -44,13 +49,13 @@ export default function HeroSection(): JSX.Element {
             href={"/projects" as import("next").Route}
             className="px-10 py-4 bg-[#508eff] text-[#00275e] text-2xl font-semibold leading-[1.3] tracking-[-0.01em] rounded-lg hover:shadow-[0_0_30px_rgba(80,142,255,0.4)] transition-all"
           >
-            查看项目
+            {t("hero.viewProjects")}
           </Link>
           <a
             href="#contact"
             className="px-10 py-4 border border-[#444748] text-[#e3e2e2] text-2xl font-semibold leading-[1.3] tracking-[-0.01em] rounded-lg hover:border-[#aec6ff] transition-all"
           >
-            获取联系方式
+            {t("hero.getInTouch")}
           </a>
         </div>
       </div>

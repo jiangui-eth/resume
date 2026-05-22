@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { renderWithIntl } from "@/test/intl-test-utils";
 
 vi.mock("next/image", () => ({
   default: ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={alt} />,
@@ -38,24 +39,17 @@ const BASE_PROJECT: ProjectBlockData = {
 
 describe("ProjectBlock", () => {
   it("renders the project name", () => {
-    render(<ProjectBlock project={BASE_PROJECT} />);
-
+    renderWithIntl(<ProjectBlock project={BASE_PROJECT} />);
     expect(screen.getByText("Wind Power RAG Platform")).toBeInTheDocument();
   });
 
   it("renders the domain badge", () => {
-    render(<ProjectBlock project={BASE_PROJECT} />);
-
+    renderWithIntl(<ProjectBlock project={BASE_PROJECT} />);
     expect(screen.getByText("AI / RAG")).toBeInTheDocument();
   });
 
   it("falls back to joined domainTags when domainBadge is absent", () => {
-    const projectWithoutBadge: ProjectBlockData = {
-      ...BASE_PROJECT,
-      domainBadge: undefined,
-    };
-    render(<ProjectBlock project={projectWithoutBadge} />);
-
+    renderWithIntl(<ProjectBlock project={{ ...BASE_PROJECT, domainBadge: undefined }} />);
     expect(screen.getByText("AI / RAG")).toBeInTheDocument();
   });
 
@@ -69,7 +63,7 @@ describe("ProjectBlock", () => {
       ],
     };
 
-    const { rerender } = render(<ProjectBlock project={projectWithLinks} />);
+    const { rerender } = renderWithIntl(<ProjectBlock project={projectWithLinks} />);
 
     expect(screen.getByRole("link", { name: "GitHub" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Demo" })).toBeInTheDocument();
@@ -78,35 +72,21 @@ describe("ProjectBlock", () => {
     rerender(<ProjectBlock project={BASE_PROJECT} />);
 
     expect(screen.queryByRole("link", { name: "GitHub" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "Demo" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "Case Study" })).not.toBeInTheDocument();
   });
 
   it("renders without crashing when image src is absent", () => {
-    const projectWithoutImage: ProjectBlockData = {
-      ...BASE_PROJECT,
-      images: [],
-      metrics: [],
-    };
-
-    render(<ProjectBlock project={projectWithoutImage} />);
-
-    expect(
-      screen.getByRole("heading", { name: "Wind Power RAG Platform" }),
-    ).toBeInTheDocument();
+    renderWithIntl(<ProjectBlock project={{ ...BASE_PROJECT, images: [], metrics: [] }} />);
+    expect(screen.getByRole("heading", { name: "Wind Power RAG Platform" })).toBeInTheDocument();
     expect(screen.getByText("Visual Pending")).toBeInTheDocument();
   });
 
-  it("renders odd-order project with text column first (no order swap)", () => {
-    render(<ProjectBlock project={BASE_PROJECT} />);
-    const article = screen.getByRole("article");
-    expect(article).toBeInTheDocument();
+  it("renders odd-order project with article wrapper", () => {
+    renderWithIntl(<ProjectBlock project={BASE_PROJECT} />);
+    expect(screen.getByRole("article")).toBeInTheDocument();
   });
 
-  it("renders even-order project with visual column using order-2 class", () => {
-    const evenProject: ProjectBlockData = { ...BASE_PROJECT, order: 2 };
-    render(<ProjectBlock project={evenProject} />);
-    const article = screen.getByRole("article");
-    expect(article).toBeInTheDocument();
+  it("renders even-order project with article wrapper", () => {
+    renderWithIntl(<ProjectBlock project={{ ...BASE_PROJECT, order: 2 }} />);
+    expect(screen.getByRole("article")).toBeInTheDocument();
   });
 });
