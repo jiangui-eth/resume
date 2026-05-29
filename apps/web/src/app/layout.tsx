@@ -4,6 +4,7 @@ import { getLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/react";
 
 import "../index.css";
+import { FaqBotWidget } from "@/components/faq-bot/FaqBotWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,6 +65,8 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Analytics />
+        {/* OTC FAQ Bot – floating chat widget */}
+        <FaqBotWidget />
       </body>
     </html>
   );
