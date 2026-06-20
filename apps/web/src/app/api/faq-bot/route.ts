@@ -17,22 +17,62 @@ import type { NextRequest } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { CohereClient } from 'cohere-ai'
 import OpenAI from 'openai'
+import { z } from 'zod'
 
 // CF Workers with nodejs_compat flag handles OpenAI / Supabase / Cohere SDKs.
 // No runtime export needed – OpenNext Cloudflare adapter manages the runtime.
 export const maxDuration = 60
 
+// ── Request Schema ─────────────────────────────────────────────────────────
+
+const requestSchema = z.object({
+  // trim runs as a transform (after validation in Zod 3), so pipe to re-check min(1)
+  query: z.string().max(2000).transform(s => s.trim()).pipe(z.string().min(1, 'query is required')),
+  history: z
+    .array(
+      z.object({
+        role: z.enum(['user', 'assistant']),
+        content: z.string().max(4000),
+      }),
+    )
+    .max(50)
+    .default([]),
+})
+
+type RequestBody = z.infer<typeof requestSchema>
+
+// ── Rate Limiting ──────────────────────────────────────────────────────────
+
+const ipWindowMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT_MAX = 10
+const RATE_LIMIT_WINDOW_MS = 60_000
+
+function getClientIp(req: NextRequest): string {
+  return (
+    req.headers.get('cf-connecting-ip')
+    ?? req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    ?? 'unknown'
+  )
+}
+
+function checkRateLimit(ip: string): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now()
+  const entry = ipWindowMap.get(ip)
+
+  if (!entry || now > entry.resetAt) {
+    ipWindowMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    return { allowed: true }
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return { allowed: false, retryAfter: Math.ceil((entry.resetAt - now) / 1000) }
+  }
+
+  entry.count++
+  return { allowed: true }
+}
+
 // ── Types ─────────────────────────────────────────────────────────────────
-
-interface ChatMessage {
-  role: 'user' | 'assistant'
-  content: string
-}
-
-interface RequestBody {
-  query: string
-  history?: ChatMessage[]
-}
 
 interface FaqChunkRow {
   id: string
@@ -166,18 +206,34 @@ function buildDemoAnswer(query: string): string {
 // ── Route Handler ──────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
-  let body: RequestBody
+  // ── Rate Limit ───────────────────────────────────────────────────────────
+  const ip = getClientIp(req)
+  const { allowed, retryAfter } = checkRateLimit(ip)
+  if (!allowed) {
+    return new Response('Too Many Requests', {
+      status: 429,
+      headers: { 'Retry-After': String(retryAfter) },
+    })
+  }
+
+  // ── Input Validation ─────────────────────────────────────────────────────
+  let rawBody: unknown
   try {
-    body = (await req.json()) as RequestBody
+    rawBody = await req.json()
   }
   catch {
     return new Response('Invalid JSON body', { status: 400 })
   }
 
-  const { query, history = [] } = body
-  if (!query?.trim()) {
-    return new Response('query is required', { status: 400 })
+  const parsed = requestSchema.safeParse(rawBody)
+  if (!parsed.success) {
+    return new Response(
+      JSON.stringify({ error: 'Invalid request', details: parsed.error.flatten() }),
+      { status: 400, headers: { 'Content-Type': 'application/json' } },
+    )
   }
+
+  const { query, history } = parsed.data
 
   const encoder = new TextEncoder()
 
