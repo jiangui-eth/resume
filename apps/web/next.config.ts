@@ -1,18 +1,36 @@
-import "@jiangui-resume/env/web";
-import type { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
-
-const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+import type { NextConfig } from 'next'
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
+import { withSentryConfig } from '@sentry/nextjs'
+import createNextIntlPlugin from 'next-intl/plugin'
+import '@jiangui-resume/env/web'
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
   reactCompiler: true,
   images: {
-    formats: ["image/avif", "image/webp"],
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
-      { protocol: "https", hostname: "lh3.googleusercontent.com", port: "", pathname: "/**" },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
-};
+}
 
-export default withNextIntl(nextConfig);
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
+
+initOpenNextCloudflareForDev()
+
+export default withSentryConfig(withNextIntl(nextConfig), {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  sourcemaps: {
+    deleteSourcemapsAfterUpload: true,
+  },
+})
