@@ -1,117 +1,46 @@
-"use client";
+import type { JSX } from 'react'
 
-import React from "react";
-import { useTranslations } from "next-intl";
-import { cn } from "@jiangui-resume/ui/lib/utils";
-import type { ContactInfo } from "@/types/contact";
-import contactData from "@/data/contact.json";
-import SectionWrapper from "@/components/ui/SectionWrapper";
+import type { ContactCardConfig } from './ContactCard'
+import type { ContactInfo } from '@/types/contact'
+import { getTranslations } from 'next-intl/server'
+import SectionWrapper from '@/components/ui/SectionWrapper'
+import contactData from '@/data/contact.json'
+import ContactCard from './ContactCard'
 
-const contact = contactData as ContactInfo;
+const contact = contactData as ContactInfo
 
-// ── Types ──────────────────────────────────────────────────────────────────────
+export default async function ContactSection(): Promise<JSX.Element> {
+  const t = await getTranslations('contact')
 
-interface ContactCardConfig {
-  icon: string;
-  label: string;
-  value: string;
-  href?: string;
-  reveal?: boolean;
-}
-
-// ── Constants ──────────────────────────────────────────────────────────────────
-
-const CARDS: ContactCardConfig[] = [
-  { icon: "mail", label: "Email", value: contact.email, href: `mailto:${contact.email}` },
-  { icon: "chat", label: "WeChat", value: contact.wechat, reveal: true },
-  { icon: "call", label: "Phone", value: contact.phone, reveal: true },
-];
-
-const MASKED = "••••••••";
-
-// ── ContactCard ────────────────────────────────────────────────────────────────
-
-function ContactCard({ icon, label, value, href, reveal }: ContactCardConfig) {
-  const t = useTranslations("contact");
-  const [revealed, setRevealed] = React.useState(false);
-  const fallback = t("notConfigured");
-  const display = reveal ? (revealed ? (value || fallback) : MASKED) : (value || fallback);
+  const CARDS: ContactCardConfig[] = [
+    {
+      icon: 'mail',
+      label: 'Email',
+      value: contact.email,
+      href: `mailto:${contact.email}`,
+    },
+    { icon: 'chat', label: 'WeChat', value: contact.wechat, reveal: true },
+    { icon: 'call', label: 'Phone', value: contact.phone, reveal: true },
+  ]
 
   return (
-    <article className="glass-card p-6 flex items-center gap-4">
-      {/* Icon circle */}
-      <div className="w-12 h-12 bg-[#aec6ff]/10 rounded-full flex items-center justify-center text-[#aec6ff] shrink-0">
-        <span className="material-symbols-outlined" aria-hidden="true">{icon}</span>
-      </div>
-
-      {/* Text */}
-      <div className="flex-1 min-w-0 text-left">
-        <p className="font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#8e9192]">
-          {label}
-        </p>
-        {href && !reveal ? (
-          <a
-            href={href}
-            className="text-2xl font-semibold leading-[1.3] tracking-[-0.01em] text-[#e3e2e2] truncate block hover:text-[#aec6ff] transition-colors"
-          >
-            {display}
-          </a>
-        ) : (
-          <p
-            className={cn(
-              "text-2xl font-semibold leading-[1.3] tracking-[-0.01em] truncate",
-              reveal && !revealed ? "tracking-widest text-[#e3e2e2]/20" : "text-[#e3e2e2]",
-            )}
-          >
-            {display}
-          </p>
-        )}
-      </div>
-
-      {/* Reveal toggle */}
-      {reveal && (
-        <button
-          onClick={() => setRevealed((r) => !r)}
-          className="shrink-0 flex items-center gap-1 rounded border border-[#444748]/40 bg-[rgba(255,255,255,0.03)] px-3 py-1.5 font-mono text-xs text-[#8e9192] hover:text-[#e3e2e2] transition-colors"
-          aria-label={revealed ? `Hide ${label}` : `Reveal ${label}`}
-        >
-          <span className="material-symbols-outlined text-base" aria-hidden="true">
-            {revealed ? "visibility_off" : "visibility"}
-          </span>
-          {revealed ? t("hide") : t("reveal")}
-        </button>
-      )}
-    </article>
-  );
-}
-
-// ── ContactSection ─────────────────────────────────────────────────────────────
-
-export default function ContactSection() {
-  const t = useTranslations("contact");
-
-  return (
-    <section
-      id="contact"
-      className="bg-[#1b1c1c] py-20"
-      aria-label="Contact"
-    >
+    <section id="contact" className="bg-[#1b1c1c] py-20" aria-label="Contact">
       <SectionWrapper as="div" className="text-center">
         {/* Heading */}
-        <h3 className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2] mb-4">
-          {t("title")}
+        <h3 className="mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2]">
+          {t('title')}
         </h3>
-        <p className="text-lg leading-[1.6] text-[#8e9192] max-w-xl mx-auto mb-10">
-          {t("subtitle")}
+        <p className="mx-auto mb-10 max-w-xl text-lg leading-[1.6] text-[#8e9192]">
+          {t('subtitle')}
         </p>
 
         {/* 3-card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          {CARDS.map((card) => (
+        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-3">
+          {CARDS.map(card => (
             <ContactCard key={card.label} {...card} />
           ))}
         </div>
       </SectionWrapper>
     </section>
-  );
+  )
 }
