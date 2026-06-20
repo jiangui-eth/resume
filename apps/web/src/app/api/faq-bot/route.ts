@@ -27,7 +27,11 @@ export const maxDuration = 60
 
 const requestSchema = z.object({
   // trim runs as a transform (after validation in Zod 3), so pipe to re-check min(1)
-  query: z.string().max(2000).transform(s => s.trim()).pipe(z.string().min(1, 'query is required')),
+  query: z
+    .string()
+    .max(2000)
+    .transform(s => s.trim())
+    .pipe(z.string().min(1, 'query is required')),
   history: z
     .array(
       z.object({
@@ -39,11 +43,9 @@ const requestSchema = z.object({
     .default([]),
 })
 
-type RequestBody = z.infer<typeof requestSchema>
-
 // ── Rate Limiting ──────────────────────────────────────────────────────────
 
-const ipWindowMap = new Map<string, { count: number; resetAt: number }>()
+const ipWindowMap = new Map<string, { count: number, resetAt: number }>()
 const RATE_LIMIT_MAX = 10
 const RATE_LIMIT_WINDOW_MS = 60_000
 
@@ -55,7 +57,7 @@ function getClientIp(req: NextRequest): string {
   )
 }
 
-function checkRateLimit(ip: string): { allowed: boolean; retryAfter?: number } {
+function checkRateLimit(ip: string): { allowed: boolean, retryAfter?: number } {
   const now = Date.now()
   const entry = ipWindowMap.get(ip)
 
@@ -65,7 +67,10 @@ function checkRateLimit(ip: string): { allowed: boolean; retryAfter?: number } {
   }
 
   if (entry.count >= RATE_LIMIT_MAX) {
-    return { allowed: false, retryAfter: Math.ceil((entry.resetAt - now) / 1000) }
+    return {
+      allowed: false,
+      retryAfter: Math.ceil((entry.resetAt - now) / 1000),
+    }
   }
 
   entry.count++
@@ -228,7 +233,10 @@ export async function POST(req: NextRequest) {
   const parsed = requestSchema.safeParse(rawBody)
   if (!parsed.success) {
     return new Response(
-      JSON.stringify({ error: 'Invalid request', details: parsed.error.flatten() }),
+      JSON.stringify({
+        error: 'Invalid request',
+        details: parsed.error.flatten(),
+      }),
       { status: 400, headers: { 'Content-Type': 'application/json' } },
     )
   }
@@ -327,9 +335,8 @@ export async function POST(req: NextRequest) {
         send({ sources })
       }
       catch (err) {
-        const message
-          = err instanceof Error ? err.message : 'Unknown error in RAG pipeline'
-        send({ error: message })
+        console.error('[faq-bot] RAG pipeline error:', err)
+        send({ error: 'Service temporarily unavailable. Please try again.' })
       }
       finally {
         controller.enqueue(encoder.encode(`data: [DONE]\n\n`))
