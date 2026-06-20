@@ -1,64 +1,82 @@
-import { screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { renderWithIntl } from "@/test/intl-test-utils";
-import HomePage from "../page";
+import { render, screen } from '@testing-library/react'
+import React from 'react'
+import { describe, expect, it, vi } from 'vitest'
 
-vi.mock("next/image", () => ({
-  default: ({
-    src,
-    alt,
-    ...props
-  }: React.ImgHTMLAttributes<HTMLImageElement> & { src: string }) => (
-    <img src={src} alt={alt} {...props} />
+import HomePage from '../page'
+
+// Mock async Server Component sections so Home (sync) renders them inline
+vi.mock('@/components/home/HeroSection', () => ({
+  default: () => (
+    <section aria-label="Hero">
+      <h1>JianGui</h1>
+    </section>
   ),
-}));
+}))
 
-vi.mock("next/link", () => ({
-  default: ({
-    href,
-    children,
-    ...props
-  }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) => (
-    <a href={href} {...props}>
-      {children}
-    </a>
+vi.mock('@/components/home/AboutSection', () => ({
+  default: () => (
+    <section aria-label="About">
+      <p>深耕工程，精益求精</p>
+    </section>
   ),
-}));
+}))
 
-vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
+vi.mock('@/components/home/CapabilitySection', () => ({
+  default: () => (
+    <section aria-label="核心技术栈">
+      <h3>核心技术栈</h3>
+    </section>
+  ),
+}))
 
-describe("Home Page — /", () => {
-  it("renders the hero section with candidate name in h1", () => {
-    renderWithIntl(<HomePage />);
-    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
-  });
+vi.mock('@/components/home/ProjectsSection', () => ({
+  default: () => (
+    <section aria-label="精选项目">
+      <h3>精选项目</h3>
+    </section>
+  ),
+}))
 
-  it("renders the hero region landmark", () => {
-    renderWithIntl(<HomePage />);
-    expect(screen.getByRole("region", { name: /hero/i })).toBeInTheDocument();
-  });
+vi.mock('@/components/home/ContactSection', () => ({
+  default: () => (
+    <section aria-label="Contact">
+      <h3>Contact</h3>
+    </section>
+  ),
+}))
 
-  it("renders the About section", () => {
-    renderWithIntl(<HomePage />);
+vi.mock('@/lib/analytics', () => ({ track: vi.fn() }))
+
+describe('home Page — /', () => {
+  it('renders the hero section with candidate name in h1', () => {
+    render(<HomePage />)
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
+  })
+
+  it('renders the hero region landmark', () => {
+    render(<HomePage />)
+    expect(screen.getByRole('region', { name: /hero/i })).toBeInTheDocument()
+  })
+
+  it('renders the About section', () => {
+    render(<HomePage />)
+    expect(screen.getByText(/深耕工程，精益求精/)).toBeInTheDocument()
+  })
+
+  it('renders the Capability section heading', () => {
+    render(<HomePage />)
+    expect(screen.getByText(/核心技术栈/)).toBeInTheDocument()
+  })
+
+  it('renders the Selected Works heading', () => {
+    render(<HomePage />)
+    expect(screen.getByText(/精选项目/)).toBeInTheDocument()
+  })
+
+  it('renders the Contact section', () => {
+    render(<HomePage />)
     expect(
-      screen.getByText(/深耕工程，精益求精/),
-    ).toBeInTheDocument();
-  });
-
-  it("renders the Capability section heading", () => {
-    renderWithIntl(<HomePage />);
-    expect(screen.getByText(/核心技术栈/)).toBeInTheDocument();
-  });
-
-  it("renders the Selected Works heading", () => {
-    renderWithIntl(<HomePage />);
-    expect(screen.getByText(/精选项目/)).toBeInTheDocument();
-  });
-
-  it("renders the Contact section", () => {
-    renderWithIntl(<HomePage />);
-    expect(
-      screen.getByRole("region", { name: /contact/i }),
-    ).toBeInTheDocument();
-  });
-});
+      screen.getByRole('region', { name: /contact/i }),
+    ).toBeInTheDocument()
+  })
+})
