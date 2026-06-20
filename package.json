@@ -11,6 +11,12 @@
     "build": "turbo build",
     "check-types": "turbo check-types",
     "dev:web": "turbo -F web dev",
+    "lint": "turbo lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "storybook": "turbo -F storybook-app storybook",
+    "deploy": "turbo -F @jiangui-resume/infra deploy",
+    "destroy": "turbo -F @jiangui-resume/infra destroy",
     "prepare": "husky"
   },
   "dependencies": {
@@ -19,16 +25,27 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@eslint-react/eslint-plugin": "catalog:",
     "@jiangui-resume/config": "workspace:*",
-    "@types/node": "^22.13.14",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-react-refresh": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
     "prettier": "catalog:",
-    "turbo": "^2.8.12",
+    "prettier-plugin-tailwindcss": "catalog:",
+    "turbo": "catalog:",
     "typescript": "catalog:"
   },
   "lint-staged": {
-    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue,astro,svelte,css,json}": ""
+    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,astro}": "eslint --fix",
+    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,astro,css,json,md}": "prettier --write"
   },
-  "packageManager": "pnpm@10.26.2"
+  "packageManager": "pnpm@11.8.0",
+  "volta": {
+    "node": "26.3.1"
+  }
 }

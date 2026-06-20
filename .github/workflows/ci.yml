@@ -1,93 +1,133 @@
-name: PR Check Pipeline
+name: CI
 
 on:
+  push:
+    branches: [main, dev_v2, dev_v3]
   pull_request:
-    branches: [main]
+    branches: [main, dev_v2]
 
 jobs:
-  ci:
+  commit-lint:
+    name: PR Title
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/web
-
+    if: github.event_name == 'pull_request'
     steps:
-      # ── Setup ────────────────────────────────────────────────────────────────
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            chore
+            build
+            ci
+            revert
+          requireScope: false
 
+  type-check:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 11
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        working-directory: .
 
-      # ── Step 2: ESLint ───────────────────────────────────────────────────────
+      - name: Type check
+        run: pnpm check-types
 
-      - name: ESLint
-        run: pnpm exec next lint
+  lint:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-      # ── Step 3: Prettier ─────────────────────────────────────────────────────
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
 
-      - name: Prettier format check
-        run: pnpm exec prettier --check "apps/web/src/**/*.{ts,tsx}" "apps/web/*.{ts,json}"
-        working-directory: .
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
 
-      # ── Step 4: TypeScript ───────────────────────────────────────────────────
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: TypeScript type check
-        run: pnpm tsc --noEmit
+      - name: Lint
+        run: pnpm lint
 
-      # ── Step 5: Unit tests ───────────────────────────────────────────────────
+      - name: Format check
+        run: pnpm format:check
 
-      - name: Unit & integration tests
-        run: pnpm test --run
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-      # ── Step 6: Production build ─────────────────────────────────────────────
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
 
-      - name: Production build
-        run: pnpm build
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
 
-      # ── Step 7: Lighthouse CI ────────────────────────────────────────────────
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Install Lighthouse CI
-        run: npm install -g @lhci/cli@0.14.x
+      - name: Unit tests
+        run: pnpm --filter web test
 
-      - name: Lighthouse CI
-        run: lhci autorun
+  e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-      # ── Step 8: Playwright visual regression ─────────────────────────────────
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
+        run: pnpm --filter web exec playwright install --with-deps chromium
 
-      - name: Playwright visual regression
-        run: pnpm exec playwright test
+      - name: Build
+        run: pnpm build
+
+      - name: E2E tests
+        run: pnpm --filter web e2e
         env:
           CI: true
-          BASE_URL: http://localhost:3000
-
-      # ── Step 9: Link validity check ──────────────────────────────────────────
-
-      - name: Link validity check
-        run: node scripts/check-links.mjs
-        env:
-          SITE_URL: https://jiangui-resume.vercel.app
-
-      # ── Artifacts on failure ─────────────────────────────────────────────────
 
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: ci-failure-report
-          path: |
-            apps/web/playwright-report/
-            apps/web/.lighthouseci/
+          name: playwright-report
+          path: apps/web/playwright-report/
           retention-days: 7
