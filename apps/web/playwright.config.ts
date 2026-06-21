@@ -6,6 +6,7 @@ const PORT = isCI ? 3000 : 3001;
 export default defineConfig({
   testDir: "./tests/visual",
   fullyParallel: true,
+  workers: isCI ? undefined : 1,
   forbidOnly: isCI,
   retries: isCI ? 1 : 0,
   reporter: "html",
