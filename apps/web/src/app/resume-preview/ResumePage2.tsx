@@ -36,8 +36,8 @@ export default function ResumePage2() {
               带领
               {' '}
               <b>7 人团队</b>
-              支撑美国零售品牌 Michaels 的 MakerPlace /
-              Rewards / Classes / 门店系统
+              支撑美国零售品牌 Michaels 的 MakerPlace / Rewards / Classes /
+              门店系统
               {' '}
               <b>4 条产品线</b>
               ，全程负责技术选型、架构设计与团队交付节奏。
@@ -129,8 +129,7 @@ export default function ResumePage2() {
           <ul className="bullets">
             <li>
               <b>混合检索架构</b>
-              ：pgvector + BM25 + Reranker，Top-5 命中率 50%
-              →
+              ：pgvector + BM25 + Reranker，Top-5 命中率 50% →
               <span className="metric">90%</span>
               ；工业手册父子 chunk + 标题路径增强 + 表格单独索引，图纸 OCR +
               视觉模型生成 caption。
@@ -171,13 +170,13 @@ export default function ResumePage2() {
               ：按数据页类型系统性注入
               {' '}
               <b>JSON-LD Schema</b>
-              （Dataset / FinancialProduct /
-              Breadcrumb），提升 Google Rich Results 触发率与 SERP 丰富度。
+              （Dataset / FinancialProduct / Breadcrumb），提升 Google Rich
+              Results 触发率与 SERP 丰富度。
             </li>
             <li>
               <b>性能与上线保障</b>
-              ：对 LCP / CLS
-              建立回归检测，优化图片懒加载与字体预加载，layout shift
+              ：对 LCP / CLS 建立回归检测，优化图片懒加载与字体预加载，layout
+              shift
               根因排查；按页面类型分批切换，优先点爆仓与资金流向页，验证后推广至其余系列。
             </li>
           </ul>
@@ -194,22 +193,20 @@ export default function ResumePage2() {
           <ul className="bullets">
             <li>
               <b>构建迁移策略</b>
-              ：SSR 场景 Webpack → Vite，核心难点在 hydration
-              一致性、CJS → ESM 兼容与 Node 依赖隔离；自定义 Vite 插件处理
-              SSR-specific require() 与服务端专属模块，数百模块零破坏性迁移。
+              ：SSR 场景 Webpack → Vite，核心难点在 hydration 一致性、CJS → ESM
+              兼容与 Node 依赖隔离；自定义 Vite 插件处理 SSR-specific require()
+              与服务端专属模块，数百模块零破坏性迁移。
             </li>
             <li>
               <b>Design System 架构</b>
-              ：基于 Chakra UI 二次封装，Token
-              三层分层（全局 → 语义 → 组件级）保证主题切换能力；Rollup
-              多入口（ESM + CJS）支持 Tree-shaking
-              与按需加载，消费方无需全量引入。
+              ：基于 Chakra UI 二次封装，Token 三层分层（全局 → 语义 →
+              组件级）保证主题切换能力；Rollup 多入口（ESM + CJS）支持
+              Tree-shaking 与按需加载，消费方无需全量引入。
             </li>
             <li>
               <b>三层性能优化</b>
-              ：依赖瘦身（lodash-es / day.js）+ 路由级 Code
-              Splitting + WebP 懒加载 + JSON-LD / Open Graph / 动态 meta
-              注入；主要品类页收录量 +
+              ：依赖瘦身（lodash-es / day.js）+ 路由级 Code Splitting + WebP
+              懒加载 + JSON-LD / Open Graph / 动态 meta 注入；主要品类页收录量 +
               <span className="metric">30%</span>
               。
             </li>
@@ -227,8 +224,8 @@ export default function ResumePage2() {
           <ul className="bullets">
             <li>
               <b>可视化实验编排</b>
-              ：AntV/X6 有向图编排，故障节点拖拽连线 +
-              依赖链路可视化 + 执行顺序校验，配置时间 -
+              ：AntV/X6 有向图编排，故障节点拖拽连线 + 依赖链路可视化 +
+              执行顺序校验，配置时间 -
               <span className="metric">60%</span>
               ，直观呈现故障传播路径。
             </li>
@@ -237,13 +234,11 @@ export default function ResumePage2() {
               ：~2,000 条/s 实时更新，三层策略保障
               {' '}
               <span className="metric">55–60fps</span>
-              ：时间窗口聚合 + rAF
-              批量提交 + Canvas 替代 SVG + 列表虚拟滚动。
+              ：时间窗口聚合 + rAF 批量提交 + Canvas 替代 SVG + 列表虚拟滚动。
             </li>
             <li>
               <b>报告分发体系</b>
-              ：基于 AntV/G2 构建支持 8+
-              图表类型的可视化看板，实现报告 PDF
+              ：基于 AntV/G2 构建支持 8+ 图表类型的可视化看板，实现报告 PDF
               导出、链接分享与批量下载，减少人工截图汇报成本。
             </li>
           </ul>

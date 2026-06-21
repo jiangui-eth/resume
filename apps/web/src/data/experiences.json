@@ -14,7 +14,15 @@
       "RAG platform reduced average document lookup time from 5 min to 1 min, ticket handling time down 80%, and answer trust score reached 9/10",
       "Abstracted reusable AI capability modules (multi-model integration, async task state machine, answer citation backlink), enabling new business scenarios without rewriting core logic"
     ],
-    "techTags": ["React", "TypeScript", "RAG", "Pinecone", "OpenAI", "SSE", "LangSmith"],
+    "techTags": [
+      "React",
+      "TypeScript",
+      "RAG",
+      "Pinecone",
+      "OpenAI",
+      "SSE",
+      "LangSmith"
+    ],
     "highlight": "Ticket handling −80%"
   },
   {
@@ -34,7 +42,15 @@
       "Led frontend infrastructure modernisation: MobX → Zustand, styled-components → Tailwind, eliminating runtime overhead; maintained monorepo shared modules, icon library, and component library",
       "Introduced AI-assisted development workflow (Cursor), improving repetitive coding throughput by ~30%"
     ],
-    "techTags": ["Next.js", "TypeScript", "Tailwind", "Zustand", "JSON-LD", "SSR", "Core Web Vitals"],
+    "techTags": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Zustand",
+      "JSON-LD",
+      "SSR",
+      "Core Web Vitals"
+    ],
     "highlight": "SEO 1K → 14K/mo (14×)"
   },
   {
@@ -53,7 +69,15 @@
       "Built Design System from zero: 16+ reusable business components across 4 product lines, reducing duplicate UI development by ~60%; LCP improved from ~4s to 1.8s",
       "Established frontend quality system (ESLint/Prettier/TypeScript strict + Code Review cadence), reducing production bug rate by ~30%"
     ],
-    "techTags": ["React", "Next.js", "TypeScript", "Chakra UI", "Vite", "Rollup", "Design Tokens"],
+    "techTags": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Chakra UI",
+      "Vite",
+      "Rollup",
+      "Design Tokens"
+    ],
     "highlight": "7-person team lead"
   },
   {
@@ -71,7 +95,15 @@
       "Independently delivered Guiyang Bank Chaos Engineering Platform from zero in 2 weeks: 4-module 1.0 (fault injection, experiment orchestration, monitoring, governance) with 100% customer acceptance rate",
       "Led 3-person team completing Taikang Life configuration centre in 1 month: multi-datasource config templates (Redis/MySQL) with one-click rollback, significantly improving config change efficiency"
     ],
-    "techTags": ["React", "TypeScript", "Jotai", "Tailwind", "AntV/X6", "AntV/G2", "Webpack"],
+    "techTags": [
+      "React",
+      "TypeScript",
+      "Jotai",
+      "Tailwind",
+      "AntV/X6",
+      "AntV/G2",
+      "Webpack"
+    ],
     "highlight": "Chaos Platform: 2-week delivery"
   },
   {

@@ -79,7 +79,14 @@
     ],
     "images": [],
     "links": [],
-    "techTags": ["Next.js", "TypeScript", "SEO", "JSON-LD", "SSR", "Core Web Vitals"],
+    "techTags": [
+      "Next.js",
+      "TypeScript",
+      "SEO",
+      "JSON-LD",
+      "SSR",
+      "Core Web Vitals"
+    ],
     "featured": true,
     "order": 2
   },
@@ -118,7 +125,15 @@
     ],
     "images": [],
     "links": [],
-    "techTags": ["React", "Next.js", "TypeScript", "Chakra UI", "Design Tokens", "Rollup", "Vite"],
+    "techTags": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Chakra UI",
+      "Design Tokens",
+      "Rollup",
+      "Vite"
+    ],
     "featured": false,
     "order": 3
   },
@@ -157,7 +172,15 @@
     ],
     "images": [],
     "links": [],
-    "techTags": ["React", "Go", "Jotai", "AntV/X6", "AntV/G2", "Canvas", "Webpack"],
+    "techTags": [
+      "React",
+      "Go",
+      "Jotai",
+      "AntV/X6",
+      "AntV/G2",
+      "Canvas",
+      "Webpack"
+    ],
     "featured": true,
     "order": 4
   }

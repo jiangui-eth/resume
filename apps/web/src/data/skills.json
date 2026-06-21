@@ -112,7 +112,13 @@
       "title": "Design System 架构",
       "description": "从 0 到 1 建设 Design System：沉淀 16+ 高复用业务组件，覆盖 4 条产品线，重复 UI 开发减少约 60%；采用 Design Token 分层架构（全局 → 语义 → 组件级），Rollup 多入口构建支持 Tree-shaking。",
       "icon": "🎨",
-      "tags": ["Design Tokens", "Chakra UI", "Tailwind CSS", "Rollup", "Storybook"]
+      "tags": [
+        "Design Tokens",
+        "Chakra UI",
+        "Tailwind CSS",
+        "Rollup",
+        "Storybook"
+      ]
     },
     {
       "id": "btc-004",
