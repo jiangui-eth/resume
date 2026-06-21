@@ -1,24 +1,21 @@
-"use client";
+'use client'
 
-import { useEffect } from "react";
+// Sentry (configured in next.config.ts) automatically captures errors
+// forwarded to this boundary — no manual logging needed here.
 
 export default function GlobalError({
-  error,
+  error: _error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-[#121414] px-6 text-center">
-      <h1 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-[#e3e2e2]">
+      <h1 className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2]">
         Something went wrong
       </h1>
-      <p className="text-base text-[#8e9192] max-w-md">
+      <p className="max-w-md text-base text-[#8e9192]">
         An unexpected error occurred. You can try again or refresh the page.
       </p>
       <button
@@ -29,5 +26,5 @@ export default function GlobalError({
         Try again
       </button>
     </div>
-  );
+  )
 }
