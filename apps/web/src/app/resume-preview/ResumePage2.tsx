@@ -24,54 +24,34 @@ export default function ResumePage2() {
         <div className="job">
           <div className="job-h">
             <div className="job-co">
-              翰竺科技北京有限公司
-              {' '}
-              <span className="arrow">·</span>
+              翰竺科技北京有限公司 <span className="arrow">·</span>
               <span className="role-tag">深圳 / 前端技术负责人</span>
             </div>
             <div className="job-date">2022/04 — 2024/03</div>
           </div>
           <ul className="bullets">
             <li>
-              带领
-              {' '}
-              <b>7 人团队</b>
+              带领 <b>7 人团队</b>
               支撑美国零售品牌 Michaels 的 MakerPlace / Rewards / Classes /
-              门店系统
-              {' '}
-              <b>4 条产品线</b>
+              门店系统 <b>4 条产品线</b>
               ，全程负责技术选型、架构设计与团队交付节奏。
             </li>
             <li>
               主导 Next.js SSR 构建迁移（
               <b>Webpack → Vite</b>
-              ）：冷启动 ~25s →
-              {' '}
-              <span className="metric">&lt;5s</span>
-              ，HMR ~3s →
-              {' '}
-              <span className="metric">&lt;0.5s</span>
-              。
+              ）：冷启动 ~25s → <span className="metric">&lt;5s</span>
+              ，HMR ~3s → <span className="metric">&lt;0.5s</span>。
             </li>
             <li>
-              从 0 到 1 建设
-              {' '}
-              <b>Design System</b>
-              ：沉淀
-              {' '}
-              <span className="metric">16+</span>
-              {' '}
-              业务组件，重复 UI 开发
+              从 0 到 1 建设 <b>Design System</b>
+              ：沉淀 <span className="metric">16+</span> 业务组件，重复 UI 开发
               -60%；首屏
-              <b>LCP 由 ~4s → 1.8s</b>
-              。
+              <b>LCP 由 ~4s → 1.8s</b>。
             </li>
             <li>
               建立工程质量体系（ESLint / Prettier / TS 严格模式 + Code
-              Review），基于 Jira 跟踪迭代，线上缺陷率下降
-              {' '}
-              <span className="metric">30%</span>
-              。
+              Review），基于 Jira 跟踪迭代，线上缺陷率下降{" "}
+              <span className="metric">30%</span>。
             </li>
           </ul>
         </div>
@@ -83,10 +63,7 @@ export default function ResumePage2() {
               <span className="co">中电金信有限公司</span>
               <span className="role">贵阳 / 前端组长</span>
               <span className="meta">
-                驻场贵阳银行核心系统，主导
-                {' '}
-                <b>混沌工程平台</b>
-                从 0 到 1
+                驻场贵阳银行核心系统，主导 <b>混沌工程平台</b>从 0 到 1
                 交付（验收 100%）与 DAP 管理平台金融级零故障上线。
               </span>
             </div>
@@ -97,8 +74,7 @@ export default function ResumePage2() {
               <span className="co">贵州国信通电子商务</span>
               <span className="role">贵阳 / 前端开发</span>
               <span className="meta">
-                主导信通袋平台 JSP → Vue 渐进式迁移零回滚；抽象
-                {' '}
+                主导信通袋平台 JSP → Vue 渐进式迁移零回滚；抽象{" "}
                 <b>JSON Schema 驱动模版引擎</b>
                 ，重复业务开发时间 -50%。
               </span>
@@ -159,17 +135,13 @@ export default function ResumePage2() {
           <ul className="bullets">
             <li>
               <b>渲染策略选型</b>
-              ：数据页更新频率高（分钟级），选用
-              {' '}
-              <b>SSR + 短周期 ISR</b>
+              ：数据页更新频率高（分钟级），选用 <b>SSR + 短周期 ISR</b>
               （revalidate 60s）—保障搜索引擎抓取完整
               DOM，同时避免每请求触发全量 SSR，降低服务端压力。
             </li>
             <li>
               <b>结构化数据注入</b>
-              ：按数据页类型系统性注入
-              {' '}
-              <b>JSON-LD Schema</b>
+              ：按数据页类型系统性注入 <b>JSON-LD Schema</b>
               （Dataset / FinancialProduct / Breadcrumb），提升 Google Rich
               Results 触发率与 SERP 丰富度。
             </li>
@@ -207,8 +179,7 @@ export default function ResumePage2() {
               <b>三层性能优化</b>
               ：依赖瘦身（lodash-es / day.js）+ 路由级 Code Splitting + WebP
               懒加载 + JSON-LD / Open Graph / 动态 meta 注入；主要品类页收录量 +
-              <span className="metric">30%</span>
-              。
+              <span className="metric">30%</span>。
             </li>
           </ul>
         </div>
@@ -225,14 +196,12 @@ export default function ResumePage2() {
             <li>
               <b>可视化实验编排</b>
               ：AntV/X6 有向图编排，故障节点拖拽连线 + 依赖链路可视化 +
-              执行顺序校验，配置时间 -
-              <span className="metric">60%</span>
+              执行顺序校验，配置时间 -<span className="metric">60%</span>
               ，直观呈现故障传播路径。
             </li>
             <li>
               <b>高频数据渲染</b>
-              ：~2,000 条/s 实时更新，三层策略保障
-              {' '}
+              ：~2,000 条/s 实时更新，三层策略保障{" "}
               <span className="metric">55–60fps</span>
               ：时间窗口聚合 + rAF 批量提交 + Canvas 替代 SVG + 列表虚拟滚动。
             </li>
@@ -266,5 +235,5 @@ export default function ResumePage2() {
         <span className="right">Ln 02 / 02 · A4 · zh-CN</span>
       </div>
     </article>
-  )
+  );
 }

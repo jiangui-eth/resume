@@ -1,47 +1,47 @@
 export interface ProjectMetric {
-  label: string
-  value: string
+  label: string;
+  value: string;
 }
 
 export interface ProjectLink {
-  label: string
-  url: string
+  label: string;
+  url: string;
   /** "github" | "live" | "case-study" | "demo" */
-  type: 'github' | 'live' | 'case-study' | 'demo'
+  type: "github" | "live" | "case-study" | "demo";
 }
 
 export interface ProjectImage {
   /** Relative path under public/images/projects/ */
-  src: string
-  alt: string
+  src: string;
+  alt: string;
 }
 
 export interface TechnicalDecision {
-  title: string
-  explanation: string
+  title: string;
+  explanation: string;
 }
 
 export interface Project {
-  id: string
-  name: string
+  id: string;
+  name: string;
   /** Short tagline shown on preview card */
-  tagline: string
+  tagline: string;
   /** Domain / category tags, e.g. ["Web3", "DeFi"] */
-  domainTags: string[]
+  domainTags: string[];
   /** 2-3 sentence background / problem statement */
-  background: string
+  background: string;
   /** Technical decisions, each with a title and explanation */
-  technicalDecisions: TechnicalDecision[]
+  technicalDecisions: TechnicalDecision[];
   /** Quantifiable outcomes */
-  metrics: ProjectMetric[]
+  metrics: ProjectMetric[];
   /** Cover image and optional gallery */
-  images: ProjectImage[]
+  images: ProjectImage[];
   /** External links */
-  links: ProjectLink[]
+  links: ProjectLink[];
   /** Tech stack used */
-  techTags: string[]
+  techTags: string[];
   /** Whether to feature on the home page */
-  featured: boolean
+  featured: boolean;
   /** Display order (lower = higher priority) */
-  order: number
+  order: number;
 }

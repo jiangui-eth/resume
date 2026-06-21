@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { useTranslations } from 'next-intl'
-import Image from 'next/image'
-import SectionHeader from '@/components/ui/SectionHeader'
-import SectionWrapper from '@/components/ui/SectionWrapper'
-import { track } from '@/lib/analytics'
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import SectionHeader from "@/components/ui/SectionHeader";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import { track } from "@/lib/analytics";
 
 export default function SkillsCTA() {
-  const t = useTranslations('skillsCTA')
+  const t = useTranslations("skillsCTA");
 
   return (
     <SectionWrapper className="pb-20">
@@ -20,17 +20,18 @@ export default function SkillsCTA() {
           className="pointer-events-none object-cover opacity-10"
         />
         <div className="relative z-10 max-w-2xl">
-          <SectionHeader title={t('title')} subtitle={t('description')} />
+          <SectionHeader title={t("title")} subtitle={t("description")} />
           <a
             href="mailto:jiangui.eth@gmail.com"
             onClick={() =>
-              track('click_get_in_touch', { source: 'skills_cta' })}
+              track("click_get_in_touch", { source: "skills_cta" })
+            }
             className="inline-flex items-center gap-2 rounded-lg bg-[#508eff] px-6 py-3 font-mono text-sm font-bold text-[#00275e] transition-all hover:shadow-[0_0_30px_rgba(80,142,255,0.4)]"
           >
-            {t('contactMe')}
+            {t("contactMe")}
           </a>
         </div>
       </div>
     </SectionWrapper>
-  )
+  );
 }

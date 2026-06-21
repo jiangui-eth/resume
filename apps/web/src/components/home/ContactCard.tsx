@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import { cn } from '@jiangui-resume/ui/lib/utils'
-import { useTranslations } from 'next-intl'
-import React from 'react'
+import { cn } from "@jiangui-resume/ui/lib/utils";
+import { useTranslations } from "next-intl";
+import React from "react";
 
 export interface ContactCardConfig {
-  icon: string
-  label: string
-  value: string
-  href?: string
-  reveal?: boolean
+  icon: string;
+  label: string;
+  value: string;
+  href?: string;
+  reveal?: boolean;
 }
 
-const MASKED = '••••••••'
+const MASKED = "••••••••";
 
 export default function ContactCard({
   icon,
@@ -21,14 +21,14 @@ export default function ContactCard({
   href,
   reveal,
 }: ContactCardConfig): React.JSX.Element {
-  const t = useTranslations('contact')
-  const [revealed, setRevealed] = React.useState(false)
-  const fallback = t('notConfigured')
+  const t = useTranslations("contact");
+  const [revealed, setRevealed] = React.useState(false);
+  const fallback = t("notConfigured");
   const display = reveal
     ? revealed
       ? value || fallback
       : MASKED
-    : value || fallback
+    : value || fallback;
 
   return (
     <article className="glass-card flex items-center gap-4 p-6">
@@ -44,33 +44,31 @@ export default function ContactCard({
         <p className="font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192]">
           {label}
         </p>
-        {href && !reveal
-          ? (
-              <a
-                href={href}
-                className="block truncate text-2xl leading-[1.3] font-semibold tracking-[-0.01em] text-[#e3e2e2] transition-colors hover:text-[#aec6ff]"
-              >
-                {display}
-              </a>
-            )
-          : (
-              <p
-                className={cn(
-                  'truncate text-2xl leading-[1.3] font-semibold tracking-[-0.01em]',
-                  reveal && !revealed
-                    ? 'tracking-widest text-[#e3e2e2]/20'
-                    : 'text-[#e3e2e2]',
-                )}
-              >
-                {display}
-              </p>
+        {href && !reveal ? (
+          <a
+            href={href}
+            className="block truncate text-2xl leading-[1.3] font-semibold tracking-[-0.01em] text-[#e3e2e2] transition-colors hover:text-[#aec6ff]"
+          >
+            {display}
+          </a>
+        ) : (
+          <p
+            className={cn(
+              "truncate text-2xl leading-[1.3] font-semibold tracking-[-0.01em]",
+              reveal && !revealed
+                ? "tracking-widest text-[#e3e2e2]/20"
+                : "text-[#e3e2e2]",
             )}
+          >
+            {display}
+          </p>
+        )}
       </div>
 
       {/* Reveal toggle */}
       {reveal && (
         <button
-          onClick={() => setRevealed(r => !r)}
+          onClick={() => setRevealed((r) => !r)}
           className="flex shrink-0 items-center gap-1 rounded border border-[#444748]/40 bg-[rgba(255,255,255,0.03)] px-3 py-1.5 font-mono text-xs text-[#8e9192] transition-colors hover:text-[#e3e2e2]"
           aria-label={revealed ? `Hide ${label}` : `Reveal ${label}`}
         >
@@ -78,11 +76,11 @@ export default function ContactCard({
             className="material-symbols-outlined text-base"
             aria-hidden="true"
           >
-            {revealed ? 'visibility_off' : 'visibility'}
+            {revealed ? "visibility_off" : "visibility"}
           </span>
-          {revealed ? t('hide') : t('reveal')}
+          {revealed ? t("hide") : t("reveal")}
         </button>
       )}
     </article>
-  )
+  );
 }

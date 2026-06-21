@@ -6,64 +6,64 @@ export interface Database {
     Tables: {
       faq_chunks: {
         Row: {
-          id: string
-          faq_id: string
-          category: string
-          question: string
-          answer: string
-          content: string
-          embedding: string | null
-          fts_vector: string | null
-          created_at: string | null
-        }
+          id: string;
+          faq_id: string;
+          category: string;
+          question: string;
+          answer: string;
+          content: string;
+          embedding: string | null;
+          fts_vector: string | null;
+          created_at: string | null;
+        };
         Insert: {
-          id?: string
-          faq_id: string
-          category: string
-          question: string
-          answer: string
-          content: string
-          embedding?: string | null
-          fts_vector?: string | null
-          created_at?: string | null
-        }
+          id?: string;
+          faq_id: string;
+          category: string;
+          question: string;
+          answer: string;
+          content: string;
+          embedding?: string | null;
+          fts_vector?: string | null;
+          created_at?: string | null;
+        };
         Update: {
-          id?: string
-          faq_id?: string
-          category?: string
-          question?: string
-          answer?: string
-          content?: string
-          embedding?: string | null
-          fts_vector?: string | null
-          created_at?: string | null
-        }
-        Relationships: []
-      }
-    }
-    Views: Record<string, never>
+          id?: string;
+          faq_id?: string;
+          category?: string;
+          question?: string;
+          answer?: string;
+          content?: string;
+          embedding?: string | null;
+          fts_vector?: string | null;
+          created_at?: string | null;
+        };
+        Relationships: [];
+      };
+    };
+    Views: Record<string, never>;
     Functions: {
       hybrid_search: {
         Args: {
           // pgvector passed as a bracketed string: "[0.1,0.2,...]"
-          query_embedding: string
-          query_text: string
-          match_count?: number
-        }
+          query_embedding: string;
+          query_text: string;
+          match_count?: number;
+        };
         Returns: Array<{
-          id: string
-          faq_id: string
-          category: string
-          question: string
-          answer: string
-          content: string
-          vector_score: number
-          bm25_score: number
-          hybrid_score: number
-        }>
-      }
-    }
-    Enums: Record<string, never>
-    CompositeTypes: Record<string, never>
-  }
+          id: string;
+          faq_id: string;
+          category: string;
+          question: string;
+          answer: string;
+          content: string;
+          vector_score: number;
+          bm25_score: number;
+          hybrid_score: number;
+        }>;
+      };
+    };
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
+  };
 }

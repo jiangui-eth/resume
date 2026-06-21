@@ -22,11 +22,8 @@ export default function ResumePage1() {
               <span className="cursor" />
             </div>
             <div className="tagline">
-              <span className="role">Senior Front-End Engineer</span>
-              {' '}
-              ·
-              高级前端开发工程师 ·
-              <span className="yr">8 yrs</span>
+              <span className="role">Senior Front-End Engineer</span> ·
+              高级前端开发工程师 ·<span className="yr">8 yrs</span>
             </div>
           </div>
           <div className="header-meta">
@@ -58,20 +55,11 @@ export default function ResumePage1() {
         </header>
 
         <p className="summary">
-          8 年前端开发经验，专注
-          {' '}
-          <b>React / Next.js</b>
-          {' '}
+          8 年前端开发经验，专注 <b>React / Next.js</b>{" "}
           技术栈与前端工程化体系建设。具备中大型 Web
-          应用架构设计与性能优化经验（SEO 14× · LCP 1.8s · 构建 ↑80%）。主导
-          {' '}
-          <b>Design System 与 Monorepo</b>
-          {' '}
-          落地，亦具备
-          {' '}
-          <b>AI 应用（RAG / 多模型接入）</b>
-          {' '}
-          经验。
+          应用架构设计与性能优化经验（SEO 14× · LCP 1.8s · 构建 ↑80%）。主导{" "}
+          <b>Design System 与 Monorepo</b> 落地，亦具备{" "}
+          <b>AI 应用（RAG / 多模型接入）</b> 经验。
         </p>
 
         <div className="hi">
@@ -115,8 +103,7 @@ export default function ResumePage1() {
           <div className="cell">
             <span className="k">RAG_CORPUS</span>
             <span className="v">
-              2
-              <span className="a">TB</span>
+              2<span className="a">TB</span>
             </span>
             <span className="cap">设备资料</span>
           </div>
@@ -130,7 +117,7 @@ export default function ResumePage1() {
         <div className="skills-json">
           <div className="ln">
             <span className="gutter">1</span>
-            <span className="punct">{'{'}</span>
+            <span className="punct">{"{"}</span>
           </div>
           <div className="ln">
             <span className="gutter">2</span>
@@ -157,9 +144,7 @@ export default function ResumePage1() {
             <span className="key">&quot;architecture&quot;</span>
             <span className="punct">:</span>
             <span className="val">
-              IoC · 函数式 ·
-              {' '}
-              <b>SOLID</b>
+              IoC · 函数式 · <b>SOLID</b>
               ；微前端（Module Federation · Single-Spa · Web Components）
             </span>
           </div>
@@ -178,11 +163,7 @@ export default function ResumePage1() {
             <span className="key">&quot;state_style&quot;</span>
             <span className="punct">:</span>
             <span className="val">
-              Jotai · Zustand · MobX ·
-              {' '}
-              <b>Tailwind</b>
-              {' '}
-              · styled-components
+              Jotai · Zustand · MobX · <b>Tailwind</b> · styled-components
             </span>
           </div>
           <div className="ln">
@@ -190,11 +171,7 @@ export default function ResumePage1() {
             <span className="key">&quot;ai_dev&quot;</span>
             <span className="punct">:</span>
             <span className="val">
-              多模型接入 ·
-              {' '}
-              <b>RAG（Pinecone / pgvector）</b>
-              {' '}
-              · SSE 流式 · MCP ·
+              多模型接入 · <b>RAG（Pinecone / pgvector）</b> · SSE 流式 · MCP ·
               Claude / OpenAI 工具链
             </span>
           </div>
@@ -216,7 +193,7 @@ export default function ResumePage1() {
           </div>
           <div className="ln">
             <span className="gutter">10</span>
-            <span className="punct">{'}'}</span>
+            <span className="punct">{"}"}</span>
           </div>
         </div>
 
@@ -229,40 +206,23 @@ export default function ResumePage1() {
         <div className="job">
           <div className="job-h">
             <div className="job-co">
-              深圳京程一灯科技有限公司
-              {' '}
-              <span className="arrow">·</span>
+              深圳京程一灯科技有限公司 <span className="arrow">·</span>
               <span className="role-tag">远程 / AI 全栈</span>
             </div>
             <div className="job-date">2025/12 — 至今</div>
           </div>
           <ul className="bullets">
             <li>
-              主导 AI 应用方向全栈研发，独立从
-              {' '}
-              <b>0 到 1</b>
-              {' '}
-              交付两款商业产品：风电行业
-              {' '}
-              <b>RAG 知识库平台</b>
-              （客服团队，管理
-              {' '}
-              <span className="metric">~2TB</span>
-              {' '}
-              设备资料）与景区
-              {' '}
-              <b>AIGC 营销应用</b>
+              主导 AI 应用方向全栈研发，独立从 <b>0 到 1</b>{" "}
+              交付两款商业产品：风电行业 <b>RAG 知识库平台</b>
+              （客服团队，管理 <span className="metric">~2TB</span>{" "}
+              设备资料）与景区 <b>AIGC 营销应用</b>
               （用户上传头像生成游玩短视频，付费下载 + 社交分享）。
             </li>
             <li>
               RAG 平台上线后，客服平均查阅文档时间从 5 分钟降至 1
-              分钟，工单平均处理时长下降
-              {' '}
-              <span className="metric">80%</span>
-              ；答案可信度评分
-              {' '}
-              <span className="metric">9/10</span>
-              。
+              分钟，工单平均处理时长下降 <span className="metric">80%</span>
+              ；答案可信度评分 <span className="metric">9/10</span>。
             </li>
             <li>
               抽象多模型接入、异步任务状态机、答案引用回链等可复用 AI
@@ -274,9 +234,7 @@ export default function ResumePage1() {
         <div className="job">
           <div className="job-h">
             <div className="job-co">
-              Gate.com
-              {' '}
-              <span className="arrow">·</span>
+              Gate.com <span className="arrow">·</span>
               <span className="role-tag">远程 / 高级前端</span>
             </div>
             <div className="job-date">2024/03 — 2025/12</div>
@@ -284,25 +242,16 @@ export default function ResumePage1() {
           <div className="job-meta">两次季度绩效 A+ · 团队最高</div>
           <ul className="bullets">
             <li>
-              负责全球 Top 10 加密货币交易所理财业务线前端研发，独立交付
-              {' '}
-              <b>双币投资 / 持币生息 / VIP 专享理财 / 杠杆无忧</b>
-              {' '}
-              4
+              负责全球 Top 10 加密货币交易所理财业务线前端研发，独立交付{" "}
+              <b>双币投资 / 持币生息 / VIP 专享理财 / 杠杆无忧</b> 4
               款金融产品，及 OTC 后台与 KYC/KYB 合规流程。
             </li>
             <li>
-              主导大数据内容页
-              {' '}
-              <b>SEO 专项</b>
+              主导大数据内容页 <b>SEO 专项</b>
               ：自然搜索访问量 1K/月 → 1.4W/月（
               <span className="metric">14×</span>
-              ），其余系列页面 +
-              <span className="metric">80%</span>
-              ；CSR →
-              <b>Next.js SSR</b>
-              {' '}
-              + JSON-LD 注入，Core Web Vitals
+              ），其余系列页面 +<span className="metric">80%</span>
+              ；CSR →<b>Next.js SSR</b> + JSON-LD 注入，Core Web Vitals
               良好阈值。
             </li>
             <li>
@@ -311,10 +260,8 @@ export default function ResumePage1() {
               ，消除运行时开销；Monorepo 公共模块、图标库与组件库维护。
             </li>
             <li>
-              引入 AI 辅助开发工作流（Cursor），重复性编码任务提速约
-              {' '}
-              <span className="metric">30%</span>
-              。
+              引入 AI 辅助开发工作流（Cursor），重复性编码任务提速约{" "}
+              <span className="metric">30%</span>。
             </li>
           </ul>
         </div>
@@ -328,5 +275,5 @@ export default function ResumePage1() {
         <span className="right">Ln 01 / 02 · A4 · zh-CN</span>
       </div>
     </article>
-  )
+  );
 }

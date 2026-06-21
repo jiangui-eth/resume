@@ -1,50 +1,50 @@
 export interface Highlight {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 export interface Capability {
-  icon: string
-  title: string
-  bullets: string[]
+  icon: string;
+  title: string;
+  bullets: string[];
 }
 
 export interface ProfileStats {
   /** Number of projects shipped, e.g. 14 */
-  projectsShipped: number
+  projectsShipped: number;
   /** Average response latency highlight, e.g. "1.8s" */
-  avgLatency: string
+  avgLatency: string;
   /** Core Web Vitals / performance score, e.g. 80 (percentage) */
-  performanceScore: number
+  performanceScore: number;
   /** Years of professional experience */
-  yearsExperience: number
+  yearsExperience: number;
 }
 
 export interface SocialLink {
-  platform: 'github' | 'linkedin' | 'twitter' | 'wechat' | 'email'
-  url: string
-  handle?: string
+  platform: "github" | "linkedin" | "twitter" | "wechat" | "email";
+  url: string;
+  handle?: string;
 }
 
 export interface Profile {
   /** Full display name */
-  name: string
+  name: string;
   /** ENS / Web3 handle */
-  ens?: string
+  ens?: string;
   /** Short role headline shown in hero */
-  headline: string
+  headline: string;
   /** One-paragraph professional summary */
-  summary: string
+  summary: string;
   /** Relative path to avatar image under public/ */
-  avatarUrl: string
+  avatarUrl: string;
   /** Location string, e.g. "Shanghai, China" */
-  location: string
+  location: string;
   /** Key metrics shown in bio/stats strip */
-  stats: ProfileStats
+  stats: ProfileStats;
   /** Display-formatted key metrics for the about strip */
-  highlights: Highlight[]
+  highlights: Highlight[];
   /** Technical capability cards for the capability section */
-  capabilities: Capability[]
+  capabilities: Capability[];
   /** Social / contact links */
-  socials: SocialLink[]
+  socials: SocialLink[];
 }

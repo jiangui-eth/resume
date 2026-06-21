@@ -1,12 +1,12 @@
-import type { JSX } from 'react'
-import type { ProjectBlockData } from '../types'
+import type { JSX } from "react";
+import type { ProjectBlockData } from "../types";
 
 export function OutcomePanel({
   project,
 }: {
-  project: ProjectBlockData
+  project: ProjectBlockData;
 }): JSX.Element {
-  const label = project.metricsLabel ?? 'Outcome Metrics'
+  const label = project.metricsLabel ?? "Outcome Metrics";
 
   return (
     <div className="glass-card overflow-hidden rounded-xl bg-[#1b1c1c] p-6">
@@ -14,7 +14,7 @@ export function OutcomePanel({
         {label}
       </p>
       <div className="space-y-4">
-        {project.metrics.map(m => (
+        {project.metrics.map((m) => (
           <div key={m.label} className="flex items-center gap-4">
             <span className="text-[64px] leading-none font-extrabold text-white">
               {m.value}
@@ -41,5 +41,5 @@ export function OutcomePanel({
         <div className="h-1 rounded bg-[#444748]" />
       </div>
     </div>
-  )
+  );
 }

@@ -1,16 +1,15 @@
-'use server'
+"use server";
 
-import type { Locale } from './request'
-import { cookies } from 'next/headers'
-import { SUPPORTED_LOCALES } from './request'
+import type { Locale } from "./request";
+import { cookies } from "next/headers";
+import { SUPPORTED_LOCALES } from "./request";
 
 export async function setLocale(locale: Locale) {
-  if (!SUPPORTED_LOCALES.includes(locale))
-    return
-  const cookieStore = await cookies()
-  cookieStore.set('locale', locale, {
-    path: '/',
+  if (!SUPPORTED_LOCALES.includes(locale)) return;
+  const cookieStore = await cookies();
+  cookieStore.set("locale", locale, {
+    path: "/",
     maxAge: 60 * 60 * 24 * 365,
-    sameSite: 'lax',
-  })
+    sameSite: "lax",
+  });
 }

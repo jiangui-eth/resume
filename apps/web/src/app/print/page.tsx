@@ -1,12 +1,12 @@
-import type { Metadata } from 'next'
-import PrintButton from '@/components/print/PrintButton'
-import PrintLayout from '@/components/print/PrintLayout'
+import type { Metadata } from "next";
+import PrintButton from "@/components/print/PrintButton";
+import PrintLayout from "@/components/print/PrintLayout";
 
 export const metadata: Metadata = {
-  title: 'Print Resume | jiangui.eth',
-  description: 'Printable A4 resume for Jiangui — Senior Full-Stack Engineer.',
+  title: "Print Resume | jiangui.eth",
+  description: "Printable A4 resume for Jiangui — Senior Full-Stack Engineer.",
   robots: { index: false, follow: false },
-}
+};
 
 export default function PrintPage() {
   return (
@@ -16,5 +16,5 @@ export default function PrintPage() {
         <PrintButton />
       </div>
     </>
-  )
+  );
 }

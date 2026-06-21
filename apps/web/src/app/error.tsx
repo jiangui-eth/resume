@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 // Sentry (configured in next.config.ts) automatically captures errors
 // forwarded to this boundary — no manual logging needed here.
@@ -7,8 +7,8 @@ export default function GlobalError({
   error: _error,
   reset,
 }: {
-  error: Error & { digest?: string }
-  reset: () => void
+  error: Error & { digest?: string };
+  reset: () => void;
 }) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-[#121414] px-6 text-center">
@@ -26,5 +26,5 @@ export default function GlobalError({
         Try again
       </button>
     </div>
-  )
+  );
 }

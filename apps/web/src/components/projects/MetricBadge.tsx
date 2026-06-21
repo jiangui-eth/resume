@@ -1,6 +1,6 @@
 interface MetricBadgeProps {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 export default function MetricBadge({ value, label }: MetricBadgeProps) {
@@ -13,5 +13,5 @@ export default function MetricBadge({ value, label }: MetricBadgeProps) {
         {label}
       </span>
     </div>
-  )
+  );
 }

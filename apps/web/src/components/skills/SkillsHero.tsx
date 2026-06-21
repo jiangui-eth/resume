@@ -1,42 +1,42 @@
-'use client'
+"use client";
 
-import type { JSX } from 'react'
-import { useTranslations } from 'next-intl'
-import SectionWrapper from '@/components/ui/SectionWrapper'
+import type { JSX } from "react";
+import { useTranslations } from "next-intl";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 
 export default function SkillsHero(): JSX.Element {
-  const t = useTranslations('skillsHero')
+  const t = useTranslations("skillsHero");
 
   return (
     <SectionWrapper className="relative overflow-hidden pt-10 pb-20">
       <div className="relative z-10 max-w-3xl pt-20">
         <span className="mb-2 block font-mono text-sm tracking-widest text-[#aec6ff] uppercase">
-          {t('badge')}
+          {t("badge")}
         </span>
         <h1 className="mb-4 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-white">
-          {t('title')}
+          {t("title")}
         </h1>
         <p className="mb-6 max-w-2xl text-lg leading-relaxed text-[#8e9192]">
-          {t('description')}
+          {t("description")}
         </p>
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center gap-2 rounded-lg border border-[#444748]/50 bg-[#1b1c1c] px-4 py-2">
             <span
               className="material-symbols-outlined text-[#aec6ff]"
-              style={{ fontVariationSettings: '\'FILL\' 1' }}
+              style={{ fontVariationSettings: "'FILL' 1" }}
             >
               terminal
             </span>
-            <span className="font-mono text-sm">{t('systemArchitecture')}</span>
+            <span className="font-mono text-sm">{t("systemArchitecture")}</span>
           </div>
           <div className="flex items-center gap-2 rounded-lg border border-[#444748]/50 bg-[#1b1c1c] px-4 py-2">
             <span
               className="material-symbols-outlined text-[#aec6ff]"
-              style={{ fontVariationSettings: '\'FILL\' 1' }}
+              style={{ fontVariationSettings: "'FILL' 1" }}
             >
               speed
             </span>
-            <span className="font-mono text-sm">{t('performanceFirst')}</span>
+            <span className="font-mono text-sm">{t("performanceFirst")}</span>
           </div>
         </div>
       </div>
@@ -62,5 +62,5 @@ export default function SkillsHero(): JSX.Element {
         </svg>
       </div>
     </SectionWrapper>
-  )
+  );
 }

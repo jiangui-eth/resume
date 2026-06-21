@@ -1,12 +1,12 @@
 export interface ContactInfo {
-  email: string
+  email: string;
   /** WeChat ID — keep empty string if not public */
-  wechat: string
+  wechat: string;
   /** Phone number — keep empty string if not public */
-  phone: string
-  github: string
-  linkedin: string
-  twitter: string
+  phone: string;
+  github: string;
+  linkedin: string;
+  twitter: string;
   /** Calendar booking link, e.g. Calendly */
-  calendarUrl?: string
+  calendarUrl?: string;
 }

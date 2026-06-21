@@ -1,4 +1,4 @@
-import { PRINT_EXPERIENCE } from '@/data/print-experience'
+import { PRINT_EXPERIENCE } from "@/data/print-experience";
 
 export default function PrintExperience() {
   return (
@@ -7,7 +7,7 @@ export default function PrintExperience() {
         Professional Experience
       </h2>
       <div className="space-y-5">
-        {PRINT_EXPERIENCE.map(exp => (
+        {PRINT_EXPERIENCE.map((exp) => (
           <div key={exp.company} className="print-entry">
             <div className="flex items-baseline justify-between">
               <h3 className="text-sm font-semibold text-gray-900">
@@ -19,7 +19,7 @@ export default function PrintExperience() {
             </div>
             <p className="mb-1 text-[11px] text-blue-700">{exp.company}</p>
             <ul className="list-inside list-disc space-y-0.5">
-              {exp.bullets.map(b => (
+              {exp.bullets.map((b) => (
                 <li key={b} className="text-[11px] leading-snug text-gray-700">
                   {b}
                 </li>
@@ -29,5 +29,5 @@ export default function PrintExperience() {
         ))}
       </div>
     </section>
-  )
+  );
 }

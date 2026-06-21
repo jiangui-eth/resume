@@ -1,13 +1,13 @@
-import type { JSX } from 'react'
-import type { ProjectBlockData } from '../types'
+import type { JSX } from "react";
+import type { ProjectBlockData } from "../types";
 
 export function ProgressPanel({
   project,
 }: {
-  project: ProjectBlockData
+  project: ProjectBlockData;
 }): JSX.Element {
-  const [progress, ...codeMetrics] = project.metrics
-  const label = project.metricsLabel ?? 'Growth & Performance'
+  const [progress, ...codeMetrics] = project.metrics;
+  const label = project.metricsLabel ?? "Growth & Performance";
 
   return (
     <div className="glass-card h-full rounded-xl border-l-4 border-l-[#508eff] p-6">
@@ -27,7 +27,7 @@ export function ProgressPanel({
           </div>
         )}
         <div className="grid grid-cols-1 gap-4">
-          {codeMetrics.map(m => (
+          {codeMetrics.map((m) => (
             <div
               key={m.value}
               className="rounded border border-[#444748]/20 bg-[#121212] p-4"
@@ -39,5 +39,5 @@ export function ProgressPanel({
         </div>
       </div>
     </div>
-  )
+  );
 }

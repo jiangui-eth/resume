@@ -1,63 +1,61 @@
-'use client'
+"use client";
 
-import type { KeyboardEvent } from 'react'
-import { useEffect, useRef, useState } from 'react'
-import { useFaqBot } from '@/hooks/useFaqBot'
-import { FaqBotMessages } from './FaqBotMessages'
+import type { KeyboardEvent } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useFaqBot } from "@/hooks/useFaqBot";
+import { FaqBotMessages } from "./FaqBotMessages";
 
 export function FaqBotWidget() {
-  const [open, setOpen] = useState(false)
-  const [input, setInput] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
-  const { messages, isLoading, error, sendMessage, clearHistory } = useFaqBot()
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { messages, isLoading, error, sendMessage, clearHistory } = useFaqBot();
 
   // Listen for suggestion clicks from FaqBotMessages
   useEffect(() => {
     const handler = (e: Event) => {
-      const suggestion = (e as CustomEvent<string>).detail
-      setInput(suggestion)
-      inputRef.current?.focus()
-    }
-    window.addEventListener('faqbot:suggest', handler)
-    return () => window.removeEventListener('faqbot:suggest', handler)
-  }, [])
+      const suggestion = (e as CustomEvent<string>).detail;
+      setInput(suggestion);
+      inputRef.current?.focus();
+    };
+    window.addEventListener("faqbot:suggest", handler);
+    return () => window.removeEventListener("faqbot:suggest", handler);
+  }, []);
 
   // Auto-focus input when panel opens
   useEffect(() => {
-    if (!open)
-      return
-    const timer = setTimeout(() => inputRef.current?.focus(), 80)
-    return () => clearTimeout(timer)
-  }, [open])
+    if (!open) return;
+    const timer = setTimeout(() => inputRef.current?.focus(), 80);
+    return () => clearTimeout(timer);
+  }, [open]);
 
   const handleSend = async () => {
-    const q = input.trim()
-    if (!q || isLoading)
-      return
-    setInput('')
-    await sendMessage(q)
-  }
+    const q = input.trim();
+    if (!q || isLoading) return;
+    setInput("");
+    await sendMessage(q);
+  };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
-      void handleSend()
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      void handleSend();
     }
-  }
+  };
 
   return (
     <>
       {/* ── Floating action button ─────────────────────────────────────── */}
       <button
-        aria-label={open ? 'Close OTC FAQ Bot' : 'Open OTC FAQ Bot'}
-        onClick={() => setOpen(v => !v)}
+        aria-label={open ? "Close OTC FAQ Bot" : "Open OTC FAQ Bot"}
+        onClick={() => setOpen((v) => !v)}
         className={`fixed right-6 bottom-6 z-50 flex h-14 w-14 items-center justify-center rounded-full text-2xl shadow-lg transition-all duration-300 ${
           open
-            ? 'rotate-90 bg-muted text-foreground'
-            : 'bg-primary text-primary-foreground hover:scale-105'
+            ? "rotate-90 bg-muted text-foreground"
+            : "bg-primary text-primary-foreground hover:scale-105"
         }`}
       >
-        {open ? '✕' : '💬'}
+        {open ? "✕" : "💬"}
       </button>
 
       {/* ── Chat panel ────────────────────────────────────────────────── */}
@@ -66,8 +64,8 @@ export function FaqBotWidget() {
         inert={!open}
         className={`fixed right-6 bottom-24 z-50 flex max-h-[520px] w-[340px] origin-bottom-right flex-col rounded-2xl border border-border bg-background shadow-2xl transition-all duration-300 ${
           open
-            ? 'pointer-events-auto scale-100 opacity-100'
-            : 'pointer-events-none scale-95 opacity-0'
+            ? "pointer-events-auto scale-100 opacity-100"
+            : "pointer-events-none scale-95 opacity-0"
         }`}
       >
         {/* Header */}
@@ -109,8 +107,7 @@ export function FaqBotWidget() {
         {/* RAG badge */}
         <div className="flex items-center gap-1.5 px-3 pb-1">
           <span className="text-[10px] text-muted-foreground">
-            Powered by
-            {' '}
+            Powered by{" "}
             <span className="font-mono text-primary">
               pgvector + BM25 + Cohere Rerank
             </span>
@@ -124,7 +121,7 @@ export function FaqBotWidget() {
               ref={inputRef}
               type="text"
               value={input}
-              onChange={e => setInput(e.target.value)}
+              onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask about OTC trading…"
               disabled={isLoading}
@@ -136,17 +133,15 @@ export function FaqBotWidget() {
               aria-label="Send message"
               className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-sm text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              {isLoading
-                ? (
-                    <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                  )
-                : (
-                    '↑'
-                  )}
+              {isLoading ? (
+                <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              ) : (
+                "↑"
+              )}
             </button>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
