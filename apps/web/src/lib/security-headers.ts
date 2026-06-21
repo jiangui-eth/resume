@@ -1,9 +1,22 @@
 // Applied via next.config.ts headers() to every route.
 // CSP covers browser-loaded resources only (server-side API calls are exempt).
+
+// React dev mode needs eval() to reconstruct call stacks from different environments.
+// Never include unsafe-eval in production.
+const isDev = process.env.NODE_ENV === "development";
+
+const scriptSrc = [
+  "'self'",
+  "'unsafe-inline'",
+  isDev ? "'unsafe-eval'" : null,
+  "https://vercel-insights-cdn.vercel-scripts.com",
+]
+  .filter(Boolean)
+  .join(" ");
+
 const CSP = [
   "default-src 'self'",
-  // Next.js injects inline hydration scripts; Vercel Analytics loads from CDN
-  "script-src 'self' 'unsafe-inline' https://vercel-insights-cdn.vercel-scripts.com",
+  `script-src ${scriptSrc}`,
   // Tailwind global styles + Material Symbols sheet from Google Fonts
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   // Material Symbols / Geist font files

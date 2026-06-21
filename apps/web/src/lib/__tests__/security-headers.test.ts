@@ -56,6 +56,11 @@ describe("securityHeaders", () => {
       expect(csp()).toContain("https://*.sentry.io");
     });
 
+    it("excludes unsafe-eval in non-development environments", () => {
+      // unsafe-eval is only added when NODE_ENV === 'development'
+      expect(csp()).not.toContain("'unsafe-eval'");
+    });
+
     it("blocks iframes with frame-ancestors none", () => {
       expect(csp()).toContain("frame-ancestors 'none'");
     });
