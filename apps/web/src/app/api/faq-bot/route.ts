@@ -23,6 +23,26 @@ import { z } from 'zod'
 // No runtime export needed – OpenNext Cloudflare adapter manages the runtime.
 export const maxDuration = 60
 
+// ── CORS ───────────────────────────────────────────────────────────────────
+
+function getCorsHeaders(): Record<string, string> {
+  const origin = process.env.CORS_ORIGIN
+  if (!origin)
+    return {}
+  return {
+    'Access-Control-Allow-Origin': origin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  }
+}
+
+export function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: getCorsHeaders(),
+  })
+}
+
 // ── Request Schema ─────────────────────────────────────────────────────────
 
 const requestSchema = z.object({
@@ -217,7 +237,7 @@ export async function POST(req: NextRequest) {
   if (!allowed) {
     return new Response('Too Many Requests', {
       status: 429,
-      headers: { 'Retry-After': String(retryAfter) },
+      headers: { 'Retry-After': String(retryAfter), ...getCorsHeaders() },
     })
   }
 
@@ -227,7 +247,10 @@ export async function POST(req: NextRequest) {
     rawBody = await req.json()
   }
   catch {
-    return new Response('Invalid JSON body', { status: 400 })
+    return new Response('Invalid JSON body', {
+      status: 400,
+      headers: getCorsHeaders(),
+    })
   }
 
   const parsed = requestSchema.safeParse(rawBody)
@@ -237,7 +260,10 @@ export async function POST(req: NextRequest) {
         error: 'Invalid request',
         details: parsed.error.flatten(),
       }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } },
+      {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', ...getCorsHeaders() },
+      },
     )
   }
 
@@ -281,6 +307,7 @@ export async function POST(req: NextRequest) {
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive',
         'X-Faq-Mode': 'demo',
+        ...getCorsHeaders(),
       },
     })
   }
@@ -350,6 +377,7 @@ export async function POST(req: NextRequest) {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
       'Connection': 'keep-alive',
+      ...getCorsHeaders(),
     },
   })
 }
