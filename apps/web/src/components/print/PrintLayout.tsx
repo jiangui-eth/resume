@@ -1,20 +1,20 @@
-import PrintExperience from './PrintExperience'
-import PrintProjects from './PrintProjects'
+import PrintExperience from "./PrintExperience";
+import PrintProjects from "./PrintProjects";
 
 const SKILLS = [
-  'TypeScript',
-  'React',
-  'Next.js',
-  'Node.js',
-  'Solidity',
-  'Go',
-  'PostgreSQL',
-  'Redis',
-  'Docker',
-  'Kubernetes',
-  'Tailwind CSS',
-  'GraphQL',
-]
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "Solidity",
+  "Go",
+  "PostgreSQL",
+  "Redis",
+  "Docker",
+  "Kubernetes",
+  "Tailwind CSS",
+  "GraphQL",
+];
 
 export default function PrintLayout() {
   return (
@@ -46,7 +46,7 @@ export default function PrintLayout() {
               Tech Skills
             </h2>
             <div className="flex flex-wrap gap-1.5">
-              {SKILLS.map(skill => (
+              {SKILLS.map((skill) => (
                 <span
                   key={skill}
                   className="rounded border border-gray-200 px-1.5 py-0.5 text-[10px] text-gray-700"
@@ -87,5 +87,5 @@ export default function PrintLayout() {
         </main>
       </div>
     </div>
-  )
+  );
 }

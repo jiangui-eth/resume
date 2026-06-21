@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { useTranslations } from 'next-intl'
-import contactData from '@/data/contact.json'
+import { useTranslations } from "next-intl";
+import contactData from "@/data/contact.json";
 
-const CURRENT_YEAR = new Date().getFullYear()
+const CURRENT_YEAR = new Date().getFullYear();
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: contactData.github },
-  { label: 'LinkedIn', href: contactData.linkedin },
-  { label: 'Twitter', href: contactData.twitter },
-  { label: 'Email', href: `mailto:${contactData.email}` },
-].filter(l => l.href && l.href !== 'mailto:')
+  { label: "GitHub", href: contactData.github },
+  { label: "LinkedIn", href: contactData.linkedin },
+  { label: "Twitter", href: contactData.twitter },
+  { label: "Email", href: `mailto:${contactData.email}` },
+].filter((l) => l.href && l.href !== "mailto:");
 
 export default function Footer() {
-  const t = useTranslations('footer')
+  const t = useTranslations("footer");
 
   return (
     <footer className="flex w-full flex-col items-center justify-between gap-4 border-t border-[#444748]/20 bg-[#121414] px-6 py-10 md:flex-row">
@@ -23,11 +23,7 @@ export default function Footer() {
           DevArchitect
         </span>
         <p className="font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192]">
-          ©
-          {' '}
-          {CURRENT_YEAR}
-          {' '}
-          {t('copyright')}
+          © {CURRENT_YEAR} {t("copyright")}
         </p>
       </div>
 
@@ -38,7 +34,7 @@ export default function Footer() {
             <li key={label}>
               <a
                 href={href}
-                target={href.startsWith('mailto:') ? undefined : '_blank'}
+                target={href.startsWith("mailto:") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 aria-label={label}
                 className="font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192] transition-colors hover:text-[#aec6ff]"
@@ -50,5 +46,5 @@ export default function Footer() {
         </ul>
       </nav>
     </footer>
-  )
+  );
 }

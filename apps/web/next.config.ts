@@ -1,9 +1,9 @@
-import type { NextConfig } from 'next'
-import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
-import { withSentryConfig } from '@sentry/nextjs'
-import createNextIntlPlugin from 'next-intl/plugin'
-import { securityHeaders } from './src/lib/security-headers'
-import '@jiangui-resume/env/web'
+import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { withSentryConfig } from "@sentry/nextjs";
+import createNextIntlPlugin from "next-intl/plugin";
+import { securityHeaders } from "./src/lib/security-headers";
+import "@jiangui-resume/env/web";
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
@@ -11,27 +11,27 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: securityHeaders,
       },
-    ]
+    ];
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
-}
+};
 
-const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-initOpenNextCloudflareForDev()
+initOpenNextCloudflareForDev();
 
 export default withSentryConfig(withNextIntl(nextConfig), {
   org: process.env.SENTRY_ORG,
@@ -42,4 +42,4 @@ export default withSentryConfig(withNextIntl(nextConfig), {
   sourcemaps: {
     deleteSourcemapsAfterUpload: true,
   },
-})
+});

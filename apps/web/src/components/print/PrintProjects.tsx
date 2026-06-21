@@ -1,4 +1,4 @@
-import { PRINT_PROJECTS } from '@/data/print-projects'
+import { PRINT_PROJECTS } from "@/data/print-projects";
 
 export default function PrintProjects() {
   return (
@@ -7,7 +7,7 @@ export default function PrintProjects() {
         Key Projects
       </h2>
       <div className="grid grid-cols-2 gap-3">
-        {PRINT_PROJECTS.map(proj => (
+        {PRINT_PROJECTS.map((proj) => (
           <div
             key={proj.name}
             className="print-entry rounded border border-gray-200 p-3"
@@ -19,7 +19,7 @@ export default function PrintProjects() {
               {proj.description}
             </p>
             <div className="flex flex-wrap gap-1">
-              {proj.tags.map(tag => (
+              {proj.tags.map((tag) => (
                 <span
                   key={tag}
                   className="rounded border border-gray-200 px-1 py-0.5 text-[9px] text-gray-600"
@@ -32,5 +32,5 @@ export default function PrintProjects() {
         ))}
       </div>
     </section>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import type { JSX } from 'react'
-import type { ProjectBlockData } from '../types'
+import type { JSX } from "react";
+import type { ProjectBlockData } from "../types";
 
 export function VizPanel({
   project,
 }: {
-  project: ProjectBlockData
+  project: ProjectBlockData;
 }): JSX.Element {
-  const label = project.metricsLabel ?? 'Visualization Engine'
+  const label = project.metricsLabel ?? "Visualization Engine";
 
   return (
     <div className="glass-card h-full rounded-xl p-6">
@@ -17,8 +17,8 @@ export function VizPanel({
         <div
           className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: 'radial-gradient(#aec6ff 1px, transparent 1px)',
-            backgroundSize: '20px 20px',
+            backgroundImage: "radial-gradient(#aec6ff 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
           }}
         />
         <span className="material-symbols-outlined z-10 text-[60px] text-[#aec6ff] transition-transform group-hover:scale-110">
@@ -29,7 +29,7 @@ export function VizPanel({
         </div>
       </div>
       <div className="mt-10 space-y-4">
-        {project.metrics.map(m => (
+        {project.metrics.map((m) => (
           <div
             key={m.label}
             className="flex justify-between border-b border-[#444748]/20 pb-2"
@@ -40,5 +40,5 @@ export function VizPanel({
         ))}
       </div>
     </div>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import type { Metadata } from 'next'
-import PrintToolbar from './PrintToolbar'
-import ResumePage1 from './ResumePage1'
-import ResumePage2 from './ResumePage2'
+import type { Metadata } from "next";
+import PrintToolbar from "./PrintToolbar";
+import ResumePage1 from "./ResumePage1";
+import ResumePage2 from "./ResumePage2";
 
 export const metadata: Metadata = {
-  title: 'Resume Preview | jiangui.eth',
+  title: "Resume Preview | jiangui.eth",
   robots: { index: false, follow: false },
-}
+};
 
 export default function ResumePreviewPage() {
   return (
@@ -23,13 +23,13 @@ export default function ResumePreviewPage() {
       />
       <div
         style={{
-          background: '#e8e6dd',
-          padding: '80px 0',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '18px',
-          minHeight: '100vh',
+          background: "#e8e6dd",
+          padding: "80px 0",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "18px",
+          minHeight: "100vh",
         }}
       >
         <ResumePage1 />
@@ -37,5 +37,5 @@ export default function ResumePreviewPage() {
         <PrintToolbar />
       </div>
     </>
-  )
+  );
 }

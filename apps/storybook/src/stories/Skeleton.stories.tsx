@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Skeleton } from '@jiangui-resume/ui/components/skeleton'
+import type { Meta, StoryObj } from "@storybook/react";
+import { Skeleton } from "@jiangui-resume/ui/components/skeleton";
 
 const meta: Meta<typeof Skeleton> = {
-  title: 'UI/Skeleton',
+  title: "UI/Skeleton",
   component: Skeleton,
-  tags: ['autodocs'],
-}
+  tags: ["autodocs"],
+};
 
-export default meta
-type Story = StoryObj<typeof Skeleton>
+export default meta;
+type Story = StoryObj<typeof Skeleton>;
 
 export const Default: Story = {
   render: () => (
@@ -18,7 +18,7 @@ export const Default: Story = {
       <Skeleton className="h-4 w-36" />
     </div>
   ),
-}
+};
 
 export const CardPlaceholder: Story = {
   render: () => (
@@ -28,4 +28,4 @@ export const CardPlaceholder: Story = {
       <Skeleton className="h-4 w-1/2" />
     </div>
   ),
-}
+};

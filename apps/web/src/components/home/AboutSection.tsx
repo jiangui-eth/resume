@@ -1,25 +1,25 @@
-import type { JSX } from 'react'
+import type { JSX } from "react";
 
-import type { Profile } from '@/types/profile'
-import { getTranslations } from 'next-intl/server'
-import Image from 'next/image'
-import SectionHeader from '@/components/ui/SectionHeader'
-import SectionWrapper from '@/components/ui/SectionWrapper'
-import profileData from '@/data/profile.json'
+import type { Profile } from "@/types/profile";
+import { getTranslations } from "next-intl/server";
+import Image from "next/image";
+import SectionHeader from "@/components/ui/SectionHeader";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import profileData from "@/data/profile.json";
 
-const profile = profileData as Profile
+const profile = profileData as Profile;
 
 export default async function AboutSection(): Promise<JSX.Element> {
-  const t = await getTranslations()
+  const t = await getTranslations();
 
   return (
     <SectionWrapper id="about" aria-label="About" className="py-20">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
         {/* Bio card — 8 cols */}
         <div className="glass-card flex flex-col justify-center p-10 md:col-span-8">
-          <SectionHeader title={t('about.title')} />
+          <SectionHeader title={t("about.title")} />
           <p className="mb-4 text-base leading-[1.6] text-[#c4c7c7]">
-            {t('profile.summary')}
+            {t("profile.summary")}
           </p>
           {/* Metrics row */}
           <div className="mt-4 flex gap-10">
@@ -45,10 +45,10 @@ export default async function AboutSection(): Promise<JSX.Element> {
             height={480}
             priority
             className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
-            style={{ height: '100%', minHeight: '280px' }}
+            style={{ height: "100%", minHeight: "280px" }}
           />
         </div>
       </div>
     </SectionWrapper>
-  )
+  );
 }

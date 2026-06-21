@@ -1,30 +1,30 @@
-'use client'
+"use client";
 
-import { useTranslations } from 'next-intl'
-import SectionHeader from '@/components/ui/SectionHeader'
-import SectionWrapper from '@/components/ui/SectionWrapper'
-import skillsData from '@/data/skills.json'
+import { useTranslations } from "next-intl";
+import SectionHeader from "@/components/ui/SectionHeader";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import skillsData from "@/data/skills.json";
 
 interface Tech {
-  name: string
-  featured: boolean
+  name: string;
+  featured: boolean;
 }
 interface Category {
-  category: string
-  icon: string
-  technologies: Tech[]
+  category: string;
+  icon: string;
+  technologies: Tech[];
 }
 
-const categories = skillsData.techCategories as Category[]
+const categories = skillsData.techCategories as Category[];
 
 export default function TechStackCards() {
-  const t = useTranslations('techStack')
+  const t = useTranslations("techStack");
 
   return (
     <SectionWrapper className="pb-20">
-      <SectionHeader title={t('title')} centered className="mb-10" />
+      <SectionHeader title={t("title")} centered className="mb-10" />
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {categories.map(cat => (
+        {categories.map((cat) => (
           <div
             key={cat.category}
             className="glass-card flex flex-col gap-4 rounded-xl p-6"
@@ -38,13 +38,13 @@ export default function TechStackCards() {
               </h3>
             </div>
             <div className="flex flex-wrap gap-2">
-              {cat.technologies.map(tech => (
+              {cat.technologies.map((tech) => (
                 <span
                   key={tech.name}
                   className={
                     tech.featured
-                      ? 'rounded border border-[#aec6ff]/50 bg-[#1f2020] px-2 py-0.5 font-mono text-xs text-[#aec6ff]'
-                      : 'rounded border border-[#444748]/30 bg-[#1f2020] px-2 py-0.5 font-mono text-xs text-[#8e9192]'
+                      ? "rounded border border-[#aec6ff]/50 bg-[#1f2020] px-2 py-0.5 font-mono text-xs text-[#aec6ff]"
+                      : "rounded border border-[#444748]/30 bg-[#1f2020] px-2 py-0.5 font-mono text-xs text-[#8e9192]"
                   }
                 >
                   {tech.name}
@@ -55,5 +55,5 @@ export default function TechStackCards() {
         ))}
       </div>
     </SectionWrapper>
-  )
+  );
 }

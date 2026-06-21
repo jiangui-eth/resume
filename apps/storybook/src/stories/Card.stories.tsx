@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import type { ComponentPropsWithoutRef } from 'react'
-import { Button } from '@jiangui-resume/ui/components/button'
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ComponentPropsWithoutRef } from "react";
+import { Button } from "@jiangui-resume/ui/components/button";
 import {
   Card,
   CardAction,
@@ -9,19 +9,19 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@jiangui-resume/ui/components/card'
+} from "@jiangui-resume/ui/components/card";
 
 const meta: Meta<typeof Card> = {
-  title: 'UI/Card',
+  title: "UI/Card",
   component: Card,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    size: { control: 'radio', options: ['default', 'sm'] },
+    size: { control: "radio", options: ["default", "sm"] },
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof Card>
+export default meta;
+type Story = StoryObj<typeof Card>;
 
 export const Default: Story = {
   render: (args: ComponentPropsWithoutRef<typeof Card>) => (
@@ -43,10 +43,10 @@ export const Default: Story = {
       </CardFooter>
     </Card>
   ),
-  args: { size: 'default' },
-}
+  args: { size: "default" },
+};
 
 export const Small: Story = {
   ...Default,
-  args: { size: 'sm' },
-}
+  args: { size: "sm" },
+};
