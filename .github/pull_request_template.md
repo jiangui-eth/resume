@@ -39,7 +39,7 @@
 <!-- Before / after screenshots for UI changes; omit for config-only PRs -->
 
 | Before | After |
-|--------|-------|
+| ------ | ----- |
 |        |       |
 
 ---

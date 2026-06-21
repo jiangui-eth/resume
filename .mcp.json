@@ -4,8 +4,10 @@
       "command": "/Users/jane-m4/.nvm/versions/node/v25.2.1/bin/codex",
       "args": [
         "mcp-server",
-        "-c", "model=\"gpt-5.4\"",
-        "-c", "sandbox_permissions=[\"disk-full-read-access\",\"disk-write-access\"]"
+        "-c",
+        "model=\"gpt-5.4\"",
+        "-c",
+        "sandbox_permissions=[\"disk-full-read-access\",\"disk-write-access\"]"
       ]
     },
     "context7": {

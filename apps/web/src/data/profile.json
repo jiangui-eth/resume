@@ -20,22 +20,38 @@
     {
       "icon": "terminal",
       "title": "Next.js / React",
-      "bullets": ["SSR & ISR Architectures", "App Router Expertise", "React Server Components"]
+      "bullets": [
+        "SSR & ISR Architectures",
+        "App Router Expertise",
+        "React Server Components"
+      ]
     },
     {
       "icon": "bolt",
       "title": "Performance",
-      "bullets": ["Core Web Vitals (LCP/INP)", "WASM Integration", "Runtime Optimization"]
+      "bullets": [
+        "Core Web Vitals (LCP/INP)",
+        "WASM Integration",
+        "Runtime Optimization"
+      ]
     },
     {
       "icon": "psychology",
       "title": "AI & RAG",
-      "bullets": ["LLM Orchestration (LangChain)", "Vector Database Optimization", "Prompt Engineering"]
+      "bullets": [
+        "LLM Orchestration (LangChain)",
+        "Vector Database Optimization",
+        "Prompt Engineering"
+      ]
     },
     {
       "icon": "layers",
       "title": "Engineering",
-      "bullets": ["Monorepos (Turborepo)", "Design System Architecture", "CI/CD Pipeline Design"]
+      "bullets": [
+        "Monorepos (Turborepo)",
+        "Design System Architecture",
+        "CI/CD Pipeline Design"
+      ]
     }
   ],
   "socials": [

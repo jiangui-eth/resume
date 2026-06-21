@@ -140,8 +140,7 @@ export default function ResumePage1() {
               <b>React / Next.js</b>
               、Vue 2/3、
               <b>TypeScript</b>
-              ；Svelte · Solid
-              · AssemblyScript
+              ；Svelte · Solid · AssemblyScript
             </span>
           </div>
           <div className="ln">
@@ -150,8 +149,7 @@ export default function ResumePage1() {
             <span className="punct">:</span>
             <span className="val">
               <b>Webpack / Vite / SWC / Rollup</b>
-              ；pnpm Monorepo · CLI ·
-              私仓管理
+              ；pnpm Monorepo · CLI · 私仓管理
             </span>
           </div>
           <div className="ln">
@@ -162,8 +160,7 @@ export default function ResumePage1() {
               IoC · 函数式 ·
               {' '}
               <b>SOLID</b>
-              ；微前端（Module Federation ·
-              Single-Spa · Web Components）
+              ；微前端（Module Federation · Single-Spa · Web Components）
             </span>
           </div>
           <div className="ln">
@@ -172,8 +169,8 @@ export default function ResumePage1() {
             <span className="punct">:</span>
             <span className="val">
               <b>Core Web Vitals</b>
-              （LCP / FID / CLS）量化优化；Code Splitting
-              · Tree-shaking · WebAssembly + GPU
+              （LCP / FID / CLS）量化优化；Code Splitting · Tree-shaking ·
+              WebAssembly + GPU
             </span>
           </div>
           <div className="ln">
@@ -255,8 +252,7 @@ export default function ResumePage1() {
               设备资料）与景区
               {' '}
               <b>AIGC 营销应用</b>
-              （用户上传头像生成游玩短视频，付费下载 +
-              社交分享）。
+              （用户上传头像生成游玩短视频，付费下载 + 社交分享）。
             </li>
             <li>
               RAG 平台上线后，客服平均查阅文档时间从 5 分钟降至 1
@@ -306,8 +302,8 @@ export default function ResumePage1() {
               ；CSR →
               <b>Next.js SSR</b>
               {' '}
-              +
-              JSON-LD 注入，Core Web Vitals 良好阈值。
+              + JSON-LD 注入，Core Web Vitals
+              良好阈值。
             </li>
             <li>
               主导基础设施现代化：
