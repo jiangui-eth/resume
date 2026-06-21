@@ -32,14 +32,6 @@ vi.mock('next-intl/server', async () => {
   }
 })
 
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) =>
-      React.createElement('div', props, children),
-  },
-  useInView: () => true,
-}))
-
 async function renderPage() {
   const jsx = await ExperiencePage()
   return render(
