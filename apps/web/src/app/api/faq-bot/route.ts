@@ -14,6 +14,7 @@
 
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { NextRequest } from 'next/server'
+import type { Database } from '@/types/database'
 import { createClient } from '@supabase/supabase-js'
 import { CohereClient } from 'cohere-ai'
 import OpenAI from 'openai'
@@ -99,15 +100,8 @@ function checkRateLimit(ip: string): { allowed: boolean, retryAfter?: number } {
 
 // ── Types ─────────────────────────────────────────────────────────────────
 
-interface FaqChunkRow {
-  id: string
-  faq_id: string
-  category: string
-  question: string
-  answer: string
-  content: string
-  hybrid_score: number
-}
+type FaqChunkRow
+  = Database['public']['Functions']['hybrid_search']['Returns'][number]
 
 // ── Helpers ───────────────────────────────────────────────────────────────
 
@@ -125,7 +119,7 @@ function getClients() {
 
   return {
     openai: new OpenAI({ apiKey: openaiKey }),
-    supabase: createClient(supabaseUrl, supabaseKey),
+    supabase: createClient<Database>(supabaseUrl, supabaseKey),
     cohere: new CohereClient({ token: cohereKey }),
   }
 }
@@ -140,7 +134,7 @@ async function embedQuery(openai: OpenAI, query: string): Promise<number[]> {
 }
 
 async function hybridSearch(
-  supabase: SupabaseClient<any>,
+  supabase: SupabaseClient<Database>,
   embedding: number[],
   queryText: string,
   matchCount = 10,
