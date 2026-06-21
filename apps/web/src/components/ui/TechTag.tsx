@@ -1,5 +1,5 @@
 interface TechTagProps {
-  label: string;
+  label: string
 }
 
 export default function TechTag({ label }: TechTagProps) {
@@ -7,5 +7,5 @@ export default function TechTag({ label }: TechTagProps) {
     <span className="rounded bg-white/5 px-2 py-0.5 text-xs text-[#aec6ff]">
       {label}
     </span>
-  );
+  )
 }

@@ -1,22 +1,22 @@
-import { test, expect } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
+import AxeBuilder from '@axe-core/playwright'
+import { expect, test } from '@playwright/test'
 
 const PAGES = [
-  { name: "home", path: "/" },
-  { name: "experience", path: "/experience" },
-  { name: "projects", path: "/projects" },
-  { name: "skills", path: "/skills" },
-];
+  { name: 'home', path: '/' },
+  { name: 'experience', path: '/experience' },
+  { name: 'projects', path: '/projects' },
+  { name: 'skills', path: '/skills' },
+]
 
 for (const { name, path } of PAGES) {
   test(`${name} page — axe WCAG 2.1 AA`, async ({ page }) => {
-    await page.goto(path);
-    await page.waitForLoadState("networkidle");
+    await page.goto(path)
+    await page.waitForLoadState('networkidle')
 
     const results = await new AxeBuilder({ page })
-      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
-      .analyze();
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze()
 
-    expect(results.violations).toEqual([]);
-  });
+    expect(results.violations).toEqual([])
+  })
 }

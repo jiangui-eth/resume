@@ -1,29 +1,33 @@
-"use client";
+'use client'
 
-import { useTranslations } from "next-intl";
-import contactData from "@/data/contact.json";
+import { useTranslations } from 'next-intl'
+import contactData from '@/data/contact.json'
 
-const CURRENT_YEAR = new Date().getFullYear();
+const CURRENT_YEAR = new Date().getFullYear()
 
 const SOCIAL_LINKS = [
-  { label: "GitHub", href: contactData.github },
-  { label: "LinkedIn", href: contactData.linkedin },
-  { label: "Twitter", href: contactData.twitter },
-  { label: "Email", href: `mailto:${contactData.email}` },
-].filter((l) => l.href && l.href !== "mailto:");
+  { label: 'GitHub', href: contactData.github },
+  { label: 'LinkedIn', href: contactData.linkedin },
+  { label: 'Twitter', href: contactData.twitter },
+  { label: 'Email', href: `mailto:${contactData.email}` },
+].filter(l => l.href && l.href !== 'mailto:')
 
 export default function Footer() {
-  const t = useTranslations("footer");
+  const t = useTranslations('footer')
 
   return (
-    <footer className="w-full py-10 px-6 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#121414] border-t border-[#444748]/20">
+    <footer className="flex w-full flex-col items-center justify-between gap-4 border-t border-[#444748]/20 bg-[#121414] px-6 py-10 md:flex-row">
       {/* Left — brand + copyright */}
-      <div className="flex flex-col items-center md:items-start gap-1">
-        <span className="text-2xl font-bold leading-[1.3] tracking-[-0.01em] text-[#e3e2e2]">
+      <div className="flex flex-col items-center gap-1 md:items-start">
+        <span className="text-2xl leading-[1.3] font-bold tracking-[-0.01em] text-[#e3e2e2]">
           DevArchitect
         </span>
-        <p className="font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#8e9192]">
-          © {CURRENT_YEAR} {t("copyright")}
+        <p className="font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192]">
+          ©
+          {' '}
+          {CURRENT_YEAR}
+          {' '}
+          {t('copyright')}
         </p>
       </div>
 
@@ -34,10 +38,10 @@ export default function Footer() {
             <li key={label}>
               <a
                 href={href}
-                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                target={href.startsWith('mailto:') ? undefined : '_blank'}
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="font-mono text-sm font-medium leading-[1.4] tracking-[0.02em] text-[#8e9192] hover:text-[#aec6ff] transition-colors"
+                className="font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192] transition-colors hover:text-[#aec6ff]"
               >
                 {label}
               </a>
@@ -46,5 +50,5 @@ export default function Footer() {
         </ul>
       </nav>
     </footer>
-  );
+  )
 }

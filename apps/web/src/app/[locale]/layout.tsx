@@ -1,20 +1,20 @@
-import type { JSX } from "react";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
-import Providers from "@/components/providers";
-import ScrollDepthTracker from "@/components/home/ScrollDepthTracker";
+import type { JSX } from 'react'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
+import ScrollDepthTracker from '@/components/home/ScrollDepthTracker'
+import Footer from '@/components/layout/Footer'
+import Navbar from '@/components/layout/Navbar'
+import Providers from '@/components/providers'
 
 export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
 }): Promise<JSX.Element> {
-  const { locale } = await params;
-  const messages = await getMessages();
+  const { locale } = await params
+  const messages = await getMessages()
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
@@ -27,5 +27,5 @@ export default async function LocaleLayout({
         <ScrollDepthTracker />
       </Providers>
     </NextIntlClientProvider>
-  );
+  )
 }

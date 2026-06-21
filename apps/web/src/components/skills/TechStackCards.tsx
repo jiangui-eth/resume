@@ -1,38 +1,50 @@
-"use client";
+'use client'
 
-import { useTranslations } from "next-intl";
-import skillsData from "@/data/skills.json";
-import SectionWrapper from "@/components/ui/SectionWrapper";
-import SectionHeader from "@/components/ui/SectionHeader";
+import { useTranslations } from 'next-intl'
+import SectionHeader from '@/components/ui/SectionHeader'
+import SectionWrapper from '@/components/ui/SectionWrapper'
+import skillsData from '@/data/skills.json'
 
-type Tech = { name: string; featured: boolean };
-type Category = { category: string; icon: string; technologies: Tech[] };
+interface Tech {
+  name: string
+  featured: boolean
+}
+interface Category {
+  category: string
+  icon: string
+  technologies: Tech[]
+}
 
-const categories = skillsData.techCategories as Category[];
+const categories = skillsData.techCategories as Category[]
 
 export default function TechStackCards() {
-  const t = useTranslations("techStack");
+  const t = useTranslations('techStack')
 
   return (
     <SectionWrapper className="pb-20">
-      <SectionHeader title={t("title")} centered className="mb-10" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {categories.map((cat) => (
-          <div key={cat.category} className="glass-card p-6 rounded-xl flex flex-col gap-4">
+      <SectionHeader title={t('title')} centered className="mb-10" />
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {categories.map(cat => (
+          <div
+            key={cat.category}
+            className="glass-card flex flex-col gap-4 rounded-xl p-6"
+          >
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-[#aec6ff]">{cat.icon}</span>
+              <span className="material-symbols-outlined text-[#aec6ff]">
+                {cat.icon}
+              </span>
               <h3 className="text-2xl font-semibold tracking-[-0.01em] text-white">
                 {cat.category}
               </h3>
             </div>
             <div className="flex flex-wrap gap-2">
-              {cat.technologies.map((tech) => (
+              {cat.technologies.map(tech => (
                 <span
                   key={tech.name}
                   className={
                     tech.featured
-                      ? "font-mono text-xs px-2 py-0.5 bg-[#1f2020] rounded border border-[#aec6ff]/50 text-[#aec6ff]"
-                      : "font-mono text-xs px-2 py-0.5 bg-[#1f2020] rounded border border-[#444748]/30 text-[#8e9192]"
+                      ? 'rounded border border-[#aec6ff]/50 bg-[#1f2020] px-2 py-0.5 font-mono text-xs text-[#aec6ff]'
+                      : 'rounded border border-[#444748]/30 bg-[#1f2020] px-2 py-0.5 font-mono text-xs text-[#8e9192]'
                   }
                 >
                   {tech.name}
@@ -43,5 +55,5 @@ export default function TechStackCards() {
         ))}
       </div>
     </SectionWrapper>
-  );
+  )
 }

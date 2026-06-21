@@ -9,5 +9,5 @@ export default function GlobalLoading() {
         <p className="font-mono text-sm text-[#8e9192]">Loading…</p>
       </div>
     </div>
-  );
+  )
 }
