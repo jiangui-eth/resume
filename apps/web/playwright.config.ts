@@ -9,6 +9,7 @@ export default defineConfig({
   workers: isCI ? undefined : 1,
   forbidOnly: isCI,
   retries: isCI ? 1 : 0,
+  updateSnapshots: isCI ? "all" : "none",
   reporter: "html",
   use: {
     baseURL: process.env.BASE_URL ?? `http://localhost:${PORT}`,
