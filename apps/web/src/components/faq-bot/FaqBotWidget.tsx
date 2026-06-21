@@ -63,6 +63,7 @@ export function FaqBotWidget() {
       {/* ── Chat panel ────────────────────────────────────────────────── */}
       <div
         aria-hidden={!open}
+        inert={!open}
         className={`fixed right-6 bottom-24 z-50 flex max-h-[520px] w-[340px] origin-bottom-right flex-col rounded-2xl border border-border bg-background shadow-2xl transition-all duration-300 ${
           open
             ? 'pointer-events-auto scale-100 opacity-100'
