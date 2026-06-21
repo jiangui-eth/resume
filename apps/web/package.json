@@ -29,7 +29,6 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "cohere-ai": "^7.17.1",
     "dotenv": "catalog:",
-    "framer-motion": "^12.38.0",
     "lucide-react": "catalog:",
     "next": "catalog:",
     "next-intl": "^4.12.0",
