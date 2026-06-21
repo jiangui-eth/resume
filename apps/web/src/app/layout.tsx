@@ -1,58 +1,68 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { getLocale } from "next-intl/server";
-import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
+import { getLocale } from 'next-intl/server'
+import { Geist, Geist_Mono } from 'next/font/google'
 
-import "../index.css";
-import { FaqBotWidget } from "@/components/faq-bot/FaqBotWidget";
+import { FaqBotWidget } from '@/components/faq-bot/FaqBotWidget'
+import '../index.css'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jiangui-resume.vercel.app";
+const BASE_URL
+  = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://jiangui-resume.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "jiangui.eth — Senior Full-Stack Engineer",
-    template: "%s | jiangui.eth",
+    default: 'jiangui.eth — Senior Full-Stack Engineer',
+    template: '%s | jiangui.eth',
   },
   description:
-    "Senior Full-Stack & Web3 Engineer. Building high-throughput systems, DeFi protocols, and pixel-precise frontends.",
-  keywords: ["full-stack engineer", "web3", "solidity", "next.js", "typescript", "defi"],
+    'Senior Full-Stack & Web3 Engineer. Building high-throughput systems, DeFi protocols, and pixel-precise frontends.',
+  keywords: [
+    'full-stack engineer',
+    'web3',
+    'solidity',
+    'next.js',
+    'typescript',
+    'defi',
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
+    type: 'website',
+    locale: 'en_US',
     url: BASE_URL,
-    siteName: "jiangui.eth",
-    title: "jiangui.eth — Senior Full-Stack Engineer",
+    siteName: 'jiangui.eth',
+    title: 'jiangui.eth — Senior Full-Stack Engineer',
     description:
-      "Senior Full-Stack & Web3 Engineer. Building high-throughput systems, DeFi protocols, and pixel-precise frontends.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "jiangui.eth" }],
+      'Senior Full-Stack & Web3 Engineer. Building high-throughput systems, DeFi protocols, and pixel-precise frontends.',
+    images: [
+      { url: '/og-image.png', width: 1200, height: 630, alt: 'jiangui.eth' },
+    ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "jiangui.eth — Senior Full-Stack Engineer",
+    card: 'summary_large_image',
+    title: 'jiangui.eth — Senior Full-Stack Engineer',
     description:
-      "Senior Full-Stack & Web3 Engineer. Building high-throughput systems, DeFi protocols, and pixel-precise frontends.",
-    images: ["/og-image.png"],
+      'Senior Full-Stack & Web3 Engineer. Building high-throughput systems, DeFi protocols, and pixel-precise frontends.',
+    images: ['/og-image.png'],
   },
   robots: { index: true, follow: true },
-};
+}
 
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  const locale = await getLocale();
+  const locale = await getLocale()
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -62,12 +72,14 @@ export default async function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {children}
         <Analytics />
         {/* OTC FAQ Bot – floating chat widget */}
         <FaqBotWidget />
       </body>
     </html>
-  );
+  )
 }

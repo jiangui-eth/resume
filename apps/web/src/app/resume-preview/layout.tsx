@@ -1,9 +1,9 @@
-import "./resume-preview.css";
+import './resume-preview.css'
 
 export default function ResumePreviewLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  return <>{children}</>;
+  return <>{children}</>
 }
