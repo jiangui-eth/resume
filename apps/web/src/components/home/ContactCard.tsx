@@ -33,7 +33,7 @@ export default function ContactCard({
   return (
     <article className="glass-card flex items-center gap-4 p-6">
       {/* Icon circle */}
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#aec6ff]/10 text-[#aec6ff]">
+      <div className="bg-ds-accent/10 text-ds-accent flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
         <span className="material-symbols-outlined" aria-hidden="true">
           {icon}
         </span>
@@ -41,13 +41,13 @@ export default function ContactCard({
 
       {/* Text */}
       <div className="min-w-0 flex-1 text-left">
-        <p className="font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192]">
+        <p className="text-ds-muted font-mono text-sm leading-[1.4] font-medium tracking-[0.02em]">
           {label}
         </p>
         {href && !reveal ? (
           <a
             href={href}
-            className="block truncate text-2xl leading-[1.3] font-semibold tracking-[-0.01em] text-[#e3e2e2] transition-colors hover:text-[#aec6ff]"
+            className="text-ds-fg hover:text-ds-accent block truncate text-2xl leading-[1.3] font-semibold tracking-[-0.01em] transition-colors"
           >
             {display}
           </a>
@@ -56,8 +56,8 @@ export default function ContactCard({
             className={cn(
               "truncate text-2xl leading-[1.3] font-semibold tracking-[-0.01em]",
               reveal && !revealed
-                ? "tracking-widest text-[#e3e2e2]/20"
-                : "text-[#e3e2e2]",
+                ? "text-ds-fg/20 tracking-widest"
+                : "text-ds-fg",
             )}
           >
             {display}
@@ -69,7 +69,7 @@ export default function ContactCard({
       {reveal && (
         <button
           onClick={() => setRevealed((r) => !r)}
-          className="flex shrink-0 items-center gap-1 rounded border border-[#444748]/40 bg-[rgba(255,255,255,0.03)] px-3 py-1.5 font-mono text-xs text-[#8e9192] transition-colors hover:text-[#e3e2e2]"
+          className="border-ds-border-2/40 text-ds-muted hover:text-ds-fg flex shrink-0 items-center gap-1 rounded border bg-[rgba(255,255,255,0.03)] px-3 py-1.5 font-mono text-xs transition-colors"
           aria-label={revealed ? `Hide ${label}` : `Reveal ${label}`}
         >
           <span

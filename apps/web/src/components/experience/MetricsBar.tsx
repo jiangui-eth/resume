@@ -29,10 +29,12 @@ export default function MetricsBar(): JSX.Element {
       {metrics.map((metric) => (
         <article
           key={metric.titleKey}
-          className="glass-card rounded-xl border-l-4 border-l-[#508eff] p-6"
+          className="glass-card border-l-ds-accent-vivid rounded-xl border-l-4 p-6"
         >
-          <p className="text-4xl font-bold text-[#508eff]">{metric.value}</p>
-          <p className="mt-2 text-xs font-medium tracking-widest text-[#8e9192] uppercase">
+          <p className="text-ds-accent-vivid text-4xl font-bold">
+            {metric.value}
+          </p>
+          <p className="text-ds-muted mt-2 text-xs font-medium tracking-widest uppercase">
             {t(metric.titleKey)}
           </p>
           <p className="mt-2 text-sm leading-relaxed text-white/60">

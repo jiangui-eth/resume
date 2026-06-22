@@ -18,8 +18,8 @@ export default function ProjectImageClient({
 
   if (error || !src) {
     return (
-      <div className="flex h-full w-full items-center justify-center bg-[#1f2020]">
-        <span className="text-xs text-[#8e9192]">Image unavailable</span>
+      <div className="bg-ds-surface-2 flex h-full w-full items-center justify-center">
+        <span className="text-ds-muted text-xs">Image unavailable</span>
       </div>
     );
   }

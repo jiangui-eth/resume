@@ -89,16 +89,16 @@ export default async function ProjectsPage() {
     });
 
   return (
-    <div className="min-h-screen bg-[#121414] text-[#e3e2e2]">
+    <div className="bg-ds-bg text-ds-fg min-h-screen">
       <SectionWrapper as="main" className="pt-20 pb-20">
         <header className="mb-20 max-w-3xl">
           <h1 className="mb-4 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-white">
             {t("title")}{" "}
-            <span className="bg-linear-to-br from-[#aec6ff] to-[#508eff] bg-clip-text text-transparent">
+            <span className="from-ds-accent to-ds-accent-vivid bg-linear-to-br bg-clip-text text-transparent">
               {t("titleHighlight")}
             </span>
           </h1>
-          <p className="text-lg leading-relaxed text-[#8e9192]">
+          <p className="text-ds-muted text-lg leading-relaxed">
             {t("description")}
           </p>
         </header>

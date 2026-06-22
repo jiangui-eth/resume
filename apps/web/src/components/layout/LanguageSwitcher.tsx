@@ -50,7 +50,7 @@ export default function LanguageSwitcher() {
         onClick={() => setOpen((v) => !v)}
         className={cn(
           "flex items-center gap-1 rounded px-2 py-2 text-sm font-medium transition-colors",
-          "text-[#8e9192] hover:text-[#e3e2e2]",
+          "text-ds-muted hover:text-ds-fg",
           isPending && "cursor-not-allowed opacity-50",
         )}
       >
@@ -66,7 +66,7 @@ export default function LanguageSwitcher() {
         <ul
           role="listbox"
           aria-label={t("label")}
-          className="absolute top-full right-0 z-50 mt-1 min-w-[130px] rounded-lg border border-[#444748]/40 bg-[#1b1c1c] py-1 shadow-xl"
+          className="border-ds-border-2/40 bg-ds-surface absolute top-full right-0 z-50 mt-1 min-w-[130px] rounded-lg border py-1 shadow-xl"
         >
           {LOCALES.map(({ value, labelKey }) => (
             <li
@@ -77,8 +77,8 @@ export default function LanguageSwitcher() {
               className={cn(
                 "w-full cursor-pointer px-4 py-2 text-left text-sm transition-colors",
                 locale === value
-                  ? "bg-[#aec6ff]/5 font-semibold text-[#aec6ff]"
-                  : "text-[#8e9192] hover:bg-white/5 hover:text-[#e3e2e2]",
+                  ? "bg-ds-accent/5 text-ds-accent font-semibold"
+                  : "text-ds-muted hover:text-ds-fg hover:bg-white/5",
               )}
             >
               {t(labelKey)}

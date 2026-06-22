@@ -9,8 +9,8 @@ export function OutcomePanel({
   const label = project.metricsLabel ?? "Outcome Metrics";
 
   return (
-    <div className="glass-card overflow-hidden rounded-xl bg-[#1b1c1c] p-6">
-      <p className="mb-4 font-mono text-xs font-medium tracking-widest text-[#8e9192] uppercase">
+    <div className="glass-card bg-ds-surface overflow-hidden rounded-xl p-6">
+      <p className="text-ds-muted mb-4 font-mono text-xs font-medium tracking-widest uppercase">
         {label}
       </p>
       <div className="space-y-4">
@@ -19,14 +19,14 @@ export function OutcomePanel({
             <span className="text-[64px] leading-none font-extrabold text-white">
               {m.value}
             </span>
-            <span className="text-sm leading-snug text-[#8e9192]">
+            <span className="text-ds-muted text-sm leading-snug">
               {m.label}
             </span>
           </div>
         ))}
         {project.quote && (
-          <div className="rounded border border-[#aec6ff]/20 bg-[#aec6ff]/10 p-4">
-            <p className="font-mono text-sm text-[#aec6ff]">
+          <div className="border-ds-accent/20 bg-ds-accent/10 rounded border p-4">
+            <p className="text-ds-accent font-mono text-sm">
               &ldquo;
               {project.quote}
               &rdquo;
@@ -35,10 +35,10 @@ export function OutcomePanel({
         )}
       </div>
       <div className="mt-6 grid grid-cols-4 gap-2">
-        <div className="h-1 rounded bg-[#aec6ff]" />
-        <div className="h-1 rounded bg-[#aec6ff]" />
-        <div className="h-1 rounded bg-[#aec6ff]" />
-        <div className="h-1 rounded bg-[#444748]" />
+        <div className="bg-ds-accent h-1 rounded" />
+        <div className="bg-ds-accent h-1 rounded" />
+        <div className="bg-ds-accent h-1 rounded" />
+        <div className="bg-ds-border-2 h-1 rounded" />
       </div>
     </div>
   );

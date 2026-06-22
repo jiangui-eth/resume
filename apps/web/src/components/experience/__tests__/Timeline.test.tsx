@@ -65,10 +65,10 @@ describe("techTag", () => {
     expect(screen.getByText("React")).toBeInTheDocument();
   });
 
-  it("applies bg-white/5 and text-[#aec6ff] classes", () => {
+  it("applies bg-white/5 and text-ds-accent classes", () => {
     render(<TechTag label="Go" />);
     const tag = screen.getByText("Go");
     expect(tag.className).toContain("bg-white/5");
-    expect(tag.className).toContain("text-[#aec6ff]");
+    expect(tag.className).toContain("text-ds-accent");
   });
 });

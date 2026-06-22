@@ -69,21 +69,21 @@ export default async function ExperiencePage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#121414]">
+    <div className="bg-ds-bg min-h-screen">
       <section
         aria-label={`${t("badge")} header`}
         className="px-4 pt-[120px] pb-16 sm:px-6 lg:px-8"
       >
         <div className="mx-auto max-w-[1200px]">
           <div className="flex flex-col gap-4">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#aec6ff]/30 bg-[#aec6ff]/10 px-4 py-1.5 text-sm font-medium text-[#aec6ff]">
+            <span className="border-ds-accent/30 bg-ds-accent/10 text-ds-accent inline-flex w-fit items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium">
               {t("badge")}
             </span>
             <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
               {t("title")}{" "}
-              <span className="text-[#aec6ff]">{t("titleHighlight")}</span>
+              <span className="text-ds-accent">{t("titleHighlight")}</span>
             </h1>
-            <p className="mt-4 max-w-2xl text-lg text-[#8e9192]">
+            <p className="text-ds-muted mt-4 max-w-2xl text-lg">
               {t("description")}
             </p>
           </div>

@@ -23,10 +23,10 @@ export default function TechnicalDecisions({
       <h3 className="mb-2 text-2xl font-semibold tracking-[-0.01em] text-white">
         {t("title")}
       </h3>
-      <ul className="list-disc space-y-1 pl-4 text-[#8e9192]">
+      <ul className="text-ds-muted list-disc space-y-1 pl-4">
         {decisions.map((decision) => (
           <li key={decision.title}>
-            <span className="text-[#aec6ff]">{decision.title}</span>{" "}
+            <span className="text-ds-accent">{decision.title}</span>{" "}
             {decision.explanation}
           </li>
         ))}

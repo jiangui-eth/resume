@@ -61,7 +61,7 @@ function TimelineCardArticle({
     <article className="glass-card rounded-xl p-6">
       {/* Mobile date/company header */}
       <div className="mb-4 md:hidden">
-        <p className="text-sm font-medium text-[#aec6ff]">
+        <p className="text-ds-accent text-sm font-medium">
           {startLabel} –{" "}
           <span className={isPresent ? "font-semibold" : "text-white/60"}>
             {endLabel}
@@ -73,13 +73,13 @@ function TimelineCardArticle({
       </div>
 
       {/* Role label */}
-      <p className="mb-4 text-xs font-medium tracking-wider text-[#8e9192] uppercase">
+      <p className="text-ds-muted mb-4 text-xs font-medium tracking-wider uppercase">
         {experience.title}
       </p>
 
       {/* Highlight badge */}
       {experience.highlight ? (
-        <span className="mb-4 inline-block rounded border border-[#508eff]/30 px-2 py-0.5 font-mono text-xs text-[#508eff]">
+        <span className="border-ds-accent-vivid/30 text-ds-accent-vivid mb-4 inline-block rounded border px-2 py-0.5 font-mono text-xs">
           {experience.highlight}
         </span>
       ) : null}
@@ -93,7 +93,7 @@ function TimelineCardArticle({
           >
             <span
               aria-hidden="true"
-              className="material-symbols-outlined shrink-0 text-[#aec6ff]"
+              className="material-symbols-outlined text-ds-accent shrink-0"
               style={{ fontSize: "16px", lineHeight: "1.5" }}
             >
               arrow_right
@@ -150,11 +150,11 @@ export default function TimelineCard({
         className={`hidden w-1/2 px-8 md:flex ${isCardRight ? "justify-end" : "justify-start"}`}
       >
         <div className={isCardRight ? "text-right" : "text-left"}>
-          <p className="text-sm font-medium text-[#aec6ff]">
+          <p className="text-ds-accent text-sm font-medium">
             {startLabel} –{" "}
             <span
               className={
-                isPresent ? "font-semibold text-[#aec6ff]" : "text-white/60"
+                isPresent ? "text-ds-accent font-semibold" : "text-white/60"
               }
             >
               {endLabel}
@@ -165,7 +165,7 @@ export default function TimelineCard({
               href={experience.companyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base font-semibold text-white transition-colors hover:text-[#aec6ff]"
+              className="hover:text-ds-accent text-base font-semibold text-white transition-colors"
             >
               {experience.company}
             </a>
@@ -181,8 +181,8 @@ export default function TimelineCard({
       <div className="relative z-10 shrink-0">
         <span
           aria-hidden="true"
-          className={`block h-4 w-4 rounded-full border-4 border-[#121414] ring-4 ring-[#aec6ff]/20 ${
-            isPresent ? "animate-pulse bg-[#aec6ff]" : "bg-[#aec6ff]"
+          className={`border-ds-bg ring-ds-accent/20 block h-4 w-4 rounded-full border-4 ring-4 ${
+            isPresent ? "bg-ds-accent animate-pulse" : "bg-ds-accent"
           }`}
         />
       </div>

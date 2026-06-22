@@ -13,7 +13,7 @@ export function GridPanel({
 
   return (
     <div className="glass-card flex h-full flex-col rounded-xl p-6">
-      <p className="mb-4 font-mono text-xs font-medium tracking-widest text-[#8e9192] uppercase">
+      <p className="text-ds-muted mb-4 font-mono text-xs font-medium tracking-widest uppercase">
         {label}
       </p>
       {project.metrics.length > 0 && (
@@ -39,7 +39,7 @@ export function GridPanel({
         </div>
       ) : (
         project.metrics.length === 0 && (
-          <div className="mt-6 flex aspect-video items-center justify-center rounded-lg border border-[#333333]/30 bg-[#121414]">
+          <div className="border-ds-border/30 bg-ds-bg mt-6 flex aspect-video items-center justify-center rounded-lg border">
             <div className="text-center">
               <div className="text-sm font-medium tracking-[0.3em] text-white/30 uppercase">
                 Visual Pending

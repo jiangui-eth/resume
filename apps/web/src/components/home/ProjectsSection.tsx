@@ -32,7 +32,7 @@ function ProjectRow({
       {/* Image — 7 cols */}
       <div
         className={cn(
-          "relative aspect-video overflow-hidden rounded-lg border border-[#444748]/30 bg-[#1f2020] shadow-2xl md:col-span-7",
+          "border-ds-border-2/30 bg-ds-surface-2 relative aspect-video overflow-hidden rounded-lg border shadow-2xl md:col-span-7",
           imageRight && "md:order-2",
         )}
       >
@@ -45,13 +45,13 @@ function ProjectRow({
 
       {/* Text — 5 cols */}
       <div className={cn("md:col-span-5", imageRight && "md:order-1")}>
-        <span className="mb-2 block font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#aec6ff]">
+        <span className="text-ds-accent mb-2 block font-mono text-sm leading-[1.4] font-medium tracking-[0.02em]">
           {project.domainTags[0]}
         </span>
-        <h4 className="mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2]">
+        <h4 className="text-ds-fg mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em]">
           {project.name}
         </h4>
-        <p className="mb-6 text-base leading-[1.6] text-[#8e9192]">
+        <p className="text-ds-muted mb-6 text-base leading-[1.6]">
           {project.tagline}
         </p>
         {/* Tech tags */}
@@ -59,7 +59,7 @@ function ProjectRow({
           {project.techTags.map((tag) => (
             <span
               key={tag}
-              className="rounded bg-[#343535] px-2 py-1 font-mono text-sm leading-normal font-normal text-[#e3e2e2]"
+              className="bg-ds-tag text-ds-fg rounded px-2 py-1 font-mono text-sm leading-normal font-normal"
             >
               {tag}
             </span>
@@ -68,7 +68,7 @@ function ProjectRow({
         {/* Case study link */}
         <Link
           href={PROJECTS_HREF}
-          className="group flex items-center gap-2 text-2xl leading-[1.3] font-semibold tracking-[-0.01em] text-[#e3e2e2] transition-colors hover:text-[#aec6ff]"
+          className="group text-ds-fg hover:text-ds-accent flex items-center gap-2 text-2xl leading-[1.3] font-semibold tracking-[-0.01em] transition-colors"
         >
           {caseDetailsLabel}{" "}
           <span
@@ -117,7 +117,7 @@ export default async function ProjectsSection(): Promise<JSX.Element> {
         <SectionHeader level={3} title={t("title")} subtitle={t("subtitle")} />
         <Link
           href={PROJECTS_HREF}
-          className="flex shrink-0 items-center gap-1 font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#aec6ff] hover:underline"
+          className="text-ds-accent flex shrink-0 items-center gap-1 font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] hover:underline"
         >
           {t("viewAll")}{" "}
           <span
