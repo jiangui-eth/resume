@@ -6,7 +6,7 @@ import type { AbstractIntlMessages } from "next-intl";
 import { vi } from "vitest";
 import zhCN from "../../messages/zh-CN.json";
 
-const messages = zhCN as AbstractIntlMessages;
+const messages = zhCN as unknown as AbstractIntlMessages;
 
 function makeT(namespace?: string) {
   return (key: string) => {

@@ -15,9 +15,15 @@ interface Category {
   technologies: Tech[];
 }
 
-const categories = skillsData.techCategories as Category[];
+const defaultCategories = skillsData.techCategories as Category[];
 
-export default function TechStackCards() {
+interface TechStackCardsProps {
+  categories?: Category[];
+}
+
+export default function TechStackCards({
+  categories = defaultCategories,
+}: TechStackCardsProps) {
   const t = useTranslations("techStack");
 
   return (

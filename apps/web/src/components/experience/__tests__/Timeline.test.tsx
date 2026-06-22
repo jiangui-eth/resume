@@ -27,9 +27,9 @@ describe("timeline", () => {
     expect(screen.getAllByText("至今").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("formats the period start date for Gate.com", () => {
+  it("formats the period start date for Gate.com (zh-CN locale)", () => {
     renderWithIntl(<Timeline />);
-    expect(screen.getAllByText(/Mar 2024/).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/2024年3月/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders responsibility bullets", () => {

@@ -63,22 +63,22 @@ describe("contactSection", () => {
     expect(masked.length).toBeGreaterThanOrEqual(2);
   });
 
-  it("renders Reveal buttons for WeChat and Phone", async () => {
+  it("renders Reveal buttons for WeChat and Phone (zh-CN labels)", async () => {
     await renderSection();
     expect(
-      screen.getByRole("button", { name: /reveal wechat/i }),
+      screen.getByRole("button", { name: /reveal 微信/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /reveal phone/i }),
+      screen.getByRole("button", { name: /reveal 电话/i }),
     ).toBeInTheDocument();
   });
 
   it("reveals WeChat content and shows Hide button on click", async () => {
     const user = userEvent.setup();
     await renderSection();
-    await user.click(screen.getByRole("button", { name: /reveal wechat/i }));
+    await user.click(screen.getByRole("button", { name: /reveal 微信/i }));
     expect(
-      screen.getByRole("button", { name: /hide wechat/i }),
+      screen.getByRole("button", { name: /hide 微信/i }),
     ).toBeInTheDocument();
     expect(screen.getByText("未配置")).toBeInTheDocument();
   });
@@ -86,10 +86,10 @@ describe("contactSection", () => {
   it("re-masks WeChat content when Hide is clicked", async () => {
     const user = userEvent.setup();
     await renderSection();
-    await user.click(screen.getByRole("button", { name: /reveal wechat/i }));
-    await user.click(screen.getByRole("button", { name: /hide wechat/i }));
+    await user.click(screen.getByRole("button", { name: /reveal 微信/i }));
+    await user.click(screen.getByRole("button", { name: /hide 微信/i }));
     expect(
-      screen.getByRole("button", { name: /reveal wechat/i }),
+      screen.getByRole("button", { name: /reveal 微信/i }),
     ).toBeInTheDocument();
   });
 

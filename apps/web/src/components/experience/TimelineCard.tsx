@@ -3,10 +3,9 @@
 import type { JSX } from "react";
 import type { Experience } from "@/types/experience";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import TechTag from "@/components/ui/TechTag";
-import { formatDate } from "@/lib/utils";
 
 interface TimelineCardProps {
   experience: Experience;
@@ -114,17 +113,28 @@ function TimelineCardArticle({
   );
 }
 
+function formatDateLocale(ym: string, locale: string): string {
+  const [year, month] = ym.split("-");
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "short",
+  }).format(new Date(Number(year), Number(month) - 1, 1));
+}
+
 export default function TimelineCard({
   experience,
   index,
   side,
 }: TimelineCardProps): JSX.Element {
   const t = useTranslations("experience");
+  const locale = useLocale();
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const isPresent = experience.period.end === "present";
-  const startLabel = formatDate(experience.period.start);
-  const endLabel = isPresent ? t("present") : formatDate(experience.period.end);
+  const startLabel = formatDateLocale(experience.period.start, locale);
+  const endLabel = isPresent
+    ? t("present")
+    : formatDateLocale(experience.period.end, locale);
   const isCardRight = side === "left";
 
   return (
