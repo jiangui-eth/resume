@@ -23,7 +23,7 @@ export default function DownloadPdfButton({
       onClick={() => track("click_download_pdf", {})}
       className={cn(
         "inline-flex items-center gap-2 rounded px-4 py-2 text-sm font-bold",
-        "bg-[#508eff] text-[#00275e] transition-all hover:brightness-110",
+        "bg-ds-accent-vivid text-ds-accent-dim transition-all hover:brightness-110",
         fullWidth && "w-full justify-center",
       )}
     >

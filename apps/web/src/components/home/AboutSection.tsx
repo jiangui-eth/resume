@@ -23,17 +23,17 @@ export default async function AboutSection(): Promise<JSX.Element> {
         {/* Bio card — 8 cols */}
         <div className="glass-card flex flex-col justify-center p-10 md:col-span-8">
           <SectionHeader title={t("about.title")} />
-          <p className="mb-4 text-base leading-[1.6] text-[#c4c7c7]">
+          <p className="text-ds-subtle mb-4 text-base leading-[1.6]">
             {t("profile.summary")}
           </p>
           {/* Metrics row */}
           <div className="mt-4 flex gap-10">
             {profile.highlights.map(({ value, label }) => (
               <div key={label}>
-                <p className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#508eff]">
+                <p className="text-ds-accent-vivid text-[32px] leading-[1.2] font-bold tracking-[-0.02em]">
                   {value}
                 </p>
-                <p className="font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192]">
+                <p className="text-ds-muted font-mono text-sm leading-[1.4] font-medium tracking-[0.02em]">
                   {highlightLabels?.[label] ?? label}
                 </p>
               </div>

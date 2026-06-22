@@ -7,12 +7,12 @@ export default function ProjectsCTA() {
   const t = useTranslations("projectsCTA");
 
   return (
-    <section className="border-t border-[#444748]/30 py-20 text-center">
+    <section className="border-ds-border-2/30 border-t py-20 text-center">
       <div className="mx-auto max-w-300 px-6">
         <h2 className="mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-white">
           {t("title")}
         </h2>
-        <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-[#8e9192]">
+        <p className="text-ds-muted mx-auto mb-10 max-w-2xl text-lg leading-relaxed">
           {t("description")}
         </p>
         <div className="flex flex-wrap justify-center gap-4">
@@ -30,7 +30,7 @@ export default function ProjectsCTA() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("click_social_link", { platform: "github" })}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#444748] px-10 py-4 text-sm font-bold text-white transition-all hover:border-[#aec6ff]"
+            className="border-ds-border-2 hover:border-ds-accent inline-flex items-center gap-2 rounded-lg border px-10 py-4 text-sm font-bold text-white transition-all"
           >
             {t("viewGithub")}
           </a>

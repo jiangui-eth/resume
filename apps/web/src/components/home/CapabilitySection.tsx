@@ -13,13 +13,13 @@ function CapabilityCard({ icon, title, bullets }: Capability): JSX.Element {
       {/* Glow orb */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-12 -right-12 h-24 w-24 rounded-full bg-[#aec6ff]/10 blur-2xl transition-colors group-hover:bg-[#aec6ff]/20"
+        className="bg-ds-accent/10 group-hover:bg-ds-accent/20 pointer-events-none absolute -top-12 -right-12 h-24 w-24 rounded-full blur-2xl transition-colors"
       />
 
       {/* Icon */}
-      <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#aec6ff]/20 bg-[#aec6ff]/10 transition-all group-hover:border-[#aec6ff]/50">
+      <div className="border-ds-accent/20 bg-ds-accent/10 group-hover:border-ds-accent/50 flex h-14 w-14 items-center justify-center rounded-xl border transition-all">
         <span
-          className="material-symbols-outlined text-[28px] text-[#508eff]"
+          className="material-symbols-outlined text-ds-accent-vivid text-[28px]"
           style={{ fontVariationSettings: "'FILL' 1" }}
           aria-hidden="true"
         >
@@ -29,17 +29,17 @@ function CapabilityCard({ icon, title, bullets }: Capability): JSX.Element {
 
       {/* Content */}
       <div>
-        <h4 className="mb-2 text-2xl leading-[1.3] font-semibold tracking-[-0.01em] text-[#e3e2e2]">
+        <h4 className="text-ds-fg mb-2 text-2xl leading-[1.3] font-semibold tracking-[-0.01em]">
           {title}
         </h4>
         <ul className="flex flex-col gap-2" role="list">
           {bullets.map((bullet) => (
             <li
               key={bullet}
-              className="flex items-center gap-2 font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192]"
+              className="text-ds-muted flex items-center gap-2 font-mono text-sm leading-[1.4] font-medium tracking-[0.02em]"
             >
               <span
-                className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#508eff]"
+                className="bg-ds-accent-vivid h-1.5 w-1.5 shrink-0 rounded-full"
                 aria-hidden="true"
               />
               {bullet}
@@ -72,7 +72,7 @@ export default async function CapabilitySection(): Promise<JSX.Element> {
   return (
     <section
       id="capabilities"
-      className="relative overflow-hidden bg-[#121414] py-20"
+      className="bg-ds-bg relative overflow-hidden py-20"
       aria-label={t("title")}
     >
       {/* Grid background */}
@@ -83,25 +83,25 @@ export default async function CapabilitySection(): Promise<JSX.Element> {
       {/* Top fade */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-0 left-0 h-32 w-full bg-linear-to-b from-[#121414] to-transparent"
+        className="from-ds-bg pointer-events-none absolute top-0 left-0 h-32 w-full bg-linear-to-b to-transparent"
       />
 
       <SectionWrapper as="div" className="relative z-10">
         {/* Section header */}
         <div className="mb-10">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#aec6ff]/20 bg-[#aec6ff]/5 px-2 py-1">
+          <div className="border-ds-accent/20 bg-ds-accent/5 mb-4 inline-flex items-center gap-2 rounded-full border px-2 py-1">
             <span
-              className="h-2 w-2 animate-pulse rounded-full bg-[#aec6ff]"
+              className="bg-ds-accent h-2 w-2 animate-pulse rounded-full"
               aria-hidden="true"
             />
-            <span className="font-mono text-sm leading-[1.4] font-medium tracking-[0.15em] text-[#aec6ff] uppercase">
+            <span className="text-ds-accent font-mono text-sm leading-[1.4] font-medium tracking-[0.15em] uppercase">
               {t("badge")}
             </span>
           </div>
-          <h3 className="mb-1 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-[#e3e2e2]">
+          <h3 className="text-ds-fg mb-1 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em]">
             {t("title")}
           </h3>
-          <p className="max-w-2xl text-lg leading-[1.6] text-[#8e9192]">
+          <p className="text-ds-muted max-w-2xl text-lg leading-[1.6]">
             {t("description")}
           </p>
         </div>

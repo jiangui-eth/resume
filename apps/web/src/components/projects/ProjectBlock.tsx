@@ -51,13 +51,13 @@ export default function ProjectBlock({
       <div className="mb-2 flex items-center gap-2">
         {project.icon && (
           <span
-            className="material-symbols-outlined text-[#aec6ff]"
+            className="material-symbols-outlined text-ds-accent"
             style={{ fontVariationSettings: "'FILL' 1" }}
           >
             {project.icon}
           </span>
         )}
-        <span className="rounded bg-white/5 px-2 py-0.5 font-mono text-xs text-[#aec6ff]">
+        <span className="text-ds-accent rounded bg-white/5 px-2 py-0.5 font-mono text-xs">
           {badge}
         </span>
       </div>
@@ -66,7 +66,7 @@ export default function ProjectBlock({
         {project.name}
       </h2>
 
-      <div className="space-y-4 text-[18px] leading-[1.6] text-[#c4c7c7]">
+      <div className="text-ds-subtle space-y-4 text-[18px] leading-[1.6]">
         <p>{project.background}</p>
         {project.technicalDecisions.length > 0 && (
           <TechnicalDecisions decisions={project.technicalDecisions} />
@@ -79,7 +79,7 @@ export default function ProjectBlock({
             <a
               key={`${link.type}-${link.url}`}
               href={link.url}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-[#333333] px-4 py-2 text-sm font-medium text-white/80 transition-all hover:border-[#508eff] hover:text-white"
+              className="border-ds-border hover:border-ds-accent-vivid inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium text-white/80 transition-all hover:text-white"
               target={link.url.startsWith("http") ? "_blank" : undefined}
               rel={link.url.startsWith("http") ? "noreferrer" : undefined}
             >

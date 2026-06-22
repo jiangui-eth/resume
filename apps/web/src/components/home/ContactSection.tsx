@@ -36,13 +36,13 @@ export default async function ContactSection(): Promise<JSX.Element> {
   ];
 
   return (
-    <section id="contact" className="bg-[#1b1c1c] py-20" aria-label="Contact">
+    <section id="contact" className="bg-ds-surface py-20" aria-label="Contact">
       <SectionWrapper as="div" className="text-center">
         {/* Heading */}
-        <h3 className="mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2]">
+        <h3 className="text-ds-fg mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em]">
           {t("title")}
         </h3>
-        <p className="mx-auto mb-10 max-w-xl text-lg leading-[1.6] text-[#8e9192]">
+        <p className="text-ds-muted mx-auto mb-10 max-w-xl text-lg leading-[1.6]">
           {t("subtitle")}
         </p>
 

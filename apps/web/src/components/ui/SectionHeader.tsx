@@ -22,14 +22,14 @@ export default function SectionHeader({
     <div className={centered ? "text-center" : undefined}>
       <Heading
         className={cn(
-          "mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-[#e3e2e2]",
+          "text-ds-fg mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em]",
           className,
         )}
       >
         {title}
       </Heading>
       {subtitle && (
-        <p className="text-base leading-[1.6] text-[#8e9192]">{subtitle}</p>
+        <p className="text-ds-muted text-base leading-[1.6]">{subtitle}</p>
       )}
     </div>
   );

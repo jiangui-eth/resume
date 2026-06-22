@@ -26,14 +26,14 @@ export default function ExpertiseCards({
 
   return (
     <SectionWrapper className="pb-20">
-      <div className="rounded-2xl border border-[#444748]/30 bg-[#1b1c1c] p-10">
+      <div className="border-ds-border-2/30 bg-ds-surface rounded-2xl border p-10">
         <SectionHeader title={t("expertise.title")} className="mb-10" />
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {cards.map((card, i) => (
             <div key={card.id} className="space-y-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-[#aec6ff]/30 bg-[#aec6ff]/10">
+              <div className="border-ds-accent/30 bg-ds-accent/10 flex h-12 w-12 items-center justify-center rounded-lg border">
                 <span
-                  className="material-symbols-outlined text-[#aec6ff]"
+                  className="material-symbols-outlined text-ds-accent"
                   style={{ fontVariationSettings: "'FILL' 1" }}
                 >
                   {card.icon}
@@ -42,7 +42,7 @@ export default function ExpertiseCards({
               <h4 className="text-2xl font-semibold tracking-[-0.01em] text-white">
                 {card.title}
               </h4>
-              <p className="text-base leading-relaxed text-[#8e9192]">
+              <p className="text-ds-muted text-base leading-relaxed">
                 {t(`expertiseDescriptions.${DESCRIPTION_KEYS[i]}`)}
               </p>
             </div>

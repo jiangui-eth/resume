@@ -25,8 +25,8 @@ export default function Navbar(): JSX.Element {
       className={cn(
         "fixed top-0 left-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-[#444748]/20 bg-[#121414]/80 backdrop-blur-md"
-          : "border-b border-[#444748]/20 bg-[#121414]/80 backdrop-blur-xl",
+          ? "border-ds-border-2/20 bg-ds-bg/80 border-b backdrop-blur-md"
+          : "border-ds-border-2/20 bg-ds-bg/80 border-b backdrop-blur-xl",
       )}
     >
       <nav className="flex h-16 items-center justify-between px-6">
@@ -36,7 +36,7 @@ export default function Navbar(): JSX.Element {
           aria-label="Go to homepage"
           className="flex items-center gap-2"
         >
-          <span className="text-2xl leading-[1.3] font-bold tracking-[-0.01em] text-[#e3e2e2]">
+          <span className="text-ds-fg text-2xl leading-[1.3] font-bold tracking-[-0.01em]">
             JianGui
           </span>
         </Link>
@@ -54,8 +54,8 @@ export default function Navbar(): JSX.Element {
                   className={cn(
                     "relative text-base leading-[1.6] font-normal transition-colors",
                     isActive
-                      ? "border-b-2 border-[#aec6ff] pb-1 font-bold text-[#e3e2e2]"
-                      : "text-[#8e9192] hover:text-[#e3e2e2]",
+                      ? "border-ds-accent text-ds-fg border-b-2 pb-1 font-bold"
+                      : "text-ds-muted hover:text-ds-fg",
                   )}
                 >
                   {label}
@@ -77,7 +77,7 @@ export default function Navbar(): JSX.Element {
           aria-label={mobileOpen ? t("closeMenu") : t("openMenu")}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
-          className="flex items-center justify-center rounded-md p-2 text-[#8e9192] transition-colors hover:text-[#e3e2e2] md:hidden"
+          className="text-ds-muted hover:text-ds-fg flex items-center justify-center rounded-md p-2 transition-colors md:hidden"
         >
           <span
             className="material-symbols-outlined text-2xl"
@@ -96,7 +96,7 @@ export default function Navbar(): JSX.Element {
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out md:hidden",
           mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0",
-          "border-b border-[#444748]/20 bg-[#121414]/95 backdrop-blur-md",
+          "border-ds-border-2/20 bg-ds-bg/95 border-b backdrop-blur-md",
         )}
       >
         <ul className="flex flex-col gap-1 px-6 pt-2 pb-6">
@@ -110,9 +110,7 @@ export default function Navbar(): JSX.Element {
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "flex items-center rounded-md px-3 py-3 text-base font-medium transition-colors",
-                    isActive
-                      ? "text-[#e3e2e2]"
-                      : "text-[#8e9192] hover:text-[#e3e2e2]",
+                    isActive ? "text-ds-fg" : "text-ds-muted hover:text-ds-fg",
                   )}
                 >
                   {label}

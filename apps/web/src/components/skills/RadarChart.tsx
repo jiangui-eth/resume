@@ -65,8 +65,8 @@ export default function RadarChart(): JSX.Element {
           <ul className="space-y-4" aria-label="Core domain highlights">
             {DOMAIN_BULLETS.map((bullet) => (
               <li key={bullet} className="flex items-center gap-2">
-                <div className="h-2 w-2 shrink-0 rounded-full bg-[#aec6ff]" />
-                <span className="text-base text-[#e3e2e2]">{bullet}</span>
+                <div className="bg-ds-accent h-2 w-2 shrink-0 rounded-full" />
+                <span className="text-ds-fg text-base">{bullet}</span>
               </li>
             ))}
           </ul>
@@ -86,7 +86,7 @@ export default function RadarChart(): JSX.Element {
                     key={level}
                     points={polygonPoints(level / 100)}
                     fill="none"
-                    stroke="#333333"
+                    stroke="var(--ds-border)"
                     strokeWidth="0.8"
                   />
                 ))}
@@ -100,7 +100,7 @@ export default function RadarChart(): JSX.Element {
                       y1={centerY}
                       x2={x}
                       y2={y}
-                      stroke="#333333"
+                      stroke="var(--ds-border)"
                       strokeWidth="0.8"
                     />
                   );
@@ -109,7 +109,7 @@ export default function RadarChart(): JSX.Element {
                 <polygon
                   points={dataPoints()}
                   fill="rgba(174,198,255,0.1)"
-                  stroke="#aec6ff"
+                  stroke="var(--ds-accent)"
                   strokeWidth="1.5"
                   strokeLinejoin="round"
                 />
@@ -117,7 +117,13 @@ export default function RadarChart(): JSX.Element {
                 {dims.map((d, i) => {
                   const [x, y] = pt(d.score / 100, i);
                   return (
-                    <circle key={d.label} cx={x} cy={y} r="3" fill="#aec6ff" />
+                    <circle
+                      key={d.label}
+                      cx={x}
+                      cy={y}
+                      r="3"
+                      fill="var(--ds-accent)"
+                    />
                   );
                 })}
               </svg>
@@ -127,7 +133,7 @@ export default function RadarChart(): JSX.Element {
             {dims.map((d, i) => (
               <div
                 key={d.label}
-                className={`${LABEL_CLASSES[i]} font-mono text-xs leading-tight text-[#e3e2e2]`}
+                className={`${LABEL_CLASSES[i]} text-ds-fg font-mono text-xs leading-tight`}
               >
                 {d.label}
               </div>

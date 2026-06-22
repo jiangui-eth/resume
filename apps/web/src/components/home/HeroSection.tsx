@@ -16,26 +16,26 @@ export default async function HeroSection(): Promise<JSX.Element> {
       {/* Gradient overlay */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-transparent via-[#121414]/50 to-[#121414]"
+        className="via-ds-bg/50 to-ds-bg pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-transparent"
       />
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         {/* Badge */}
-        <div className="mb-4 inline-block rounded-full border border-[#aec6ff]/30 bg-[#aec6ff]/5 px-2 py-1">
-          <span className="font-mono text-sm leading-[1.4] font-medium tracking-[0.15em] text-[#aec6ff] uppercase">
+        <div className="border-ds-accent/30 bg-ds-accent/5 mb-4 inline-block rounded-full border px-2 py-1">
+          <span className="text-ds-accent font-mono text-sm leading-[1.4] font-medium tracking-[0.15em] uppercase">
             {t("profile.headline")}
           </span>
         </div>
 
         {/* H1 */}
-        <h1 className="mb-4 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-[#e3e2e2]">
-          {profileData.name} <span className="text-[#508eff]">|</span>
+        <h1 className="text-ds-fg mb-4 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em]">
+          {profileData.name} <span className="text-ds-accent-vivid">|</span>
           <br className="hidden md:block" /> {t("hero.tagline")}
         </h1>
 
         {/* Subtext */}
-        <p className="mx-auto mb-10 max-w-2xl text-lg leading-[1.6] text-[#8e9192]">
+        <p className="text-ds-muted mx-auto mb-10 max-w-2xl text-lg leading-[1.6]">
           {t("profile.summary")}
         </p>
 
@@ -43,13 +43,13 @@ export default async function HeroSection(): Promise<JSX.Element> {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href={"/projects" as import("next").Route}
-            className="rounded-lg bg-[#508eff] px-10 py-4 text-2xl leading-[1.3] font-semibold tracking-[-0.01em] text-[#00275e] transition-all hover:shadow-[0_0_30px_rgba(80,142,255,0.4)]"
+            className="bg-ds-accent-vivid text-ds-accent-dim rounded-lg px-10 py-4 text-2xl leading-[1.3] font-semibold tracking-[-0.01em] transition-all hover:shadow-[0_0_30px_rgba(80,142,255,0.4)]"
           >
             {t("hero.viewProjects")}
           </Link>
           <a
             href="#contact"
-            className="rounded-lg border border-[#444748] px-10 py-4 text-2xl leading-[1.3] font-semibold tracking-[-0.01em] text-[#e3e2e2] transition-all hover:border-[#aec6ff]"
+            className="border-ds-border-2 text-ds-fg hover:border-ds-accent rounded-lg border px-10 py-4 text-2xl leading-[1.3] font-semibold tracking-[-0.01em] transition-all"
           >
             {t("hero.getInTouch")}
           </a>
@@ -59,7 +59,7 @@ export default async function HeroSection(): Promise<JSX.Element> {
       {/* Glow orb */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-[#aec6ff]/10 blur-[120px]"
+        className="bg-ds-accent/10 pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full blur-[120px]"
       />
     </section>
   );

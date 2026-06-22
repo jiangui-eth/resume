@@ -10,28 +10,28 @@ export default function SkillsHero(): JSX.Element {
   return (
     <SectionWrapper className="relative overflow-hidden pt-10 pb-20">
       <div className="relative z-10 max-w-3xl pt-20">
-        <span className="mb-2 block font-mono text-sm tracking-widest text-[#aec6ff] uppercase">
+        <span className="text-ds-accent mb-2 block font-mono text-sm tracking-widest uppercase">
           {t("badge")}
         </span>
         <h1 className="mb-4 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-white">
           {t("title")}
         </h1>
-        <p className="mb-6 max-w-2xl text-lg leading-relaxed text-[#8e9192]">
+        <p className="text-ds-muted mb-6 max-w-2xl text-lg leading-relaxed">
           {t("description")}
         </p>
         <div className="flex flex-wrap gap-4">
-          <div className="flex items-center gap-2 rounded-lg border border-[#444748]/50 bg-[#1b1c1c] px-4 py-2">
+          <div className="border-ds-border-2/50 bg-ds-surface flex items-center gap-2 rounded-lg border px-4 py-2">
             <span
-              className="material-symbols-outlined text-[#aec6ff]"
+              className="material-symbols-outlined text-ds-accent"
               style={{ fontVariationSettings: "'FILL' 1" }}
             >
               terminal
             </span>
             <span className="font-mono text-sm">{t("systemArchitecture")}</span>
           </div>
-          <div className="flex items-center gap-2 rounded-lg border border-[#444748]/50 bg-[#1b1c1c] px-4 py-2">
+          <div className="border-ds-border-2/50 bg-ds-surface flex items-center gap-2 rounded-lg border px-4 py-2">
             <span
-              className="material-symbols-outlined text-[#aec6ff]"
+              className="material-symbols-outlined text-ds-accent"
               style={{ fontVariationSettings: "'FILL' 1" }}
             >
               speed
@@ -48,7 +48,7 @@ export default function SkillsHero(): JSX.Element {
       >
         <svg
           viewBox="0 0 100 100"
-          className="h-full w-full fill-none stroke-current text-[#aec6ff]"
+          className="text-ds-accent h-full w-full fill-none stroke-current"
         >
           <path
             d="M 50,5 L 95,30 L 95,70 L 50,95 L 5,70 L 5,30 Z"

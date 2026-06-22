@@ -1,0 +1,51 @@
+Task: fix-design-tokens
+
+- 需求描述: 将所有硬编码 hex 颜色类名（如 bg-[#121414]）替换为 Design System Token 类名，消除样式维护成本。
+- 分支: feature/fix-design-tokens
+- 开发人: Claude
+- 测试状态: 通过（309 tests）
+- PR 链接: https://github.com/jiangui-eth/resume/pull/67
+- 变更文件:
+    - apps/web/src/index.css — 将旧 --color-* CSS 变量重命名为 --ds-* 避免与 shadcn 冲突，新增 @theme inline 块注册 Tailwind 工具类
+    - apps/web/src/components/home/AboutSection.tsx
+    - apps/web/src/components/home/CapabilitySection.tsx
+    - apps/web/src/components/home/ContactCard.tsx
+    - apps/web/src/components/home/ContactSection.tsx
+    - apps/web/src/components/home/HeroSection.tsx
+    - apps/web/src/components/home/ProjectImageClient.tsx
+    - apps/web/src/components/home/ProjectsSection.tsx
+    - apps/web/src/components/experience/MetricsBar.tsx
+    - apps/web/src/components/experience/TimelineCard.tsx
+    - apps/web/src/components/experience/__tests__/Timeline.test.tsx
+    - apps/web/src/components/skills/ExpertiseCards.tsx
+    - apps/web/src/components/skills/RadarChart.tsx — SVG stroke/fill 替换为 var(--ds-*)
+    - apps/web/src/components/skills/SkillsCTA.tsx
+    - apps/web/src/components/skills/SkillsHero.tsx
+    - apps/web/src/components/skills/TechStackCards.tsx
+    - apps/web/src/components/layout/DownloadPdfButton.tsx
+    - apps/web/src/components/layout/Footer.tsx
+    - apps/web/src/components/layout/LanguageSwitcher.tsx
+    - apps/web/src/components/layout/Navbar.tsx
+    - apps/web/src/components/projects/MetricBadge.tsx
+    - apps/web/src/components/projects/ProjectBlock.tsx
+    - apps/web/src/components/projects/ProjectsCTA.tsx
+    - apps/web/src/components/projects/TechnicalDecisions.tsx
+    - apps/web/src/components/projects/panels/GridPanel.tsx
+    - apps/web/src/components/projects/panels/OutcomePanel.tsx
+    - apps/web/src/components/projects/panels/ProgressPanel.tsx
+    - apps/web/src/components/projects/panels/VizPanel.tsx — inline style 替换为 var(--ds-accent)
+    - apps/web/src/components/ui/SectionHeader.tsx
+    - apps/web/src/components/ui/TechTag.tsx
+    - apps/web/src/app/error.tsx
+    - apps/web/src/app/loading.tsx
+    - apps/web/src/app/[locale]/experience/page.tsx
+    - apps/web/src/app/[locale]/projects/page.tsx
+    - apps/web/src/app/[locale]/skills/page.tsx
+- 回滚方法:
+    1. git checkout dev
+    2. git revert <commit-id>
+- 备注:
+    - 12 个 Design Token 定义于 index.css :root { --ds-* }
+    - 通过 @theme inline 注册为 Tailwind 工具类 (bg-ds-bg, text-ds-fg, border-ds-border 等)
+    - resume-preview 专属色调（纸张暖色系）保持不变
+    - 修复了旧 --color-border/--color-accent 变量名与 shadcn 冲突的潜在问题

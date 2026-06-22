@@ -26,7 +26,7 @@ export default function SkillsCTA() {
             onClick={() =>
               track("click_get_in_touch", { source: "skills_cta" })
             }
-            className="inline-flex items-center gap-2 rounded-lg bg-[#508eff] px-6 py-3 font-mono text-sm font-bold text-[#00275e] transition-all hover:shadow-[0_0_30px_rgba(80,142,255,0.4)]"
+            className="bg-ds-accent-vivid text-ds-accent-dim inline-flex items-center gap-2 rounded-lg px-6 py-3 font-mono text-sm font-bold transition-all hover:shadow-[0_0_30px_rgba(80,142,255,0.4)]"
           >
             {t("contactMe")}
           </a>

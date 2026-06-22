@@ -70,7 +70,7 @@ export default async function SkillsPage(): Promise<JSX.Element> {
   }));
 
   return (
-    <div className="grid-bg min-h-screen bg-[#121414]">
+    <div className="grid-bg bg-ds-bg min-h-screen">
       <SkillsHero />
       <RadarChart />
       <TechStackCards categories={categories} />

@@ -36,7 +36,7 @@ export default function TechStackCards({
             className="glass-card flex flex-col gap-4 rounded-xl p-6"
           >
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-[#aec6ff]">
+              <span className="material-symbols-outlined text-ds-accent">
                 {cat.icon}
               </span>
               <h3 className="text-2xl font-semibold tracking-[-0.01em] text-white">
@@ -49,8 +49,8 @@ export default function TechStackCards({
                   key={tech.name}
                   className={
                     tech.featured
-                      ? "rounded border border-[#aec6ff]/50 bg-[#1f2020] px-2 py-0.5 font-mono text-xs text-[#aec6ff]"
-                      : "rounded border border-[#444748]/30 bg-[#1f2020] px-2 py-0.5 font-mono text-xs text-[#8e9192]"
+                      ? "border-ds-accent/50 bg-ds-surface-2 text-ds-accent rounded border px-2 py-0.5 font-mono text-xs"
+                      : "border-ds-border-2/30 bg-ds-surface-2 text-ds-muted rounded border px-2 py-0.5 font-mono text-xs"
                   }
                 >
                   {tech.name}
