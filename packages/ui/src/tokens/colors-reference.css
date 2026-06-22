@@ -1,0 +1,98 @@
+/* ── MD3 Reference Palette Tokens ───────────────────────────────────────────
+   Source color: #6750A4 (M3 Baseline)
+   Generated via Material Color Utilities HCT algorithm.
+   These are raw palette tones — do NOT use in components directly.
+   Use system role tokens in colors-light.css / colors-dark.css instead.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Primary (Hue ~264, Chroma ~40) */
+  --ds-ref-primary-0: #000000;
+  --ds-ref-primary-10: #21005d;
+  --ds-ref-primary-20: #381e72;
+  --ds-ref-primary-30: #4f378b;
+  --ds-ref-primary-40: #6750a4;
+  --ds-ref-primary-50: #7f67be;
+  --ds-ref-primary-60: #9a82db;
+  --ds-ref-primary-70: #b69df8;
+  --ds-ref-primary-80: #d0bcff;
+  --ds-ref-primary-90: #eaddff;
+  --ds-ref-primary-95: #f6edff;
+  --ds-ref-primary-99: #fffbfe;
+  --ds-ref-primary-100: #ffffff;
+
+  /* Secondary (Hue ~264, Chroma ~16) */
+  --ds-ref-secondary-0: #000000;
+  --ds-ref-secondary-10: #1d192b;
+  --ds-ref-secondary-20: #332d41;
+  --ds-ref-secondary-30: #4a4458;
+  --ds-ref-secondary-40: #625b71;
+  --ds-ref-secondary-50: #7a7289;
+  --ds-ref-secondary-60: #958da5;
+  --ds-ref-secondary-70: #b0a7c0;
+  --ds-ref-secondary-80: #ccc2dc;
+  --ds-ref-secondary-90: #e8def8;
+  --ds-ref-secondary-95: #f6edff;
+  --ds-ref-secondary-99: #fffbfe;
+  --ds-ref-secondary-100: #ffffff;
+
+  /* Tertiary (Hue ~30, Chroma ~32) */
+  --ds-ref-tertiary-0: #000000;
+  --ds-ref-tertiary-10: #31111d;
+  --ds-ref-tertiary-20: #492532;
+  --ds-ref-tertiary-30: #633b48;
+  --ds-ref-tertiary-40: #7d5260;
+  --ds-ref-tertiary-50: #986977;
+  --ds-ref-tertiary-60: #b58392;
+  --ds-ref-tertiary-70: #d29dac;
+  --ds-ref-tertiary-80: #efb8c8;
+  --ds-ref-tertiary-90: #ffd8e4;
+  --ds-ref-tertiary-95: #ffecf1;
+  --ds-ref-tertiary-99: #fffbfa;
+  --ds-ref-tertiary-100: #ffffff;
+
+  /* Error (fixed palette, Hue ~0, Chroma ~100) */
+  --ds-ref-error-0: #000000;
+  --ds-ref-error-10: #410002;
+  --ds-ref-error-20: #690005;
+  --ds-ref-error-30: #93000a;
+  --ds-ref-error-40: #b3261e;
+  --ds-ref-error-50: #dc362e;
+  --ds-ref-error-60: #e46962;
+  --ds-ref-error-70: #ec928e;
+  --ds-ref-error-80: #f2b8b5;
+  --ds-ref-error-90: #f9dedc;
+  --ds-ref-error-95: #fceeee;
+  --ds-ref-error-99: #fffbf9;
+  --ds-ref-error-100: #ffffff;
+
+  /* Neutral (Hue ~264, Chroma ~4) */
+  --ds-ref-neutral-0: #000000;
+  --ds-ref-neutral-10: #1c1b1f;
+  --ds-ref-neutral-20: #313033;
+  --ds-ref-neutral-30: #484649;
+  --ds-ref-neutral-40: #605d62;
+  --ds-ref-neutral-50: #787579;
+  --ds-ref-neutral-60: #939094;
+  --ds-ref-neutral-70: #aeaaae;
+  --ds-ref-neutral-80: #cac4d0;
+  --ds-ref-neutral-90: #e6e1e5;
+  --ds-ref-neutral-95: #f4eff4;
+  --ds-ref-neutral-99: #fffbfe;
+  --ds-ref-neutral-100: #ffffff;
+
+  /* Neutral Variant (Hue ~264, Chroma ~8) */
+  --ds-ref-neutral-variant-0: #000000;
+  --ds-ref-neutral-variant-10: #1d1a22;
+  --ds-ref-neutral-variant-20: #332f38;
+  --ds-ref-neutral-variant-30: #49454f;
+  --ds-ref-neutral-variant-40: #605d66;
+  --ds-ref-neutral-variant-50: #79747e;
+  --ds-ref-neutral-variant-60: #938f99;
+  --ds-ref-neutral-variant-70: #aea9b4;
+  --ds-ref-neutral-variant-80: #cac4d0;
+  --ds-ref-neutral-variant-90: #e7e0ec;
+  --ds-ref-neutral-variant-95: #f5eefa;
+  --ds-ref-neutral-variant-99: #fffbfe;
+  --ds-ref-neutral-variant-100: #ffffff;
+}

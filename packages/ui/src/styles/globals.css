@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "../tokens/index.css";
 @source "../../../apps/**/*.{ts,tsx}";
 @source "../**/*.{ts,tsx}";
 
@@ -115,6 +116,47 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* ── DS Color System (MD3 Baseline, source #6750A4) ── */
+  /* Utility class prefix: ds-* (e.g. bg-ds-primary, text-ds-on-primary) */
+  --color-ds-primary: var(--ds-color-primary);
+  --color-ds-on-primary: var(--ds-color-on-primary);
+  --color-ds-primary-container: var(--ds-color-primary-container);
+  --color-ds-on-primary-container: var(--ds-color-on-primary-container);
+  --color-ds-secondary: var(--ds-color-secondary);
+  --color-ds-on-secondary: var(--ds-color-on-secondary);
+  --color-ds-secondary-container: var(--ds-color-secondary-container);
+  --color-ds-on-secondary-container: var(--ds-color-on-secondary-container);
+  --color-ds-tertiary: var(--ds-color-tertiary);
+  --color-ds-on-tertiary: var(--ds-color-on-tertiary);
+  --color-ds-tertiary-container: var(--ds-color-tertiary-container);
+  --color-ds-on-tertiary-container: var(--ds-color-on-tertiary-container);
+  --color-ds-error: var(--ds-color-error);
+  --color-ds-on-error: var(--ds-color-on-error);
+  --color-ds-error-container: var(--ds-color-error-container);
+  --color-ds-on-error-container: var(--ds-color-on-error-container);
+  --color-ds-background: var(--ds-color-background);
+  --color-ds-on-background: var(--ds-color-on-background);
+  --color-ds-surface: var(--ds-color-surface);
+  --color-ds-on-surface: var(--ds-color-on-surface);
+  --color-ds-surface-variant: var(--ds-color-surface-variant);
+  --color-ds-on-surface-variant: var(--ds-color-on-surface-variant);
+  --color-ds-surface-dim: var(--ds-color-surface-dim);
+  --color-ds-surface-bright: var(--ds-color-surface-bright);
+  --color-ds-surface-container-lowest: var(--ds-color-surface-container-lowest);
+  --color-ds-surface-container-low: var(--ds-color-surface-container-low);
+  --color-ds-surface-container: var(--ds-color-surface-container);
+  --color-ds-surface-container-high: var(--ds-color-surface-container-high);
+  --color-ds-surface-container-highest: var(
+    --ds-color-surface-container-highest
+  );
+  --color-ds-inverse-surface: var(--ds-color-inverse-surface);
+  --color-ds-inverse-on-surface: var(--ds-color-inverse-on-surface);
+  --color-ds-inverse-primary: var(--ds-color-inverse-primary);
+  --color-ds-outline: var(--ds-color-outline);
+  --color-ds-outline-variant: var(--ds-color-outline-variant);
+  --color-ds-scrim: var(--ds-color-scrim);
+  --color-ds-shadow: var(--ds-color-shadow);
 }
 
 @layer base {
