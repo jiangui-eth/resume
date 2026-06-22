@@ -13,6 +13,20 @@
 
 ---
 
+## 分支策略
+
+```
+main          ← 生产分支，只接受来自 dev 的 PR（由用户发起）
+  └── dev     ← 集成分支，所有 feature 分支的合并目标
+        └── feature/<task-name>  ← 每个 Task 独立分支
+```
+
+- `feature/*` 分支必须从 **`dev`** 切出
+- `feature/*` 开发完成后 PR 合并回 **`dev`**
+- `dev` → `main` 的 PR 由**用户**发起，Claude 不主动创建
+
+---
+
 ## 接收需求后的完整行动流程
 
 ### 1. 需求分析
@@ -23,6 +37,13 @@
 - 评估优先级和复杂度
 
 ### 2. 创建 Task 分支 + Task 文档（必须同步）
+
+**分支来源：** 必须从 `dev` 切出
+
+```bash
+git checkout dev && git pull origin dev
+git checkout -b feature/<task-name>
+```
 
 **分支命名：** `feature/<task-name>`（task-name 用短横线连接）
 
@@ -38,7 +59,7 @@ Task: <任务名称>
 - PR 链接: 待生成
 - 变更文件: 待生成
 - 回滚方法:
-    1. git checkout dev_v2
+    1. git checkout dev
     2. git revert <commit-id>
 - 备注: <特殊说明>
 ```
@@ -60,11 +81,11 @@ Task: <任务名称>
 
 ### 5. 创建 PR
 
-- source：Task 分支 → target：**`dev_v2`**
+- source：Task 分支 → target：**`dev`**
 - PR title：`Task: <任务名称> - 自动 PR`
 - PR body：**严格按照 `.github/pull_request_template.md` 格式填写**，各节说明如下：
   - **Description**：一句话说明本 PR 的改动内容和原因
-  - **Task**：填写 Task ID（如 V2-T-001）和 Task 文档路径 `.claude/tasks/<slug>.md`
+  - **Task**：填写 Task ID（如 T-001）和 Task 文档路径 `.claude/tasks/<slug>.md`
   - **Change type**：勾选 Feature / Bug fix / Refactor / Docs / Test
   - **Self-check**：逐项核查并勾选（lint、tsc、build、test、responsive、images、no hardcoded data、no console.log）
   - **Preview URL**：CI 部署后填写 Vercel 预览链接
@@ -81,7 +102,7 @@ Task: <任务名称>
 ### 7. 回滚（如需）
 
 ```bash
-git checkout dev_v2
+git checkout dev
 git revert <Task Commit ID>
 ```
 
