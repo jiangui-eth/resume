@@ -1,0 +1,60 @@
+/* ── MD3 System Role Tokens — Dark Theme ────────────────────────────────────
+   Applied under .dark (next-themes attribute="class" mode).
+   All values sourced from Material Theme Builder (source: #6750A4).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.dark {
+  /* Primary */
+  --ds-color-primary: var(--ds-ref-primary-80); /* #D0BCFF */
+  --ds-color-on-primary: var(--ds-ref-primary-20); /* #381E72 */
+  --ds-color-primary-container: var(--ds-ref-primary-30); /* #4F378B */
+  --ds-color-on-primary-container: var(--ds-ref-primary-90); /* #EADDFF */
+
+  /* Secondary */
+  --ds-color-secondary: var(--ds-ref-secondary-80); /* #CCC2DC */
+  --ds-color-on-secondary: var(--ds-ref-secondary-20); /* #332D41 */
+  --ds-color-secondary-container: var(--ds-ref-secondary-30); /* #4A4458 */
+  --ds-color-on-secondary-container: var(--ds-ref-secondary-90); /* #E8DEF8 */
+
+  /* Tertiary */
+  --ds-color-tertiary: var(--ds-ref-tertiary-80); /* #EFB8C8 */
+  --ds-color-on-tertiary: var(--ds-ref-tertiary-20); /* #492532 */
+  --ds-color-tertiary-container: var(--ds-ref-tertiary-30); /* #633B48 */
+  --ds-color-on-tertiary-container: var(--ds-ref-tertiary-90); /* #FFD8E4 */
+
+  /* Error */
+  --ds-color-error: var(--ds-ref-error-80); /* #F2B8B5 */
+  --ds-color-on-error: #601410;
+  --ds-color-error-container: #8c1d18;
+  --ds-color-on-error-container: var(--ds-ref-error-90); /* #F9DEDC */
+
+  /* Background */
+  --ds-color-background: var(--ds-ref-neutral-10); /* #1C1B1F */
+  --ds-color-on-background: var(--ds-ref-neutral-90); /* #E6E1E5 */
+
+  /* Surface family */
+  --ds-color-surface: var(--ds-ref-neutral-10); /* #1C1B1F */
+  --ds-color-on-surface: var(--ds-ref-neutral-90); /* #E6E1E5 */
+  --ds-color-surface-variant: var(--ds-ref-neutral-variant-30); /* #49454F */
+  --ds-color-on-surface-variant: var(--ds-ref-neutral-variant-80); /* #CAC4D0 */
+  --ds-color-surface-dim: #141218;
+  --ds-color-surface-bright: #3b383e;
+  --ds-color-surface-container-lowest: #0f0d13;
+  --ds-color-surface-container-low: #1d1b20;
+  --ds-color-surface-container: #211f26;
+  --ds-color-surface-container-high: #2b2930;
+  --ds-color-surface-container-highest: #36343b;
+
+  /* Inverse */
+  --ds-color-inverse-surface: var(--ds-ref-neutral-90); /* #E6E1E5 */
+  --ds-color-inverse-on-surface: #322f35;
+  --ds-color-inverse-primary: var(--ds-ref-primary-40); /* #6750A4 */
+
+  /* Outline */
+  --ds-color-outline: var(--ds-ref-neutral-variant-60); /* #938F99 */
+  --ds-color-outline-variant: var(--ds-ref-neutral-variant-30); /* #49454F */
+
+  /* Utility */
+  --ds-color-scrim: var(--ds-ref-neutral-0); /* #000000 */
+  --ds-color-shadow: var(--ds-ref-neutral-0); /* #000000 */
+}

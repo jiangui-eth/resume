@@ -5,9 +5,11 @@
   "type": "module",
   "exports": {
     "./globals.css": "./src/styles/globals.css",
+    "./tokens/index.css": "./src/tokens/index.css",
     "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
+    "./utils/*": "./src/utils/*.ts",
     "./postcss.config": "./postcss.config.mjs"
   },
   "scripts": {
