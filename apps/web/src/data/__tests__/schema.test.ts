@@ -1,9 +1,9 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
+import contact from "../contact.json";
 import experiences from "../experiences.json";
+import profile from "../profile.json";
 import projects from "../projects.json";
 import skills from "../skills.json";
-import profile from "../profile.json";
-import contact from "../contact.json";
 
 describe("experiences.json schema", () => {
   it("is a non-empty array", () => {

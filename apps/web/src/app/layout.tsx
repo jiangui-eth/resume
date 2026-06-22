@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
+import { getLocale } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { FaqBotWidget } from "@/components/faq-bot/FaqBotWidget";
 import "../index.css";
-
-import { Analytics } from "@vercel/analytics/react";
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
-import Providers from "@/components/providers";
-import ScrollDepthTracker from "@/components/home/ScrollDepthTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +16,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jiangui-resume.vercel.app";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://jiangui-resume.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -29,7 +27,14 @@ export const metadata: Metadata = {
   },
   description:
     "Senior Full-Stack & Web3 Engineer. Building high-throughput systems, DeFi protocols, and pixel-precise frontends.",
-  keywords: ["full-stack engineer", "web3", "solidity", "next.js", "typescript", "defi"],
+  keywords: [
+    "full-stack engineer",
+    "web3",
+    "solidity",
+    "next.js",
+    "typescript",
+    "defi",
+  ],
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -38,7 +43,9 @@ export const metadata: Metadata = {
     title: "jiangui.eth — Senior Full-Stack Engineer",
     description:
       "Senior Full-Stack & Web3 Engineer. Building high-throughput systems, DeFi protocols, and pixel-precise frontends.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "jiangui.eth" }],
+    images: [
+      { url: "/og-image.png", width: 1200, height: 630, alt: "jiangui.eth" },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -50,23 +57,28 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>
-          <div className="flex min-h-svh flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-          <ScrollDepthTracker />
-          <Analytics />
-        </Providers>
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+        />
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
+        <Analytics />
+        {/* OTC FAQ Bot – floating chat widget */}
+        <FaqBotWidget />
       </body>
     </html>
   );

@@ -1,76 +1,107 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { NextIntlClientProvider } from "next-intl";
+import React from "react";
+import { describe, expect, it, vi } from "vitest";
 
-// ── Lucide mock ────────────────────────────────────────────────────────────────
-
-vi.mock("lucide-react", () => ({
-  Mail: () => <svg data-testid="icon-mail" />,
-  MessageCircle: () => <svg data-testid="icon-message" />,
-  Phone: () => <svg data-testid="icon-phone" />,
-  Eye: () => <svg data-testid="icon-eye" />,
-  EyeOff: () => <svg data-testid="icon-eye-off" />,
-}));
+import zhCN from "../../../../messages/zh-CN.json";
 
 import ContactSection from "../ContactSection";
 
-// ── Tests ──────────────────────────────────────────────────────────────────────
+vi.mock("next-intl/server", async () => {
+  const { default: msgs } = await import("../../../../messages/zh-CN.json");
+  function makeT(ns?: string) {
+    return (key: string) => {
+      const section = ns
+        ? (msgs as unknown as Record<string, Record<string, string>>)[ns]
+        : (msgs as unknown as Record<string, string>);
+      if (!section) return key;
+      const parts = key.split(".");
+      let val: unknown = section;
+      for (const p of parts) val = (val as Record<string, unknown>)?.[p];
+      return (val as string) ?? key;
+    };
+  }
+  return {
+    getTranslations: vi
+      .fn()
+      .mockImplementation(async (ns?: string) => makeT(ns)),
+    getLocale: vi.fn().mockResolvedValue("zh-CN"),
+    getMessages: vi.fn().mockResolvedValue(msgs),
+  };
+});
 
-describe("ContactSection", () => {
-  it("renders the section label and heading", () => {
-    render(<ContactSection />);
-    expect(screen.getByText("Get in Touch")).toBeInTheDocument();
-    expect(screen.getByText(/next generation/i)).toBeInTheDocument();
+async function renderSection() {
+  const jsx = await ContactSection();
+  return render(
+    <NextIntlClientProvider locale="zh-CN" messages={zhCN}>
+      {jsx}
+    </NextIntlClientProvider>,
+  );
+}
+
+describe("contactSection", () => {
+  it("renders the section heading (zh-CN)", async () => {
+    await renderSection();
+    expect(screen.getByText(/共建下一代 Web 产品/)).toBeInTheDocument();
   });
 
-  it("renders the email address visibly", () => {
-    render(<ContactSection />);
+  it("renders the email address visibly", async () => {
+    await renderSection();
     expect(screen.getByText("jiangui.eth@gmail.com")).toBeInTheDocument();
   });
 
-  it("email card has a mailto link", () => {
-    render(<ContactSection />);
+  it("email card has a mailto link", async () => {
+    await renderSection();
     const link = screen.getByRole("link", { name: /jiangui\.eth@gmail\.com/i });
     expect(link).toHaveAttribute("href", "mailto:jiangui.eth@gmail.com");
   });
 
-  it("renders WeChat and Phone cards with masked content by default", () => {
-    render(<ContactSection />);
+  it("renders WeChat and Phone cards with masked content by default", async () => {
+    await renderSection();
     const masked = screen.getAllByText("••••••••");
     expect(masked.length).toBeGreaterThanOrEqual(2);
   });
 
-  it("renders Reveal buttons for WeChat and Phone", () => {
-    render(<ContactSection />);
-    expect(screen.getByRole("button", { name: /reveal wechat/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /reveal phone/i })).toBeInTheDocument();
+  it("renders Reveal buttons for WeChat and Phone", async () => {
+    await renderSection();
+    expect(
+      screen.getByRole("button", { name: /reveal wechat/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /reveal phone/i }),
+    ).toBeInTheDocument();
   });
 
   it("reveals WeChat content and shows Hide button on click", async () => {
     const user = userEvent.setup();
-    render(<ContactSection />);
-    const revealBtn = screen.getByRole("button", { name: /reveal wechat/i });
-    await user.click(revealBtn);
-    expect(screen.getByRole("button", { name: /hide wechat/i })).toBeInTheDocument();
-    // Value is empty → shows fallback
-    expect(screen.getByText("Not configured")).toBeInTheDocument();
+    await renderSection();
+    await user.click(screen.getByRole("button", { name: /reveal wechat/i }));
+    expect(
+      screen.getByRole("button", { name: /hide wechat/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("未配置")).toBeInTheDocument();
   });
 
   it("re-masks WeChat content when Hide is clicked", async () => {
     const user = userEvent.setup();
-    render(<ContactSection />);
+    await renderSection();
     await user.click(screen.getByRole("button", { name: /reveal wechat/i }));
     await user.click(screen.getByRole("button", { name: /hide wechat/i }));
-    expect(screen.getByRole("button", { name: /reveal wechat/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /reveal wechat/i }),
+    ).toBeInTheDocument();
   });
 
-  it("renders three article cards", () => {
-    render(<ContactSection />);
+  it("renders three article cards", async () => {
+    await renderSection();
     expect(screen.getAllByRole("article")).toHaveLength(3);
   });
 
-  it("has accessible section landmark", () => {
-    render(<ContactSection />);
-    expect(screen.getByRole("region", { name: /contact/i })).toBeInTheDocument();
+  it("has accessible section landmark", async () => {
+    await renderSection();
+    expect(
+      screen.getByRole("region", { name: /contact/i }),
+    ).toBeInTheDocument();
   });
 });

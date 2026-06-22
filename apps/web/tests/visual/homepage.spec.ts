@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 const PAGES = [
   { name: "home", path: "/" },
@@ -9,7 +9,10 @@ const PAGES = [
 ];
 
 for (const { name, path } of PAGES) {
-  test(`${name} page — visual snapshot`, async ({ page, browserName }, testInfo) => {
+  test(`${name} page — visual snapshot`, async ({
+    page,
+    browserName: _browserName,
+  }, testInfo) => {
     await page.goto(path);
     await page.waitForLoadState("networkidle");
 

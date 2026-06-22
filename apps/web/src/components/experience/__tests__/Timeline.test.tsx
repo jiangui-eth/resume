@@ -1,72 +1,74 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import React from "react";
+import { describe, expect, it } from "vitest";
 
-import TechTag from "../TechTag";
+import TechTag from "@/components/ui/TechTag";
+import { renderWithIntl } from "@/test/intl-test-utils";
 import Timeline from "../Timeline";
 
-vi.mock("framer-motion", () => ({
-  motion: {
-    div: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) =>
-      React.createElement("div", props, children),
-  },
-  useInView: () => true,
-}));
-
-describe("Timeline", () => {
-  it("renders all 3 experience entries", () => {
-    render(<Timeline />);
-
-    expect(screen.getByText("Gate.io")).toBeInTheDocument();
-    expect(screen.getByText("Envision Energy")).toBeInTheDocument();
-    expect(screen.getByText("Chaos (Internal Platform)")).toBeInTheDocument();
+describe("timeline", () => {
+  it("renders all 5 experience entries", () => {
+    renderWithIntl(<Timeline />);
+    expect(
+      screen.getAllByText(/Jingcheng Yideng/i).length,
+    ).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("Gate.com").length).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getAllByText(/Hanzhu Technology/i).length,
+    ).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/CIFS/i).length).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getAllByText(/Guizhou Guoxintong/i).length,
+    ).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders the present entry highlight", () => {
-    render(<Timeline />);
-
-    expect(screen.getByText("Present")).toBeInTheDocument();
+  it("renders the present entry with i18n 'present' label (zh-CN: 至今)", () => {
+    renderWithIntl(<Timeline />);
+    expect(screen.getAllByText("至今").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("formats the period start date", () => {
-    render(<Timeline />);
-
-    expect(screen.getByText(/Jun 2022/)).toBeInTheDocument();
+  it("formats the period start date for Gate.com", () => {
+    renderWithIntl(<Timeline />);
+    expect(screen.getAllByText(/Mar 2024/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders responsibility bullets", () => {
-    render(<Timeline />);
-
-    expect(screen.getByText(/Led frontend architecture/i)).toBeInTheDocument();
+    renderWithIntl(<Timeline />);
+    expect(
+      screen.getByText(/Led full-stack AI development/i),
+    ).toBeInTheDocument();
   });
 
   it("renders tech tags", () => {
-    render(<Timeline />);
-
-    expect(screen.getByText("Next.js")).toBeInTheDocument();
-    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    renderWithIntl(<Timeline />);
+    expect(screen.getAllByText("Next.js").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("TypeScript").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders the highlight metric", () => {
-    render(<Timeline />);
-
-    expect(screen.getByText("LCP 4.2s → 1.8s")).toBeInTheDocument();
+  it("renders the Gate.com SEO highlight metric", () => {
+    renderWithIntl(<Timeline />);
+    expect(screen.getByText(/SEO 1K → 14K/i)).toBeInTheDocument();
   });
 
-  it("renders the company link correctly", () => {
-    render(<Timeline />);
-
-    expect(screen.getByRole("link", { name: "Gate.io" })).toHaveAttribute(
+  it("renders the Gate.com company link correctly", () => {
+    renderWithIntl(<Timeline />);
+    expect(screen.getByRole("link", { name: "Gate.com" })).toHaveAttribute(
       "href",
-      "https://gate.io",
+      "https://gate.com",
     );
   });
 });
 
-describe("TechTag", () => {
+describe("techTag", () => {
   it("renders the label", () => {
     render(<TechTag label="React" />);
-
     expect(screen.getByText("React")).toBeInTheDocument();
+  });
+
+  it("applies bg-white/5 and text-[#aec6ff] classes", () => {
+    render(<TechTag label="Go" />);
+    const tag = screen.getByText("Go");
+    expect(tag.className).toContain("bg-white/5");
+    expect(tag.className).toContain("text-[#aec6ff]");
   });
 });

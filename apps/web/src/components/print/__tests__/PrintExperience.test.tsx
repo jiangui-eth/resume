@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import PrintExperience from "../PrintExperience";
 
-describe("PrintExperience", () => {
+describe("printExperience", () => {
   it("renders the Professional Experience heading", () => {
     render(<PrintExperience />);
     expect(
-      screen.getByRole("heading", { name: /professional experience/i })
+      screen.getByRole("heading", { name: /professional experience/i }),
     ).toBeInTheDocument();
   });
 

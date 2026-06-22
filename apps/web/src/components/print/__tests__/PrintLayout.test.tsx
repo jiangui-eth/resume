@@ -1,11 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import PrintLayout from "../PrintLayout";
 
-describe("PrintLayout", () => {
+describe("printLayout", () => {
   it("renders the person's name in a heading", () => {
     render(<PrintLayout />);
-    expect(screen.getByRole("heading", { name: /jiangui/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /jiangui/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders the job title", () => {
@@ -25,14 +27,14 @@ describe("PrintLayout", () => {
   it("renders right column with Professional Experience heading", () => {
     render(<PrintLayout />);
     expect(
-      screen.getByRole("heading", { name: /professional experience/i })
+      screen.getByRole("heading", { name: /professional experience/i }),
     ).toBeInTheDocument();
   });
 
   it("renders right column with Key Projects heading", () => {
     render(<PrintLayout />);
     expect(
-      screen.getByRole("heading", { name: /key projects/i })
+      screen.getByRole("heading", { name: /key projects/i }),
     ).toBeInTheDocument();
   });
 });

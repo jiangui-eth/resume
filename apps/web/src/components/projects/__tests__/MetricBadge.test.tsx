@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import MetricBadge from "../MetricBadge";
 
-describe("MetricBadge", () => {
+describe("metricBadge", () => {
   it("renders the metric value text", () => {
     render(<MetricBadge value="80%" label="Efficiency gain" />);
 

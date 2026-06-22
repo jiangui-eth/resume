@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { formatPeriod, slugify, isPresent } from "../utils";
+import { describe, expect, it } from "vitest";
+import { formatDate, formatPeriod, isPresent, slugify } from "../utils";
 
 describe("isPresent", () => {
   it("returns true for 'present'", () => {
@@ -34,13 +34,24 @@ describe("slugify", () => {
   });
 });
 
+describe("formatDate", () => {
+  it("formats a YYYY-MM string as 'Mon YYYY'", () => {
+    expect(formatDate("2022-01")).toBe("Jan 2022");
+    expect(formatDate("2023-12")).toBe("Dec 2023");
+  });
+
+  it("handles single-digit months", () => {
+    expect(formatDate("2020-03")).toBe("Mar 2020");
+  });
+});
+
 describe("formatPeriod", () => {
   it("formats a date range with month names", () => {
     expect(formatPeriod("2022-06", "2023-01")).toBe("Jun 2022 – Jan 2023");
   });
 
-  it("shows 'Present' when end is present", () => {
-    expect(formatPeriod("2022-06", "present")).toBe("Jun 2022 – Present");
+  it("shows '至今' when end is present", () => {
+    expect(formatPeriod("2022-06", "present")).toBe("Jun 2022 – 至今");
   });
 
   it("handles single-digit months", () => {

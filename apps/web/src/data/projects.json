@@ -1,144 +1,186 @@
 [
   {
     "id": "proj-001",
-    "name": "Wind Power IoT Platform",
-    "tagline": "Real-time turbine monitoring across 8 wind farms",
-    "domainTags": ["IoT", "Energy", "Real-time"],
-    "background": "Built from zero to one for a wind-power customer support team managing roughly 2TB of turbine manuals, troubleshooting guides, and maintenance records. The product turned fragmented device documentation into a retrieval workflow that operators could trust during live support sessions.",
+    "name": "Wind Power RAG Platform",
+    "tagline": "Enterprise RAG knowledge platform for wind-power customer service, managing ~2TB of device documentation",
+    "domainTags": ["AI", "RAG"],
+    "domainBadge": "AI / RAG",
+    "icon": "wind_power",
+    "panelType": "grid",
+    "metricsLabel": "Performance Metrics",
+    "background": "Independently designed and delivered an enterprise knowledge retrieval platform for wind-power customer service teams. Unified management of ~2TB of device manuals, supporting multi-turn Q&A, answer citation tracing, and source paragraph location.",
     "technicalDecisions": [
       {
-        "title": "Chunking and retrieval tuned for equipment manuals",
-        "explanation": "Split long PDF manuals into section-aware chunks keyed by device model, subsystem, and failure code so retrieval stayed precise even when the source corpus mixed scanned files, SOPs, and revision-heavy documentation."
+        "title": "pgvector + BM25 hybrid search",
+        "explanation": "Implemented hybrid search for precise technical jargon retrieval, combining dense vector similarity with keyword matching."
       },
       {
-        "title": "Trust-first answer rendering",
-        "explanation": "Structured every response around citations, source snippets, and document provenance to keep customer support agents inside an auditable workflow instead of relying on opaque model output."
+        "title": "Cohere Reranker layer",
+        "explanation": "Engineered a reranker to increase Top-5 accuracy from 50% to 90%, improving answer quality for maintenance queries."
       },
       {
-        "title": "Streaming chat with controlled latency",
-        "explanation": "Used SSE-based streaming responses and staged retrieval so operators could start reading an answer quickly while the system completed reranking and evidence assembly in the background."
+        "title": "Parent-child chunking strategy",
+        "explanation": "Developed a chunking strategy for complex industrial manuals, preserving context across section boundaries."
+      },
+      {
+        "title": "OCR with vision model integration",
+        "explanation": "Integrated OCR with vision models to catalog technical drawing metadata and make visual documentation searchable."
       }
     ],
     "metrics": [
-      { "label": "Document lookup time", "value": "5 min → 1 min" },
-      { "label": "Ticket handling time", "value": "-80%" },
-      { "label": "Trust score", "value": "9.0 / 10" },
-      { "label": "Knowledge corpus", "value": "~2TB" }
+      { "label": "Fewer Tickets", "value": "80%" },
+      { "label": "Trust Score", "value": "9.0/10" },
+      { "label": "Inquiry Speed", "value": "<1m" },
+      { "label": "Data Managed", "value": "2TB" }
     ],
     "images": [
-      { "src": "/images/projects/wind-power.jpg", "alt": "Wind Power RAG Platform concept visual" }
+      {
+        "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuB91JID2ty1Ifm16qwOg-tbZzWSo_shnE0Eshi7sWBdj1ZGsPZmlczSu00FhQQ3tJCL0mTPw6mp9xMFusYgSm6Xz3w1FP4HD7ZD3I1lep4Dkx3HD3TGNeaVNwcSeXorveoS7EFlIu_sjgKi3Ofq1HnoSOmQz2V8VmkpZ5x3Ufs9pnU8iy2lLtjCr47hgx_tLFirCGdSMJ-fHUjnT83lv2usVz_GXTdfrf8rq43m1KLZ_NBJPJlGgxJF6McDnkPTwX4THITNdkkUUg",
+        "alt": "Wind Power RAG Platform concept visual"
+      }
     ],
-    "links": [
-      { "type": "case-study", "url": "/projects" }
-    ],
-    "techTags": ["React", "Node.js", "RAG", "Pinecone", "OpenAI", "SSE"],
+    "links": [],
+    "techTags": ["React", "Node.js", "RAG", "pgvector", "OpenAI", "SSE"],
     "featured": true,
     "order": 1
   },
   {
     "id": "proj-002",
-    "name": "Gate SEO Platform",
-    "tagline": "Performance-first SEO analytics for a top-10 crypto exchange",
-    "domainTags": ["Web3", "SEO", "Analytics"],
-    "background": "Led a dedicated SEO rebuild for Gate's large data-content surfaces, including liquidation feeds, capital-flow dashboards, and other traffic-heavy pages. The project replaced a CSR-only delivery model with a crawlable, performance-focused architecture built for search growth at scale.",
+    "name": "Gate.com SEO Special Project",
+    "tagline": "Performance-first SEO architecture for a top-10 crypto exchange",
+    "domainTags": ["Performance", "SEO"],
+    "domainBadge": "Performance / SEO",
+    "icon": "trending_up",
+    "panelType": "progress",
+    "metricsLabel": "Growth & Performance",
+    "background": "Spearheaded the SEO overhaul for a top 10 global crypto exchange, migrating mission-critical data pages to a robust SSR architecture to dominate search engine rankings.",
     "technicalDecisions": [
       {
-        "title": "CSR to SSR migration with short-cycle caching",
-        "explanation": "Chose Next.js server rendering with controlled revalidation instead of static generation because the underlying market data changed minute by minute and still needed indexable HTML for search engines."
+        "title": "CSR to Next.js SSR + ISR migration",
+        "explanation": "Orchestrated migration with 60s revalidation for dynamic financial data, ensuring crawlable HTML for search engines."
       },
       {
-        "title": "Structured data as a ranking multiplier",
-        "explanation": "Systematically injected JSON-LD for dataset and financial content pages to improve Google understanding of page intent and unlock richer result surfaces beyond standard blue links."
+        "title": "JSON-LD Schema injection",
+        "explanation": "Injected Dataset and FinancialProduct schemas to maximize Google Rich Results across liquidation and funding rate pages."
       },
       {
-        "title": "Performance budgets tied to SEO rollout",
-        "explanation": "Treated LCP, CLS, and layout stability as release gates so search visibility gains would not come at the cost of user-perceived speed on mobile-heavy traffic."
+        "title": "Progressive rollout strategy",
+        "explanation": "Implemented rollout starting with high-traffic pages, validating SEO gains before expanding to the full page catalog."
+      },
+      {
+        "title": "Layout shift elimination",
+        "explanation": "Eliminated CLS by optimizing font preloading and enforcing image aspect-ratio boxes throughout the page templates."
       }
     ],
     "metrics": [
-      { "label": "Organic traffic", "value": "1K/mo → 14K/mo" },
-      { "label": "Page-series uplift", "value": "+80%+" },
-      { "label": "LCP", "value": "4.2s → 1.8s" },
-      { "label": "Search index lift", "value": "+30%+" }
+      { "label": "Organic Traffic Increase", "value": "1,400%" },
+      { "label": "Core Web Vital \"Good\" Threshold", "value": "LCP: 1.8s" },
+      { "label": "Structured Data Integration", "value": "JSON-LD" }
     ],
-    "images": [
-      { "src": "/images/projects/gate-seo.jpg", "alt": "Gate SEO transformation dashboard" }
+    "images": [],
+    "links": [],
+    "techTags": [
+      "Next.js",
+      "TypeScript",
+      "SEO",
+      "JSON-LD",
+      "SSR",
+      "Core Web Vitals"
     ],
-    "links": [
-      { "type": "demo", "url": "https://example.com/gate-seo-demo" },
-      { "type": "case-study", "url": "/projects" }
-    ],
-    "techTags": ["Next.js", "TypeScript", "SEO", "JSON-LD", "SSR", "Core Web Vitals"],
     "featured": true,
     "order": 2
   },
   {
     "id": "proj-003",
-    "name": "Michaels Design System",
+    "name": "Michaels Mall Design System",
     "tagline": "Shared frontend foundation across four retail product lines",
-    "domainTags": ["Design System", "E-commerce", "Platform"],
-    "background": "Served as frontend tech lead for Michaels across MakerPlace, Rewards, Classes, and store experiences, aligning multiple product lines on a shared component system and delivery model. The work focused on making multi-team execution faster without fragmenting UX or performance standards.",
+    "domainTags": ["Design System", "DX"],
+    "domainBadge": "Design System / DX",
+    "icon": "auto_awesome_motion",
+    "panelType": "outcome",
+    "metricsLabel": "Outcome Metrics",
+    "quote": "LCP optimized from 4s to 1.8s across all core commerce pages.",
+    "background": "Led the frontend architecture for the US retail giant Michaels, unifying four distinct product lines under a single, performant design system and modern build pipeline.",
     "technicalDecisions": [
       {
-        "title": "Token architecture layered from global to component scope",
-        "explanation": "Built the system on top of Chakra UI with global, semantic, and component-level token layers so teams could reuse primitives while still supporting product-level theme adaptation."
+        "title": "Webpack to Vite migration",
+        "explanation": "Executed migration reducing HMR response time from 3s to <0.5s, dramatically improving developer iteration speed."
       },
       {
-        "title": "Multi-format package output for broad adoption",
-        "explanation": "Used Rollup multi-entry builds to ship ESM and CJS packages with tree-shaking support, keeping the design system consumable across older storefront apps and newer feature teams."
+        "title": "Multi-layered Design Token system",
+        "explanation": "Built Global → Semantic → Component token layers supporting multiple brand themes without duplicating component logic."
       },
       {
-        "title": "Migration strategy paired with performance work",
-        "explanation": "Combined the design system rollout with SSR-friendly Vite migration and dependency slimming so shared components improved consistency without becoming a performance tax."
+        "title": "Rollup multi-entry builds",
+        "explanation": "Engineered ESM/CJS builds to ensure tree-shaking efficiency for all consuming applications across product lines."
+      },
+      {
+        "title": "Zero-overhead library migration",
+        "explanation": "Swapped legacy dependencies for modern alternatives (lodash → lodash-es, moment → day.js) reducing bundle size."
       }
     ],
     "metrics": [
-      { "label": "Product lines", "value": "4" },
-      { "label": "Team size led", "value": "7 engineers" },
-      { "label": "Build speed", "value": "+80%" },
-      { "label": "SEO page lift", "value": "+30%+" }
+      { "label": "Reduction in UI dev time", "value": "60%" },
+      { "label": "Faster dev server start", "value": "80%" }
     ],
     "images": [],
-    "links": [
-      { "type": "github", "url": "https://github.com/jiangui-eth" }
+    "links": [],
+    "techTags": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Chakra UI",
+      "Design Tokens",
+      "Rollup",
+      "Vite"
     ],
-    "techTags": ["React", "Next.js", "TypeScript", "Chakra UI", "Design Tokens", "Rollup", "Vite"],
     "featured": false,
     "order": 3
   },
   {
     "id": "proj-004",
-    "name": "Chaos Developer Platform",
-    "tagline": "Self-service internal platform for 50+ engineers",
-    "domainTags": ["DevOps", "Platform Engineering", "Developer Experience"],
-    "background": "Built for a bank's core systems to support fault-injection experiments, real-time observability, and resilience governance in a financial-grade environment. The product needed to make complex experiment design safe enough for daily engineering use.",
+    "name": "Chaos Engineering Platform",
+    "tagline": "Self-service fault injection platform for Guiyang Bank",
+    "domainTags": ["Visual Computing"],
+    "domainBadge": "Visual Computing",
+    "icon": "security",
+    "panelType": "viz",
+    "metricsLabel": "Visualization Engine",
+    "background": "Designed a mission-critical failure injection platform for Guiyang Bank, translating complex backend resilience testing into an intuitive visual workspace.",
     "technicalDecisions": [
       {
-        "title": "Graph-based experiment editor instead of form-only configuration",
-        "explanation": "Used AntV/X6 to model failure nodes, dependency paths, and execution order visually, cutting experiment setup time while making propagation risks much easier to inspect before launch."
+        "title": "AntV/X6 graph-based experiment designer",
+        "explanation": "Developed a graph designer enabling drag-and-drop fault orchestration, cutting experiment setup time by 60%."
       },
       {
-        "title": "High-frequency rendering pipeline for observability views",
-        "explanation": "Combined data windowing, requestAnimationFrame scheduling, and Canvas-based charts to keep dashboards responsive under roughly 2,000 updates per second."
+        "title": "Canvas-based rendering strategy",
+        "explanation": "Implemented Canvas rendering for real-time monitoring of 2,000+ data points/s, handling high-frequency updates."
       },
       {
-        "title": "Report distribution built into the workflow",
-        "explanation": "Integrated PDF export, share links, and multi-chart reporting directly into experiment results so reliability reviews could move faster than manual screenshot-based handoffs."
+        "title": "requestAnimationFrame + data windowing",
+        "explanation": "Optimized rendering cycles to maintain a steady 60fps under peak observability load without frame drops."
+      },
+      {
+        "title": "Automated PDF report distribution",
+        "explanation": "Built automated PDF export utilizing AntV/G2 chart snapshots, integrating reports directly into experiment results."
       }
     ],
     "metrics": [
-      { "label": "Setup time", "value": "-60%" },
-      { "label": "Realtime throughput", "value": "~2,000/s" },
-      { "label": "Render stability", "value": "55-60fps" },
-      { "label": "Chart types", "value": "8+" }
+      { "label": "Data Throughput", "value": "2,000 req/s" },
+      { "label": "Config Time", "value": "-60% Reduction" },
+      { "label": "Acceptance Rate", "value": "100%" }
     ],
-    "images": [
-      { "src": "/images/projects/chaos-platform.jpg", "alt": "Chaos engineering platform dashboard" }
+    "images": [],
+    "links": [],
+    "techTags": [
+      "React",
+      "Go",
+      "Jotai",
+      "AntV/X6",
+      "AntV/G2",
+      "Canvas",
+      "Webpack"
     ],
-    "links": [
-      { "type": "case-study", "url": "/projects" }
-    ],
-    "techTags": ["React", "Go", "Jotai", "Tailwind CSS", "AntV/X6", "AntV/G2", "Webpack"],
     "featured": true,
     "order": 4
   }

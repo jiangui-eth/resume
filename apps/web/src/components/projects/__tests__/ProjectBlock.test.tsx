@@ -1,18 +1,27 @@
-import { render, screen } from "@testing-library/react";
+import type { ProjectBlockData } from "../ProjectBlock";
+import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-vi.mock("next/image", () => ({
-  default: ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={alt} />,
-}));
+import { renderWithIntl } from "@/test/intl-test-utils";
+import ProjectBlock from "../ProjectBlock";
 
-import ProjectBlock, { type ProjectBlockData } from "../ProjectBlock";
+vi.mock("next/image", () => ({
+  default: ({ src, alt }: { src: string; alt: string }) => (
+    <img src={src} alt={alt} />
+  ),
+}));
 
 const BASE_PROJECT: ProjectBlockData = {
   id: "project-1",
   name: "Wind Power RAG Platform",
   tagline: "RAG knowledge workspace for support teams",
   domainTags: ["AI", "RAG"],
-  background: "A retrieval product for wind-energy customer support operations.",
+  domainBadge: "AI / RAG",
+  icon: "wind_power",
+  panelType: "grid" as const,
+  metricsLabel: "Performance Metrics",
+  background:
+    "A retrieval product for wind-energy customer support operations.",
   technicalDecisions: [
     {
       title: "Citation-first answers",
@@ -24,7 +33,10 @@ const BASE_PROJECT: ProjectBlockData = {
     { label: "Handling time", value: "-80%" },
   ],
   images: [
-    { src: "/images/projects/wind-power.jpg", alt: "Wind Power RAG Platform concept visual" },
+    {
+      src: "/images/projects/wind-power.jpg",
+      alt: "Wind Power RAG Platform concept visual",
+    },
   ],
   links: [],
   techTags: ["Next.js", "OpenAI"],
@@ -32,17 +44,22 @@ const BASE_PROJECT: ProjectBlockData = {
   order: 1,
 };
 
-describe("ProjectBlock", () => {
+describe("projectBlock", () => {
   it("renders the project name", () => {
-    render(<ProjectBlock project={BASE_PROJECT} />);
-
+    renderWithIntl(<ProjectBlock project={BASE_PROJECT} />);
     expect(screen.getByText("Wind Power RAG Platform")).toBeInTheDocument();
   });
 
-  it("renders the domain tag", () => {
-    render(<ProjectBlock project={BASE_PROJECT} />);
+  it("renders the domain badge", () => {
+    renderWithIntl(<ProjectBlock project={BASE_PROJECT} />);
+    expect(screen.getByText("AI / RAG")).toBeInTheDocument();
+  });
 
-    expect(screen.getByText("AI")).toBeInTheDocument();
+  it("falls back to joined domainTags when domainBadge is absent", () => {
+    renderWithIntl(
+      <ProjectBlock project={{ ...BASE_PROJECT, domainBadge: undefined }} />,
+    );
+    expect(screen.getByText("AI / RAG")).toBeInTheDocument();
   });
 
   it("renders GitHub, Demo, and Case Study buttons only when provided", () => {
@@ -55,30 +72,40 @@ describe("ProjectBlock", () => {
       ],
     };
 
-    const { rerender } = render(<ProjectBlock project={projectWithLinks} />);
+    const { rerender } = renderWithIntl(
+      <ProjectBlock project={projectWithLinks} />,
+    );
 
     expect(screen.getByRole("link", { name: "GitHub" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Demo" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Case Study" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Case Study" }),
+    ).toBeInTheDocument();
 
     rerender(<ProjectBlock project={BASE_PROJECT} />);
 
-    expect(screen.queryByRole("link", { name: "GitHub" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "Demo" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "Case Study" })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: "GitHub" }),
+    ).not.toBeInTheDocument();
   });
 
   it("renders without crashing when image src is absent", () => {
-    const projectWithoutImage: ProjectBlockData = {
-      ...BASE_PROJECT,
-      images: [],
-    };
-
-    render(<ProjectBlock project={projectWithoutImage} />);
-
+    renderWithIntl(
+      <ProjectBlock project={{ ...BASE_PROJECT, images: [], metrics: [] }} />,
+    );
     expect(
       screen.getByRole("heading", { name: "Wind Power RAG Platform" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Visual Pending")).toBeInTheDocument();
+  });
+
+  it("renders odd-order project with article wrapper", () => {
+    renderWithIntl(<ProjectBlock project={BASE_PROJECT} />);
+    expect(screen.getByRole("article")).toBeInTheDocument();
+  });
+
+  it("renders even-order project with article wrapper", () => {
+    renderWithIntl(<ProjectBlock project={{ ...BASE_PROJECT, order: 2 }} />);
+    expect(screen.getByRole("article")).toBeInTheDocument();
   });
 });

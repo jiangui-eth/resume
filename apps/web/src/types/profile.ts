@@ -1,3 +1,14 @@
+export interface Highlight {
+  value: string;
+  label: string;
+}
+
+export interface Capability {
+  icon: string;
+  title: string;
+  bullets: string[];
+}
+
 export interface ProfileStats {
   /** Number of projects shipped, e.g. 14 */
   projectsShipped: number;
@@ -30,6 +41,10 @@ export interface Profile {
   location: string;
   /** Key metrics shown in bio/stats strip */
   stats: ProfileStats;
+  /** Display-formatted key metrics for the about strip */
+  highlights: Highlight[];
+  /** Technical capability cards for the capability section */
+  capabilities: Capability[];
   /** Social / contact links */
   socials: SocialLink[];
 }

@@ -1,65 +1,86 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { NextIntlClientProvider } from "next-intl";
+import React from "react";
+import { describe, expect, it, vi } from "vitest";
 
-// ── Lucide mock ────────────────────────────────────────────────────────────────
-
-vi.mock("lucide-react", () => ({
-  Layers2: ({ "aria-hidden": hidden }: { "aria-hidden"?: string }) => (
-    <svg data-testid="icon-layers2" aria-hidden={hidden} />
-  ),
-  Zap: ({ "aria-hidden": hidden }: { "aria-hidden"?: string }) => (
-    <svg data-testid="icon-zap" aria-hidden={hidden} />
-  ),
-  Brain: ({ "aria-hidden": hidden }: { "aria-hidden"?: string }) => (
-    <svg data-testid="icon-brain" aria-hidden={hidden} />
-  ),
-  Wrench: ({ "aria-hidden": hidden }: { "aria-hidden"?: string }) => (
-    <svg data-testid="icon-wrench" aria-hidden={hidden} />
-  ),
-}));
+import zhCN from "../../../../messages/zh-CN.json";
 
 import CapabilitySection from "../CapabilitySection";
 
-// ── Tests ──────────────────────────────────────────────────────────────────────
+vi.mock("next-intl/server", async () => {
+  const { default: msgs } = await import("../../../../messages/zh-CN.json");
+  function makeT(ns?: string) {
+    return (key: string) => {
+      const section = ns
+        ? (msgs as unknown as Record<string, Record<string, string>>)[ns]
+        : (msgs as unknown as Record<string, string>);
+      if (!section) return key;
+      const parts = key.split(".");
+      let val: unknown = section;
+      for (const p of parts) val = (val as Record<string, unknown>)?.[p];
+      return (val as string) ?? key;
+    };
+  }
+  return {
+    getTranslations: vi
+      .fn()
+      .mockImplementation(async (ns?: string) => makeT(ns)),
+    getLocale: vi.fn().mockResolvedValue("zh-CN"),
+    getMessages: vi.fn().mockResolvedValue(msgs),
+  };
+});
 
-describe("CapabilitySection", () => {
-  it("renders the section label and heading", () => {
-    render(<CapabilitySection />);
-    expect(screen.getByText("Technical Arsenal")).toBeInTheDocument();
-    expect(screen.getByText(/built to ship/i)).toBeInTheDocument();
+async function renderSection() {
+  const jsx = await CapabilitySection();
+  return render(
+    <NextIntlClientProvider locale="zh-CN" messages={zhCN}>
+      {jsx}
+    </NextIntlClientProvider>,
+  );
+}
+
+describe("capabilitySection", () => {
+  it("renders the 专业技能 badge (zh-CN)", async () => {
+    await renderSection();
+    expect(screen.getByText("专业技能")).toBeInTheDocument();
   });
 
-  it("renders all four capability card titles", () => {
-    render(<CapabilitySection />);
+  it("renders the 核心技术栈 section heading (zh-CN)", async () => {
+    await renderSection();
+    expect(screen.getByText("核心技术栈")).toBeInTheDocument();
+  });
+
+  it("renders all four capability card titles", async () => {
+    await renderSection();
     expect(screen.getByText("Next.js / React")).toBeInTheDocument();
     expect(screen.getByText("Performance")).toBeInTheDocument();
     expect(screen.getByText("AI & RAG")).toBeInTheDocument();
     expect(screen.getByText("Engineering")).toBeInTheDocument();
   });
 
-  it("renders all four icons", () => {
-    render(<CapabilitySection />);
-    expect(screen.getByTestId("icon-layers2")).toBeInTheDocument();
-    expect(screen.getByTestId("icon-zap")).toBeInTheDocument();
-    expect(screen.getByTestId("icon-brain")).toBeInTheDocument();
-    expect(screen.getByTestId("icon-wrench")).toBeInTheDocument();
+  it("renders Material Symbols icon spans for each card", async () => {
+    await renderSection();
+    const icons = document.querySelectorAll(".material-symbols-outlined");
+    expect(icons.length).toBeGreaterThanOrEqual(4);
   });
 
-  it("renders bullet points for each card", () => {
-    render(<CapabilitySection />);
-    expect(screen.getByText(/App Router/i)).toBeInTheDocument();
+  it("renders bullet points for each card", async () => {
+    await renderSection();
+    expect(screen.getByText(/SSR & ISR Architectures/i)).toBeInTheDocument();
     expect(screen.getByText(/Core Web Vitals/i)).toBeInTheDocument();
-    expect(screen.getByText(/LLM API integration/i)).toBeInTheDocument();
-    expect(screen.getByText(/TypeScript across the full stack/i)).toBeInTheDocument();
+    expect(screen.getByText(/LLM Orchestration/i)).toBeInTheDocument();
+    expect(screen.getByText(/Monorepos/i)).toBeInTheDocument();
   });
 
-  it("renders four article elements (one per card)", () => {
-    render(<CapabilitySection />);
+  it("renders four article elements (one per card)", async () => {
+    await renderSection();
     expect(screen.getAllByRole("article")).toHaveLength(4);
   });
 
-  it("has accessible section landmark", () => {
-    render(<CapabilitySection />);
-    expect(screen.getByRole("region", { name: /technical arsenal/i })).toBeInTheDocument();
+  it("has accessible section landmark with i18n label (zh-CN)", async () => {
+    await renderSection();
+    expect(
+      screen.getByRole("region", { name: /核心技术栈/ }),
+    ).toBeInTheDocument();
   });
 });

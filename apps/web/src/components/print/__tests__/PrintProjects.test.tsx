@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import PrintProjects from "../PrintProjects";
 
-describe("PrintProjects", () => {
+describe("printProjects", () => {
   it("renders the Key Projects heading", () => {
     render(<PrintProjects />);
     expect(
-      screen.getByRole("heading", { name: /key projects/i })
+      screen.getByRole("heading", { name: /key projects/i }),
     ).toBeInTheDocument();
   });
 

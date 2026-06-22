@@ -38,7 +38,7 @@ Task: <任务名称>
 - PR 链接: 待生成
 - 变更文件: 待生成
 - 回滚方法:
-    1. git checkout main
+    1. git checkout dev_v2
     2. git revert <commit-id>
 - 备注: <特殊说明>
 ```
@@ -60,9 +60,16 @@ Task: <任务名称>
 
 ### 5. 创建 PR
 
-- source：Task 分支 → target：`main`
+- source：Task 分支 → target：**`dev_v2`**
 - PR title：`Task: <任务名称> - 自动 PR`
-- PR body：自动填充 Task 文档内容
+- PR body：**严格按照 `.github/pull_request_template.md` 格式填写**，各节说明如下：
+  - **Description**：一句话说明本 PR 的改动内容和原因
+  - **Task**：填写 Task ID（如 V2-T-001）和 Task 文档路径 `.claude/tasks/<slug>.md`
+  - **Change type**：勾选 Feature / Bug fix / Refactor / Docs / Test
+  - **Self-check**：逐项核查并勾选（lint、tsc、build、test、responsive、images、no hardcoded data、no console.log）
+  - **Preview URL**：CI 部署后填写 Vercel 预览链接
+  - **Screenshots / recordings**：UI 变更需提供前后对比截图
+  - **Code Review checklist**：留给 reviewer，不需要 Claude 勾选
 - PR 创建后更新 Task 文档 `PR 链接` 字段
 
 ### 6. 部署
@@ -74,7 +81,7 @@ Task: <任务名称>
 ### 7. 回滚（如需）
 
 ```bash
-git checkout main
+git checkout dev_v2
 git revert <Task Commit ID>
 ```
 
@@ -88,3 +95,22 @@ git revert <Task Commit ID>
 - 所有 commit、PR、Task 文档必须同步更新，保持一致
 - 每个 Task 完成都必须生成单元测试
 - 每个 Task 完成都必须生成文档，便于 CR 和自动化部署审计
+
+---
+
+## Testing Conventions
+
+- **Unit tests:** Co-located in `__tests__/` next to the source file.
+  - Components: `src/components/<area>/__tests__/<ComponentName>.test.tsx`
+  - Hooks: `src/hooks/__tests__/<hookName>.test.ts`
+  - Utilities: `src/lib/__tests__/<file>.test.ts`
+  - Pages: `src/app/<route>/__tests__/page.test.tsx`
+- **E2E / visual tests:** `tests/visual/` (Playwright)
+- **Required mocks for every test file:**
+  - Always mock `next/image`, `next/link`, `next/navigation` as needed
+  - Always mock `framer-motion` for animated components (see `Timeline.test.tsx` for the pattern)
+  - Always mock `@/lib/analytics` to prevent real event firing
+- **No snapshot tests.** Use specific role/text assertions (`getByRole`, `getByText`).
+- **Real JSON data.** Import directly from `@/data/*.json` — do not duplicate fixture data in test files.
+- **Client components** (`"use client"`) that use browser APIs (IntersectionObserver, `window.scrollY`) require additional global mocks in the test file.
+- **Test runner:** Vitest 3.x (API-compatible with Jest — `vi.mock` replaces `jest.mock`).

@@ -1,0 +1,14 @@
+{
+  "extends": "@jiangui-resume/config/tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@jiangui-resume/ui/*": ["../../packages/ui/src/*"]
+    }
+  },
+  "include": ["src", ".storybook"],
+  "exclude": ["node_modules", "storybook-static"]
+}

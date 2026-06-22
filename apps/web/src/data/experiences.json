@@ -1,63 +1,126 @@
 [
   {
     "id": "exp-001",
-    "company": "Gate.io",
-    "companyUrl": "https://gate.io",
-    "title": "Senior Frontend Engineer",
+    "company": "Jingcheng Yideng Technology",
+    "title": "AI Full-Stack Engineer",
     "type": "full-time",
     "period": {
-      "start": "2022-06",
+      "start": "2025-12",
       "end": "present"
     },
-    "location": "Shanghai · Remote",
+    "location": "Shenzhen · Remote",
     "responsibilities": [
-      "Led frontend architecture for Gate SEO platform, reducing average page load from 4.2s to 1.8s through SSR optimisation and aggressive code splitting",
-      "Designed and shipped a real-time analytics dashboard handling 50k+ concurrent users with WebSocket-driven updates and virtual list rendering",
-      "Established component library and design-token system adopted by 4 product teams, cutting UI development time by ~40%",
-      "Drove Core Web Vitals scores to 80+ across key landing pages, directly contributing to organic search growth",
-      "Mentored 3 junior engineers through bi-weekly code reviews and pair programming sessions"
+      "Led full-stack AI development independently, delivering two commercial products from zero: a RAG knowledge base platform for wind-power customer service teams managing ~2TB of device documentation, and an AIGC marketing app generating personalised scenic-spot videos from user avatar uploads",
+      "RAG platform reduced average document lookup time from 5 min to 1 min, ticket handling time down 80%, and answer trust score reached 9/10",
+      "Abstracted reusable AI capability modules (multi-model integration, async task state machine, answer citation backlink), enabling new business scenarios without rewriting core logic"
     ],
-    "techTags": ["Next.js", "TypeScript", "TailwindCSS", "WebSocket", "Redis", "PostgreSQL"],
-    "highlight": "LCP 4.2s → 1.8s"
+    "techTags": [
+      "React",
+      "TypeScript",
+      "RAG",
+      "Pinecone",
+      "OpenAI",
+      "SSE",
+      "LangSmith"
+    ],
+    "highlight": "Ticket handling −80%"
   },
   {
     "id": "exp-002",
-    "company": "Envision Energy",
-    "companyUrl": "https://www.envisiongroup.com",
-    "title": "Full-Stack Engineer",
+    "company": "Gate.com",
+    "companyUrl": "https://gate.com",
+    "title": "Senior Frontend Engineer",
     "type": "full-time",
     "period": {
-      "start": "2020-07",
-      "end": "2022-05"
+      "start": "2024-03",
+      "end": "2025-12"
     },
-    "location": "Shanghai",
+    "location": "Remote",
     "responsibilities": [
-      "Built the Wind Power IoT monitoring platform from greenfield, integrating real-time telemetry from 2,000+ turbines across 8 wind farms",
-      "Designed a time-series data pipeline using InfluxDB and Kafka, sustaining 200k+ data points per minute with sub-second query response",
-      "Delivered an interactive 3D turbine visualisation with Three.js and WebGL, enabling field engineers to inspect component status remotely",
-      "Implemented automated alert workflows reducing mean-time-to-detect (MTTD) for turbine faults by 65%",
-      "Collaborated with embedded firmware team to define the MQTT telemetry protocol for edge devices"
+      "Led frontend for Gate's wealth management business line at a global Top-10 crypto exchange, independently delivering 4 financial products (Dual Investment, Earn, VIP Wealth, Leveraged) plus OTC back-office and KYC/KYB compliance flows",
+      "Led SEO initiative on big-data content pages: organic traffic grew from 1K/mo to 14K/mo (14×), other data-series pages up 80%+; achieved via CSR → Next.js SSR migration and systematic JSON-LD injection, with LCP/CLS reaching Core Web Vitals Good threshold",
+      "Led frontend infrastructure modernisation: MobX → Zustand, styled-components → Tailwind, eliminating runtime overhead; maintained monorepo shared modules, icon library, and component library",
+      "Introduced AI-assisted development workflow (Cursor), improving repetitive coding throughput by ~30%"
     ],
-    "techTags": ["React", "Node.js", "InfluxDB", "Kafka", "Three.js", "MQTT", "Docker"],
-    "highlight": "2,000+ turbines monitored"
+    "techTags": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Zustand",
+      "JSON-LD",
+      "SSR",
+      "Core Web Vitals"
+    ],
+    "highlight": "SEO 1K → 14K/mo (14×)"
   },
   {
     "id": "exp-003",
-    "company": "Chaos (Internal Platform)",
-    "title": "Platform Engineer (Internal Tools)",
+    "company": "Hanzhu Technology · Michaels",
+    "title": "Senior Frontend Engineer / Tech Lead",
     "type": "full-time",
     "period": {
-      "start": "2019-07",
+      "start": "2022-04",
+      "end": "2024-03"
+    },
+    "location": "Shenzhen",
+    "responsibilities": [
+      "Served as frontend tech lead managing a 7-person team across Michaels' 4 product lines (MakerPlace, Rewards, Classes, store systems), responsible for architecture design, technical selection, and delivery cadence",
+      "Led Next.js SSR build migration from Webpack to Vite: dev cold start from ~25s to <5s, HMR from ~3s to <0.5s, significantly tightening the team's iteration feedback loop",
+      "Built Design System from zero: 16+ reusable business components across 4 product lines, reducing duplicate UI development by ~60%; LCP improved from ~4s to 1.8s",
+      "Established frontend quality system (ESLint/Prettier/TypeScript strict + Code Review cadence), reducing production bug rate by ~30%"
+    ],
+    "techTags": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Chakra UI",
+      "Vite",
+      "Rollup",
+      "Design Tokens"
+    ],
+    "highlight": "7-person team lead"
+  },
+  {
+    "id": "exp-004",
+    "company": "CIFS · Guiyang Bank",
+    "title": "Frontend Team Lead",
+    "type": "full-time",
+    "period": {
+      "start": "2020-07",
+      "end": "2022-04"
+    },
+    "location": "Guiyang",
+    "responsibilities": [
+      "Led a 3-person frontend team on-site at Guiyang Bank's core banking system, responsible for requirements decomposition, effort estimation, and establishing code review processes",
+      "Independently delivered Guiyang Bank Chaos Engineering Platform from zero in 2 weeks: 4-module 1.0 (fault injection, experiment orchestration, monitoring, governance) with 100% customer acceptance rate",
+      "Led 3-person team completing Taikang Life configuration centre in 1 month: multi-datasource config templates (Redis/MySQL) with one-click rollback, significantly improving config change efficiency"
+    ],
+    "techTags": [
+      "React",
+      "TypeScript",
+      "Jotai",
+      "Tailwind",
+      "AntV/X6",
+      "AntV/G2",
+      "Webpack"
+    ],
+    "highlight": "Chaos Platform: 2-week delivery"
+  },
+  {
+    "id": "exp-005",
+    "company": "Guizhou Guoxintong E-Commerce",
+    "title": "Frontend Developer",
+    "type": "full-time",
+    "period": {
+      "start": "2018-03",
       "end": "2020-06"
     },
-    "location": "Shanghai",
+    "location": "Guiyang",
     "responsibilities": [
-      "Built the Chaos internal developer platform, providing self-service deployment, feature flags, and environment management for 50+ engineers",
-      "Automated CI/CD pipelines with GitHub Actions and ArgoCD, reducing average deploy time from 25 minutes to under 4 minutes",
-      "Implemented RBAC and audit-log system meeting enterprise compliance requirements",
-      "Shipped a developer portal with integrated runbook search, on-call schedules, and incident timeline views"
+      "Led progressive migration of Xintong Dai platform from JSP to Vue: phased strategy with iframe bridging for business continuity, zero rollbacks, with significant first-screen load improvement",
+      "Built H5/iOS/Android cross-platform compatible pages; abstracted activity pages and channel routing into a JSON Schema-driven template engine, reducing repetitive business development time by ~50%"
     ],
-    "techTags": ["React", "Go", "GitHub Actions", "ArgoCD", "Kubernetes", "PostgreSQL"],
-    "highlight": "Deploy time 25min → 4min"
+    "techTags": ["Vue", "JavaScript", "H5", "JSON Schema"],
+    "highlight": "JSP → Vue zero-rollback"
   }
 ]

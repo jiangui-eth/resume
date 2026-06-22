@@ -5,22 +5,32 @@
  */
 
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const dataDir = join(__dirname, "../src/data");
 
-const contact = JSON.parse(readFileSync(join(dataDir, "contact.json"), "utf-8"));
-const profile = JSON.parse(readFileSync(join(dataDir, "profile.json"), "utf-8"));
+const contact = JSON.parse(
+  readFileSync(join(dataDir, "contact.json"), "utf-8"),
+);
+const profile = JSON.parse(
+  readFileSync(join(dataDir, "profile.json"), "utf-8"),
+);
 
 const BASE_URL = process.env.SITE_URL ?? "https://jiangui-resume.vercel.app";
 
 const LINKS = [
-  ...Object.values(contact).filter((v) => typeof v === "string" && v.startsWith("http")),
-  ...(profile.socials ?? []).map((s) => s.url).filter((u) => u?.startsWith("http")),
+  ...Object.values(contact).filter(
+    (v) => typeof v === "string" && v.startsWith("http"),
+  ),
+  ...(profile.socials ?? [])
+    .map((s) => s.url)
+    .filter((u) => u?.startsWith("http")),
   `${BASE_URL}/resume.pdf`,
-].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i);
+]
+  .filter(Boolean)
+  .filter((v, i, a) => a.indexOf(v) === i);
 
 const HEADERS = { "User-Agent": "Mozilla/5.0 (jiangui-resume/link-checker)" };
 
@@ -43,5 +53,9 @@ for (const url of LINKS) {
   }
 }
 
-console.log(failed === 0 ? `\nAll ${LINKS.length} links OK.` : `\n${failed}/${LINKS.length} link(s) failed.`);
+console.log(
+  failed === 0
+    ? `\nAll ${LINKS.length} links OK.`
+    : `\n${failed}/${LINKS.length} link(s) failed.`,
+);
 process.exit(failed > 0 ? 1 : 0);

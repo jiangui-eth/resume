@@ -1,12 +1,12 @@
-import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { describe, expect, it } from "vitest";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const template = readFileSync(
   join(__dirname, "../../../../.github/pull_request_template.md"),
-  "utf-8"
+  "utf-8",
 );
 
 describe(".github/pull_request_template.md — required sections", () => {

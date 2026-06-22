@@ -1,13 +1,44 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { NextIntlClientProvider } from "next-intl";
+import React from "react";
+import { describe, expect, it, vi } from "vitest";
 
-// ── Mocks ──────────────────────────────────────────────────────────────────────
+import zhCN from "../../../../messages/zh-CN.json";
+
+import ProjectsSection from "../ProjectsSection";
+
+vi.mock("next-intl/server", async () => {
+  const { default: msgs } = await import("../../../../messages/zh-CN.json");
+  function makeT(ns?: string) {
+    return (key: string) => {
+      const section = ns
+        ? (msgs as unknown as Record<string, Record<string, string>>)[ns]
+        : (msgs as unknown as Record<string, string>);
+      if (!section) return key;
+      const parts = key.split(".");
+      let val: unknown = section;
+      for (const p of parts) val = (val as Record<string, unknown>)?.[p];
+      return (val as string) ?? key;
+    };
+  }
+  return {
+    getTranslations: vi
+      .fn()
+      .mockImplementation(async (ns?: string) => makeT(ns)),
+    getLocale: vi.fn().mockResolvedValue("zh-CN"),
+    getMessages: vi.fn().mockResolvedValue(msgs),
+  };
+});
 
 vi.mock("next/image", () => ({
-  default: ({ src, alt }: { src: string; alt: string; [key: string]: unknown }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} data-testid="project-image" />
-  ),
+  default: ({
+    src,
+    alt,
+  }: {
+    src: string;
+    alt: string;
+    [key: string]: unknown;
+  }) => <img src={src} alt={alt} data-testid="project-image" />,
 }));
 
 vi.mock("next/link", () => ({
@@ -26,65 +57,69 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-import ProjectsSection from "../ProjectsSection";
+async function renderSection() {
+  const jsx = await ProjectsSection();
+  return render(
+    <NextIntlClientProvider locale="zh-CN" messages={zhCN}>
+      {jsx}
+    </NextIntlClientProvider>,
+  );
+}
 
-// ── Tests ──────────────────────────────────────────────────────────────────────
-
-describe("ProjectsSection", () => {
-  it('renders the "Selected Works" badge label', () => {
-    render(<ProjectsSection />);
-    expect(screen.getByText("Selected Works")).toBeInTheDocument();
+describe("projectsSection", () => {
+  it('renders the "精选项目" heading (zh-CN)', async () => {
+    await renderSection();
+    expect(screen.getByText("精选项目")).toBeInTheDocument();
   });
 
-  it('renders the "See all projects" link pointing to /projects', () => {
-    render(<ProjectsSection />);
-    const link = screen.getByRole("link", { name: /see all projects/i });
+  it('renders the "查看全部项目" link pointing to /projects', async () => {
+    await renderSection();
+    const link = screen.getByRole("link", { name: /查看全部项目/ });
     expect(link).toHaveAttribute("href", "/projects");
   });
 
-  it("renders all three project card names", () => {
-    render(<ProjectsSection />);
-    expect(screen.getByText("Wind Power IoT Platform")).toBeInTheDocument();
-    expect(screen.getByText("Gate SEO Platform")).toBeInTheDocument();
-    expect(screen.getByText("Chaos Developer Platform")).toBeInTheDocument();
+  it("renders top 2 featured project names (sorted by order)", async () => {
+    await renderSection();
+    expect(screen.getByText("Wind Power RAG Platform")).toBeInTheDocument();
+    expect(
+      screen.getByText("Gate.com SEO Special Project"),
+    ).toBeInTheDocument();
   });
 
-  it("renders all three project taglines", () => {
-    render(<ProjectsSection />);
-    expect(screen.getByText(/Real-time turbine monitoring/i)).toBeInTheDocument();
-    expect(screen.getByText(/Performance-first SEO analytics/i)).toBeInTheDocument();
-    expect(screen.getByText(/Self-service internal platform/i)).toBeInTheDocument();
+  it("renders project taglines", async () => {
+    await renderSection();
+    expect(
+      screen.getByText(
+        /Enterprise RAG knowledge platform for wind-power customer service/i,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Performance-first SEO architecture/i),
+    ).toBeInTheDocument();
   });
 
-  it("renders domain tag pills", () => {
-    render(<ProjectsSection />);
-    expect(screen.getByText("IoT")).toBeInTheDocument();
-    expect(screen.getByText("Web3")).toBeInTheDocument();
-    expect(screen.getByText("DevOps")).toBeInTheDocument();
-  });
-
-  it("renders tech tag pills", () => {
-    render(<ProjectsSection />);
-    // Some tags repeat across cards; use getAllByText to handle multiples
-    expect(screen.getAllByText("React").length).toBeGreaterThanOrEqual(1);
+  it("renders tech tag pills for both projects", async () => {
+    await renderSection();
     expect(screen.getAllByText("Next.js").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Go").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("React").length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders three "Case Study" links all pointing to /projects', () => {
-    render(<ProjectsSection />);
-    const links = screen.getAllByRole("link", { name: /case study/i });
-    expect(links).toHaveLength(3);
+  it('renders two "案例详情" links both pointing to /projects', async () => {
+    await renderSection();
+    const links = screen.getAllByRole("link", { name: /案例详情/ });
+    expect(links).toHaveLength(2);
     links.forEach((link) => expect(link).toHaveAttribute("href", "/projects"));
   });
 
-  it("renders three article elements (one per card)", () => {
-    render(<ProjectsSection />);
-    expect(screen.getAllByRole("article")).toHaveLength(3);
+  it("renders two article elements (one per project row)", async () => {
+    await renderSection();
+    expect(screen.getAllByRole("article")).toHaveLength(2);
   });
 
-  it('has accessible section landmark with label "Selected Works"', () => {
-    render(<ProjectsSection />);
-    expect(screen.getByRole("region", { name: /selected works/i })).toBeInTheDocument();
+  it('has accessible section landmark with i18n label "精选项目"', async () => {
+    await renderSection();
+    expect(
+      screen.getByRole("region", { name: /精选项目/ }),
+    ).toBeInTheDocument();
   });
 });

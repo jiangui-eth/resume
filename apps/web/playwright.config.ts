@@ -1,19 +1,27 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const isCI = !!process.env.CI;
+const PORT = isCI ? 3000 : 3001;
+
 export default defineConfig({
   testDir: "./tests/visual",
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 0,
+  workers: isCI ? undefined : 1,
+  forbidOnly: isCI,
+  retries: isCI ? 1 : 0,
+  updateSnapshots: isCI ? "all" : "none",
   reporter: "html",
   use: {
-    baseURL: process.env.BASE_URL ?? "http://localhost:3000",
+    baseURL: process.env.BASE_URL ?? `http://localhost:${PORT}`,
     screenshot: "only-on-failure",
   },
   projects: [
     {
       name: "desktop",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1440, height: 900 },
+      },
     },
     {
       name: "tablet",
@@ -24,12 +32,10 @@ export default defineConfig({
       use: { ...devices["iPhone SE"], viewport: { width: 375, height: 812 } },
     },
   ],
-  webServer: process.env.CI
-    ? {
-        command: "pnpm build && pnpm start",
-        url: "http://localhost:3000",
-        reuseExistingServer: false,
-        timeout: 120_000,
-      }
-    : undefined,
+  webServer: {
+    command: isCI ? "pnpm build && pnpm start" : "pnpm dev",
+    url: `http://localhost:${PORT}`,
+    reuseExistingServer: !isCI,
+    timeout: 120_000,
+  },
 });

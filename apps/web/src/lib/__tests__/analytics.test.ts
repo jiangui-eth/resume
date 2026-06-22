@@ -1,12 +1,12 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import * as va from "@vercel/analytics/react";
+
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { track } from "../analytics";
 
 vi.mock("@vercel/analytics/react", () => ({
   track: vi.fn(),
   Analytics: () => null,
 }));
-
-import { track } from "../analytics";
-import * as va from "@vercel/analytics/react";
 
 describe("analytics", () => {
   beforeEach(() => {

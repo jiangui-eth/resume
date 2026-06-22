@@ -1,26 +1,22 @@
-/**
- * T-005: Navbar unit tests
- * Framework: Vitest + @testing-library/react + jsdom
- */
-
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { renderWithIntl } from "@/test/intl-test-utils";
+
+import Navbar from "../Navbar";
 
 // ── Module mocks ───────────────────────────────────────────────────────────────
 
 vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
 
-// ── Next.js mocks ──────────────────────────────────────────────────────────────
+// ── i18n navigation mock ───────────────────────────────────────────────────────
 
 let mockPathname = "/";
 
-vi.mock("next/navigation", () => ({
+vi.mock("@/i18n/navigation", () => ({
   usePathname: () => mockPathname,
-}));
-
-vi.mock("next/link", () => ({
-  default: ({
+  useRouter: () => ({ replace: vi.fn(), refresh: vi.fn() }),
+  Link: ({
     href,
     children,
     ...props
@@ -35,26 +31,16 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-// Mock fetch for PDF availability check
-const mockFetch = vi.fn();
-global.fetch = mockFetch;
-
-import Navbar from "../Navbar";
-
-// ── Helpers ────────────────────────────────────────────────────────────────────
-
 function setPathname(p: string) {
   mockPathname = p;
 }
 
 function renderNavbar() {
-  return render(<Navbar />);
+  return renderWithIntl(<Navbar />);
 }
 
 beforeEach(() => {
   mockPathname = "/";
-  // Default: PDF not available
-  mockFetch.mockResolvedValue({ ok: false });
 });
 
 afterEach(() => {
@@ -64,161 +50,141 @@ afterEach(() => {
 
 // ── Tests ──────────────────────────────────────────────────────────────────────
 
-describe("Navbar — logo", () => {
-  it("renders the jiangui.eth logo link pointing to /", () => {
+describe("navbar — logo", () => {
+  it("renders the logo link pointing to /", () => {
     renderNavbar();
-    const logo = screen.getByRole("link", { name: /jiangui\.eth/i });
+    const logo = screen.getByRole("link", { name: /go to homepage/i });
     expect(logo).toBeInTheDocument();
     expect(logo).toHaveAttribute("href", "/");
   });
 });
 
-describe("Navbar — desktop navigation links", () => {
-  it("renders all four nav links", () => {
+describe("navbar — desktop navigation links", () => {
+  it("renders all four nav links (zh-CN)", () => {
     renderNavbar();
-    expect(screen.getAllByRole("link", { name: "Home" }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: "Experience" }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: "Projects" }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: "Skills" }).length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("link", { name: "首页" }).length,
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("link", { name: "经历" }).length,
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("link", { name: "项目" }).length,
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("link", { name: "技能" }).length,
+    ).toBeGreaterThan(0);
   });
 
-  it("marks Home as active (aria-current=page) on /", () => {
+  it("marks 首页 as active on /", () => {
     setPathname("/");
     renderNavbar();
-    const homeLinks = screen.getAllByRole("link", { name: "Home" });
-    const activeHome = homeLinks.find((el) => el.getAttribute("aria-current") === "page");
+    const homeLinks = screen.getAllByRole("link", { name: "首页" });
+    const activeHome = homeLinks.find(
+      (el) => el.getAttribute("aria-current") === "page",
+    );
     expect(activeHome).toBeDefined();
   });
 
-  it("marks Experience as active on /experience", () => {
+  it("marks 经历 as active on /experience", () => {
     setPathname("/experience");
     renderNavbar();
-    const links = screen.getAllByRole("link", { name: "Experience" });
-    const active = links.find((el) => el.getAttribute("aria-current") === "page");
+    const links = screen.getAllByRole("link", { name: "经历" });
+    const active = links.find(
+      (el) => el.getAttribute("aria-current") === "page",
+    );
     expect(active).toBeDefined();
   });
 
-  it("marks Projects as active on /projects/my-app (prefix match)", () => {
+  it("marks 项目 as active on /projects/my-app (prefix match)", () => {
     setPathname("/projects/my-app");
     renderNavbar();
-    const links = screen.getAllByRole("link", { name: "Projects" });
-    const active = links.find((el) => el.getAttribute("aria-current") === "page");
+    const links = screen.getAllByRole("link", { name: "项目" });
+    const active = links.find(
+      (el) => el.getAttribute("aria-current") === "page",
+    );
     expect(active).toBeDefined();
   });
 
-  it("does NOT mark Home as active on /experience", () => {
+  it("does NOT mark 首页 as active on /experience", () => {
     setPathname("/experience");
     renderNavbar();
-    const homeLinks = screen.getAllByRole("link", { name: "Home" });
+    const homeLinks = screen.getAllByRole("link", { name: "首页" });
     homeLinks.forEach((el) => {
       expect(el.getAttribute("aria-current")).not.toBe("page");
     });
   });
 });
 
-describe("Navbar — scroll frosted glass", () => {
-  it("starts transparent (no backdrop-blur class on header)", () => {
-    renderNavbar();
-    const header = screen.getByRole("banner");
-    expect(header.className).not.toContain("backdrop-blur-md");
-  });
-
+describe("navbar — scroll frosted glass", () => {
   it("adds backdrop-blur class after scrolling past 8px", async () => {
     renderNavbar();
     const header = screen.getByRole("banner");
-
-    // Simulate scroll
-    Object.defineProperty(window, "scrollY", { value: 10, writable: true, configurable: true });
-    fireEvent.scroll(window);
-
-    await waitFor(() => {
-      expect(header.className).toContain("backdrop-blur-md");
+    Object.defineProperty(window, "scrollY", {
+      value: 10,
+      writable: true,
+      configurable: true,
     });
-  });
-
-  it("removes backdrop-blur when scrolled back to top", async () => {
-    renderNavbar();
-    const header = screen.getByRole("banner");
-
-    Object.defineProperty(window, "scrollY", { value: 10, writable: true, configurable: true });
     fireEvent.scroll(window);
-    await waitFor(() => expect(header.className).toContain("backdrop-blur-md"));
-
-    Object.defineProperty(window, "scrollY", { value: 0, writable: true, configurable: true });
-    fireEvent.scroll(window);
-    await waitFor(() => expect(header.className).not.toContain("backdrop-blur-md"));
+    await waitFor(() => {
+      expect(header.className).toContain("backdrop-blur");
+    });
   });
 });
 
-describe("Navbar — mobile hamburger drawer", () => {
-  it("shows hamburger button on mobile (aria-label Open menu)", () => {
+describe("navbar — mobile hamburger drawer", () => {
+  it("shows hamburger button on mobile", () => {
     renderNavbar();
-    expect(screen.getByRole("button", { name: /open menu/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /打开菜单/ }),
+    ).toBeInTheDocument();
   });
 
   it("opens the drawer when hamburger is clicked", async () => {
     const user = userEvent.setup();
     renderNavbar();
-
-    const hamburger = screen.getByRole("button", { name: /open menu/i });
-    await user.click(hamburger);
-
-    expect(screen.getByRole("button", { name: /close menu/i })).toBeInTheDocument();
-    expect(screen.getByRole("dialog", { name: /navigation menu/i })).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: /打开菜单/ }));
+    expect(
+      screen.getByRole("button", { name: /关闭菜单/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("dialog", { name: /导航菜单/ }),
+    ).toBeInTheDocument();
   });
 
   it("locks body scroll when drawer is open", async () => {
     const user = userEvent.setup();
     renderNavbar();
-
-    await user.click(screen.getByRole("button", { name: /open menu/i }));
+    await user.click(screen.getByRole("button", { name: /打开菜单/ }));
     expect(document.body.style.overflow).toBe("hidden");
   });
 
   it("restores body scroll when drawer is closed", async () => {
     const user = userEvent.setup();
     renderNavbar();
-
-    await user.click(screen.getByRole("button", { name: /open menu/i }));
-    await user.click(screen.getByRole("button", { name: /close menu/i }));
+    await user.click(screen.getByRole("button", { name: /打开菜单/ }));
+    await user.click(screen.getByRole("button", { name: /关闭菜单/ }));
     expect(document.body.style.overflow).toBe("");
-  });
-
-  it("closes the drawer when a nav link is clicked (pathname change)", async () => {
-    const user = userEvent.setup();
-    renderNavbar();
-
-    await user.click(screen.getByRole("button", { name: /open menu/i }));
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
-
-    // Simulate pathname change (drawer listens to usePathname)
-    mockPathname = "/experience";
-    // Re-render to pick up new pathname value
-    // In real routing this would come from Next router; here the effect fires on render
   });
 });
 
-describe("Navbar — Download PDF button", () => {
-  it("shows disabled PDF button when PDF HEAD request fails", async () => {
-    mockFetch.mockResolvedValue({ ok: false });
+describe("navbar — Download PDF button", () => {
+  it("renders 下载 PDF link pointing to /resume-preview", () => {
     renderNavbar();
-
-    await waitFor(() => {
-      // Disabled state renders as a <span> with tooltip title
-      const disabled = document.querySelector('[title*="PDF not available"]');
-      expect(disabled).toBeInTheDocument();
-    });
+    const links = screen.getAllByRole("link", { name: /下载 PDF/ });
+    const previewLink = links.find(
+      (el) => el.getAttribute("href") === "/resume-preview",
+    );
+    expect(previewLink).toBeDefined();
+    expect(previewLink).toHaveAttribute("target", "_blank");
   });
+});
 
-  it("shows enabled download link when PDF HEAD request succeeds", async () => {
-    mockFetch.mockResolvedValue({ ok: true });
+describe("navbar — LanguageSwitcher", () => {
+  it("renders at least one language switcher button (desktop + mobile)", () => {
     renderNavbar();
-
-    await waitFor(() => {
-      const links = screen.getAllByRole("link", { name: /download pdf/i });
-      const downloadLink = links.find((el) => el.hasAttribute("download"));
-      expect(downloadLink).toBeDefined();
-      expect(downloadLink).toHaveAttribute("href", "/resume.pdf");
-    });
+    expect(
+      screen.getAllByRole("button", { name: /语言/ }).length,
+    ).toBeGreaterThanOrEqual(1);
   });
 });

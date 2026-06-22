@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "home": "首頁",
+    "experience": "經歷",
+    "projects": "項目",
+    "skills": "技能",
+    "downloadPdf": "下載 PDF",
+    "openMenu": "打開選單",
+    "closeMenu": "關閉選單",
+    "menuLabel": "導航選單"
+  },
+  "hero": {
+    "tagline": "效能架構設計",
+    "viewProjects": "查看項目",
+    "getInTouch": "取得聯繫方式"
+  },
+  "about": {
+    "title": "深耕工程，精益求精"
+  },
+  "capabilities": {
+    "badge": "專業技能",
+    "title": "核心技術棧",
+    "description": "覆蓋前端工程化、效能優化、AI 應用開發，支撐中大型 Web 應用全生命週期交付。"
+  },
+  "projects": {
+    "title": "精選項目",
+    "subtitle": "架構設計與規模化工程實踐。",
+    "viewAll": "查看全部項目",
+    "caseDetails": "案例詳情"
+  },
+  "contact": {
+    "title": "期待合作，共建下一代 Web 產品。",
+    "subtitle": "正尋求高級前端 / AI 全棧崗位，支持遠端與現場合作，歡迎聯繫。",
+    "hide": "隱藏",
+    "reveal": "顯示",
+    "notConfigured": "未配置"
+  },
+  "experience": {
+    "badge": "職業歷程",
+    "title": "工作",
+    "titleHighlight": "經歷",
+    "description": "8 年前端開發經驗，從傳統企業系統到全球頂級加密貨幣交易所，再到 AI 應用全棧研發。",
+    "present": "至今"
+  },
+  "projectsPage": {
+    "title": "架構",
+    "titleHighlight": "與實現。",
+    "description": "技術領導力與前端工程實踐的精選展示，涵蓋複雜遷移、高效能系統與 AI 整合架構。"
+  },
+  "skillsHero": {
+    "badge": "核心能力",
+    "title": "技術專長",
+    "description": "8 年前端開發經驗，專注 React / Next.js 技術棧與工程化體系建設，在效能優化、AI 應用開發與設計系統落地方面具備豐富實戰經驗。",
+    "systemArchitecture": "系統架構",
+    "performanceFirst": "效能優先"
+  },
+  "skillsCTA": {
+    "title": "期待下一個架構挑戰。",
+    "description": "擅長將複雜技術需求轉化為高效能用戶體驗，無論是 3D 資料視覺化還是大規模 Monorepo 遷移，每一行程式碼都傾注經驗。",
+    "contactMe": "聯繫我"
+  },
+  "expertise": {
+    "title": "實戰經驗沉澱"
+  },
+  "techStack": {
+    "title": "技術棧"
+  },
+  "projectsCTA": {
+    "title": "深入了解技術細節？",
+    "description": "這些項目的完整技術文件與系統設計圖可按需提供，歡迎深度技術交流。",
+    "scheduleChat": "預約技術交流",
+    "viewGithub": "查看 GitHub"
+  },
+  "technicalDecisions": {
+    "title": "技術決策"
+  },
+  "footer": {
+    "copyright": "高級前端工程師。精工細作。"
+  },
+  "language": {
+    "label": "語言",
+    "en": "English",
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文"
+  },
+  "profile": {
+    "headline": "AI 全棧工程師與 Web3 開發者",
+    "summary": "8 年前端開發經驗，專注 React / Next.js 技術棧與前端工程化體系建設，具備中大型 Web 應用架構設計與效能優化經驗（SEO 自然流量增長 14×、LCP 優化至 1.8s、建置提速 80%）。主導 Design System 與 Monorepo 落地，支撐多產品線協同開發。具備 AI 應用開發經驗（RAG / 多模型接入），能夠推動技術在實際業務中的落地。"
+  },
+  "impactMetrics": {
+    "seoGrowth": {
+      "title": "SEO 流量增長",
+      "description": "CSR → Next.js SSR 重構 + JSON-LD 結構化資料注入，自然搜索訪問量實現 14 倍增長。"
+    },
+    "buildSpeed": {
+      "title": "建置速度提升",
+      "description": "Webpack → Vite 遷移，開發冷啟動從 ~25s 降至 <5s，HMR 從 ~3s 降至 <0.5s。"
+    },
+    "lcpOptimization": {
+      "title": "LCP 效能優化",
+      "description": "通過程式碼分割、圖片延遲載入與 SSR 優化，首屏 LCP 從約 4 秒降至 1.8 秒。"
+    }
+  },
+  "expertiseDescriptions": {
+    "ssrIsr": "主導 CSR → Next.js SSR 遷移，配合短週期 ISR revalidation，實現搜尋引擎完整抓取與即時資料並重，LCP/CLS 均達 Core Web Vitals 良好閾值。",
+    "microFrontends": "熟悉 Module Federation、Single-Spa、Web Components 等微前端方案，具備多團隊前端協同架構設計經驗，支撐多產品線獨立部署。",
+    "designSystem": "從 0 到 1 建設 Design System，沉澱 16+ 高複用業務元件，覆蓋 4 條產品線，重複 UI 開發減少約 60%；採用 Design Token 分層架構支持多主題切換。"
+  }
+}

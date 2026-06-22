@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import RadarChart from "../RadarChart";
 
-describe("RadarChart", () => {
+describe("radarChart", () => {
   it("renders the SVG with aria-label", () => {
     const { container } = render(<RadarChart />);
     const svg = container.querySelector("svg");

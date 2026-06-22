@@ -1,49 +1,51 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { renderWithIntl } from "@/test/intl-test-utils";
+
 import ProjectsCTA from "../ProjectsCTA";
 
-describe("ProjectsCTA", () => {
-  it("renders the heading", () => {
-    render(<ProjectsCTA />);
+vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
+
+describe("projectsCTA", () => {
+  it("renders the i18n CTA heading (zh-CN: 深入了解技术细节)", () => {
+    renderWithIntl(<ProjectsCTA />);
     expect(
-      screen.getByRole("heading", { name: /interested in the technical depth/i })
+      screen.getByRole("heading", { name: /深入了解技术细节/ }),
     ).toBeInTheDocument();
   });
 
-  it("renders the Schedule Technical Interview link", () => {
-    render(<ProjectsCTA />);
+  it("renders the i18n technical interview link (zh-CN: 预约技术交流)", () => {
+    renderWithIntl(<ProjectsCTA />);
     expect(
-      screen.getByRole("link", { name: /schedule technical interview/i })
+      screen.getByRole("link", { name: /预约技术交流/ }),
     ).toBeInTheDocument();
   });
 
-  it("Schedule Technical Interview href points to mailto or /contact", () => {
-    render(<ProjectsCTA />);
-    const link = screen.getByRole("link", {
-      name: /schedule technical interview/i,
-    });
+  it("keeps the technical interview link target unchanged", () => {
+    renderWithIntl(<ProjectsCTA />);
+    const link = screen.getByRole("link", { name: /预约技术交流/ });
     const href = link.getAttribute("href") ?? "";
     expect(href.startsWith("mailto:") || href.startsWith("/contact")).toBe(
-      true
+      true,
     );
   });
 
-  it("renders the View GitHub link", () => {
-    render(<ProjectsCTA />);
+  it("renders the i18n GitHub link (zh-CN: 查看 GitHub)", () => {
+    renderWithIntl(<ProjectsCTA />);
     expect(
-      screen.getByRole("link", { name: /view github/i })
+      screen.getByRole("link", { name: /查看 GitHub/i }),
     ).toBeInTheDocument();
   });
 
-  it("View GitHub href points to github.com", () => {
-    render(<ProjectsCTA />);
-    const link = screen.getByRole("link", { name: /view github/i });
+  it("keeps the GitHub link href unchanged", () => {
+    renderWithIntl(<ProjectsCTA />);
+    const link = screen.getByRole("link", { name: /查看 GitHub/i });
     expect(link.getAttribute("href")).toMatch(/^https:\/\/github\.com\//);
   });
 
-  it("View GitHub link opens in new tab with noopener", () => {
-    render(<ProjectsCTA />);
-    const link = screen.getByRole("link", { name: /view github/i });
+  it("keeps the GitHub link security attributes unchanged", () => {
+    renderWithIntl(<ProjectsCTA />);
+    const link = screen.getByRole("link", { name: /查看 GitHub/i });
     expect(link.getAttribute("target")).toBe("_blank");
     expect(link.getAttribute("rel")).toContain("noopener");
   });

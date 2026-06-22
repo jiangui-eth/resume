@@ -1,16 +1,29 @@
 const MONTH_NAMES = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
+/** Formats a "YYYY-MM" segment → "Mon YYYY". Used by formatPeriod and TimelineCard. */
+export function formatDate(ym: string): string {
+  const [year, month] = ym.split("-");
+  const m = Number.parseInt(month, 10);
+  return `${MONTH_NAMES[m - 1]} ${year}`;
+}
+
+/** Returns "Mon YYYY – Mon YYYY" or "Mon YYYY – 至今" when end is "present". */
 export function formatPeriod(start: string, end: string): string {
-  const fmt = (ym: string) => {
-    const [year, month] = ym.split("-");
-    const m = parseInt(month, 10);
-    return `${MONTH_NAMES[m - 1]} ${year}`;
-  };
-  const endLabel = isPresent(end) ? "Present" : fmt(end);
-  return `${fmt(start)} – ${endLabel}`;
+  const endLabel = isPresent(end) ? "至今" : formatDate(end);
+  return `${formatDate(start)} – ${endLabel}`;
 }
 
 export function slugify(text: string): string {

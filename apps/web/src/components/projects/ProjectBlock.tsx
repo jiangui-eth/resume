@@ -1,144 +1,117 @@
-"use client";
+import type { JSX } from "react";
 
-import { useState } from "react";
-import Image from "next/image";
+import type { ProjectBlockData } from "./types";
+import { GridPanel } from "./panels/GridPanel";
+import { OutcomePanel } from "./panels/OutcomePanel";
+import { ProgressPanel } from "./panels/ProgressPanel";
+import { VizPanel } from "./panels/VizPanel";
 
-import MetricBadge from "./MetricBadge";
-import TechnicalDecisions, { type TechnicalDecision } from "./TechnicalDecisions";
+import TechnicalDecisions from "./TechnicalDecisions";
 
-export interface ProjectMetric {
-  label: string;
-  value: string;
-}
+// Re-export types so existing importers don't need to change
+export type {
+  PanelType,
+  ProjectBlockData,
+  ProjectImage,
+  ProjectLink,
+  ProjectMetric,
+} from "./types";
 
-export interface ProjectLink {
-  type: "github" | "demo" | "case-study";
-  url: string;
-}
-
-export interface ProjectImage {
-  src: string;
-  alt: string;
-}
-
-export interface ProjectBlockData {
-  id: string;
-  name: string;
-  tagline: string;
-  domainTags: string[];
-  background: string;
-  technicalDecisions: TechnicalDecision[];
-  metrics: ProjectMetric[];
-  images: ProjectImage[];
-  links: ProjectLink[];
-  techTags: string[];
-  featured: boolean;
-  order: number;
-}
-
-const LINK_LABELS: Record<ProjectLink["type"], string> = {
+const LINK_LABELS: Record<"github" | "demo" | "case-study", string> = {
   github: "GitHub",
   demo: "Demo",
   "case-study": "Case Study",
 };
 
-function ProjectVisual({
-  image,
-  name,
-}: {
-  image?: ProjectImage;
-  name: string;
-}) {
-  const [hasError, setHasError] = useState(false);
-
-  if (!image?.src || hasError) {
-    return (
-      <div className="flex h-full min-h-72 items-center justify-center rounded-[1.5rem] border border-white/8 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.16),_transparent_45%),linear-gradient(180deg,_rgba(255,255,255,0.05),_rgba(255,255,255,0.02))] px-6 text-center">
-        <div>
-          <div className="text-sm font-medium uppercase tracking-[0.3em] text-white/30">
-            Visual Pending
-          </div>
-          <div className="mt-3 text-lg text-white/55">{name}</div>
-        </div>
-      </div>
-    );
+function VisualPanel({ project }: { project: ProjectBlockData }): JSX.Element {
+  switch (project.panelType) {
+    case "progress":
+      return <ProgressPanel project={project} />;
+    case "outcome":
+      return <OutcomePanel project={project} />;
+    case "viz":
+      return <VizPanel project={project} />;
+    default:
+      return <GridPanel project={project} />;
   }
-
-  return (
-    <div className="relative h-full min-h-72 overflow-hidden rounded-[1.5rem] border border-white/8 bg-white/[0.03]">
-      <Image
-        src={image.src}
-        alt={image.alt || name}
-        fill
-        sizes="(min-width: 1024px) 32rem, 100vw"
-        className="object-cover"
-        onError={() => setHasError(true)}
-      />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/55 via-transparent to-transparent" />
-    </div>
-  );
 }
 
-export default function ProjectBlock({ project }: { project: ProjectBlockData }) {
-  return (
-    <article className="rounded-[2rem] border border-white/8 bg-white/[0.03] p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] sm:p-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,32rem)] lg:items-start">
-        <div>
-          <div className="flex flex-wrap gap-2">
-            {project.domainTags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+export default function ProjectBlock({
+  project,
+}: {
+  project: ProjectBlockData;
+}): JSX.Element {
+  const isEven = project.order % 2 === 0;
+  const badge = project.domainBadge ?? project.domainTags.join(" / ");
 
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            {project.name}
-          </h2>
-          <p className="mt-3 text-lg text-white/45">{project.tagline}</p>
-          <p className="mt-5 max-w-3xl text-sm leading-7 text-white/60">{project.background}</p>
-
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {project.metrics.map((metric) => (
-              <MetricBadge key={`${metric.label}-${metric.value}`} value={metric.value} label={metric.label} />
-            ))}
-          </div>
-
-          <div className="mt-8">
-            <TechnicalDecisions decisions={project.technicalDecisions} />
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {project.techTags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/55"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            {project.links.map((link) => (
-              <a
-                key={`${link.type}-${link.url}`}
-                href={link.url}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:border-white/20 hover:bg-white/[0.07] hover:text-white"
-                target={link.url.startsWith("http") ? "_blank" : undefined}
-                rel={link.url.startsWith("http") ? "noreferrer" : undefined}
-              >
-                {LINK_LABELS[link.type]}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <ProjectVisual image={project.images[0]} name={project.name} />
+  const TextColumn = (
+    <div
+      className={isEven ? "order-1 md:order-2 md:col-span-7" : "md:col-span-7"}
+    >
+      <div className="mb-2 flex items-center gap-2">
+        {project.icon && (
+          <span
+            className="material-symbols-outlined text-[#aec6ff]"
+            style={{ fontVariationSettings: "'FILL' 1" }}
+          >
+            {project.icon}
+          </span>
+        )}
+        <span className="rounded bg-white/5 px-2 py-0.5 font-mono text-xs text-[#aec6ff]">
+          {badge}
+        </span>
       </div>
+
+      <h2 className="mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-white">
+        {project.name}
+      </h2>
+
+      <div className="space-y-4 text-[18px] leading-[1.6] text-[#c4c7c7]">
+        <p>{project.background}</p>
+        {project.technicalDecisions.length > 0 && (
+          <TechnicalDecisions decisions={project.technicalDecisions} />
+        )}
+      </div>
+
+      {project.links.length > 0 && (
+        <div className="mt-6 flex flex-wrap gap-3">
+          {project.links.map((link) => (
+            <a
+              key={`${link.type}-${link.url}`}
+              href={link.url}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-[#333333] px-4 py-2 text-sm font-medium text-white/80 transition-all hover:border-[#508eff] hover:text-white"
+              target={link.url.startsWith("http") ? "_blank" : undefined}
+              rel={link.url.startsWith("http") ? "noreferrer" : undefined}
+            >
+              {LINK_LABELS[link.type]}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
+  const VisualColumn = (
+    <div
+      className={isEven ? "order-2 md:order-1 md:col-span-5" : "md:col-span-5"}
+    >
+      <VisualPanel project={project} />
+    </div>
+  );
+
+  return (
+    <article className="mb-20 grid grid-cols-1 items-start gap-6 md:grid-cols-12">
+      {isEven ? (
+        <>
+          {VisualColumn}
+          {TextColumn}
+        </>
+      ) : (
+        <>
+          {TextColumn}
+          {VisualColumn}
+        </>
+      )}
     </article>
   );
 }

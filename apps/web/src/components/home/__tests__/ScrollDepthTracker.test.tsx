@@ -1,5 +1,7 @@
 import { render } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+import ScrollDepthTracker from "../ScrollDepthTracker";
 
 vi.mock("@/lib/analytics", () => ({ track: vi.fn() }));
 
@@ -8,16 +10,14 @@ const disconnectMock = vi.fn();
 
 beforeEach(() => {
   vi.clearAllMocks();
-  global.IntersectionObserver = vi.fn().mockImplementation(() => ({
+  globalThis.IntersectionObserver = vi.fn().mockImplementation(() => ({
     observe: observeMock,
     disconnect: disconnectMock,
     unobserve: vi.fn(),
   }));
 });
 
-import ScrollDepthTracker from "../ScrollDepthTracker";
-
-describe("ScrollDepthTracker", () => {
+describe("scrollDepthTracker", () => {
   it("renders without crashing", () => {
     expect(() => render(<ScrollDepthTracker />)).not.toThrow();
   });
@@ -31,14 +31,14 @@ describe("ScrollDepthTracker", () => {
   it("sentinel divs have depths 25, 50, 75, 100", () => {
     const { container } = render(<ScrollDepthTracker />);
     const depths = Array.from(container.querySelectorAll("[data-depth]")).map(
-      (el) => Number((el as HTMLElement).dataset.depth)
+      (el) => Number((el as HTMLElement).dataset.depth),
     );
     expect(depths).toEqual([25, 50, 75, 100]);
   });
 
   it("creates an IntersectionObserver on mount", () => {
     render(<ScrollDepthTracker />);
-    expect(global.IntersectionObserver).toHaveBeenCalled();
+    expect(globalThis.IntersectionObserver).toHaveBeenCalled();
     expect(observeMock).toHaveBeenCalledTimes(4);
   });
 });

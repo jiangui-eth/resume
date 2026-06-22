@@ -2,9 +2,18 @@ import PrintExperience from "./PrintExperience";
 import PrintProjects from "./PrintProjects";
 
 const SKILLS = [
-  "TypeScript", "React", "Next.js", "Node.js",
-  "Solidity", "Go", "PostgreSQL", "Redis",
-  "Docker", "Kubernetes", "Tailwind CSS", "GraphQL",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "Solidity",
+  "Go",
+  "PostgreSQL",
+  "Redis",
+  "Docker",
+  "Kubernetes",
+  "Tailwind CSS",
+  "GraphQL",
 ];
 
 export default function PrintLayout() {
@@ -18,10 +27,12 @@ export default function PrintLayout() {
           </div>
 
           <h1 className="text-lg font-bold text-gray-900">Jiangui</h1>
-          <p className="mt-0.5 text-xs text-gray-600">Senior Full-Stack Engineer</p>
+          <p className="mt-0.5 text-xs text-gray-600">
+            Senior Full-Stack Engineer
+          </p>
 
           <section className="mt-6">
-            <h2 className="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-blue-700">
+            <h2 className="mb-1.5 text-[10px] font-semibold tracking-widest text-blue-700 uppercase">
               Contact
             </h2>
             <ul className="space-y-1 text-[11px] text-gray-700">
@@ -31,7 +42,7 @@ export default function PrintLayout() {
           </section>
 
           <section className="mt-6">
-            <h2 className="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-blue-700">
+            <h2 className="mb-1.5 text-[10px] font-semibold tracking-widest text-blue-700 uppercase">
               Tech Skills
             </h2>
             <div className="flex flex-wrap gap-1.5">
@@ -47,15 +58,17 @@ export default function PrintLayout() {
           </section>
 
           <section className="mt-6">
-            <h2 className="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-blue-700">
+            <h2 className="mb-1.5 text-[10px] font-semibold tracking-widest text-blue-700 uppercase">
               Education
             </h2>
-            <p className="text-[11px] font-medium text-gray-800">B.Sc. Computer Science</p>
+            <p className="text-[11px] font-medium text-gray-800">
+              B.Sc. Computer Science
+            </p>
             <p className="text-[11px] text-gray-600">2015 – 2019</p>
           </section>
 
           <section className="mt-6">
-            <h2 className="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-blue-700">
+            <h2 className="mb-1.5 text-[10px] font-semibold tracking-widest text-blue-700 uppercase">
               Languages
             </h2>
             <ul className="space-y-1 text-[11px] text-gray-700">

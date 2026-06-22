@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import contact from "../data/contact.json";
 import profile from "../data/profile.json";
 
@@ -23,15 +23,19 @@ describe("external link data — profile.json socials", () => {
   });
 
   it("all http/https socials have well-formed URLs", () => {
-    const http = profile.socials.filter((s: { url?: string }) => s.url?.startsWith("http"));
+    const http = profile.socials.filter((s: { url?: string }) =>
+      s.url?.startsWith("http"),
+    );
     expect(http.length).toBeGreaterThan(0);
     for (const { url } of http) {
-      expect(url).toMatch(/^https?:\/\/[^\s]+/);
+      expect(url).toMatch(/^https?:\/\/\S+/);
     }
   });
 
   it("no social URL is a 404-prone broken path (no bare hostnames)", () => {
-    const http = profile.socials.filter((s: { url?: string }) => s.url?.startsWith("http"));
+    const http = profile.socials.filter((s: { url?: string }) =>
+      s.url?.startsWith("http"),
+    );
     for (const entry of http) {
       const parsed = new URL(entry.url as string);
       expect(parsed.hostname).not.toBe("");

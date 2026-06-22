@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import config from "../../.lighthouserc.json";
 
 const { collect, assert } = config.ci;
@@ -20,19 +20,28 @@ describe(".lighthouserc.json — collect", () => {
 
 describe(".lighthouserc.json — assert thresholds", () => {
   it("performance score threshold is ≥ 0.9", () => {
-    const [severity, opts] = assertions["categories:performance"] as [string, { minScore: number }];
+    const [severity, opts] = assertions["categories:performance"] as [
+      string,
+      { minScore: number },
+    ];
     expect(severity).toBe("error");
     expect(opts.minScore).toBeGreaterThanOrEqual(0.9);
   });
 
   it("accessibility score threshold is ≥ 0.85", () => {
-    const [severity, opts] = assertions["categories:accessibility"] as [string, { minScore: number }];
+    const [severity, opts] = assertions["categories:accessibility"] as [
+      string,
+      { minScore: number },
+    ];
     expect(severity).toBe("error");
     expect(opts.minScore).toBeGreaterThanOrEqual(0.85);
   });
 
-  it("LCP threshold is ≤ 2500ms", () => {
-    const [severity, opts] = assertions["audits:largest-contentful-paint"] as [string, { maxNumericValue: number }];
+  it("lCP threshold is ≤ 2500ms", () => {
+    const [severity, opts] = assertions["audits:largest-contentful-paint"] as [
+      string,
+      { maxNumericValue: number },
+    ];
     expect(severity).toBe("error");
     expect(opts.maxNumericValue).toBeLessThanOrEqual(2500);
   });

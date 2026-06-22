@@ -1,69 +1,48 @@
 "use client";
 
-import Link from "next/link";
-import type { Route } from "next";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Menu, X, FileDown } from "lucide-react";
-import { track } from "@/lib/analytics";
+import type { JSX } from "react";
 
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/experience", label: "Experience" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-] as { href: Route; label: string }[];
+import { cn } from "@jiangui-resume/ui/lib/utils";
+import { useTranslations } from "next-intl";
+import { useNavbar } from "@/hooks/useNavbar";
+import { Link } from "@/i18n/navigation";
+import DownloadPdfButton from "./DownloadPdfButton";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-const RESUME_PDF_PATH = "/resume.pdf";
+export default function Navbar(): JSX.Element {
+  const { scrolled, mobileOpen, setMobileOpen, pathname } = useNavbar();
+  const t = useTranslations("nav");
 
-export default function Navbar() {
-  const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  // Scroll listener — toggle frosted glass
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+  const NAV_LINKS = [
+    { href: "/", label: t("home") },
+    { href: "/experience", label: t("experience") },
+    { href: "/projects", label: t("projects") },
+    { href: "/skills", label: t("skills") },
+  ] as { href: string; label: string }[];
 
   return (
     <header
-      className={[
-        "sticky top-0 z-50 w-full transition-all duration-300",
+      className={cn(
+        "fixed top-0 left-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/60 shadow-sm"
-          : "bg-transparent",
-      ].join(" ")}
+          ? "border-b border-[#444748]/20 bg-[#121414]/80 backdrop-blur-md"
+          : "border-b border-[#444748]/20 bg-[#121414]/80 backdrop-blur-xl",
+      )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="flex h-16 items-center justify-between px-6">
         {/* Logo */}
         <Link
           href="/"
-          aria-label="jiangui.eth"
-          className="flex items-center gap-2 text-foreground hover:text-foreground/80 transition-colors"
+          aria-label="Go to homepage"
+          className="flex items-center gap-2"
         >
-          <span className="text-lg font-bold tracking-tight font-mono">
-            jiangui<span className="text-primary/70">.eth</span>
+          <span className="text-2xl leading-[1.3] font-bold tracking-[-0.01em] text-[#e3e2e2]">
+            JianGui
           </span>
         </Link>
 
-        {/* Desktop nav links — centered */}
-        <ul className="hidden md:flex items-center gap-1">
+        {/* Desktop nav links */}
+        <ul className="hidden items-center gap-10 md:flex">
           {NAV_LINKS.map(({ href, label }) => {
             const isActive =
               href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -72,13 +51,12 @@ export default function Navbar() {
                 <Link
                   href={href}
                   aria-current={isActive ? "page" : undefined}
-                  className={[
-                    "relative px-3 py-2 text-sm font-medium transition-colors rounded-md",
-                    "hover:text-foreground hover:bg-accent",
+                  className={cn(
+                    "relative text-base leading-[1.6] font-normal transition-colors",
                     isActive
-                      ? "text-foreground after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-foreground after:content-['']"
-                      : "text-muted-foreground",
-                  ].join(" ")}
+                      ? "border-b-2 border-[#aec6ff] pb-1 font-bold text-[#e3e2e2]"
+                      : "text-[#8e9192] hover:text-[#e3e2e2]",
+                  )}
                 >
                   {label}
                 </Link>
@@ -87,35 +65,41 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Desktop right: Download PDF CTA */}
-        <div className="hidden md:flex items-center">
-          <DownloadPdfButton />
+        {/* Desktop CTA — hidden on resume-preview */}
+        <div className="mr-6 hidden items-center gap-2 md:flex">
+          {pathname !== "/resume-preview" && <DownloadPdfButton />}
+          <LanguageSwitcher />
         </div>
 
-        {/* Mobile: hamburger */}
+        {/* Mobile hamburger */}
         <button
           type="button"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-label={mobileOpen ? t("closeMenu") : t("openMenu")}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
-          className="md:hidden flex items-center justify-center rounded-md p-2 text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+          className="flex items-center justify-center rounded-md p-2 text-[#8e9192] transition-colors hover:text-[#e3e2e2] md:hidden"
         >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          <span
+            className="material-symbols-outlined text-2xl"
+            aria-hidden="true"
+          >
+            {mobileOpen ? "close" : "menu"}
+          </span>
         </button>
       </nav>
 
-      {/* Mobile drawer — slide down */}
+      {/* Mobile drawer */}
       <div
         role="dialog"
-        aria-label="navigation menu"
+        aria-label={t("menuLabel")}
         aria-modal="false"
-        className={[
-          "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
+        className={cn(
+          "overflow-hidden transition-all duration-300 ease-in-out md:hidden",
           mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0",
-          "bg-background/95 backdrop-blur-md border-b border-border/60",
-        ].join(" ")}
+          "border-b border-[#444748]/20 bg-[#121414]/95 backdrop-blur-md",
+        )}
       >
-        <ul className="flex flex-col px-4 pb-6 pt-2 gap-1">
+        <ul className="flex flex-col gap-1 px-6 pt-2 pb-6">
           {NAV_LINKS.map(({ href, label }) => {
             const isActive =
               href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -124,70 +108,28 @@ export default function Navbar() {
                 <Link
                   href={href}
                   aria-current={isActive ? "page" : undefined}
-                  className={[
-                    "flex items-center px-3 py-3 text-base font-medium rounded-md transition-colors",
-                    "hover:text-foreground hover:bg-accent",
+                  className={cn(
+                    "flex items-center rounded-md px-3 py-3 text-base font-medium transition-colors",
                     isActive
-                      ? "text-foreground bg-accent"
-                      : "text-muted-foreground",
-                  ].join(" ")}
+                      ? "text-[#e3e2e2]"
+                      : "text-[#8e9192] hover:text-[#e3e2e2]",
+                  )}
                 >
                   {label}
                 </Link>
               </li>
             );
           })}
-          <li className="pt-2">
-            <DownloadPdfButton fullWidth />
+          {pathname !== "/resume-preview" && (
+            <li className="pt-2">
+              <DownloadPdfButton fullWidth />
+            </li>
+          )}
+          <li className="flex justify-end pt-1">
+            <LanguageSwitcher />
           </li>
         </ul>
       </div>
     </header>
-  );
-}
-
-/* ── Download PDF button ───────────────────────── */
-
-function DownloadPdfButton({ fullWidth = false }: { fullWidth?: boolean }) {
-  const [pdfExists, setPdfExists] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    // Lightweight HEAD check — if the file isn't there we show a tooltip
-    fetch(RESUME_PDF_PATH, { method: "HEAD" })
-      .then((r) => setPdfExists(r.ok))
-      .catch(() => setPdfExists(false));
-  }, []);
-
-  if (pdfExists === false) {
-    return (
-      <span
-        title="PDF not available yet — check back soon"
-        className={[
-          "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium",
-          "bg-blue-600/40 text-blue-300/60 cursor-not-allowed select-none",
-          fullWidth ? "w-full justify-center" : "",
-        ].join(" ")}
-      >
-        <FileDown size={15} />
-        Download PDF
-      </span>
-    );
-  }
-
-  return (
-    <a
-      href={RESUME_PDF_PATH}
-      download
-      onClick={() => track("click_download_pdf", {})}
-      className={[
-        "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold",
-        "bg-blue-600 text-white hover:bg-blue-500 active:bg-blue-700",
-        "transition-colors duration-150 shadow-sm",
-        fullWidth ? "w-full justify-center" : "",
-      ].join(" ")}
-    >
-      <FileDown size={15} />
-      Download PDF
-    </a>
   );
 }
