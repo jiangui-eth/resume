@@ -4,7 +4,7 @@ Task: fix-design-tokens
 - 分支: feature/fix-design-tokens
 - 开发人: Claude
 - 测试状态: 通过（309 tests）
-- PR 链接: 待生成
+- PR 链接: https://github.com/jiangui-eth/resume/pull/67
 - 变更文件:
     - apps/web/src/index.css — 将旧 --color-* CSS 变量重命名为 --ds-* 避免与 shadcn 冲突，新增 @theme inline 块注册 Tailwind 工具类
     - apps/web/src/components/home/AboutSection.tsx
