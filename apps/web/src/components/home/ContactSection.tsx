@@ -12,15 +12,27 @@ const contact = contactData as ContactInfo;
 export default async function ContactSection(): Promise<JSX.Element> {
   const t = await getTranslations("contact");
 
+  const tLabels = await getTranslations("contactLabels");
+
   const CARDS: ContactCardConfig[] = [
     {
       icon: "mail",
-      label: "Email",
+      label: tLabels("email"),
       value: contact.email,
       href: `mailto:${contact.email}`,
     },
-    { icon: "chat", label: "WeChat", value: contact.wechat, reveal: true },
-    { icon: "call", label: "Phone", value: contact.phone, reveal: true },
+    {
+      icon: "chat",
+      label: tLabels("wechat"),
+      value: contact.wechat,
+      reveal: true,
+    },
+    {
+      icon: "call",
+      label: tLabels("phone"),
+      value: contact.phone,
+      reveal: true,
+    },
   ];
 
   return (

@@ -69,11 +69,11 @@ describe("aboutSection", () => {
     expect(screen.getByText("80%")).toBeInTheDocument();
   });
 
-  it("renders stat labels", async () => {
+  it("renders stat labels (translated zh-CN)", async () => {
     await renderSection();
-    expect(screen.getByText("SEO Growth")).toBeInTheDocument();
-    expect(screen.getByText("LCP Optimized")).toBeInTheDocument();
-    expect(screen.getByText("Build Speedup")).toBeInTheDocument();
+    expect(screen.getByText("SEO 增长")).toBeInTheDocument();
+    expect(screen.getByText("LCP 优化")).toBeInTheDocument();
+    expect(screen.getByText("构建提速")).toBeInTheDocument();
   });
 
   it("renders the avatar image with grayscale class", async () => {

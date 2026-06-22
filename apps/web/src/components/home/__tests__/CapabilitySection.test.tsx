@@ -50,12 +50,12 @@ describe("capabilitySection", () => {
     expect(screen.getByText("核心技术栈")).toBeInTheDocument();
   });
 
-  it("renders all four capability card titles", async () => {
+  it("renders all four capability card titles (translated zh-CN)", async () => {
     await renderSection();
     expect(screen.getByText("Next.js / React")).toBeInTheDocument();
-    expect(screen.getByText("Performance")).toBeInTheDocument();
+    expect(screen.getByText("性能优化")).toBeInTheDocument();
     expect(screen.getByText("AI & RAG")).toBeInTheDocument();
-    expect(screen.getByText("Engineering")).toBeInTheDocument();
+    expect(screen.getByText("工程化")).toBeInTheDocument();
   });
 
   it("renders Material Symbols icon spans for each card", async () => {
@@ -64,12 +64,12 @@ describe("capabilitySection", () => {
     expect(icons.length).toBeGreaterThanOrEqual(4);
   });
 
-  it("renders bullet points for each card", async () => {
+  it("renders bullet points for each card (translated zh-CN)", async () => {
     await renderSection();
-    expect(screen.getByText(/SSR & ISR Architectures/i)).toBeInTheDocument();
+    expect(screen.getByText(/SSR & ISR 架构/i)).toBeInTheDocument();
     expect(screen.getByText(/Core Web Vitals/i)).toBeInTheDocument();
-    expect(screen.getByText(/LLM Orchestration/i)).toBeInTheDocument();
-    expect(screen.getByText(/Monorepos/i)).toBeInTheDocument();
+    expect(screen.getByText(/LLM 编排/i)).toBeInTheDocument();
+    expect(screen.getByText(/Monorepo/i)).toBeInTheDocument();
   });
 
   it("renders four article elements (one per card)", async () => {

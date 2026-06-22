@@ -95,11 +95,11 @@ describe("timelineCard", () => {
     expect(screen.getAllByText("至今").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders formatted end date for past positions", () => {
+  it("renders formatted end date for past positions (zh-CN locale)", () => {
     renderWithIntl(
       <TimelineCard experience={pastExperience} index={0} side="left" />,
     );
-    expect(screen.getAllByText(/Jan 2022/).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/2022年1月/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders company as a link when companyUrl is provided", () => {

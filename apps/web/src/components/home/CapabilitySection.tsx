@@ -1,11 +1,9 @@
 import type { JSX } from "react";
 
 import type { Capability, Profile } from "@/types/profile";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import profileData from "@/data/profile.json";
-
-const capabilities = (profileData as Profile).capabilities;
 
 // ── CapabilityCard ─────────────────────────────────────────────────────────────
 
@@ -57,6 +55,19 @@ function CapabilityCard({ icon, title, bullets }: Capability): JSX.Element {
 
 export default async function CapabilitySection(): Promise<JSX.Element> {
   const t = await getTranslations("capabilities");
+  const locale = await getLocale();
+  const messages = locale !== "en" ? await getMessages() : null;
+  const capContent = messages?.capabilitiesContent as
+    | Record<string, { title: string; bullets: string[] }>
+    | undefined;
+
+  const capabilities = (
+    (profileData as Profile).capabilities as Capability[]
+  ).map((cap) => ({
+    ...cap,
+    title: capContent?.[cap.icon]?.title ?? cap.title,
+    bullets: capContent?.[cap.icon]?.bullets ?? cap.bullets,
+  }));
 
   return (
     <section

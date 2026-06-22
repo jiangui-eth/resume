@@ -105,5 +105,10 @@
     "ssrIsr": "Led CSR → Next.js SSR migration with short-cycle ISR revalidation, balancing complete search-engine crawlability with real-time data. LCP/CLS both reached Core Web Vitals Good threshold.",
     "microFrontends": "Familiar with Module Federation, Single-Spa, and Web Components micro-frontend approaches. Experienced in multi-team frontend collaborative architecture design, supporting independent deployment across multiple product lines.",
     "designSystem": "Built Design System from scratch, delivering 16+ highly reusable business components across 4 product lines, reducing duplicate UI development by ~60%; adopted multi-layer Design Token architecture to support multi-theme switching."
+  },
+  "contactLabels": {
+    "email": "Email",
+    "wechat": "WeChat",
+    "phone": "Phone"
   }
 }

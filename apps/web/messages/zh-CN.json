@@ -106,6 +106,29 @@
     "microFrontends": "熟悉 Module Federation、Single-Spa、Web Components 等微前端方案，具备多团队前端协同架构设计经验，支撑多产品线独立部署。",
     "designSystem": "从 0 到 1 建设 Design System，沉淀 16+ 高复用业务组件，覆盖 4 条产品线，重复 UI 开发减少约 60%；采用 Design Token 分层架构支持多主题切换。"
   },
+  "profileHighlights": {
+    "SEO Growth": "SEO 增长",
+    "LCP Optimized": "LCP 优化",
+    "Build Speedup": "构建提速"
+  },
+  "capabilitiesContent": {
+    "terminal": {
+      "title": "Next.js / React",
+      "bullets": ["SSR & ISR 架构", "App Router 精通", "React 服务端组件"]
+    },
+    "bolt": {
+      "title": "性能优化",
+      "bullets": ["Core Web Vitals (LCP/INP)", "WASM 集成", "运行时优化"]
+    },
+    "psychology": {
+      "title": "AI & RAG",
+      "bullets": ["LLM 编排（LangChain）", "向量数据库优化", "Prompt 工程"]
+    },
+    "layers": {
+      "title": "工程化",
+      "bullets": ["Monorepo（Turborepo）", "设计系统架构", "CI/CD 流水线设计"]
+    }
+  },
   "projectsContent": {
     "proj-001": {
       "name": "风电 RAG 知识库平台",
@@ -228,6 +251,22 @@
         { "label": "验收率" }
       ]
     }
+  },
+  "contactLabels": {
+    "email": "邮箱",
+    "wechat": "微信",
+    "phone": "电话"
+  },
+  "techCategoryNames": {
+    "Frameworks": "框架",
+    "Engineering": "工程化",
+    "AI & Data": "AI 与数据",
+    "Graphics": "图形"
+  },
+  "expertiseCardTitles": {
+    "exp-001": "SSR/ISR 架构策略",
+    "exp-002": "微前端架构",
+    "exp-003": "设计系统架构"
   },
   "experiencesContent": {
     "exp-001": {
