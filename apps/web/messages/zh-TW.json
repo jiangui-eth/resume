@@ -105,5 +105,225 @@
     "ssrIsr": "主導 CSR → Next.js SSR 遷移，配合短週期 ISR revalidation，實現搜尋引擎完整抓取與即時資料並重，LCP/CLS 均達 Core Web Vitals 良好閾值。",
     "microFrontends": "熟悉 Module Federation、Single-Spa、Web Components 等微前端方案，具備多團隊前端協同架構設計經驗，支撐多產品線獨立部署。",
     "designSystem": "從 0 到 1 建設 Design System，沉澱 16+ 高複用業務元件，覆蓋 4 條產品線，重複 UI 開發減少約 60%；採用 Design Token 分層架構支持多主題切換。"
+  },
+  "profileHighlights": {
+    "SEO Growth": "SEO 增長",
+    "LCP Optimized": "LCP 優化",
+    "Build Speedup": "建置提速"
+  },
+  "capabilitiesContent": {
+    "terminal": {
+      "title": "Next.js / React",
+      "bullets": ["SSR & ISR 架構", "App Router 精通", "React 伺服端元件"]
+    },
+    "bolt": {
+      "title": "效能優化",
+      "bullets": ["Core Web Vitals (LCP/INP)", "WASM 整合", "執行時優化"]
+    },
+    "psychology": {
+      "title": "AI & RAG",
+      "bullets": ["LLM 編排（LangChain）", "向量資料庫優化", "Prompt 工程"]
+    },
+    "layers": {
+      "title": "工程化",
+      "bullets": ["Monorepo（Turborepo）", "設計系統架構", "CI/CD 流水線設計"]
+    }
+  },
+  "projectsContent": {
+    "proj-001": {
+      "name": "風電 RAG 知識庫平台",
+      "tagline": "面向風電客服團隊的企業級 RAG 知識檢索平台，統一管理約 2TB 設備文件",
+      "domainBadge": "AI / RAG",
+      "metricsLabel": "效能指標",
+      "background": "獨立設計並交付了一套面向風電客服團隊的企業級知識檢索平台，統一管理約 2TB 設備手冊，支援多輪對話問答、答案引用溯源與來源段落定位。",
+      "technicalDecisions": [
+        {
+          "title": "pgvector + BM25 混合檢索",
+          "explanation": "實現混合檢索以精準匹配技術術語，結合稠密向量相似度與關鍵字比對。"
+        },
+        {
+          "title": "Cohere Reranker 精排層",
+          "explanation": "引入精排器將 Top-5 準確率從 50% 提升至 90%，提升維保查詢的答案品質。"
+        },
+        {
+          "title": "父子分塊策略",
+          "explanation": "針對複雜工業手冊設計分塊策略，保留跨章節邊界的上下文連貫性。"
+        },
+        {
+          "title": "OCR 與視覺模型整合",
+          "explanation": "整合 OCR 與視覺模型，對技術圖紙元資料建立目錄，使視覺文件可檢索。"
+        }
+      ],
+      "metrics": [
+        { "label": "工單減少" },
+        { "label": "信任評分" },
+        { "label": "查詢速度" },
+        { "label": "資料管理量" }
+      ]
+    },
+    "proj-002": {
+      "name": "Gate.com SEO 專項",
+      "tagline": "面向全球前十加密貨幣交易所的效能優先 SEO 架構",
+      "domainBadge": "效能 / SEO",
+      "metricsLabel": "增長與效能",
+      "background": "主導全球前十加密貨幣交易所 Gate.com 的 SEO 重構，將核心資料頁面遷移至健壯的 SSR 架構，提升搜尋引擎排名競爭力。",
+      "technicalDecisions": [
+        {
+          "title": "CSR 遷移至 Next.js SSR + ISR",
+          "explanation": "以 60 秒重驗證週期完成動態金融資料遷移，確保搜尋引擎可抓取完整 HTML。"
+        },
+        {
+          "title": "JSON-LD Schema 注入",
+          "explanation": "注入 Dataset 和 FinancialProduct 結構化資料，最大化清算與資金費率頁面的 Google 富結果展示。"
+        },
+        {
+          "title": "漸進式發布策略",
+          "explanation": "從高流量頁面開始灰度上線，驗證 SEO 收益後再推廣至全量頁面。"
+        },
+        {
+          "title": "消除版面位移",
+          "explanation": "透過優化字體預載與統一圖片寬高比容器，全面消除 CLS。"
+        }
+      ],
+      "metrics": [
+        { "label": "自然流量增長" },
+        { "label": "Core Web Vital 良好閾值" },
+        { "label": "結構化資料接入" }
+      ]
+    },
+    "proj-003": {
+      "name": "Michaels 商城設計系統",
+      "tagline": "覆蓋四條零售產品線的前端共享基礎設施",
+      "domainBadge": "設計系統 / DX",
+      "metricsLabel": "成果指標",
+      "quote": "LCP 在所有核心電商頁面從 4s 優化至 1.8s。",
+      "background": "主導美國零售巨頭 Michaels 的前端架構，將四條獨立產品線統一至單一高效能設計系統與現代化建置流水線。",
+      "technicalDecisions": [
+        {
+          "title": "Webpack 遷移至 Vite",
+          "explanation": "完成遷移，HMR 響應時間從 3s 降至 <0.5s，顯著提升開發迭代速度。"
+        },
+        {
+          "title": "多層 Design Token 體系",
+          "explanation": "建構全域 → 語意 → 元件三層 Token 架構，支援多品牌主題切換而無需複製元件邏輯。"
+        },
+        {
+          "title": "Rollup 多入口建置",
+          "explanation": "建構 ESM/CJS 多格式產物，確保所有消費方應用的 tree-shaking 效率。"
+        },
+        {
+          "title": "零開銷依賴遷移",
+          "explanation": "替換老舊依賴為現代方案（lodash → lodash-es、moment → day.js），減少套件體積。"
+        }
+      ],
+      "metrics": [
+        { "label": "UI 開發時間減少" },
+        { "label": "開發伺服器啟動提速" }
+      ]
+    },
+    "proj-004": {
+      "name": "混沌工程平台",
+      "tagline": "貴陽銀行自助故障注入平台",
+      "domainBadge": "視覺化計算",
+      "metricsLabel": "視覺化引擎",
+      "background": "為貴陽銀行設計關鍵故障注入平台，將複雜的後端韌性測試轉化為直觀的視覺化工作區。",
+      "technicalDecisions": [
+        {
+          "title": "AntV/X6 圖形化實驗設計器",
+          "explanation": "開發圖形設計器，支援拖曳式故障編排，將實驗配置時間縮短 60%。"
+        },
+        {
+          "title": "Canvas 渲染策略",
+          "explanation": "採用 Canvas 渲染，即時監控 2,000+ 資料點/秒，處理高頻更新場景。"
+        },
+        {
+          "title": "requestAnimationFrame + 資料視窗化",
+          "explanation": "優化渲染週期，在峰值可觀測性負載下保持穩定 60fps，無幀率下降。"
+        },
+        {
+          "title": "PDF 報告自動分發",
+          "explanation": "建構基於 AntV/G2 圖表快照的 PDF 自動匯出，將報告直接整合至實驗結果中。"
+        }
+      ],
+      "metrics": [
+        { "label": "資料吞吐量" },
+        { "label": "配置時間" },
+        { "label": "驗收率" }
+      ]
+    }
+  },
+  "contactLabels": {
+    "email": "電郵",
+    "wechat": "微信",
+    "phone": "電話"
+  },
+  "techCategoryNames": {
+    "Frameworks": "框架",
+    "Engineering": "工程化",
+    "AI & Data": "AI 與資料",
+    "Graphics": "圖形"
+  },
+  "expertiseCardTitles": {
+    "exp-001": "SSR/ISR 架構策略",
+    "exp-002": "微前端架構",
+    "exp-003": "設計系統架構"
+  },
+  "experiencesContent": {
+    "exp-001": {
+      "company": "晶城易燈科技",
+      "title": "AI 全棧工程師",
+      "location": "深圳 · 遠端",
+      "responsibilities": [
+        "獨立主導 AI 全棧開發，從零交付兩款商業產品：面向風電客服團隊的 RAG 知識庫平台（統一管理約 2TB 設備文件）和基於用戶頭像生成個性化景區影片的 AIGC 行銷應用",
+        "RAG 平台將平均文件查詢時間從 5 分鐘降至 1 分鐘，工單處理時間減少 80%，答案信任評分達到 9/10",
+        "抽象可複用 AI 能力模組（多模型整合、非同步任務狀態機、答案引用回溯），支援新業務場景快速接入而無需重寫核心邏輯"
+      ],
+      "highlight": "工單處理 −80%"
+    },
+    "exp-002": {
+      "company": "Gate.com",
+      "title": "高級前端工程師",
+      "location": "遠端",
+      "responsibilities": [
+        "主導 Gate 理財業務線前端研發，在全球前十加密貨幣交易所獨立交付 4 款金融產品（雙向投資、活期理財、VIP 財富管理、槓桿產品）及 OTC 後台與 KYC/KYB 合規流程",
+        "主導大數據內容頁面 SEO 專項：自然流量從 1K/月增長至 14K/月（14×），其他資料系列頁面增長 80%+；通過 CSR → Next.js SSR 遷移與系統化 JSON-LD 注入實現，LCP/CLS 均達 Core Web Vitals 良好閾值",
+        "主導前端基礎設施現代化：MobX → Zustand、styled-components → Tailwind，消除執行時開銷；維護 Monorepo 共享模組、圖示庫與元件庫",
+        "引入 AI 輔助開發工作流（Cursor），重複性編碼效率提升約 30%"
+      ],
+      "highlight": "SEO 1K → 14K/月（14×）"
+    },
+    "exp-003": {
+      "company": "漢竹科技 · Michaels",
+      "title": "高級前端工程師 / 技術負責人",
+      "location": "深圳",
+      "responsibilities": [
+        "擔任前端技術負責人，管理 7 人團隊覆蓋 Michaels 4 條產品線（MakerPlace、Rewards、Classes、門市系統），負責架構設計、技術選型與交付節奏",
+        "主導 Next.js SSR 建置從 Webpack 遷移至 Vite：開發冷啟動從 ~25s 降至 <5s，HMR 從 ~3s 降至 <0.5s，顯著提升團隊迭代反饋效率",
+        "從零建設設計系統：沉澱 16+ 可複用業務元件覆蓋 4 條產品線，重複 UI 開發減少約 60%；LCP 從約 4s 優化至 1.8s",
+        "建立前端品質體系（ESLint/Prettier/TypeScript 嚴格模式 + Code Review 機制），生產 Bug 率降低約 30%"
+      ],
+      "highlight": "7 人團隊負責人"
+    },
+    "exp-004": {
+      "company": "中科方德 · 貴陽銀行",
+      "title": "前端團隊負責人",
+      "location": "貴陽",
+      "responsibilities": [
+        "在貴陽銀行核心銀行系統現場帶領 3 人前端團隊，負責需求拆解、工時估算及程式碼審查流程建立",
+        "獨立 2 週內從零交付貴陽銀行混沌工程平台 1.0：4 大模組（故障注入、實驗編排、監控、治理），客戶驗收率 100%",
+        "帶領 3 人團隊 1 個月內完成泰康人壽配置中心：多資料源配置範本（Redis/MySQL）一鍵回滾，顯著提升配置變更效率"
+      ],
+      "highlight": "混沌平台：2 週交付"
+    },
+    "exp-005": {
+      "company": "貴州國信通電子商務",
+      "title": "前端開發工程師",
+      "location": "貴陽",
+      "responsibilities": [
+        "主導信通貸平台從 JSP 漸進式遷移至 Vue：透過 iframe 橋接策略保證業務連續性，零回滾，首屏載入顯著改善",
+        "建構 H5/iOS/Android 跨平台相容頁面；將活動頁面與渠道路由抽象為 JSON Schema 驅動的模板引擎，重複業務開發時間減少約 50%"
+      ],
+      "highlight": "JSP → Vue 零回滾"
+    }
   }
 }

@@ -3,7 +3,7 @@ import type { Route } from "next";
 import type { JSX } from "react";
 import type { Project } from "@/types/project";
 import { cn } from "@jiangui-resume/ui/lib/utils";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -11,11 +11,6 @@ import projectsData from "@/data/projects.json";
 import ProjectImageClient from "./ProjectImageClient";
 
 const PROJECTS_HREF = "/projects" as Route;
-
-const PROJECTS: Project[] = (projectsData as Project[])
-  .filter((p) => p.featured)
-  .sort((a, b) => a.order - b.order)
-  .slice(0, 2);
 
 // ── ProjectRow ─────────────────────────────────────────────────────────────────
 
@@ -92,6 +87,28 @@ function ProjectRow({
 
 export default async function ProjectsSection(): Promise<JSX.Element> {
   const t = await getTranslations("projects");
+  const locale = await getLocale();
+  const messages = locale !== "en" ? await getMessages() : null;
+  const projContent = messages?.projectsContent as
+    | Record<string, { name?: string; tagline?: string; domainBadge?: string }>
+    | undefined;
+
+  const PROJECTS: Project[] = (projectsData as Project[])
+    .filter((p) => p.featured)
+    .sort((a, b) => a.order - b.order)
+    .slice(0, 2)
+    .map((p) => {
+      const override = projContent?.[p.id];
+      if (!override) return p;
+      return {
+        ...p,
+        name: override.name ?? p.name,
+        tagline: override.tagline ?? p.tagline,
+        domainTags: override.domainBadge
+          ? [override.domainBadge, ...p.domainTags.slice(1)]
+          : p.domainTags,
+      };
+    });
 
   return (
     <SectionWrapper id="projects" aria-label={t("title")} className="py-20">

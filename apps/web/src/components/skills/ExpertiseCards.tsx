@@ -11,11 +11,17 @@ interface ExpertiseCard {
   icon: string;
 }
 
-const cards = skillsData.expertiseCards as ExpertiseCard[];
+const defaultCards = skillsData.expertiseCards as ExpertiseCard[];
 
 const DESCRIPTION_KEYS = ["ssrIsr", "microFrontends", "designSystem"] as const;
 
-export default function ExpertiseCards() {
+interface ExpertiseCardsProps {
+  cards?: ExpertiseCard[];
+}
+
+export default function ExpertiseCards({
+  cards = defaultCards,
+}: ExpertiseCardsProps) {
   const t = useTranslations();
 
   return (

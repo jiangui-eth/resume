@@ -78,24 +78,18 @@ describe("projectsSection", () => {
     expect(link).toHaveAttribute("href", "/projects");
   });
 
-  it("renders top 2 featured project names (sorted by order)", async () => {
+  it("renders top 2 featured project names (translated zh-CN)", async () => {
     await renderSection();
-    expect(screen.getByText("Wind Power RAG Platform")).toBeInTheDocument();
-    expect(
-      screen.getByText("Gate.com SEO Special Project"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("风电 RAG 知识库平台")).toBeInTheDocument();
+    expect(screen.getByText("Gate.com SEO 专项")).toBeInTheDocument();
   });
 
-  it("renders project taglines", async () => {
+  it("renders project taglines (translated zh-CN)", async () => {
     await renderSection();
     expect(
-      screen.getByText(
-        /Enterprise RAG knowledge platform for wind-power customer service/i,
-      ),
+      screen.getByText(/面向风电客服团队的企业级 RAG/),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(/Performance-first SEO architecture/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/面向全球前十加密货币交易所/)).toBeInTheDocument();
   });
 
   it("renders tech tag pills for both projects", async () => {

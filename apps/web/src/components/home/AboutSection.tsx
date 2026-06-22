@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 
 import type { Profile } from "@/types/profile";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -11,6 +11,11 @@ const profile = profileData as Profile;
 
 export default async function AboutSection(): Promise<JSX.Element> {
   const t = await getTranslations();
+  const locale = await getLocale();
+  const messages = locale !== "en" ? await getMessages() : null;
+  const highlightLabels = messages?.profileHighlights as
+    | Record<string, string>
+    | undefined;
 
   return (
     <SectionWrapper id="about" aria-label="About" className="py-20">
@@ -29,7 +34,7 @@ export default async function AboutSection(): Promise<JSX.Element> {
                   {value}
                 </p>
                 <p className="font-mono text-sm leading-[1.4] font-medium tracking-[0.02em] text-[#8e9192]">
-                  {label}
+                  {highlightLabels?.[label] ?? label}
                 </p>
               </div>
             ))}

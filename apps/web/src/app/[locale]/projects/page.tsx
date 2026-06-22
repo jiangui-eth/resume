@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
 import type { ProjectBlockData } from "@/components/projects/ProjectBlock";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import ProjectBlock from "@/components/projects/ProjectBlock";
 
 import ProjectsCTA from "@/components/projects/ProjectsCTA";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import projectsData from "@/data/projects.json";
 import { routing } from "@/i18n/routing";
-
-const PROJECTS = (projectsData as ProjectBlockData[]).sort(
-  (a, b) => a.order - b.order,
-);
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -44,8 +40,53 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+interface LocalizedProjectOverride {
+  name?: string;
+  tagline?: string;
+  domainBadge?: string;
+  metricsLabel?: string;
+  quote?: string;
+  background?: string;
+  technicalDecisions?: { title: string; explanation: string }[];
+  metrics?: { label: string }[];
+}
+
 export default async function ProjectsPage() {
   const t = await getTranslations("projectsPage");
+  const locale = await getLocale();
+
+  const messages = locale !== "en" ? await getMessages() : null;
+  const projectsContent = messages?.projectsContent as
+    | Record<string, LocalizedProjectOverride>
+    | undefined;
+
+  const PROJECTS = (projectsData as ProjectBlockData[])
+    .sort((a, b) => a.order - b.order)
+    .map((project) => {
+      const override = projectsContent?.[project.id];
+      if (!override) return project;
+      return {
+        ...project,
+        name: override.name ?? project.name,
+        tagline: override.tagline ?? project.tagline,
+        domainBadge: override.domainBadge ?? project.domainBadge,
+        metricsLabel: override.metricsLabel ?? project.metricsLabel,
+        quote: override.quote ?? project.quote,
+        background: override.background ?? project.background,
+        technicalDecisions: override.technicalDecisions
+          ? project.technicalDecisions.map((td, i) => ({
+              ...td,
+              ...(override.technicalDecisions?.[i] ?? {}),
+            }))
+          : project.technicalDecisions,
+        metrics: override.metrics
+          ? project.metrics.map((m, i) => ({
+              ...m,
+              label: override.metrics?.[i]?.label ?? m.label,
+            }))
+          : project.metrics,
+      };
+    });
 
   return (
     <div className="min-h-screen bg-[#121414] text-[#e3e2e2]">
