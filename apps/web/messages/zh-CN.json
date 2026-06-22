@@ -44,7 +44,7 @@
   },
   "projectsPage": {
     "title": "架构",
-    "titleHighlight": "与实现。",
+    "titleHighlight": "与实现",
     "description": "技术领导力与前端工程实践的精选展示，涵盖复杂迁移、高性能系统与 AI 集成架构。"
   },
   "skillsHero": {
@@ -105,5 +105,186 @@
     "ssrIsr": "主导 CSR → Next.js SSR 迁移，配合短周期 ISR revalidation，实现搜索引擎完整抓取与实时数据并重，LCP/CLS 均达 Core Web Vitals 良好阈值。",
     "microFrontends": "熟悉 Module Federation、Single-Spa、Web Components 等微前端方案，具备多团队前端协同架构设计经验，支撑多产品线独立部署。",
     "designSystem": "从 0 到 1 建设 Design System，沉淀 16+ 高复用业务组件，覆盖 4 条产品线，重复 UI 开发减少约 60%；采用 Design Token 分层架构支持多主题切换。"
+  },
+  "projectsContent": {
+    "proj-001": {
+      "name": "风电 RAG 知识库平台",
+      "tagline": "面向风电客服团队的企业级 RAG 知识检索平台，统一管理约 2TB 设备文档",
+      "domainBadge": "AI / RAG",
+      "metricsLabel": "性能指标",
+      "background": "独立设计并交付了一套面向风电客服团队的企业级知识检索平台，统一管理约 2TB 设备手册，支持多轮对话问答、答案引用溯源与来源段落定位。",
+      "technicalDecisions": [
+        {
+          "title": "pgvector + BM25 混合检索",
+          "explanation": "实现混合检索以精准匹配技术术语，结合稠密向量相似度与关键词匹配。"
+        },
+        {
+          "title": "Cohere Reranker 精排层",
+          "explanation": "引入精排器将 Top-5 准确率从 50% 提升至 90%，提升维保查询的答案质量。"
+        },
+        {
+          "title": "父子分块策略",
+          "explanation": "针对复杂工业手册设计分块策略，保留跨章节边界的上下文连贯性。"
+        },
+        {
+          "title": "OCR 与视觉模型集成",
+          "explanation": "集成 OCR 与视觉模型，对技术图纸元数据建立目录，使视觉文档可检索。"
+        }
+      ],
+      "metrics": [
+        { "label": "工单减少" },
+        { "label": "信任评分" },
+        { "label": "查询速度" },
+        { "label": "数据管理量" }
+      ]
+    },
+    "proj-002": {
+      "name": "Gate.com SEO 专项",
+      "tagline": "面向全球前十加密货币交易所的性能优先 SEO 架构",
+      "domainBadge": "性能 / SEO",
+      "metricsLabel": "增长与性能",
+      "background": "主导全球前十加密货币交易所 Gate.com 的 SEO 重构，将核心数据页面迁移至健壮的 SSR 架构，提升搜索引擎排名竞争力。",
+      "technicalDecisions": [
+        {
+          "title": "CSR 迁移至 Next.js SSR + ISR",
+          "explanation": "以 60 秒重验证周期完成动态金融数据迁移，确保搜索引擎可抓取完整 HTML。"
+        },
+        {
+          "title": "JSON-LD Schema 注入",
+          "explanation": "注入 Dataset 和 FinancialProduct 结构化数据，最大化清算与资金费率页面的 Google 富结果展示。"
+        },
+        {
+          "title": "渐进式发布策略",
+          "explanation": "从高流量页面开始灰度上线，验证 SEO 收益后再推广至全量页面。"
+        },
+        {
+          "title": "消除布局位移",
+          "explanation": "通过优化字体预加载与统一图片宽高比容器，全面消除 CLS。"
+        }
+      ],
+      "metrics": [
+        { "label": "自然流量增长" },
+        { "label": "Core Web Vital 良好阈值" },
+        { "label": "结构化数据接入" }
+      ]
+    },
+    "proj-003": {
+      "name": "Michaels 商城设计系统",
+      "tagline": "覆盖四条零售产品线的前端共享基础设施",
+      "domainBadge": "设计系统 / DX",
+      "metricsLabel": "成果指标",
+      "quote": "LCP 在所有核心电商页面从 4s 优化至 1.8s。",
+      "background": "主导美国零售巨头 Michaels 的前端架构，将四条独立产品线统一至单一高性能设计系统与现代化构建流水线。",
+      "technicalDecisions": [
+        {
+          "title": "Webpack 迁移至 Vite",
+          "explanation": "完成迁移，HMR 响应时间从 3s 降至 <0.5s，显著提升开发迭代速度。"
+        },
+        {
+          "title": "多层 Design Token 体系",
+          "explanation": "构建全局 → 语义 → 组件三层 Token 架构，支持多品牌主题切换而无需复制组件逻辑。"
+        },
+        {
+          "title": "Rollup 多入口构建",
+          "explanation": "构建 ESM/CJS 多格式产物，确保所有消费方应用的 tree-shaking 效率。"
+        },
+        {
+          "title": "零开销依赖迁移",
+          "explanation": "替换老旧依赖为现代方案（lodash → lodash-es、moment → day.js），减少包体积。"
+        }
+      ],
+      "metrics": [
+        { "label": "UI 开发时间减少" },
+        { "label": "开发服务器启动提速" }
+      ]
+    },
+    "proj-004": {
+      "name": "混沌工程平台",
+      "tagline": "贵阳银行自助故障注入平台",
+      "domainBadge": "可视化计算",
+      "metricsLabel": "可视化引擎",
+      "background": "为贵阳银行设计关键故障注入平台，将复杂的后端韧性测试转化为直观的可视化工作区。",
+      "technicalDecisions": [
+        {
+          "title": "AntV/X6 图形化实验设计器",
+          "explanation": "开发图形设计器，支持拖拽式故障编排，将实验配置时间缩短 60%。"
+        },
+        {
+          "title": "Canvas 渲染策略",
+          "explanation": "采用 Canvas 渲染，实时监控 2,000+ 数据点/秒，处理高频更新场景。"
+        },
+        {
+          "title": "requestAnimationFrame + 数据窗口化",
+          "explanation": "优化渲染周期，在峰值可观测性负载下保持稳定 60fps，无帧率下降。"
+        },
+        {
+          "title": "PDF 报告自动分发",
+          "explanation": "构建基于 AntV/G2 图表快照的 PDF 自动导出，将报告直接整合至实验结果中。"
+        }
+      ],
+      "metrics": [
+        { "label": "数据吞吐量" },
+        { "label": "配置时间" },
+        { "label": "验收率" }
+      ]
+    }
+  },
+  "experiencesContent": {
+    "exp-001": {
+      "company": "晶城易灯科技",
+      "title": "AI 全栈工程师",
+      "location": "深圳 · 远程",
+      "responsibilities": [
+        "独立主导 AI 全栈开发，从零交付两款商业产品：面向风电客服团队的 RAG 知识库平台（统一管理约 2TB 设备文档）和基于用户头像生成个性化景区视频的 AIGC 营销应用",
+        "RAG 平台将平均文档查询时间从 5 分钟降至 1 分钟，工单处理时间减少 80%，答案信任评分达到 9/10",
+        "抽象可复用 AI 能力模块（多模型集成、异步任务状态机、答案引用回溯），支持新业务场景快速接入而无需重写核心逻辑"
+      ],
+      "highlight": "工单处理 −80%"
+    },
+    "exp-002": {
+      "company": "Gate.com",
+      "title": "高级前端工程师",
+      "location": "远程",
+      "responsibilities": [
+        "主导 Gate 理财业务线前端研发，在全球前十加密货币交易所独立交付 4 款金融产品（双向投资、活期理财、VIP 财富管理、杠杆产品）及 OTC 后台与 KYC/KYB 合规流程",
+        "主导大数据内容页面 SEO 专项：自然流量从 1K/月增长至 14K/月（14×），其他数据系列页面增长 80%+；通过 CSR → Next.js SSR 迁移与系统化 JSON-LD 注入实现，LCP/CLS 均达 Core Web Vitals 良好阈值",
+        "主导前端基础设施现代化：MobX → Zustand、styled-components → Tailwind，消除运行时开销；维护 Monorepo 共享模块、图标库与组件库",
+        "引入 AI 辅助开发工作流（Cursor），重复性编码效率提升约 30%"
+      ],
+      "highlight": "SEO 1K → 14K/月（14×）"
+    },
+    "exp-003": {
+      "company": "汉竹科技 · Michaels",
+      "title": "高级前端工程师 / 技术负责人",
+      "location": "深圳",
+      "responsibilities": [
+        "担任前端技术负责人，管理 7 人团队覆盖 Michaels 4 条产品线（MakerPlace、Rewards、Classes、门店系统），负责架构设计、技术选型与交付节奏",
+        "主导 Next.js SSR 构建从 Webpack 迁移至 Vite：开发冷启动从 ~25s 降至 <5s，HMR 从 ~3s 降至 <0.5s，显著提升团队迭代反馈效率",
+        "从零建设设计系统：沉淀 16+ 可复用业务组件覆盖 4 条产品线，重复 UI 开发减少约 60%；LCP 从约 4s 优化至 1.8s",
+        "建立前端质量体系（ESLint/Prettier/TypeScript 严格模式 + Code Review 机制），生产 Bug 率降低约 30%"
+      ],
+      "highlight": "7 人团队负责人"
+    },
+    "exp-004": {
+      "company": "中科方德 · 贵阳银行",
+      "title": "前端团队负责人",
+      "location": "贵阳",
+      "responsibilities": [
+        "在贵阳银行核心银行系统现场带领 3 人前端团队，负责需求拆解、工时估算及代码评审流程建立",
+        "独立 2 周内从零交付贵阳银行混沌工程平台 1.0：4 大模块（故障注入、实验编排、监控、治理），客户验收率 100%",
+        "带领 3 人团队 1 个月内完成泰康人寿配置中心：多数据源配置模板（Redis/MySQL）一键回滚，显著提升配置变更效率"
+      ],
+      "highlight": "混沌平台：2 周交付"
+    },
+    "exp-005": {
+      "company": "贵州国信通电子商务",
+      "title": "前端开发工程师",
+      "location": "贵阳",
+      "responsibilities": [
+        "主导信通贷平台从 JSP 渐进式迁移至 Vue：通过 iframe 桥接策略保证业务连续性，零回滚，首屏加载显著改善",
+        "构建 H5/iOS/Android 跨平台兼容页面；将活动页面与渠道路由抽象为 JSON Schema 驱动的模板引擎，重复业务开发时间减少约 50%"
+      ],
+      "highlight": "JSP → Vue 零回滚"
+    }
   }
 }

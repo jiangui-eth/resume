@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import type { Experience } from "@/types/experience";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import MetricsBar from "@/components/experience/MetricsBar";
 
 import Timeline from "@/components/experience/Timeline";
+import experiencesData from "@/data/experiences.json";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -43,8 +45,28 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+interface LocalizedExperienceOverride {
+  company?: string;
+  title?: string;
+  location?: string;
+  responsibilities?: string[];
+  highlight?: string;
+}
+
 export default async function ExperiencePage() {
   const t = await getTranslations("experience");
+  const locale = await getLocale();
+
+  const messages = locale !== "en" ? await getMessages() : null;
+  const experiencesContent = messages?.experiencesContent as
+    | Record<string, LocalizedExperienceOverride>
+    | undefined;
+
+  const experiences = (experiencesData as Experience[]).map((exp) => {
+    const override = experiencesContent?.[exp.id];
+    if (!override) return exp;
+    return { ...exp, ...override };
+  });
 
   return (
     <div className="min-h-screen bg-[#121414]">
@@ -70,7 +92,7 @@ export default async function ExperiencePage() {
 
       <section className="px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[1200px]">
-          <Timeline />
+          <Timeline experiences={experiences} />
         </div>
       </section>
 
