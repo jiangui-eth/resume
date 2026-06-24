@@ -4,7 +4,7 @@ Task: T-DS-002 Visual Scale Tokens
 - 分支: feature/ds-visual-scale-tokens
 - 开发人: Claude
 - 测试状态: 通过（18/18）
-- PR 链接: 待生成
+- PR 链接: https://github.com/jiangui-eth/resume/pull/69
 - 变更文件:
     packages/ui/src/tokens/typography.css （新建）
     packages/ui/src/tokens/shape.css （新建）
