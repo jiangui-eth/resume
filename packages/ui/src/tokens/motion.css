@@ -1,0 +1,24 @@
+:root {
+  --ds-duration-short-1: 50ms;
+  --ds-duration-short-2: 100ms;
+  --ds-duration-short-3: 150ms;
+  --ds-duration-short-4: 200ms;
+  --ds-duration-medium-1: 250ms;
+  --ds-duration-medium-2: 300ms;
+  --ds-duration-medium-3: 350ms;
+  --ds-duration-medium-4: 400ms;
+  --ds-duration-long-1: 450ms;
+  --ds-duration-long-2: 500ms;
+  --ds-duration-long-3: 550ms;
+  --ds-duration-long-4: 600ms;
+  --ds-duration-extra-long-1: 700ms;
+  --ds-duration-extra-long-2: 800ms;
+  --ds-duration-extra-long-3: 900ms;
+  --ds-duration-extra-long-4: 1000ms;
+
+  --ds-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ds-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --ds-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ds-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --ds-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+}
