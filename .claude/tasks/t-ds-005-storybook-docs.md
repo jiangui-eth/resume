@@ -3,8 +3,8 @@ Task: T-DS-005 Storybook 组件文档
 - 需求描述: 为 6 个 DS 基础组件及所有 Token 编写 Storybook 交互文档，并配置 Light/Dark 主题切换
 - 分支: feature/ds-storybook-docs
 - 开发人: Claude
-- 测试状态: 待测试
-- PR 链接: 待生成
+- 测试状态: 通过（13/13）
+- PR 链接: https://github.com/jiangui-eth/resume/pull/72
 - 变更文件:
     apps/storybook/.storybook/preview.tsx （修改：添加 addon-themes Light/Dark 配置）
     apps/storybook/src/stories/DSButton.stories.tsx （新建）
