@@ -1,0 +1,56 @@
+:root {
+  --ds-state-hover: 0.08;
+  --ds-state-focused: 0.1;
+  --ds-state-pressed: 0.12;
+  --ds-state-dragged: 0.16;
+  --ds-state-disabled-container: 0.12;
+  --ds-state-disabled-content: 0.38;
+}
+
+@theme inline {
+  --opacity-state-hover: var(--ds-state-hover);
+  --opacity-state-focused: var(--ds-state-focused);
+  --opacity-state-pressed: var(--ds-state-pressed);
+}
+
+@layer utilities {
+  .state-layer {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .state-layer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--state-layer-color, currentColor);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--ds-duration-short-2) var(--ds-easing-standard);
+    z-index: 0;
+  }
+
+  .state-layer:hover::before {
+    opacity: var(--ds-state-hover);
+  }
+
+  .state-layer:focus::before {
+    opacity: var(--ds-state-focused);
+  }
+
+  .state-layer:active::before {
+    opacity: var(--ds-state-pressed);
+  }
+
+  .state-layer:disabled {
+    pointer-events: none;
+    opacity: var(--ds-state-disabled-container);
+  }
+
+  .state-layer:disabled > * {
+    opacity: calc(
+      var(--ds-state-disabled-content) / var(--ds-state-disabled-container)
+    );
+  }
+}
