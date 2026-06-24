@@ -8,11 +8,11 @@
 
 - [架构概览](#架构概览)
 - [Token 层](#token-层)
-  - [颜色系统](#颜色系统-t-ds-001)
-  - [视觉比例](#视觉比例-t-ds-002)
-  - [状态层](#状态层-t-ds-003)
-- [组件层](#组件层-t-ds-004)
-- [Storybook 文档](#storybook-文档-t-ds-005)
+  - [颜色系统](#颜色系统)
+  - [视觉比例](#视觉比例)
+  - [状态层](#状态层)
+- [组件层](#组件层)
+- [Storybook 文档](#storybook-文档)
 - [使用指南](#使用指南)
 - [主题切换](#主题切换)
 - [测试规范](#测试规范)
@@ -62,7 +62,7 @@ apps/storybook/src/stories/
 
 所有 Token 以 CSS 自定义属性形式定义，遵循 `--ds-<category>-<name>` 命名规范。通过 `@theme inline` 注册为 Tailwind 工具类，前缀统一加 `ds-`。
 
-### 颜色系统（T-DS-001）
+### 颜色系统
 
 **Source color：** `#6750A4`（MD3 Baseline Purple）
 
@@ -115,7 +115,7 @@ toggleTheme();
 
 ---
 
-### 视觉比例（T-DS-002）
+### 视觉比例
 
 #### 字体规格（Type Scale）
 
@@ -187,7 +187,7 @@ transition: opacity var(--ds-duration-short-2) var(--ds-easing-standard);
 
 ---
 
-### 状态层（T-DS-003）
+### 状态层
 
 MD3 所有交互反馈通过 `::before` 伪元素叠加半透明颜色实现，**纯 CSS，无 JavaScript**。
 
@@ -228,7 +228,7 @@ MD3 所有交互反馈通过 `::before` 伪元素叠加半透明颜色实现，*
 
 ---
 
-## 组件层（T-DS-004）
+## 组件层
 
 所有组件从 `@jiangui-resume/ui` 导出，路径引用：
 
@@ -357,7 +357,7 @@ const [open, setOpen] = useState(false)
 
 ---
 
-## Storybook 文档（T-DS-005）
+## Storybook 文档
 
 ```bash
 # 启动 Storybook（端口 6006）
