@@ -3,8 +3,8 @@ Task: T-DS-004 Base Component Library
 - 需求描述: 基于 DS Token 体系实现 6 个 MD3 规范基础组件：Button、Input、Card、Chip、Dialog、Snackbar
 - 分支: feature/ds-base-components
 - 开发人: Claude
-- 测试状态: 待测试
-- PR 链接: 待生成
+- 测试状态: 通过（52/52）
+- PR 链接: https://github.com/jiangui-eth/resume/pull/71
 - 变更文件:
     packages/ui/src/components/Button/Button.tsx （新建）
     packages/ui/src/components/Input/Input.tsx （新建）
