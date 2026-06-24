@@ -17,8 +17,6 @@
 - [主题切换](#主题切换)
 - [测试规范](#测试规范)
 
----
-
 ## 架构概览
 
 ```
@@ -479,15 +477,3 @@ cd apps/web && pnpm test --run
 pnpm test --run src/lib/__tests__/ds-
 pnpm test --run src/components/ds/
 ```
-
----
-
-## 任务历史
-
-| Task     | Phase          | PR  | 状态      |
-| -------- | -------------- | --- | --------- |
-| T-DS-001 | 颜色系统       | #69 | ✅ Merged |
-| T-DS-002 | 视觉比例 Token | #70 | ✅ Merged |
-| T-DS-003 | 状态层系统     | —   | ✅ Merged |
-| T-DS-004 | 基础组件库     | #71 | ✅ Merged |
-| T-DS-005 | Storybook 文档 | #72 | ✅ Merged |
