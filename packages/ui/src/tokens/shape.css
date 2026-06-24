@@ -1,0 +1,19 @@
+:root {
+  --ds-shape-none: 0px;
+  --ds-shape-extra-small: 4px;
+  --ds-shape-small: 8px;
+  --ds-shape-medium: 12px;
+  --ds-shape-large: 16px;
+  --ds-shape-extra-large: 28px;
+  --ds-shape-full: 9999px;
+}
+
+@theme inline {
+  --radius-ds-none: var(--ds-shape-none);
+  --radius-ds-xs: var(--ds-shape-extra-small);
+  --radius-ds-sm: var(--ds-shape-small);
+  --radius-ds-md: var(--ds-shape-medium);
+  --radius-ds-lg: var(--ds-shape-large);
+  --radius-ds-xl: var(--ds-shape-extra-large);
+  --radius-ds-full: var(--ds-shape-full);
+}
