@@ -4,7 +4,7 @@ Task: T-DS-006 字体规格替换（全局）
 - 分支: feature/ds-font-scale
 - 开发人: Claude
 - 测试状态: 通过（418/418）
-- PR 链接: 待生成
+- PR 链接: https://github.com/jiangui-eth/resume/pull/73
 - 变更文件:
     apps/web/src/components/home/HeroSection.tsx （修改：h1 text-[64px] → text-display-large，color → style）
     apps/web/src/components/home/AboutSection.tsx （修改：stat text-[32px] → text-headline-large，color → style）
