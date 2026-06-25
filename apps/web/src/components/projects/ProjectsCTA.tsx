@@ -9,9 +9,7 @@ export default function ProjectsCTA() {
   return (
     <section className="border-ds-border-2/30 border-t py-20 text-center">
       <div className="mx-auto max-w-300 px-6">
-        <h2 className="mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-white">
-          {t("title")}
-        </h2>
+        <h2 className="mb-4 text-headline-large text-white">{t("title")}</h2>
         <p className="text-ds-muted mx-auto mb-10 max-w-2xl text-lg leading-relaxed">
           {t("description")}
         </p>

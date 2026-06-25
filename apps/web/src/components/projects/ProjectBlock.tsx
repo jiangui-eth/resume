@@ -62,11 +62,12 @@ export default function ProjectBlock({
         </span>
       </div>
 
-      <h2 className="mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em] text-white">
-        {project.name}
-      </h2>
+      <h2 className="mb-4 text-headline-large text-white">{project.name}</h2>
 
-      <div className="text-ds-subtle space-y-4 text-[18px] leading-[1.6]">
+      <div
+        className="space-y-4 text-body-large"
+        style={{ color: "var(--ds-subtle)" }}
+      >
         <p>{project.background}</p>
         {project.technicalDecisions.length > 0 && (
           <TechnicalDecisions decisions={project.technicalDecisions} />

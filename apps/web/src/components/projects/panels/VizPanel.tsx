@@ -22,7 +22,10 @@ export function VizPanel({
             backgroundSize: "20px 20px",
           }}
         />
-        <span className="material-symbols-outlined text-ds-accent z-10 text-[60px] transition-transform group-hover:scale-110">
+        <span
+          className="material-symbols-outlined z-10 text-display-large transition-transform group-hover:scale-110"
+          style={{ color: "var(--ds-accent)" }}
+        >
           hub
         </span>
         <div className="border-ds-border-2/20 bg-ds-surface-2/80 text-ds-muted absolute right-3 bottom-3 left-3 rounded border px-2 py-1 font-mono text-xs">

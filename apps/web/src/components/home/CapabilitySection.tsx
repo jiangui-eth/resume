@@ -19,8 +19,11 @@ function CapabilityCard({ icon, title, bullets }: Capability): JSX.Element {
       {/* Icon */}
       <div className="border-ds-accent/20 bg-ds-accent/10 group-hover:border-ds-accent/50 flex h-14 w-14 items-center justify-center rounded-xl border transition-all">
         <span
-          className="material-symbols-outlined text-ds-accent-vivid text-[28px]"
-          style={{ fontVariationSettings: "'FILL' 1" }}
+          className="material-symbols-outlined text-headline-medium"
+          style={{
+            fontVariationSettings: "'FILL' 1",
+            color: "var(--ds-accent-vivid)",
+          }}
           aria-hidden="true"
         >
           {icon}
@@ -98,7 +101,10 @@ export default async function CapabilitySection(): Promise<JSX.Element> {
               {t("badge")}
             </span>
           </div>
-          <h3 className="text-ds-fg mb-1 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em]">
+          <h3
+            className="mb-1 text-display-large"
+            style={{ color: "var(--ds-fg)" }}
+          >
             {t("title")}
           </h3>
           <p className="text-ds-muted max-w-2xl text-lg leading-[1.6]">

@@ -21,10 +21,8 @@ export default function SectionHeader({
   return (
     <div className={centered ? "text-center" : undefined}>
       <Heading
-        className={cn(
-          "text-ds-fg mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em]",
-          className,
-        )}
+        className={cn("mb-4 text-headline-large", className)}
+        style={{ color: "var(--ds-fg)" }}
       >
         {title}
       </Heading>

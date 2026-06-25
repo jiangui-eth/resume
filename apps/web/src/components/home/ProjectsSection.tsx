@@ -48,7 +48,10 @@ function ProjectRow({
         <span className="text-ds-accent mb-2 block font-mono text-sm leading-[1.4] font-medium tracking-[0.02em]">
           {project.domainTags[0]}
         </span>
-        <h4 className="text-ds-fg mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em]">
+        <h4
+          className="mb-4 text-headline-large"
+          style={{ color: "var(--ds-fg)" }}
+        >
           {project.name}
         </h4>
         <p className="text-ds-muted mb-6 text-base leading-[1.6]">
