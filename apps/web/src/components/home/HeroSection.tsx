@@ -29,7 +29,10 @@ export default async function HeroSection(): Promise<JSX.Element> {
         </div>
 
         {/* H1 */}
-        <h1 className="text-ds-fg mb-4 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em]">
+        <h1
+          className="mb-4 text-display-large"
+          style={{ color: "var(--ds-fg)" }}
+        >
           {profileData.name} <span className="text-ds-accent-vivid">|</span>
           <br className="hidden md:block" /> {t("hero.tagline")}
         </h1>

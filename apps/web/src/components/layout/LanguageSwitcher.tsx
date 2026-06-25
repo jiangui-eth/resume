@@ -54,10 +54,7 @@ export default function LanguageSwitcher() {
           isPending && "cursor-not-allowed opacity-50",
         )}
       >
-        <span
-          className="material-symbols-outlined text-[20px]"
-          aria-hidden="true"
-        >
+        <span className="material-symbols-outlined text-xl" aria-hidden="true">
           language
         </span>
       </button>
@@ -66,7 +63,7 @@ export default function LanguageSwitcher() {
         <ul
           role="listbox"
           aria-label={t("label")}
-          className="border-ds-border-2/40 bg-ds-surface absolute top-full right-0 z-50 mt-1 min-w-[130px] rounded-lg border py-1 shadow-xl"
+          className="border-ds-border-2/40 absolute top-full right-0 z-50 mt-1 min-w-[130px] rounded-lg border bg-ds-surface py-1 shadow-xl"
         >
           {LOCALES.map(({ value, labelKey }) => (
             <li

@@ -13,14 +13,12 @@ export default function SkillsHero(): JSX.Element {
         <span className="text-ds-accent mb-2 block font-mono text-sm tracking-widest uppercase">
           {t("badge")}
         </span>
-        <h1 className="mb-4 text-[64px] leading-[1.1] font-extrabold tracking-[-0.04em] text-white">
-          {t("title")}
-        </h1>
+        <h1 className="mb-4 text-display-large text-white">{t("title")}</h1>
         <p className="text-ds-muted mb-6 max-w-2xl text-lg leading-relaxed">
           {t("description")}
         </p>
         <div className="flex flex-wrap gap-4">
-          <div className="border-ds-border-2/50 bg-ds-surface flex items-center gap-2 rounded-lg border px-4 py-2">
+          <div className="border-ds-border-2/50 flex items-center gap-2 rounded-lg border bg-ds-surface px-4 py-2">
             <span
               className="material-symbols-outlined text-ds-accent"
               style={{ fontVariationSettings: "'FILL' 1" }}
@@ -29,7 +27,7 @@ export default function SkillsHero(): JSX.Element {
             </span>
             <span className="font-mono text-sm">{t("systemArchitecture")}</span>
           </div>
-          <div className="border-ds-border-2/50 bg-ds-surface flex items-center gap-2 rounded-lg border px-4 py-2">
+          <div className="border-ds-border-2/50 flex items-center gap-2 rounded-lg border bg-ds-surface px-4 py-2">
             <span
               className="material-symbols-outlined text-ds-accent"
               style={{ fontVariationSettings: "'FILL' 1" }}

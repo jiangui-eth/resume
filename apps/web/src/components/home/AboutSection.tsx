@@ -30,7 +30,10 @@ export default async function AboutSection(): Promise<JSX.Element> {
           <div className="mt-4 flex gap-10">
             {profile.highlights.map(({ value, label }) => (
               <div key={label}>
-                <p className="text-ds-accent-vivid text-[32px] leading-[1.2] font-bold tracking-[-0.02em]">
+                <p
+                  className="text-headline-large"
+                  style={{ color: "var(--ds-accent-vivid)" }}
+                >
                   {value}
                 </p>
                 <p className="text-ds-muted font-mono text-sm leading-[1.4] font-medium tracking-[0.02em]">

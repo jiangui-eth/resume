@@ -39,7 +39,10 @@ export default async function ContactSection(): Promise<JSX.Element> {
     <section id="contact" className="bg-ds-surface py-20" aria-label="Contact">
       <SectionWrapper as="div" className="text-center">
         {/* Heading */}
-        <h3 className="text-ds-fg mb-4 text-[32px] leading-[1.2] font-bold tracking-[-0.02em]">
+        <h3
+          className="mb-4 text-headline-large"
+          style={{ color: "var(--ds-fg)" }}
+        >
           {t("title")}
         </h3>
         <p className="text-ds-muted mx-auto mb-10 max-w-xl text-lg leading-[1.6]">

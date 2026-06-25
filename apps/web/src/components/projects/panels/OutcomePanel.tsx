@@ -9,14 +9,14 @@ export function OutcomePanel({
   const label = project.metricsLabel ?? "Outcome Metrics";
 
   return (
-    <div className="glass-card bg-ds-surface overflow-hidden rounded-xl p-6">
+    <div className="glass-card overflow-hidden rounded-xl bg-ds-surface p-6">
       <p className="text-ds-muted mb-4 font-mono text-xs font-medium tracking-widest uppercase">
         {label}
       </p>
       <div className="space-y-4">
         {project.metrics.map((m) => (
           <div key={m.label} className="flex items-center gap-4">
-            <span className="text-[64px] leading-none font-extrabold text-white">
+            <span className="text-display-large leading-none text-white">
               {m.value}
             </span>
             <span className="text-ds-muted text-sm leading-snug">
